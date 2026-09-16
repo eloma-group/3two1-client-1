@@ -1,0 +1,81 @@
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.05rem 2.2rem;
+  border-radius: 100px;
+  font-family: var(--font-ui);
+  font-size: 0.76rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  transition: color 0.4s var(--ease-out), box-shadow 0.45s var(--ease-out),
+    transform 0.4s var(--ease-out), border-color 0.4s var(--ease-out);
+}
+.btn:hover { transform: translateY(-2px); }
+.btn:active { transform: translateY(0); }
+
+.magnet {
+  display: inline-flex;
+  transition: transform 0.35s var(--ease-out);
+  will-change: transform;
+}
+.inner {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  position: relative;
+  z-index: 1;
+}
+
+/* Shared center-wipe fill layer */
+.btn::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  z-index: 0;
+  transform: scale(0.5);
+  opacity: 0;
+  transition: transform 0.5s var(--ease-out), opacity 0.4s var(--ease-out);
+}
+.btn:hover::before { transform: scale(1); opacity: 1; }
+
+/* Solid — brand gradient, deepens on hover */
+.solid {
+  background: var(--grad-brand-soft);
+  color: #fff;
+  box-shadow: 0 12px 34px -12px rgba(232, 68, 111, 0.6);
+}
+.solid::before { background: linear-gradient(120deg, var(--rose-900), var(--rose-700) 55%, var(--rose-500)); }
+.solid:hover { box-shadow: 0 20px 50px -14px rgba(232, 68, 111, 0.75); }
+
+/* Outline — border, fills with gradient on hover */
+.outline {
+  border: 1.5px solid var(--btn-border);
+  color: var(--fg);
+  background: transparent;
+}
+.outline::before { background: var(--grad-brand-soft); }
+.outline:hover { color: #fff; border-color: transparent; }
+
+/* Light — for dark backgrounds */
+.light {
+  background: var(--cream);
+  color: var(--ink-900);
+  box-shadow: 0 12px 34px -16px rgba(0, 0, 0, 0.4);
+}
+.light::before { background: var(--grad-brand-soft); }
+.light:hover { color: #fff; }
+
+/* Ghost — minimal text */
+.ghost {
+  color: var(--fg);
+  padding-inline: 0.75rem;
+  border-radius: 8px;
+}
+.ghost::before { background: rgba(232, 68, 111, 0.12); }
+.ghost:hover { color: var(--rose-500); }

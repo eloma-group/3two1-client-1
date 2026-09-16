@@ -1,0 +1,31 @@
+.marquee {
+  display: flex;
+  overflow: hidden;
+  width: 100%;
+  user-select: none;
+}
+.track {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  gap: 0;
+  animation: scroll 32s linear infinite;
+}
+.reverse .track { animation-direction: reverse; }
+.marquee:hover .track { animation-play-state: paused; }
+
+.item {
+  font-family: var(--font-display);
+  font-size: clamp(1.6rem, 4.5vw, 3.4rem);
+  padding-inline: 1.2rem;
+  white-space: nowrap;
+  display: inline-flex;
+  align-items: center;
+  gap: 2.4rem;
+  font-style: italic;
+}
+.dot { color: var(--rose-500); font-style: normal; font-size: 0.6em; }
+
+@keyframes scroll {
+  to { transform: translateX(-50%); }
+}

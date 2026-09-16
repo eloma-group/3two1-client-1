@@ -1,0 +1,12 @@
+.toggle {
+  display: inline-grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  color: var(--ink-800);
+  border: 1.5px solid var(--btn-border);
+  transition: color 0.3s, background 0.3s, border-color 0.3s;
+}
+.toggle:hover { color: var(--rose-500); background: rgba(232, 68, 111, 0.1); border-color: var(--rose-500); }
+.icon { display: inline-grid; place-items: center; }

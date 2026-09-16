@@ -1,0 +1,230 @@
+/* ============================================================
+   Centered-logo navbar with dropdown menus + theme toggle
+   ============================================================ */
+.nav {
+  position: fixed;
+  top: clamp(0.8rem, 1.8vw, 1.5rem);
+  left: 0;
+  right: 0;
+  margin-inline: auto;
+  width: max-content;
+  z-index: 900;
+  max-width: calc(100% - clamp(1.5rem, 5vw, 3rem));
+  font-family: var(--font-ui);
+  transition: top 0.4s var(--ease-out);
+}
+.nav.scrolled { top: clamp(0.5rem, 1.2vw, 1rem); }
+
+/* The whole header is one compact floating glass pill, centered on screen */
+.bar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(1.5rem, 4vw, 3.5rem);
+  padding: 0.5rem 0.5rem 0.5rem 1.4rem;
+  border-radius: 100px;
+  background: var(--glass);
+  backdrop-filter: blur(20px) saturate(160%);
+  border: 1px solid var(--glass-border);
+  box-shadow: 0 14px 40px -16px rgba(0, 0, 0, 0.25);
+  transition: box-shadow 0.5s var(--ease-out), padding 0.4s var(--ease-out), background 0.5s;
+}
+.scrolled .bar {
+  box-shadow: 0 18px 50px -18px rgba(0, 0, 0, 0.38);
+}
+
+.left { display: flex; align-items: center; gap: clamp(1.4rem, 3vw, 3rem); }
+.right { display: flex; align-items: center; gap: clamp(0.5rem, 1.4vw, 1.1rem); }
+.links { display: flex; align-items: center; gap: clamp(0.6rem, 1.6vw, 1.9rem); }
+
+/* Menu item + trigger */
+.item { position: relative; }
+.link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: 1rem;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  color: var(--ink-800);
+  padding: 0.5rem 0.3rem;
+  white-space: nowrap;
+  transition: color 0.3s;
+}
+.item:hover .link { color: var(--rose-500); }
+.chev { transition: transform 0.35s var(--ease-out); opacity: 0.7; }
+.item:hover .chev { transform: rotate(180deg); }
+
+/* Dropdown panel */
+.dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  padding-top: 28px; /* clears the pill's bottom edge + hover-bridge gap */
+}
+.dropInner {
+  min-width: 230px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+  padding: 0.6rem;
+  border-radius: 16px;
+  background: var(--glass);
+  backdrop-filter: blur(20px) saturate(160%);
+  border: 1px solid var(--glass-border);
+  box-shadow: 0 24px 50px -20px rgba(0, 0, 0, 0.35);
+}
+.dropLink {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.7rem 0.9rem;
+  border-radius: 10px;
+  font-size: 0.98rem;
+  font-weight: 500;
+  color: var(--ink-700);
+  text-align: left;
+  white-space: nowrap;
+  transition: background 0.25s, color 0.25s, padding-left 0.25s var(--ease-out);
+}
+.dropLink:hover { background: rgba(232, 68, 111, 0.1); color: var(--rose-500); padding-left: 1.1rem; }
+.dropDot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--grad-brand-soft);
+  flex-shrink: 0;
+  opacity: 0.5;
+  transition: opacity 0.25s;
+}
+.dropLink:hover .dropDot { opacity: 1; }
+
+/* Logo (left) */
+.brand { display: inline-flex; align-items: center; }
+.logo {
+  height: clamp(56px, 5.6vw, 74px);
+  width: auto;
+  opacity: 1;
+  filter: drop-shadow(0 2px 6px rgba(110, 16, 48, 0.28));
+  transition: height 0.4s var(--ease-out);
+}
+.scrolled .logo { height: clamp(48px, 4.6vw, 60px); }
+:global([data-theme='dark']) .logo {
+  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.5));
+}
+
+/* Portfolio — outlined pill */
+.ctaPill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.7rem 1.6rem;
+  border-radius: 100px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-800);
+  border: 1.5px solid var(--btn-border);
+  background: transparent;
+  position: relative;
+  overflow: hidden;
+  white-space: nowrap;
+  transition: color 0.4s var(--ease-out), border-color 0.4s var(--ease-out);
+}
+.ctaPill { gap: 0.55rem; }
+.ctaPill span { position: relative; z-index: 1; }
+.ctaArrow {
+  position: relative;
+  z-index: 1;
+  transition: transform 0.35s var(--ease-out);
+}
+.ctaPill:hover .ctaArrow { transform: translateX(4px); }
+.ctaPill::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--grad-brand-soft);
+  transform: scale(0.6);
+  opacity: 0;
+  border-radius: inherit;
+  transition: transform 0.45s var(--ease-out), opacity 0.4s var(--ease-out);
+  z-index: 0;
+}
+.ctaPill:hover { color: #fff; border-color: transparent; }
+.ctaPill:hover::before { transform: scale(1); opacity: 1; }
+
+.burger { display: none; color: var(--ink-900); }
+
+/* ---------------- Fullscreen overlay menu ---------------- */
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 950;
+  background: var(--grad-dark);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: var(--page-x);
+  overflow-y: auto;
+}
+.close { position: absolute; top: 1.6rem; right: var(--page-x); color: var(--cream); }
+.mobileTop { position: absolute; top: 1.5rem; left: var(--page-x); }
+
+.menuLinks { display: flex; flex-direction: column; gap: 0.2rem; max-width: 640px; }
+.mAcc { border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
+.mAccHead {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.9rem 0;
+  font-family: var(--font-display);
+  font-size: clamp(1.6rem, 7vw, 2.6rem);
+  color: var(--cream);
+  transition: color 0.3s;
+}
+.mAccHead:hover { color: var(--rose-400); }
+.mChev { color: var(--rose-400); transition: transform 0.35s var(--ease-out); }
+.mChevOpen { transform: rotate(180deg); }
+.mChildren { overflow: hidden; display: flex; flex-direction: column; }
+.mChild {
+  text-align: left;
+  padding: 0.55rem 0 0.55rem 1rem;
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.66);
+  transition: color 0.25s, padding-left 0.25s var(--ease-out);
+}
+.mChild:hover { color: #fff; padding-left: 1.5rem; }
+.mChildren > .mChild:last-child { padding-bottom: 1rem; }
+
+.menuFoot {
+  margin-top: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: flex-start;
+  color: var(--rose-200);
+  font-size: 0.95rem;
+}
+.mCta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.85rem 1.5rem;
+  border-radius: 100px;
+  background: var(--grad-brand-soft);
+  color: #fff;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+/* ---------------- Responsive ---------------- */
+@media (max-width: 1180px) {
+  .links { display: none; }
+  .burger { display: inline-grid; place-items: center; }
+}
+@media (max-width: 560px) {
+  .themeDesktop { display: none; }
+  .ctaPill { display: none; }
+}

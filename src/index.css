@@ -1,0 +1,163 @@
+/* ============================================================
+   3two1 — Design System
+   Pink-coral luxury beverage palette · "The Taste of Passion"
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..700&family=Inter:wght@300..700&family=Space+Grotesk:wght@300..700&display=swap');
+
+:root {
+  /* Brand — pink / coral gradient sampled from the logo */
+  --rose-900: #6e1030;
+  --rose-700: #b41f52;
+  --rose-500: #e8446f;
+  --rose-400: #f0708a;
+  --rose-300: #f79aa7;
+  --rose-200: #f9c2c8;
+  --coral: #ff7d84;
+  --peach: #ffb39a;
+
+  /* Neutrals — warm plum-black to cream */
+  --ink-900: #0c0507;
+  --ink-800: #140a0e;
+  --ink-700: #1d1015;
+  --ink-600: #2a1820;
+  --cream: #fdf5f2;
+  --cream-2: #f7e8e2;
+  --sand: #efd9d1;
+
+  /* Semantic */
+  --bg: var(--cream);
+  --fg: var(--ink-900);
+  --muted: #6b5058;
+
+  /* Theme surfaces (flip in dark mode) */
+  --glass: rgba(253, 245, 242, 0.72);
+  --glass-border: rgba(232, 68, 111, 0.14);
+  --card: #ffffff;
+  --card-border: rgba(232, 68, 111, 0.14);
+  --btn-border: rgba(180, 31, 82, 0.45);
+
+  --grad-brand: linear-gradient(120deg, var(--rose-700) 0%, var(--rose-500) 42%, var(--coral) 78%, var(--peach) 100%);
+  --grad-brand-soft: linear-gradient(120deg, var(--rose-500), var(--coral));
+  --grad-dark: radial-gradient(120% 140% at 50% -10%, #2a0f1a 0%, #0c0507 60%);
+
+  /* Type */
+  --font-display: 'Fraunces', Georgia, serif;
+  --font-body: 'Space Grotesk', system-ui, sans-serif;
+  --font-ui: 'Inter', system-ui, sans-serif;
+
+  /* Layout */
+  --page-x: clamp(1.25rem, 5vw, 6rem);
+  --maxw: 100%;
+  --radius: 22px;
+
+  /* Motion */
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-io: cubic-bezier(0.65, 0, 0.35, 1);
+
+  color-scheme: light;
+}
+
+/* ---------------- Dark / night mode ---------------- */
+[data-theme='dark'] {
+  --ink-900: #fbeef0;
+  --ink-800: #f1dee3;
+  --ink-700: #e6cdd4;
+  --ink-600: #d8bac3;
+  --cream: #0d0709;
+  --cream-2: #150d11;
+  --sand: #23161d;
+  --muted: #ad909b;
+
+  --glass: rgba(18, 10, 14, 0.72);
+  --glass-border: rgba(255, 255, 255, 0.1);
+  --card: #150d11;
+  --card-border: rgba(255, 255, 255, 0.1);
+  --btn-border: rgba(255, 255, 255, 0.35);
+
+  color-scheme: dark;
+}
+
+body {
+  transition: background-color 0.5s var(--ease-out), color 0.5s var(--ease-out);
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+* { margin: 0; }
+
+html {
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  scroll-behavior: auto; /* Lenis handles scrolling */
+}
+
+body {
+  font-family: var(--font-body);
+  background: var(--bg);
+  color: var(--fg);
+  line-height: 1.5;
+  overflow-x: hidden;
+  cursor: none;
+}
+
+/* Lenis */
+html.lenis, html.lenis body { height: auto; }
+.lenis.lenis-smooth { scroll-behavior: auto !important; }
+.lenis.lenis-stopped { overflow: hidden; }
+
+img, video { display: block; max-width: 100%; height: auto; }
+
+a { color: inherit; text-decoration: none; }
+button { font: inherit; color: inherit; border: none; background: none; cursor: none; }
+ul { list-style: none; padding: 0; }
+
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  font-weight: 500;
+  line-height: 1.02;
+  letter-spacing: -0.02em;
+}
+
+::selection { background: var(--rose-500); color: #fff; }
+
+/* Utility */
+.container {
+  width: 100%;
+  max-width: var(--maxw);
+  margin-inline: auto;
+  padding-inline: var(--page-x);
+}
+
+.eyebrow {
+  font-family: var(--font-body);
+  font-size: clamp(0.7rem, 0.9vw, 0.8rem);
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+.gradient-text {
+  background: var(--grad-brand);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Fluid display sizes */
+.display-xl { font-size: clamp(2.6rem, 9vw, 9.5rem); }
+.display-lg { font-size: clamp(2.2rem, 6.5vw, 6rem); }
+.display-md { font-size: clamp(1.8rem, 4vw, 3.4rem); }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  body { cursor: auto; }
+}
+
+@media (hover: none), (pointer: coarse) {
+  body, button, a { cursor: auto; }
+}
