@@ -43,7 +43,6 @@ export const navMenu: MenuEntry[] = [
     label: 'About',
     to: '/#story',
     children: [
-      { label: 'Our Story', to: '/#story' },
       { label: 'Investors', to: '/#story' },
       { label: 'Contact', to: '/#contact' },
     ],
@@ -97,14 +96,12 @@ export const navMenu: MenuEntry[] = [
 ];
 
 export const hero = {
-  eyebrow: 'The 3two1 network',
-  titleLines: ['Seven houses.', 'One portfolio.'],
+  eyebrow: "Australia's Partner Liquor Distributor",
+  titleLines: ['Premium Distribution &', 'Brand Representation Across', 'Australia, New Zealand & Pacific Island.'],
   body:
     'Distributed across Australia, New Zealand and the Pacific Islands. In every great bar, bottle shop and café.',
-  metricValue: '2,700',
-  metricLabel: 'venues. And counting.',
-  ctaPrimary: 'Become a Stockist',
-  ctaSecondary: 'Download the 2026 Portfolio',
+  ctaPrimary: 'Request Rate Card',
+  ctaSecondary: 'Download the Portfolio',
 } as const;
 
 export interface Brand {
@@ -131,7 +128,7 @@ export const brands: Brand[] = [
     description:
       'A spiced rum built on a coffee-and-cacao profile — dark, aromatic and unmistakably its own. Made to reinvent the rum & cola.',
     cta: 'Explore Black Tears',
-    image: '/images/packshot-black-tears-clean.png',
+    image: '/images/house-black-tears.png',
     hue: '#7a3346',
   },
   {
@@ -145,7 +142,7 @@ export const brands: Brand[] = [
       'Five generations of distillers in Angers, working with whole fruit. Chosen by sommeliers and head bartenders because they make the cocktail better.',
     accolade: '#7 Bestselling & #8 Top Trending Brand 2026',
     cta: 'Explore Giffard',
-    image: '/images/packshot-giffard-syrup-clean.png',
+    image: '/images/house-giffard.png',
     hue: '#e0546f',
   },
   {
@@ -157,7 +154,7 @@ export const brands: Brand[] = [
     description:
       'A blanco built on blue agave — clean, bright and made for the margarita. The bartender’s working tequila.',
     cta: 'Explore Pueblo Viejo',
-    image: '/images/packshot-pueblo-viejo-clean.png',
+    image: '/images/house-pueblo-viejo.png',
     hue: '#c98a3a',
   },
   {
@@ -169,7 +166,7 @@ export const brands: Brand[] = [
     description:
       'A charred-oak American whiskey with smoke and sweetness in balance. Built for the stirred-down classics.',
     cta: 'Explore Burnt Ends',
-    image: '/images/packshot-burnt-ends-clean.png',
+    image: '/images/house-burnt-ends.png',
     hue: '#8a4b2b',
   },
   {
@@ -181,7 +178,7 @@ export const brands: Brand[] = [
     description:
       'Single-estate Jamaican rum with all the funk and depth the island is famous for. From cane to bottle on one estate.',
     cta: 'Explore Worthy Park',
-    image: '/images/packshot-worthy-park-estate-clean.png',
+    image: '/images/house-worthy-park.png',
     hue: '#b08a2e',
   },
   {
@@ -193,7 +190,7 @@ export const brands: Brand[] = [
     description:
       'An approachable, easy-pouring whiskey built for the well. Straight, honest and made to move.',
     cta: 'Explore Whiskey Row',
-    image: '/images/packshot-whiskey-row-clean.png',
+    image: '/images/house-whiskey-row.png',
     hue: '#9c5a34',
   },
   {
@@ -206,7 +203,7 @@ export const brands: Brand[] = [
     description:
       'Casa San Matías has been distilling 100% blue agave in the highlands of Jalisco since 1886 — family-owned, quietly excellent. Reposado, Añejo and Extra-Añejo.',
     cta: 'Explore San Matías',
-    image: '/images/packshot-san-matias-rey-sol-clean.png',
+    image: '/images/house-san-matias.png',
     hue: '#d98a4a',
   },
 ];

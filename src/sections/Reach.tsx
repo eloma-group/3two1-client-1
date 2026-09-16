@@ -131,11 +131,12 @@ export default function Reach() {
                   width: is.w,
                   height: is.h,
                   borderRadius: `${45 + (i % 3) * 8}% ${55 - (i % 2) * 10}% ${50 + (i % 2) * 6}% ${48 + (i % 3) * 5}%`,
+                  animationDelay: `${i * 0.5}s`,
                 }}
-                initial={{ opacity: 0, scale: 0 }}
-                whileInView={{ opacity: 1, scale: 1 }}
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
                 viewport={{ once: true, margin: '-15%' }}
-                transition={{ delay: 0.5 + i * 0.06, duration: 0.5, ease: EASE }}
+                transition={{ delay: 0.5 + i * 0.06, duration: 0.6, ease: EASE }}
               />
             ))}
 
@@ -145,8 +146,8 @@ export default function Reach() {
                 key={l.name}
                 className={`${styles.label} ${l.align === 'left' ? styles.left : l.align === 'right' ? styles.right : ''}`}
                 style={{ left: `${l.x}%`, top: `${l.y}%` }}
-                initial={{ opacity: 0, y: 6 }}
-                whileInView={{ opacity: 1, y: 0 }}
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
                 viewport={{ once: true, margin: '-15%' }}
                 transition={{ delay: 0.55 + i * 0.04, duration: 0.5, ease: EASE }}
               >
@@ -159,9 +160,9 @@ export default function Reach() {
               <motion.span
                 key={i}
                 className={styles.cluster}
-                style={{ left: `${m.x}%`, top: `${m.y}%` }}
-                initial={{ opacity: 0, scale: 0.4 }}
-                whileInView={{ opacity: 1, scale: 1 }}
+                style={{ left: `${m.x}%`, top: `${m.y}%`, animationDelay: `${(i % 6) * 0.45}s` }}
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
                 viewport={{ once: true, margin: '-15%' }}
                 transition={{ delay: 0.6 + i * 0.05, duration: 0.5, ease: EASE }}
               >

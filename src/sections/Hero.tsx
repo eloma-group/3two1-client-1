@@ -1,7 +1,14 @@
 import { useRef } from 'react';
 import { motion, useScroll, useTransform, type Variants } from 'framer-motion';
-import { ArrowDown } from 'lucide-react';
+import { ArrowDown, Download, ArrowRight, Wine, Martini, Hotel, Coffee } from 'lucide-react';
 import { hero } from '../data/content';
+
+const channels = [
+  { icon: Wine, title: 'Wine Shop', sub: 'Retail & Bottle Shops' },
+  { icon: Martini, title: 'Bars', sub: 'On-Premise Pours' },
+  { icon: Hotel, title: 'Hospitality', sub: 'Hotels & Venues' },
+  { icon: Coffee, title: 'Cafe & Non-Alcoholic', sub: 'Daytime & Zero-Proof' },
+];
 import { scrollToHash } from '../hooks/useLenis';
 import MagneticButton from '../components/MagneticButton';
 import styles from './Hero.module.css';
@@ -77,17 +84,24 @@ export default function Hero({ ready }: { ready: boolean }) {
           </motion.p>
 
           <motion.div className={styles.actions} variants={fadeUp}>
-            <MagneticButton variant="solid" cursorLabel="Apply" onClick={() => scrollToHash('#contact')}>
-              {hero.ctaPrimary}
-            </MagneticButton>
             <MagneticButton variant="light" onClick={() => scrollToHash('#brands')}>
-              {hero.ctaSecondary}
+              {hero.ctaSecondary} <Download size={18} />
+            </MagneticButton>
+            <MagneticButton variant="solid" cursorLabel="Apply" onClick={() => scrollToHash('#contact')}>
+              {hero.ctaPrimary} <ArrowRight size={18} />
             </MagneticButton>
           </motion.div>
 
-          <motion.div className={styles.metric} variants={fadeUp}>
-            <span className={styles.metricValue}>{hero.metricValue}</span>
-            <span className={styles.metricLabel}>{hero.metricLabel}</span>
+          <motion.div className={styles.channels} variants={fadeUp}>
+            {channels.map(({ icon: Icon, title, sub }) => (
+              <div className={styles.channel} key={title}>
+                <span className={styles.channelIcon}><Icon size={20} /></span>
+                <span className={styles.channelText}>
+                  <span className={styles.channelTitle}>{title}</span>
+                  <span className={styles.channelSub}>{sub}</span>
+                </span>
+              </div>
+            ))}
           </motion.div>
         </motion.div>
       </motion.div>

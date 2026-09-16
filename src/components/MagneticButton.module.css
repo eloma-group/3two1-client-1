@@ -8,7 +8,7 @@
   font-size: 0.76rem;
   font-weight: 600;
   letter-spacing: 0.14em;
-  text-transform: uppercase;
+  text-transform: capitalize;
   position: relative;
   overflow: hidden;
   isolation: isolate;

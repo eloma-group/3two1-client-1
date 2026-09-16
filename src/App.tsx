@@ -2,7 +2,6 @@ import { useCallback, useEffect, useState } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { useLenis } from './hooks/useLenis';
 import Splash from './components/Splash';
-import Cursor from './components/Cursor';
 import ScrollProgress from './components/ScrollProgress';
 import Navbar from './components/Navbar';
 import Footer from './sections/Footer';
@@ -21,7 +20,6 @@ export default function App() {
   return (
     <BrowserRouter>
       <Splash onDone={handleSplashDone} />
-      <Cursor />
       <ScrollProgress />
       <Navbar />
       <main>

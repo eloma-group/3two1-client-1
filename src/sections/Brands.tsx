@@ -61,14 +61,14 @@ export default function Brands() {
       <div className={styles.viewport}>
         <div className={styles.track} ref={track}>
           {brands.map((b, i) => (
-            <article className={styles.panel} key={b.id}>
-              <span className={styles.index}>0{i + 1}</span>
+            <article className={styles.panel} key={b.id} style={{ ['--hue' as string]: b.hue }}>
               <div className={styles.figure}>
-                <div className={styles.figureGlow} style={{ background: `radial-gradient(circle, ${b.hue}66, transparent 65%)` }} />
+                <span className={styles.index}>0{i + 1}</span>
+                <div className={styles.figureGlow} style={{ background: `radial-gradient(circle at 50% 42%, ${b.hue}55, transparent 68%)` }} />
                 <SmartImage src={b.image} alt={b.name} hue={b.hue} bottle className={styles.img} />
+                <span className={styles.cat}>{b.category}{b.since ? ` · since ${b.since}` : ''}</span>
               </div>
               <div className={styles.info}>
-                <span className={styles.cat}>{b.category}{b.since ? ` · since ${b.since}` : ''}</span>
                 <h3 className={styles.name}>{b.name}</h3>
                 <p className={styles.tag}>{b.tagline}</p>
                 <p className={styles.desc}>{b.description}</p>

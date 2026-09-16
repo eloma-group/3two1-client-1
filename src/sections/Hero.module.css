@@ -66,13 +66,15 @@
 .title {
   color: #fff;
   margin-bottom: 1.8rem;
+  font-family: var(--font-ui);
   font-weight: 500;
-  text-shadow: 0 10px 50px rgba(0, 0, 0, 0.35);
+  font-size: clamp(1.9rem, 4.6vw, 4.2rem);
 }
 .lineMask { display: block; overflow: hidden; }
 
 .body {
   max-width: 34ch;
+  font-family: var(--font-ui);
   font-size: clamp(1rem, 1.5vw, 1.3rem);
   color: rgba(255, 255, 255, 0.82);
   line-height: 1.6;
@@ -81,25 +83,52 @@
 
 .actions { display: flex; flex-wrap: wrap; gap: 1rem; margin-bottom: 1.8rem; }
 
-.metric {
+.channels {
+  display: flex;
+  gap: 0.75rem;
+  padding-top: 1.6rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.16);
+  max-width: 56rem;
+}
+.channel {
+  flex: 1 1 auto;
   display: flex;
   align-items: center;
-  gap: 1rem;
-  padding-top: 1.4rem;
-  border-top: 1px solid rgba(255, 255, 255, 0.16);
-  max-width: 30rem;
+  gap: 0.7rem;
+  padding: 0.85rem 0.9rem;
+  border-radius: 14px;
+  background: rgba(14, 7, 11, 0.78);
+  border: 1px solid rgba(240, 112, 138, 0.18);
+  backdrop-filter: blur(8px);
+  transition: border-color 0.35s var(--ease-out), transform 0.35s var(--ease-out);
 }
-.metricValue {
-  font-family: var(--font-display);
-  font-size: clamp(2.4rem, 5vw, 4rem);
+.channel:hover {
+  border-color: rgba(240, 112, 138, 0.55);
+  transform: translateY(-3px);
+}
+.channelIcon {
+  flex: 0 0 auto;
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 11px;
+  background: rgba(180, 31, 82, 0.28);
+  color: #fff;
+}
+.channelText { display: flex; flex-direction: column; gap: 0.15rem; font-family: var(--font-ui); }
+.channelTitle {
   font-weight: 600;
-  line-height: 1;
-  background: var(--grad-brand);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+  font-size: 0.95rem;
+  line-height: 1.2;
+  color: var(--cream);
+  white-space: nowrap;
 }
-.metricLabel { font-size: 0.95rem; color: rgba(255, 255, 255, 0.7); max-width: 14ch; }
+.channelSub {
+  font-size: 0.75rem;
+  color: var(--peach);
+  letter-spacing: 0.01em;
+}
 
 /* Scroll indicator */
 .scroll {
@@ -127,4 +156,14 @@
 @media (max-width: 860px) {
   .hero { align-items: flex-end; padding-bottom: 16vh; padding-top: 24vh; }
   .body { max-width: 100%; }
+}
+@media (max-width: 640px) {
+  .channels {
+    overflow-x: auto;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+  .channels::-webkit-scrollbar { display: none; }
+  .channel { flex: 0 0 auto; }
+  .channelTitle { white-space: nowrap; }
 }

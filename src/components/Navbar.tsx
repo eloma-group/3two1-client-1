@@ -53,10 +53,9 @@ export default function Navbar() {
             exit={{ opacity: 0, y: 8 }}
             transition={{ duration: 0.28, ease: [0.16, 1, 0.3, 1] }}
           >
-            <div className={styles.dropInner}>
+            <div className={`${styles.dropInner} ${item.children.length > 4 ? styles.twoCol : ''}`}>
               {item.children.map((c) => (
                 <button key={c.label} className={styles.dropLink} onClick={() => go(c.to)}>
-                  <span className={styles.dropDot} />
                   {c.label}
                 </button>
               ))}

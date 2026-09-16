@@ -43,7 +43,7 @@
   display: inline-flex;
   align-items: center;
   gap: 0.3rem;
-  font-size: 1rem;
+  font-size: 14.5px;
   font-weight: 500;
   letter-spacing: 0.01em;
   color: var(--ink-800);
@@ -63,7 +63,7 @@
   padding-top: 28px; /* clears the pill's bottom edge + hover-bridge gap */
 }
 .dropInner {
-  min-width: 230px;
+  min-width: 210px;
   display: flex;
   flex-direction: column;
   gap: 0.1rem;
@@ -74,13 +74,17 @@
   border: 1px solid var(--glass-border);
   box-shadow: 0 24px 50px -20px rgba(0, 0, 0, 0.35);
 }
+.twoCol {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(150px, 1fr));
+  gap: 0.1rem 0.35rem;
+}
 .dropLink {
   display: flex;
   align-items: center;
-  gap: 0.6rem;
   padding: 0.7rem 0.9rem;
   border-radius: 10px;
-  font-size: 0.98rem;
+  font-size: 14.5px;
   font-weight: 500;
   color: var(--ink-700);
   text-align: left;
@@ -88,27 +92,17 @@
   transition: background 0.25s, color 0.25s, padding-left 0.25s var(--ease-out);
 }
 .dropLink:hover { background: rgba(232, 68, 111, 0.1); color: var(--rose-500); padding-left: 1.1rem; }
-.dropDot {
-  width: 5px;
-  height: 5px;
-  border-radius: 50%;
-  background: var(--grad-brand-soft);
-  flex-shrink: 0;
-  opacity: 0.5;
-  transition: opacity 0.25s;
-}
-.dropLink:hover .dropDot { opacity: 1; }
 
 /* Logo (left) */
 .brand { display: inline-flex; align-items: center; }
 .logo {
-  height: clamp(56px, 5.6vw, 74px);
+  height: clamp(44px, 4.4vw, 58px);
   width: auto;
   opacity: 1;
   filter: drop-shadow(0 2px 6px rgba(110, 16, 48, 0.28));
   transition: height 0.4s var(--ease-out);
 }
-.scrolled .logo { height: clamp(48px, 4.6vw, 60px); }
+.scrolled .logo { height: clamp(38px, 3.6vw, 48px); }
 :global([data-theme='dark']) .logo {
   filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.5));
 }
@@ -120,10 +114,9 @@
   justify-content: center;
   padding: 0.7rem 1.6rem;
   border-radius: 100px;
-  font-size: 0.72rem;
-  font-weight: 600;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
+  font-size: 14.5px;
+  font-weight: 500;
+  letter-spacing: 0.01em;
   color: var(--ink-800);
   border: 1.5px solid var(--btn-border);
   background: transparent;
