@@ -1,0 +1,187 @@
+.reach {
+  background: var(--cream);
+  padding-block: clamp(3rem, 7vw, 6rem);
+  overflow: hidden;
+  --navy: #1c2440;
+  --coral: #e8446f;
+}
+:global([data-theme='dark']) .reach { --navy: #f1dee3; }
+
+.inner {
+  position: relative;
+  width: 100%;
+  margin-inline: auto;
+  padding-inline: var(--page-x);
+  min-height: min(92vh, 960px);
+}
+
+/* Copy — top left */
+.copy { position: relative; z-index: 4; max-width: 30rem; padding-top: 1rem; }
+.eyebrow {
+  font-family: var(--font-ui);
+  font-size: 0.74rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--coral);
+  font-weight: 600;
+}
+.heading { margin: 1.4rem 0 1.8rem; }
+.line1 {
+  display: block;
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: clamp(2rem, 4vw, 3.6rem);
+  letter-spacing: -0.02em;
+  color: var(--navy);
+  line-height: 1.05;
+}
+.line2 {
+  display: block;
+  margin-top: 0.4rem;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 500;
+  font-size: clamp(2rem, 4vw, 3.6rem);
+  color: var(--coral);
+  line-height: 1.06;
+}
+.period { color: var(--coral); font-style: normal; }
+.body {
+  max-width: 30ch;
+  color: var(--muted);
+  font-size: 1rem;
+  line-height: 1.65;
+}
+
+/* Contact — top right */
+.contact {
+  position: absolute;
+  top: 1rem;
+  right: var(--page-x);
+  z-index: 4;
+  display: flex;
+  flex-direction: column;
+  gap: 1.4rem;
+  text-align: right;
+}
+.contactBlock { display: flex; flex-direction: column; gap: 0.3rem; }
+.contactLabel {
+  font-family: var(--font-ui);
+  font-size: 0.66rem;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--coral);
+  font-weight: 600;
+}
+.contactBlock a { color: var(--navy); font-size: 0.95rem; transition: color 0.3s; }
+.contactBlock a:hover { color: var(--coral); }
+
+/* Map zone */
+.mapZone {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  will-change: transform;
+}
+.map {
+  position: absolute;
+  inset: 0;
+  will-change: transform, opacity;
+}
+
+.au {
+  position: absolute;
+  left: 28%;
+  top: 12%;
+  width: 35%;
+  filter: drop-shadow(0 20px 34px rgba(28, 36, 64, 0.14));
+}
+.nz {
+  position: absolute;
+  left: 64%;
+  top: 33%;
+  width: 12%;
+  filter: drop-shadow(0 16px 28px rgba(28, 36, 64, 0.14));
+}
+.isle {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  background: #f0876f;
+  border: 1.5px solid #1c2440;
+  box-shadow: 0 6px 14px -6px rgba(28, 36, 64, 0.4);
+}
+
+/* Labels */
+.label {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  font-family: var(--font-ui);
+  font-size: clamp(0.6rem, 0.8vw, 0.78rem);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--navy);
+  font-weight: 600;
+  white-space: nowrap;
+  z-index: 3;
+  pointer-events: none;
+}
+.label.left { transform: translate(-100%, -50%); }
+.label.right { transform: translate(0, -50%); }
+
+/* Icon clusters */
+.cluster {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2px;
+  max-width: 46px;
+  justify-content: center;
+  color: var(--navy);
+  z-index: 2;
+}
+.ico { display: inline-grid; place-items: center; filter: drop-shadow(0 2px 3px rgba(0,0,0,0.15)); }
+.ico:hover { color: var(--coral); }
+
+/* Legend card — bottom right */
+.legend {
+  position: absolute;
+  bottom: 1rem;
+  right: var(--page-x);
+  z-index: 4;
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+  padding: 1.3rem 1.6rem;
+  background: var(--card);
+  border: 1px solid var(--card-border);
+  border-radius: 16px;
+  box-shadow: 0 24px 50px -24px rgba(28, 36, 64, 0.3);
+}
+.legendRow {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  font-family: var(--font-ui);
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--navy);
+  font-weight: 600;
+}
+.legendIcon { display: inline-grid; place-items: center; color: var(--coral); }
+
+@media (max-width: 1080px) {
+  .inner { min-height: auto; display: flex; flex-direction: column; }
+  .copy { max-width: 100%; }
+  .contact {
+    position: static;
+    flex-direction: row;
+    gap: 2.5rem;
+    text-align: left;
+    margin-top: 1.5rem;
+  }
+  .contactBlock { text-align: left; }
+  .mapZone { position: relative; inset: auto; margin-top: 2rem; width: 100%; height: 68vw; }
+  .legend { position: static; align-self: flex-end; margin-top: 1.5rem; flex-direction: row; gap: 1.4rem; }
+}

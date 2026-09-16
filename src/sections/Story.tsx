@@ -1,7 +1,7 @@
 import { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { brand } from '../data/content';
-import Reveal, { RevealText } from '../components/Reveal';
+import Reveal from '../components/Reveal';
 import styles from './Story.module.css';
 
 export default function Story() {
@@ -17,10 +17,12 @@ export default function Story() {
           <Reveal>
             <p className="eyebrow" style={{ color: 'var(--rose-700)' }}>Our Story</p>
           </Reveal>
-          <h2 className={`display-lg ${styles.heading}`}>
-            <RevealText text="A house of premium spirits," />{' '}
-            <span className="gradient-text"><RevealText text="built for trade." /></span>
-          </h2>
+          <Reveal delay={0.05}>
+            <h2 className={`display-lg ${styles.heading}`}>
+              A house of premium spirits,{' '}
+              <span className="gradient-text">built for trade.</span>
+            </h2>
+          </Reveal>
 
           <Reveal delay={0.1} className={styles.lede}>
             <p>{brand.mission}. Since 2018 we have curated seven of the world's most respected drinks houses into a single, tightly-run portfolio.</p>

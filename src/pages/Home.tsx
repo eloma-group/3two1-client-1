@@ -1,10 +1,10 @@
 import Hero from '../sections/Hero';
+import Reach from '../sections/Reach';
 import Story from '../sections/Story';
 import Brands from '../sections/Brands';
 import Stats from '../sections/Stats';
 import Trade from '../sections/Trade';
 import Bartenders from '../sections/Bartenders';
-import Experience from '../sections/Experience';
 import Contact from '../sections/Contact';
 
 export default function Home({ ready }: { ready: boolean }) {
@@ -15,7 +15,7 @@ export default function Home({ ready }: { ready: boolean }) {
       <Brands />
       <Stats />
       <Trade />
-      <Experience />
+      <Reach />
       <Bartenders />
       <Contact />
     </>

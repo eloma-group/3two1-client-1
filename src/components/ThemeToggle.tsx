@@ -10,7 +10,8 @@ function getInitial(): Theme {
   if (typeof window === 'undefined') return 'light';
   const saved = localStorage.getItem(KEY) as Theme | null;
   if (saved === 'light' || saved === 'dark') return saved;
-  return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+  // Default to light mode on first visit (ignore system preference)
+  return 'light';
 }
 
 export default function ThemeToggle({ className = '' }: { className?: string }) {
