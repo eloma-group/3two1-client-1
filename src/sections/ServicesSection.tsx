@@ -484,7 +484,8 @@ export function ServicesSection() {
           className="ss-panel"
           style={{
             position: 'sticky', top: 0,
-            height: '100vh', overflow: 'hidden',
+            alignSelf: 'stretch',
+            height: '100%', overflow: 'hidden',
             display: 'none',
           }}
         >
