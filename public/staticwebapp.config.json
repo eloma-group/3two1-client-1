@@ -1,0 +1,10 @@
+{
+  "navigationFallback": {
+    "rewrite": "/index.html",
+    "exclude": ["/images/*", "/videos/*", "/assets/*", "*.{png,jpg,jpeg,gif,svg,webp,mp4,webm,ico,css,js}"]
+  },
+  "mimeTypes": {
+    ".webm": "video/webm",
+    ".mp4": "video/mp4"
+  }
+}
