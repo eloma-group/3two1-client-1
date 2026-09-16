@@ -1,7 +1,7 @@
 .footer {
   position: relative;
   background: var(--grad-dark);
-  color: var(--cream);
+  color: #fdf5f2;
   padding-block: clamp(4rem, 8vw, 7rem) 2.5rem;
   overflow: hidden;
 }

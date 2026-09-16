@@ -365,7 +365,7 @@ export function ServicesSection() {
   const active = hovered ?? selected ?? 0
 
   return (
-    <section id="services" style={{ position: 'relative', overflow: 'clip', fontFamily: "'Inter', system-ui, sans-serif" }}>
+    <section id="services" style={{ position: 'relative', overflow: 'clip', background: '#ffffff', color: NAVY, fontFamily: "'Inter', system-ui, sans-serif" }}>
 
       {/* ── Intro header ── */}
       <div

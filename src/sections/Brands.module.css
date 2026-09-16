@@ -1,6 +1,6 @@
 .brands {
   background: var(--grad-dark);
-  color: var(--cream);
+  color: #fdf5f2;
   position: relative;
   overflow: hidden;
 }
@@ -10,7 +10,7 @@
   padding-bottom: 2.5rem;
   position: relative;
 }
-.title { margin: 1rem 0 1rem; color: var(--cream); }
+.title { margin: 1rem 0 1rem; color: #fdf5f2; }
 .sub { color: rgba(255, 255, 255, 0.6); font-size: 1.05rem; max-width: 40ch; }
 .dragHint {
   position: absolute;
@@ -113,7 +113,7 @@
 .name {
   font-size: clamp(1.5rem, 2.3vw, 2.1rem);
   margin: 0 0 0.4rem;
-  color: var(--cream);
+  color: #fdf5f2;
 }
 .tag {
   font-family: var(--font-display);
@@ -147,7 +147,7 @@
   display: inline-flex;
   align-items: center;
   gap: 0.35rem;
-  color: var(--cream);
+  color: #fdf5f2;
   font-weight: 600;
   transition: gap 0.3s var(--ease-out), color 0.3s;
   text-transform: capitalize;

@@ -161,7 +161,7 @@
   padding: var(--page-x);
   overflow-y: auto;
 }
-.close { position: absolute; top: 1.6rem; right: var(--page-x); color: var(--cream); }
+.close { position: absolute; top: 1.6rem; right: var(--page-x); color: #fdf5f2; }
 .mobileTop { position: absolute; top: 1.5rem; left: var(--page-x); }
 
 .menuLinks { display: flex; flex-direction: column; gap: 0.2rem; max-width: 640px; }
@@ -174,7 +174,7 @@
   padding: 0.9rem 0;
   font-family: var(--font-display);
   font-size: clamp(1.6rem, 7vw, 2.6rem);
-  color: var(--cream);
+  color: #fdf5f2;
   transition: color 0.3s;
 }
 .mAccHead:hover { color: var(--rose-400); }

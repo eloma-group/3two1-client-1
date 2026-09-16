@@ -3,7 +3,7 @@
   background:
     radial-gradient(60% 55% at 12% 8%, rgba(232, 68, 111, 0.09), transparent 60%),
     var(--cream);
-  color: #1d1015;
+  color: var(--fg);
   padding-block: clamp(4rem, 10vw, 9rem);
   overflow: hidden;
 }
@@ -28,7 +28,7 @@
 .headLeft { max-width: none; }
 .title {
   margin: 1rem 0 0;
-  color: #1d1015;
+  color: var(--fg);
   font-size: clamp(2rem, 4vw, 3.6rem);
   font-weight: 700;
   letter-spacing: -0.02em;
@@ -114,9 +114,9 @@
 .list { display: flex; flex-direction: column; }
 .item {
   position: relative;
-  border-bottom: 1px solid rgba(29, 16, 21, 0.12);
+  border-bottom: 1px solid var(--card-border);
 }
-.item:first-child { border-top: 1px solid rgba(29, 16, 21, 0.12); }
+.item:first-child { border-top: 1px solid var(--card-border); }
 .item::before {
   content: '';
   position: absolute;
@@ -138,15 +138,15 @@
   gap: 1rem;
   padding: clamp(1rem, 1.7vw, 1.5rem) 0 clamp(1rem, 1.7vw, 1.5rem) 1.4rem;
   text-align: left;
-  color: rgba(29, 16, 21, 0.5);
+  color: var(--muted);
   transition: color 0.3s, padding-left 0.35s var(--ease-out);
 }
-.item:hover .rowBtn { color: #1d1015; padding-left: 1.9rem; }
-.itemActive .rowBtn { color: #1d1015; }
+.item:hover .rowBtn { color: var(--fg); padding-left: 1.9rem; }
+.itemActive .rowBtn { color: var(--fg); }
 .rowNo {
   font-family: var(--font-display);
   font-size: 0.9rem;
-  color: rgba(29, 16, 21, 0.3);
+  color: var(--muted);
   width: 1.8rem;
   flex-shrink: 0;
 }
@@ -175,7 +175,7 @@
   margin-bottom: 0.6rem;
 }
 .desc {
-  color: rgba(29, 16, 21, 0.62);
+  color: var(--muted);
   font-size: 1rem;
   line-height: 1.7;
   margin-bottom: 1.1rem;
