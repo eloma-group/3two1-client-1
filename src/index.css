@@ -41,9 +41,9 @@
   --grad-brand-soft: linear-gradient(120deg, var(--rose-500), var(--coral));
   --grad-dark: radial-gradient(120% 140% at 50% -10%, #2a0f1a 0%, #0c0507 60%);
 
-  /* Type */
-  --font-display: 'Fraunces', Georgia, serif;
-  --font-body: 'Space Grotesk', system-ui, sans-serif;
+  /* Type — Inter across the whole site */
+  --font-display: 'Inter', system-ui, sans-serif;
+  --font-body: 'Inter', system-ui, sans-serif;
   --font-ui: 'Inter', system-ui, sans-serif;
 
   /* Layout */

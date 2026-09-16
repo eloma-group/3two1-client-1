@@ -21,7 +21,7 @@
   padding-bottom: 3.5rem;
   border-bottom: 1px solid rgba(255, 255, 255, 0.12);
 }
-.logo { width: 190px; height: auto; margin-bottom: 1.5rem; }
+.logo { width: 150px; height: auto; margin-bottom: 1.5rem; }
 .tagline {
   font-family: var(--font-display);
   font-style: italic;

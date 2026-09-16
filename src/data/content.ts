@@ -259,19 +259,20 @@ export interface Cocktail {
   name: string;
   brand: string;
   ingredients: string;
+  desc: string;
 }
 
 export const cocktails: Cocktail[] = [
-  { name: 'Garden Spritz', brand: 'Giffard', ingredients: 'Giffard Crème de Pêche, Prosecco, soda' },
-  { name: 'Coffee Cuba Libre', brand: 'Black Tears', ingredients: 'Black Tears Spiced, cola, lime' },
-  { name: "Tommy's Margarita", brand: 'Pueblo Viejo', ingredients: 'Pueblo Viejo Blanco, agave, lime' },
-  { name: 'Estate Daiquiri', brand: 'Worthy Park', ingredients: 'Worthy Park Single Estate Rum, lime, sugar' },
-  { name: 'Smoked Manhattan', brand: 'Burnt Ends', ingredients: 'Burnt Ends American Whiskey, vermouth, bitters' },
-  { name: 'Paloma Brava', brand: 'San Matías', ingredients: 'San Matías Gran Reserva, pink grapefruit, salt' },
+  { name: 'Garden Spritz', brand: 'Giffard', ingredients: 'Giffard Crème de Pêche, Prosecco, soda', desc: 'Bright, low-ABV and built for daytime. Peach liqueur, prosecco and a splash of soda — built in the glass in under 30 seconds.' },
+  { name: 'Coffee Cuba Libre', brand: 'Black Tears', ingredients: 'Black Tears Spiced, cola, lime', desc: 'A Havana classic, rebuilt around a coffee-and-cacao rum. Tall over ice with a fat squeeze of lime — house cola does the rest.' },
+  { name: "Tommy's Margarita", brand: 'Pueblo Viejo', ingredients: 'Pueblo Viejo Blanco, agave, lime', desc: 'No triple sec, no shortcuts. Blanco tequila, fresh lime and agave — the margarita, purist style.' },
+  { name: 'Estate Daiquiri', brand: 'Worthy Park', ingredients: 'Worthy Park Single Estate Rum, lime, sugar', desc: 'Three ingredients, Jamaican funk. Fresh lime, a hard shake on ice — the daiquiri the way the estate drinks it.' },
+  { name: 'Smoked Manhattan', brand: 'Burnt Ends', ingredients: 'Burnt Ends American Whiskey, vermouth, bitters', desc: 'Charred-oak whiskey stirred down with sweet vermouth and a whisper of orange bitters. Served over a single inch with a branded cherry.' },
+  { name: 'Paloma Brava', brand: 'San Matías', ingredients: 'San Matías Gran Reserva, pink grapefruit, salt', desc: 'Aged tequila stretched long over pink grapefruit soda and a generous pinch of sea salt. The Mexican highball, done properly.' },
 ];
 
 export const contact = {
-  email: 'hello@3two1.com.au',
+  email: 'orders@3two1.com.au',
   phone: '0420 222 313',
   abn: '00 000 000 000',
   licence: '6090012345',

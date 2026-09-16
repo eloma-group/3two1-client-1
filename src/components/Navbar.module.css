@@ -217,6 +217,38 @@
   .links { display: none; }
   .burger { display: inline-grid; place-items: center; }
 }
+
+/* Mobile: plain full-width top header bar (not a floating pill) */
+@media (max-width: 768px) {
+  .nav {
+    top: 0;
+    left: 0;
+    right: 0;
+    width: auto;
+    max-width: 100%;
+    margin: 0;
+  }
+  .nav.scrolled { top: 0; }
+  .bar {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    gap: 1rem;
+    border-radius: 0;
+    border-left: none;
+    border-right: none;
+    border-top: none;
+    padding: 0.7rem var(--page-x);
+    background: #fff;
+    backdrop-filter: none;
+    box-shadow: 0 6px 20px -14px rgba(0, 0, 0, 0.3);
+  }
+  .scrolled .bar { box-shadow: 0 8px 24px -14px rgba(0, 0, 0, 0.4); }
+  /* Keep the original logo, sized so it stays clear */
+  .logo { height: 50px; }
+  .scrolled .logo { height: 46px; }
+}
+
 @media (max-width: 560px) {
   .themeDesktop { display: none; }
   .ctaPill { display: none; }

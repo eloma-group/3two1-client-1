@@ -69,8 +69,8 @@ a.detail:hover { color: #fff; }
 .field select option { color: #000; }
 
 .submit { display: flex; align-items: center; gap: 1.5rem; flex-wrap: wrap; margin-top: 0.5rem; }
-.dl { font-size: 0.9rem; color: rgba(255, 255, 255, 0.7); text-decoration: underline; text-underline-offset: 4px; transition: color 0.3s; text-transform: capitalize; }
-.dl:hover { color: #fff; }
+.dl { display: inline-flex; align-items: center; gap: 6px; font-size: 0.9rem; color: rgba(255, 255, 255, 0.7); text-decoration: underline; text-underline-offset: 4px; transition: color 0.3s, gap 0.3s; text-transform: capitalize; }
+.dl:hover { color: #fff; gap: 10px; }
 
 /* Success */
 .success { text-align: center; padding: 2rem 1rem; }

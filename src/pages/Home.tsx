@@ -1,22 +1,22 @@
 import Hero from '../sections/Hero';
-import Reach from '../sections/Reach';
+import { ServicesSection } from '../sections/ServicesSection';
+import { IndustriesSection } from '../sections/IndustriesSection';
+import { IntroductionSection } from '../sections/IntroductionSection';
 import Story from '../sections/Story';
-import Brands from '../sections/Brands';
-import Stats from '../sections/Stats';
-import Trade from '../sections/Trade';
 import Bartenders from '../sections/Bartenders';
+import { TestimonialsSection } from '../sections/TestimonialsSection';
 import Contact from '../sections/Contact';
 
 export default function Home({ ready }: { ready: boolean }) {
   return (
     <>
       <Hero ready={ready} />
+      <ServicesSection />
+      <IndustriesSection />
+      <IntroductionSection />
       <Story />
-      <Brands />
-      <Stats />
-      <Trade />
-      <Reach />
       <Bartenders />
+      <TestimonialsSection />
       <Contact />
     </>
   );

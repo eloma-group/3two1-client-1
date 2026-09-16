@@ -8,7 +8,6 @@ export default function Story() {
   const ref = useRef<HTMLElement>(null);
   const { scrollYProgress } = useScroll({ target: ref, offset: ['start end', 'end start'] });
   const y = useTransform(scrollYProgress, [0, 1], ['-8%', '8%']);
-  const rot = useTransform(scrollYProgress, [0, 1], [-8, 8]);
 
   return (
     <section className={styles.story} id="story" ref={ref}>
@@ -49,17 +48,11 @@ export default function Story() {
         <div className={styles.right}>
           <motion.div className={styles.imageWrap} style={{ y }}>
             <div className={styles.imageInner}>
-              <div className={styles.imageGlow} />
-              <motion.img
-                src="/images/pineapple-flip.png"
-                alt="3two1 emblem"
-                className={styles.emblem}
-                style={{ rotate: rot }}
+              <img
+                src="/images/giffard-feature-2026.jpg"
+                alt="Giffard Caribbean Pineapple — Drinks International Top 10 Bestselling & Trending, 2026"
+                className={styles.photo}
               />
-            </div>
-            <div className={styles.badge}>
-              <span className={styles.badgeYear}>Est. 2018</span>
-              <span className={styles.badgeText}>{brand.regions}</span>
             </div>
           </motion.div>
         </div>

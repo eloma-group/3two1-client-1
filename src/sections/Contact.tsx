@@ -1,5 +1,5 @@
 import { useState, type FormEvent } from 'react';
-import { Mail, Phone, MapPin, Check } from 'lucide-react';
+import { Mail, Phone, MapPin, Check, ArrowRight } from 'lucide-react';
 import { contact, brand } from '../data/content';
 import Reveal from '../components/Reveal';
 import MagneticButton from '../components/MagneticButton';
@@ -83,7 +83,7 @@ export default function Contact() {
               </label>
               <div className={styles.submit}>
                 <MagneticButton variant="solid" cursorLabel="Send">Send enquiry</MagneticButton>
-                <a href="#brands" className={styles.dl}>Download the 2026 Portfolio</a>
+                <a href="#brands" className={styles.dl}>Get Rate Card <ArrowRight size={16} /></a>
               </div>
             </form>
           )}
