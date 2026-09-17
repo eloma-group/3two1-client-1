@@ -104,7 +104,7 @@ export function IntroductionSection() {
     <section
       id="about"
       style={{
-        background: '#fff',
+        background: 'var(--surface)',
         padding: 'clamp(96px, 12vw, 160px) clamp(24px, 5vw, 80px)',
         position: 'relative',
         overflow: 'hidden',
@@ -133,8 +133,8 @@ export function IntroductionSection() {
             margin: 0,
           }}>
             {([
-              { text: 'Seven Houses,',   color: NAVY,                  weight: 800, italic: false },
-              { text: 'One Portfolio,',  color: 'rgba(29,16,21,0.22)', weight: 700, italic: true  },
+              { text: 'Seven Houses,',   color: 'rgb(var(--ink-rgb))',  weight: 800, italic: false },
+              { text: 'One Portfolio,',  color: 'rgba(var(--ink-rgb),0.22)', weight: 700, italic: true  },
               { text: 'Built for Trade.', color: GREEN,                weight: 800, italic: false },
             ] as const).map((line, i) => (
               <div
@@ -169,7 +169,7 @@ export function IntroductionSection() {
             transition={{ duration: 0.78, delay: 0.18, ease }}
             style={{
               fontSize: 'clamp(15px, 1.3vw, 18px)',
-              color: 'rgba(29,16,21,0.52)',
+              color: 'rgba(var(--ink-rgb),0.52)',
               lineHeight: 1.8,
               margin: '0 0 30px',
             }}
@@ -208,9 +208,9 @@ export function IntroductionSection() {
                     display: 'inline-flex', alignItems: 'center',
                     fontSize: '11.5px', fontWeight: 600,
                     letterSpacing: '0.02em',
-                    color: 'rgba(29,16,21,0.72)',
+                    color: 'rgba(var(--ink-rgb),0.72)',
                     padding: '6px 14px',
-                    background: 'linear-gradient(180deg, rgba(255,255,255,0.9), rgba(255,255,255,0.55))',
+                    background: 'var(--chip)',
                     border: '1px solid rgba(232,68,111,0.22)',
                     borderRadius: '100px',
                     whiteSpace: 'nowrap',
@@ -240,7 +240,7 @@ export function IntroductionSection() {
       </div>
 
       {/* ── Divider + flag ticker ── */}
-      <div style={{ borderTop: '1px solid rgba(29,16,21,0.07)', paddingTop: 'clamp(48px, 7vw, 80px)' }}>
+      <div style={{ borderTop: '1px solid rgba(var(--ink-rgb),0.07)', paddingTop: 'clamp(48px, 7vw, 80px)' }}>
 
         {/* Country flags */}
         <div
@@ -304,8 +304,8 @@ export function IntroductionSection() {
           </div>
 
           {/* ── Edge fades ── */}
-          <div style={{ position: 'absolute', left: 0, top: 0, bottom: 0, width: '64px', zIndex: 3, background: 'linear-gradient(to right, #fff, transparent)', pointerEvents: 'none' }} />
-          <div style={{ position: 'absolute', right: 0, top: 0, bottom: 0, width: '64px', zIndex: 3, background: 'linear-gradient(to left, #fff, transparent)', pointerEvents: 'none' }} />
+          <div style={{ position: 'absolute', left: 0, top: 0, bottom: 0, width: '64px', zIndex: 3, background: 'linear-gradient(to right, var(--surface), transparent)', pointerEvents: 'none' }} />
+          <div style={{ position: 'absolute', right: 0, top: 0, bottom: 0, width: '64px', zIndex: 3, background: 'linear-gradient(to left, var(--surface), transparent)', pointerEvents: 'none' }} />
         </div>
 
       </div>
@@ -317,7 +317,7 @@ export function IntroductionSection() {
         .intro-place:hover {
           border-color: rgba(232,68,111,0.5) !important;
           box-shadow: 0 8px 20px -8px rgba(232,68,111,0.45) !important;
-          background: linear-gradient(180deg, #ffffff, rgba(255,255,255,0.8)) !important;
+          background: var(--chip-hover) !important;
         }
         .bivry-flag-item {
           position: relative;

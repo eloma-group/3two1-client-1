@@ -55,6 +55,14 @@
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
   --ease-io: cubic-bezier(0.65, 0, 0.35, 1);
 
+  /* Section theming tokens — light values match the original hardcoded
+     literals so light mode is unchanged; they flip in dark mode. */
+  --ink-rgb: 29, 16, 21;
+  --surface: #ffffff;
+  --surface-2: #fbf6f7;
+  --chip: linear-gradient(180deg, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.55));
+  --chip-hover: linear-gradient(180deg, #ffffff, rgba(255, 255, 255, 0.8));
+
   color-scheme: light;
 }
 
@@ -74,6 +82,13 @@
   --card: #150d11;
   --card-border: rgba(255, 255, 255, 0.1);
   --btn-border: rgba(255, 255, 255, 0.35);
+
+  /* Section theming tokens flip to dark surfaces + light ink */
+  --ink-rgb: 251, 238, 240;
+  --surface: #1b1016;
+  --surface-2: #130c10;
+  --chip: linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.04));
+  --chip-hover: linear-gradient(180deg, rgba(255, 255, 255, 0.14), rgba(255, 255, 255, 0.08));
 
   color-scheme: dark;
 }

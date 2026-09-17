@@ -21,7 +21,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { ArrowUpRight } from 'lucide-react'
 
 /* ── Theme ──────────────────────────────────────────────────────── */
-const NAVY  = '#1d1015'
+const NAVY  = 'rgb(var(--ink-rgb))'
 const GREEN = '#e8446f'
 const ease  = [0.16, 1, 0.3, 1] as [number, number, number, number]
 
@@ -147,7 +147,7 @@ function ServiceRow({
       onMouseLeave={onLeave}
       style={{
         position: 'relative',
-        borderBottom: '1px solid rgba(29,16,21,0.07)',
+        borderBottom: '1px solid rgba(var(--ink-rgb),0.07)',
         cursor: 'default',
         overflow: 'hidden',
       }}
@@ -183,7 +183,7 @@ function ServiceRow({
         <div style={{
           fontSize: 'clamp(10px, 0.9vw, 12px)',
           fontWeight: 700, letterSpacing: '0.6px',
-          color: active ? GREEN : 'rgba(29,16,21,0.22)',
+          color: active ? GREEN : 'rgba(var(--ink-rgb),0.22)',
           fontVariantNumeric: 'tabular-nums',
           flexShrink: 0, width: '26px',
           transition: 'color 0.3s ease',
@@ -195,7 +195,7 @@ function ServiceRow({
         <div className="ss-prelabel" style={{
           fontSize: '8.5px', fontWeight: 700,
           letterSpacing: '2px', textTransform: 'uppercase',
-          color: active ? GREEN : 'rgba(29,16,21,0.3)',
+          color: active ? GREEN : 'rgba(var(--ink-rgb),0.3)',
           flexShrink: 0,
           width: 'clamp(68px, 7.5vw, 108px)',
           lineHeight: 1.35,
@@ -207,7 +207,7 @@ function ServiceRow({
         {/* Hairline divider */}
         <div className="ss-divider" style={{
           width: '1px', alignSelf: 'stretch',
-          background: active ? `${GREEN}55` : 'rgba(29,16,21,0.08)',
+          background: active ? `${GREEN}55` : 'rgba(var(--ink-rgb),0.08)',
           flexShrink: 0,
           transition: 'background 0.3s ease',
         }} />
@@ -218,7 +218,7 @@ function ServiceRow({
           transition={{ duration: 0.38, ease }}
           style={{
             flex: 1,
-            color: active ? NAVY : 'rgba(29,16,21,0.6)',
+            color: active ? NAVY : 'rgba(var(--ink-rgb),0.6)',
             transition: 'color 0.3s ease',
           }}
         >
@@ -235,7 +235,7 @@ function ServiceRow({
               fontFamily: "'Inter', system-ui, sans-serif",
               fontSize: 'clamp(14px, 1.3vw, 17px)',
               fontWeight: 400,
-              color: 'rgba(29,16,21,0.52)',
+              color: 'rgba(var(--ink-rgb),0.52)',
               letterSpacing: 'normal', lineHeight: 1.6,
             }}>
               {svc.shortDescription}
@@ -365,7 +365,7 @@ export function ServicesSection() {
   const active = hovered ?? selected ?? 0
 
   return (
-    <section id="services" style={{ position: 'relative', overflow: 'clip', background: '#ffffff', color: NAVY, fontFamily: "'Inter', system-ui, sans-serif" }}>
+    <section id="services" style={{ position: 'relative', overflow: 'clip', background: 'var(--surface)', color: NAVY, fontFamily: "'Inter', system-ui, sans-serif" }}>
 
       {/* ── Intro header ── */}
       <div
@@ -373,15 +373,15 @@ export function ServicesSection() {
         style={{
           position: 'relative', overflow: 'hidden',
           display: 'grid', gridTemplateColumns: '1fr',
-          background: 'linear-gradient(135deg, rgba(29,16,21,0.06) 0%, rgba(232,68,111,0.04) 50%, #ffffff 100%)',
-          borderBottom: '1px solid rgba(29,16,21,0.08)',
+          background: 'linear-gradient(135deg, rgba(var(--ink-rgb),0.06) 0%, rgba(232,68,111,0.04) 50%, var(--surface) 100%)',
+          borderBottom: '1px solid rgba(var(--ink-rgb),0.08)',
         }}
       >
         {/* Faint watermark number */}
         <div style={{
           position: 'absolute', right: '3%', top: '50%', transform: 'translateY(-50%)',
           fontSize: 'clamp(100px,18vw,200px)', fontWeight: 900, lineHeight: 1,
-          color: 'rgba(29,16,21,0.04)', letterSpacing: '-0.06em',
+          color: 'rgba(var(--ink-rgb),0.04)', letterSpacing: '-0.06em',
           pointerEvents: 'none', userSelect: 'none', zIndex: 0,
         }}>07</div>
 
@@ -435,7 +435,7 @@ export function ServicesSection() {
           position: 'relative', zIndex: 1,
           padding: 'clamp(28px,4vw,52px) clamp(24px,5vw,80px)',
           display: 'flex', alignItems: 'center',
-          borderTop: '1px solid rgba(29,16,21,0.07)',
+          borderTop: '1px solid rgba(var(--ink-rgb),0.07)',
         }}>
           <div style={{ display: 'flex', gap: '16px', alignItems: 'flex-start' }}>
             <div style={{ width: '3px', borderRadius: '2px', alignSelf: 'stretch', flexShrink: 0, background: `linear-gradient(to bottom, ${GREEN}, ${GREEN}30)` }} />
@@ -446,7 +446,7 @@ export function ServicesSection() {
               transition={{ duration: 0.7, delay: 0.2, ease }}
               style={{
                 fontSize: 'clamp(14px, 1.3vw, 17px)',
-                color: 'rgba(29,16,21,0.52)',
+                color: 'rgba(var(--ink-rgb),0.52)',
                 lineHeight: 1.85, margin: 0,
               }}
             >
@@ -464,7 +464,7 @@ export function ServicesSection() {
       >
         {/* Left: row list */}
         <div>
-          <div style={{ height: '1px', background: 'rgba(29,16,21,0.07)' }} />
+          <div style={{ height: '1px', background: 'rgba(var(--ink-rgb),0.07)' }} />
 
           {SERVICES.map((svc, i) => (
             <ServiceRow
@@ -496,7 +496,7 @@ export function ServicesSection() {
       <style>{`
         @media (min-width: 900px) {
           .ss-intro       { grid-template-columns: 52fr 48fr !important; }
-          .ss-intro-right { border-top: none !important; border-left: 1px solid rgba(29,16,21,0.07) !important; }
+          .ss-intro-right { border-top: none !important; border-left: 1px solid rgba(var(--ink-rgb),0.07) !important; }
           .ss-body        { grid-template-columns: 52fr 48fr !important; }
           .ss-panel       { display: block !important; }
         }

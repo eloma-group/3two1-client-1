@@ -25,7 +25,7 @@ import React from 'react'
 import { motion } from 'framer-motion'
 
 /* ── Theme ──────────────────────────────────────────────────────── */
-const NAVY  = '#1d1015'
+const NAVY  = 'rgb(var(--ink-rgb))'
 const GREEN = '#e8446f'
 const ease  = [0.16, 1, 0.3, 1] as [number, number, number, number]
 
@@ -157,15 +157,15 @@ function Card({ t, idx }: { t: Testimonial; idx: number }) {
     <motion.div
       whileHover={{
         y: -6,
-        boxShadow: '0 20px 48px rgba(29,16,21,0.12), 0 0 0 1.5px rgba(29,16,21,0.08)',
+        boxShadow: '0 20px 48px rgba(var(--ink-rgb),0.12), 0 0 0 1.5px rgba(var(--ink-rgb),0.08)',
         transition: { type: 'spring', stiffness: 380, damping: 22 },
       }}
       style={{
-        background: '#ffffff',
-        border: '1px solid rgba(29,16,21,0.08)',
+        background: 'var(--surface)',
+        border: '1px solid rgba(var(--ink-rgb),0.08)',
         borderRadius: '18px',
         padding: '24px',
-        boxShadow: '0 2px 12px rgba(29,16,21,0.05)',
+        boxShadow: '0 2px 12px rgba(var(--ink-rgb),0.05)',
         cursor: 'default',
         userSelect: 'none',
       }}
@@ -173,7 +173,7 @@ function Card({ t, idx }: { t: Testimonial; idx: number }) {
       <Stars/>
       <p style={{
         fontSize: '14px',
-        color: 'rgba(29,16,21,0.65)',
+        color: 'rgba(var(--ink-rgb),0.65)',
         lineHeight: 1.76,
         margin: '0 0 20px',
       }}>
@@ -231,11 +231,11 @@ export function TestimonialsSection() {
   return (
     <section
       style={{
-        background: '#FBF6F7',
-        backgroundImage: 'radial-gradient(rgba(29,16,21,0.035) 1px, transparent 1px)',
+        background: 'var(--surface-2)',
+        backgroundImage: 'radial-gradient(rgba(var(--ink-rgb),0.035) 1px, transparent 1px)',
         backgroundSize: '24px 24px',
         padding: 'clamp(72px,9vw,112px) clamp(24px,4vw,64px)',
-        borderTop: '1px solid rgba(29,16,21,0.07)',
+        borderTop: '1px solid rgba(var(--ink-rgb),0.07)',
         overflow: 'hidden',
         fontFamily: "'Inter', system-ui, sans-serif",
       }}
@@ -275,7 +275,7 @@ Trade Stories
 
         <p style={{
           fontSize: 'clamp(14px,1.1vw,16px)',
-          color: 'rgba(29,16,21,0.52)',
+          color: 'rgba(var(--ink-rgb),0.52)',
           lineHeight: 1.75, margin: '0 auto',
           maxWidth: '480px',
         }}>

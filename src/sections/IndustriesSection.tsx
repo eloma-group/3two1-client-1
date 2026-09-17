@@ -31,7 +31,8 @@ import { motion } from 'framer-motion'
 /* ── Theme ──────────────────────────────────────────────────────── */
 const GREEN  = '#e8446f'
 const NAVY   = '#1d1015'
-const BORDER = 'rgba(29,16,21,0.08)'
+const FG     = 'rgb(var(--ink-rgb))'
+const BORDER = 'rgba(var(--ink-rgb),0.08)'
 
 /* ── Data ───────────────────────────────────────────────────────── */
 export interface Industry {
@@ -275,26 +276,26 @@ function SmallCell({ icon: Icon, label, className }: { icon: React.ElementType; 
       onMouseEnter={() => setHov(true)}
       onMouseLeave={() => setHov(false)}
       style={{
-        background: '#fff',
+        background: 'var(--surface)',
         display: 'flex', flexDirection: 'column',
         alignItems: 'center', justifyContent: 'center',
         gap: '8px', padding: '10px 6px', userSelect: 'none',
         cursor: 'default',
         /* inset outline - no layout shift on hover */
-        outline: hov ? '2px solid rgba(29,16,21,0.45)' : '2px solid transparent',
+        outline: hov ? '2px solid rgba(var(--ink-rgb),0.45)' : '2px solid transparent',
         outlineOffset: '-2px',
         transition: 'outline-color 0.15s ease',
       }}
     >
       <Icon
         size={24}
-        color={hov ? NAVY : 'rgba(29,16,21,0.45)'}
+        color={hov ? FG : 'rgba(var(--ink-rgb),0.45)'}
         strokeWidth={1.5}
         style={{ transition: 'color 0.15s ease' }}
       />
       <span style={{
         fontSize: '10px',
-        color: hov ? 'rgba(29,16,21,0.75)' : 'rgba(29,16,21,0.52)',
+        color: hov ? 'rgba(var(--ink-rgb),0.75)' : 'rgba(var(--ink-rgb),0.52)',
         fontWeight: 600, textAlign: 'center', lineHeight: 1.3,
         transition: 'color 0.15s ease',
       }}>
@@ -330,7 +331,7 @@ export function IndustriesSection() {
     setFlipped(prev => { const n = [...prev]; n[i] = !n[i]; return n })
 
   return (
-    <section id="industries" style={{ background: '#fff', paddingTop: 'clamp(64px,9vw,110px)', paddingBottom: 'clamp(40px,5vw,60px)', overflow: 'hidden', fontFamily: "'Inter', system-ui, sans-serif" }}>
+    <section id="industries" style={{ background: 'var(--surface)', paddingTop: 'clamp(64px,9vw,110px)', paddingBottom: 'clamp(40px,5vw,60px)', overflow: 'hidden', fontFamily: "'Inter', system-ui, sans-serif" }}>
 
       {/* Header - padded */}
       <motion.div
@@ -348,10 +349,10 @@ export function IndustriesSection() {
 Sectors We Deliver To
           </span>
         </div>
-        <h2 style={{ fontFamily: "'Inter', system-ui, sans-serif", fontSize: 'clamp(28px,4vw,52px)', fontWeight: 800, color: NAVY, letterSpacing: '-0.04em', lineHeight: 1.08, margin: '0 0 14px' }}>
+        <h2 style={{ fontFamily: "'Inter', system-ui, sans-serif", fontSize: 'clamp(28px,4vw,52px)', fontWeight: 800, color: FG, letterSpacing: '-0.04em', lineHeight: 1.08, margin: '0 0 14px' }}>
           Sectors In Which<br /><span style={{ color: GREEN }}>We Deliver.</span>
         </h2>
-        <p style={{ fontSize: 'clamp(14px,1.2vw,16px)', color: 'rgba(29,16,21,0.5)', lineHeight: 1.75, maxWidth: '460px', margin: '0 auto' }}>
+        <p style={{ fontSize: 'clamp(14px,1.2vw,16px)', color: 'rgba(var(--ink-rgb),0.5)', lineHeight: 1.75, maxWidth: '460px', margin: '0 auto' }}>
           From cocktail bars to bottle shops - click any card to flip and explore all 8 sectors we deliver to.
         </p>
       </motion.div>
@@ -361,13 +362,13 @@ Sectors We Deliver To
         {/* Col 1 fade (left) */}
         <div className="ind-fade-left" style={{
           position: 'absolute', left: 0, top: 0, bottom: 0, width: '11%', zIndex: 10,
-          background: 'linear-gradient(to right, #fff 20%, transparent 100%)',
+          background: 'linear-gradient(to right, var(--surface) 20%, transparent 100%)',
           pointerEvents: 'none',
         }} />
         {/* Col 10 fade (right) */}
         <div className="ind-fade-right" style={{
           position: 'absolute', right: 0, top: 0, bottom: 0, width: '11%', zIndex: 10,
-          background: 'linear-gradient(to left, #fff 20%, transparent 100%)',
+          background: 'linear-gradient(to left, var(--surface) 20%, transparent 100%)',
           pointerEvents: 'none',
         }} />
 
@@ -386,7 +387,7 @@ Sectors We Deliver To
           }}
         >
           {PAIRS.map((_, i) => (
-            <div key={i} className={`ind-card ind-card-${i}`} style={{ ...CARD_POS[i], background: '#fff', padding: '5px' }}>
+            <div key={i} className={`ind-card ind-card-${i}`} style={{ ...CARD_POS[i], background: 'var(--surface)', padding: '5px' }}>
               <FlipCard pairIdx={i} flipped={flipped[i]} onFlip={() => flip(i)} innerRadius={CARD_INNER_RADIUS[i]} />
             </div>
           ))}
@@ -399,11 +400,11 @@ Sectors We Deliver To
 
       {/* Footer pill */}
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '10px', marginTop: '20px' }}>
-        <div style={{ height: '1px', width: '48px', background: 'linear-gradient(to right, transparent, rgba(29,16,21,0.12))' }} />
+        <div style={{ height: '1px', width: '48px', background: 'linear-gradient(to right, transparent, rgba(var(--ink-rgb),0.12))' }} />
         <div style={{
           display: 'inline-flex', alignItems: 'center', gap: '7px',
           padding: '6px 14px', borderRadius: '99px',
-          border: '1px solid rgba(29,16,21,0.08)',
+          border: '1px solid rgba(var(--ink-rgb),0.08)',
           background: 'rgba(232,68,111,0.05)',
         }}>
           <span style={{
@@ -412,11 +413,11 @@ Sectors We Deliver To
             boxShadow: `0 0 0 3px ${GREEN}28`,
             animation: 'pulse-dot 2.2s ease-in-out infinite',
           }} />
-          <span style={{ fontSize: '10.5px', fontWeight: 600, letterSpacing: '0.3px', color: 'rgba(29,16,21,0.45)' }}>
+          <span style={{ fontSize: '10.5px', fontWeight: 600, letterSpacing: '0.3px', color: 'rgba(var(--ink-rgb),0.45)' }}>
             8 channels &nbsp;·&nbsp; seven houses &nbsp;·&nbsp; one portfolio
           </span>
         </div>
-        <div style={{ height: '1px', width: '48px', background: 'linear-gradient(to left, transparent, rgba(29,16,21,0.12))' }} />
+        <div style={{ height: '1px', width: '48px', background: 'linear-gradient(to left, transparent, rgba(var(--ink-rgb),0.12))' }} />
       </div>
 
       <style>{`
