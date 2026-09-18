@@ -112,6 +112,7 @@ export default function Reach() {
 
         {/* Map */}
         <motion.div className={styles.mapZone} style={{ y: mapY }}>
+          <div className={styles.mapFit}>
           <motion.div
             className={styles.map}
             initial={{ opacity: 0, scale: 0.95 }}
@@ -174,6 +175,7 @@ export default function Reach() {
               </motion.span>
             ))}
           </motion.div>
+          </div>
         </motion.div>
 
         {/* Legend */}
