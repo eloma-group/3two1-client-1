@@ -27,8 +27,7 @@
   inset: 0;
   z-index: -2;
   background:
-    radial-gradient(70% 60% at 20% 30%, rgba(180, 31, 82, 0.35) 0%, transparent 60%),
-    linear-gradient(180deg, rgba(12, 5, 7, 0.55) 0%, rgba(12, 5, 7, 0.25) 38%, rgba(12, 5, 7, 0.85) 100%);
+    radial-gradient(70% 60% at 20% 30%, rgba(180, 31, 82, 0.35) 0%, transparent 60%);
 }
 .grain {
   position: absolute;
@@ -47,7 +46,7 @@
   display: inline-flex;
   align-items: center;
   gap: 0.7rem;
-  color: var(--peach);
+  color: #000;
   margin-bottom: 1.6rem;
 }
 .dot {
@@ -64,7 +63,7 @@
 }
 
 .title {
-  color: #fff;
+  color: #000;
   margin-bottom: 1.8rem;
   font-family: var(--font-ui);
   font-weight: 500;
@@ -76,7 +75,7 @@
   max-width: 34ch;
   font-family: var(--font-ui);
   font-size: clamp(1rem, 1.5vw, 1.3rem);
-  color: rgba(255, 255, 255, 0.82);
+  color: #000;
   line-height: 1.6;
   margin-bottom: 2.6rem;
 }

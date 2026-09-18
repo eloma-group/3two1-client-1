@@ -59,7 +59,7 @@ export default function Hero({ ready }: { ready: boolean }) {
         <video
           ref={videoRef}
           className={styles.video}
-          src="/videos/hero-clean.mp4"
+          src="/videos/hero-bg.mp4"
           muted
           loop
           playsInline
