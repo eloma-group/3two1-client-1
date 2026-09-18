@@ -9,7 +9,7 @@ export const brand = {
   tagline: 'The Taste of Passion',
   regions: 'Australia — New Zealand — Pacific Islands',
   slogan: 'A house of premium spirits, built for trade',
-  mission: "Western Australia's premier independent spirits distributor",
+  mission: "Australia's premier independent spirits distributor",
   intent: 'Imported with intent — placed where it belongs',
   acknowledgement:
     '3two1 acknowledges the Whadjuk Noongar people as Traditional Owners of the land on which we work.',
@@ -43,8 +43,8 @@ export const navMenu: MenuEntry[] = [
     label: 'About',
     to: '/#story',
     children: [
-      { label: 'Investors', to: '/#story' },
       { label: 'Contact', to: '/#contact' },
+      { label: 'Investors', to: '/#story' },
     ],
   },
   {
@@ -96,11 +96,11 @@ export const navMenu: MenuEntry[] = [
 ];
 
 export const hero = {
-  eyebrow: "Australia's Partner Liquor Distributor",
+  eyebrow: "Australia's Premier Liquor Distributor",
   titleLines: ['Premium Distribution &', 'Brand Representation Across', 'Australia, New Zealand & Pacific Island.'],
   body:
     'Distributed across Australia, New Zealand and the Pacific Islands. In every great bar, bottle shop and café.',
-  ctaPrimary: 'Request Rate Card',
+  ctaPrimary: 'Request Price List',
   ctaSecondary: 'Download the Portfolio',
 } as const;
 
