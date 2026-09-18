@@ -96,7 +96,7 @@ export const navMenu: MenuEntry[] = [
 ];
 
 export const hero = {
-  eyebrow: "Australia's Premier Liquor Distributor",
+  eyebrow: "Australia's Premium Liquor Distributor",
   titleLines: ['Premium Distribution &', 'Brand Representation Across', 'Australia, New Zealand & Pacific Island.'],
   body:
     'Distributed across Australia, New Zealand and the Pacific Islands. In every great bar, bottle shop and café.',
