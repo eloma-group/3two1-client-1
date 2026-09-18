@@ -95,8 +95,6 @@
   top: 12%;
   width: 35%;
   filter: drop-shadow(0 20px 34px rgba(28, 36, 64, 0.14));
-  will-change: transform;
-  animation: floatA 10s ease-in-out infinite;
 }
 .nz {
   position: absolute;
@@ -104,8 +102,6 @@
   top: 33%;
   width: 12%;
   filter: drop-shadow(0 16px 28px rgba(28, 36, 64, 0.14));
-  will-change: transform;
-  animation: floatB 8.5s ease-in-out infinite;
 }
 .isle {
   position: absolute;
@@ -113,21 +109,6 @@
   background: #f0876f;
   border: 1.5px solid #1c2440;
   box-shadow: 0 6px 14px -6px rgba(28, 36, 64, 0.4);
-  will-change: transform;
-  animation: floatIsle 6s ease-in-out infinite;
-}
-
-@keyframes floatA {
-  0%, 100% { transform: translateY(0) rotate(0deg); }
-  50% { transform: translateY(-12px) rotate(0.4deg); }
-}
-@keyframes floatB {
-  0%, 100% { transform: translateY(0) rotate(0deg); }
-  50% { transform: translateY(9px) rotate(-0.5deg); }
-}
-@keyframes floatIsle {
-  0%, 100% { transform: translate(-50%, -50%); }
-  50% { transform: translate(-50%, calc(-50% - 7px)); }
 }
 
 /* Labels */
@@ -158,12 +139,6 @@
   justify-content: center;
   color: var(--navy);
   z-index: 2;
-  will-change: transform;
-  animation: floatCluster 5s ease-in-out infinite;
-}
-@keyframes floatCluster {
-  0%, 100% { transform: translate(-50%, -50%) scale(1); }
-  50% { transform: translate(-50%, calc(-50% - 4px)) scale(1.05); }
 }
 .ico { display: inline-grid; place-items: center; filter: drop-shadow(0 2px 3px rgba(0,0,0,0.15)); }
 .ico:hover { color: var(--coral); }

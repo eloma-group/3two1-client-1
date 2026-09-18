@@ -4,20 +4,22 @@ import { contact } from '../data/content';
 import Reveal from '../components/Reveal';
 import styles from './Reach.module.css';
 
-/* --- inline navy icons (match reference) --- */
+/* --- inline navy icons — solid / filled --- */
 const Bar = ({ s = 16 }: { s?: number }) => (
-  <svg width={s} height={s} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
-    <path d="M5 4h14l-7 8z" /><path d="M12 12v7" /><path d="M8 19h8" />
+  <svg width={s} height={s} viewBox="0 0 24 24" fill="currentColor">
+    <path d="M4 4h16l-7 7.4V18h3.5a1 1 0 1 1 0 2h-9a1 1 0 1 1 0-2H11v-6.6L4 4z" />
   </svg>
 );
 const Bottle = ({ s = 16 }: { s?: number }) => (
-  <svg width={s} height={s} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
-    <path d="M10 2h4v3l1.5 3.5A3 3 0 0 1 16 9.7V20a2 2 0 0 1-2 2h-4a2 2 0 0 1-2-2V9.7a3 3 0 0 1 .5-1.2L10 5z" /><path d="M8 13h8" />
+  <svg width={s} height={s} viewBox="0 0 24 24" fill="currentColor">
+    <path d="M10.5 2h3a.5.5 0 0 1 .5.5v2.1c0 .32.08.63.22.92l.86 1.72c.28.55.42 1.16.42 1.78V20a2 2 0 0 1-2 2h-3a2 2 0 0 1-2-2V9.02c0-.62.14-1.23.42-1.78l.86-1.72c.14-.29.22-.6.22-.92V2.5a.5.5 0 0 1 .5-.5z" />
   </svg>
 );
 const Cafe = ({ s = 16 }: { s?: number }) => (
-  <svg width={s} height={s} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
-    <path d="M4 8h13v5a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4z" /><path d="M17 9h2a2 2 0 0 1 0 5h-2" /><path d="M7 3v2M11 3v2" />
+  <svg width={s} height={s} viewBox="0 0 24 24" fill="currentColor">
+    <path d="M3 7h13v5.5a5.5 5.5 0 0 1-5.5 5.5h-2A5.5 5.5 0 0 1 3 12.5V7z" />
+    <path fillRule="evenodd" clipRule="evenodd" d="M16 8.5h2.3a3.2 3.2 0 0 1 0 6.4H16v-2h2.3a1.2 1.2 0 0 0 0-2.4H16v-2z" />
+    <path d="M2 19.5h15v1.5H2z" />
   </svg>
 );
 
@@ -45,18 +47,18 @@ const labels: { name: string; x: number; y: number; align?: 'left' | 'right' }[]
 
 /* Icon clusters placed over the map (% of section box) */
 const markers: { x: number; y: number; icons: Ic[] }[] = [
-  { x: 43, y: 21, icons: ['bar', 'bottle'] },       // Darwin
-  { x: 36, y: 29, icons: ['cafe'] },                // Broome
-  { x: 33, y: 51, icons: ['bottle', 'cafe', 'bar'] }, // Perth
+  { x: 44, y: 20, icons: ['bar', 'bottle'] },       // Darwin
+  { x: 35, y: 31, icons: ['cafe'] },                // Broome
+  { x: 30, y: 53, icons: ['bottle', 'cafe', 'bar'] }, // Perth
   { x: 47, y: 56, icons: ['cafe', 'bottle'] },      // Adelaide
-  { x: 52, y: 63, icons: ['bottle', 'bottle', 'cafe'] }, // Melbourne
+  { x: 51, y: 63, icons: ['bottle', 'bottle', 'cafe'] }, // Melbourne
   { x: 57, y: 44, icons: ['bottle', 'bar'] },       // Brisbane
   { x: 57, y: 53, icons: ['bottle', 'bottle', 'cafe', 'bar'] }, // Sydney
-  { x: 71, y: 41, icons: ['bar', 'cafe', 'bottle'] }, // Auckland
-  { x: 69, y: 48, icons: ['cafe'] },                // Wellington
-  { x: 78, y: 11, icons: ['bar'] },                 // Vanuatu
-  { x: 72, y: 17, icons: ['bottle', 'cafe'] },      // Fiji
-  { x: 84, y: 20, icons: ['cafe'] },                // Cook Is
+  { x: 71, y: 42, icons: ['bar', 'cafe', 'bottle'] }, // Auckland
+  { x: 70, y: 50, icons: ['cafe'] },                // Wellington
+  { x: 80, y: 10, icons: ['bar'] },                 // Vanuatu
+  { x: 73, y: 17, icons: ['bottle', 'cafe'] },      // Fiji
+  { x: 83, y: 19, icons: ['cafe'] },                // Cook Is
 ];
 
 /* Pacific island blobs (coral + navy outline); x/y in %, w/h in px */

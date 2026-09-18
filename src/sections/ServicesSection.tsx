@@ -25,7 +25,22 @@ const NAVY  = 'rgb(var(--ink-rgb))'
 const GREEN = '#e8446f'
 const ease  = [0.16, 1, 0.3, 1] as [number, number, number, number]
 
+/* Fine film grain so the panel never looks like a flat colour fill */
+const NOISE_URL =
+  "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E\")"
+
 /* ── Data ───────────────────────────────────────────────────────── */
+export interface GalleryItem {
+  imageUrl: string
+  imageAlt: string
+  label: string
+  /** Full-bleed lifestyle scene (image carries its own backdrop). */
+  scene?: boolean
+  /** Optional per-item panel theme (falls back to the parent house). */
+  bg?: string
+  accent?: string
+}
+
 export interface Service {
   id: string
   number: string
@@ -36,6 +51,16 @@ export interface Service {
   shortDescription?: string
   imageUrl: string
   imageAlt: string
+  /** Full-bleed lifestyle scene (image carries its own backdrop). */
+  scene?: boolean
+  /** Country of origin — shown as a chip and drives the panel theme. */
+  country: string
+  /** Panel backdrop gradient, themed by spirit + country. */
+  bg: string
+  /** Accent colour for glow, eyebrow and counter. */
+  accent: string
+  /** When present, the image panel shows the full range instead of one bottle. */
+  gallery?: GalleryItem[]
 }
 
 const SERVICES: Service[] = [
@@ -47,87 +72,123 @@ const SERVICES: Service[] = [
     title: 'Coffee, Cacao, Midnight.',
     description:
       'A spiced rum built on a coffee-and-cacao profile - dark, aromatic and unmistakably its own. Made to reinvent the rum & cola.',
-    shortDescription: 'Spiced Rum · Cuba',
-    imageUrl: '/images/house-black-tears.png',
-    imageAlt: 'Black Tears spiced rum bottle',
+    shortDescription: 'Dry Spiced Rum · Cuba',
+    imageUrl: '/images/black-tears-dry-spiced-rum-cuba.png',
+    imageAlt: 'Black Tears dry spiced Cuban rum bottle on a Havana bar at sunset',
+    scene: true,
+    country: 'Cuba',
+    accent: '#ff8a3d',
+    bg: 'radial-gradient(120% 100% at 58% 22%, #5a3312 0%, #2e1808 52%, #0b0603 100%)',
+  },
+  {
+    id: 'worthy-park',
+    number: '02',
+    preLabel: 'SINGLE ESTATE RUM',
+    name: 'Worthy Park',
+    title: 'Pure Jamaican Funk.',
+    description:
+      'Single-estate Jamaican rum with all the funk and depth the island is famous for. From cane to bottle on one estate.',
+    shortDescription: 'Single Estate Reserve · Jamaica · Est. 1670',
+    imageUrl: '/images/worthy-park-single-estate-jamaica-rum.png',
+    imageAlt: 'Worthy Park single estate Jamaica rum bottle with sugar cane and island coast',
+    scene: true,
+    country: 'Jamaica',
+    accent: '#f2c94c',
+    bg: 'radial-gradient(120% 100% at 55% 20%, #2f5721 0%, #163310 50%, #05100a 100%)',
   },
   {
     id: 'giffard',
-    number: '02',
+    number: '03',
     preLabel: 'LIQUEURS & EAUX-DE-VIE',
     name: 'Giffard',
     title: 'Fruit, Not Fashion.',
     description:
-      'Five generations of distillers in Angers, working with whole fruit. Chosen by sommeliers and head bartenders because they make the cocktail better.',
+      'Five generations of distillers in Angers, working with whole fruit. Liqueurs, purées and syrups chosen by sommeliers and head bartenders because they make the cocktail better.',
     shortDescription: 'Liqueurs & Eaux-de-vie · Angers, France · Since 1885',
-    imageUrl: '/images/house-giffard.png',
-    imageAlt: 'Giffard liqueur bottle',
+    imageUrl: '/images/giffard-abricot-du-roussillon-apricot-liqueur.png',
+    imageAlt: 'Giffard Abricot du Roussillon apricot liqueur bottle in a French terroir scene',
+    scene: true,
+    country: 'France',
+    accent: '#e879a6',
+    bg: 'radial-gradient(120% 100% at 58% 22%, #45163a 0%, #250c20 52%, #0a0509 100%)',
+    gallery: [
+      { imageUrl: '/images/giffard-abricot-du-roussillon-apricot-liqueur.png', label: 'Abricot du Roussillon', imageAlt: 'Giffard Abricot du Roussillon apricot liqueur bottle in a French terroir scene', scene: true },
+      { imageUrl: '/images/giffard-lichi-li-lychee-liqueur.png',               label: 'Lichi-Li',              imageAlt: 'Giffard Lichi-Li lychee liqueur bottle with fresh lychees and blossom',           scene: true },
+      { imageUrl: '/images/giffard-watermelon-liqueur.png',                    label: 'Watermelon',           imageAlt: 'Giffard Watermelon liqueur bottle with fresh watermelon at Angers',              scene: true },
+      { imageUrl: '/images/giffard-passion-fruit-puree.png',                   label: 'Passion Fruit',        imageAlt: 'Giffard Passion Fruit purée bottle with tropical island backdrop',               scene: true },
+      { imageUrl: '/images/giffard-mango-syrup.png',                           label: 'Mango Sirop',          imageAlt: 'Giffard Mango syrup bottle with ripe mangoes in a tropical scene',               scene: true },
+      { imageUrl: '/images/giffard-coconut-syrup.png',                         label: 'Coconut Sirop',        imageAlt: 'Giffard Coconut syrup bottle with fresh coconuts and palm leaves',               scene: true },
+    ],
   },
   {
     id: 'pueblo-viejo',
-    number: '03',
+    number: '04',
     preLabel: 'BLANCO TEQUILA',
     name: 'Pueblo Viejo',
     title: 'Pure Blue Agave.',
     description:
       'A blanco built on blue agave - clean, bright and made for the margarita. The bartender’s working tequila.',
     shortDescription: 'Blanco Tequila · Jalisco, Mexico',
-    imageUrl: '/images/house-pueblo-viejo.png',
-    imageAlt: 'Pueblo Viejo blanco tequila bottle',
+    imageUrl: '/images/pueblo-viejo-blanco-tequila-jalisco-mexico.png',
+    imageAlt: 'Pueblo Viejo Blanco 100% agave azul tequila bottle in a Jalisco agave field at sunset',
+    scene: true,
+    country: 'Mexico',
+    accent: '#3ad6b0',
+    bg: 'radial-gradient(120% 100% at 58% 22%, #124a41 0%, #0a2723 52%, #04100e 100%)',
   },
   {
     id: 'burnt-ends',
-    number: '04',
-    preLabel: 'AMERICAN WHISKEY',
+    number: '05',
+    preLabel: 'BLENDED WHISKEY',
     name: 'Burnt Ends',
     title: 'Charred-Oak Character.',
     description:
-      'A charred-oak American whiskey with smoke and sweetness in balance. Built for the stirred-down classics.',
-    shortDescription: 'American Whiskey · USA',
-    imageUrl: '/images/house-burnt-ends.png',
-    imageAlt: 'Burnt Ends American whiskey bottle',
-  },
-  {
-    id: 'worthy-park',
-    number: '05',
-    preLabel: 'SINGLE ESTATE RUM',
-    name: 'Worthy Park',
-    title: 'Pure Jamaican Funk.',
-    description:
-      'Single-estate Jamaican rum with all the funk and depth the island is famous for. From cane to bottle on one estate.',
-    shortDescription: 'Single Estate Rum · Jamaica',
-    imageUrl: '/images/house-worthy-park.png',
-    imageAlt: 'Worthy Park single estate rum bottle',
-  },
-  {
-    id: 'whiskey-row',
-    number: '06',
-    preLabel: 'WHISKEY',
-    name: 'Whiskey Row',
-    title: 'Straight, Honest, Easy.',
-    description:
-      'An approachable, easy-pouring whiskey built for the well. Straight, honest and made to move.',
-    shortDescription: 'Whiskey · USA',
-    imageUrl: '/images/house-whiskey-row.png',
-    imageAlt: 'Whiskey Row bottle',
+      'A peated and sherry-finished blended whiskey with smoke and sweetness in balance. The great pitmasters of America, in a bottle.',
+    shortDescription: 'Blended Whiskey · USA',
+    imageUrl: '/images/burnt-ends-blended-whiskey-tennessee.png',
+    imageAlt: 'Burnt Ends blended whiskey bottle on a Tennessee farm at sunset',
+    scene: true,
+    country: 'USA',
+    accent: '#ff6a2b',
+    bg: 'radial-gradient(120% 100% at 58% 22%, #5e2a0d 0%, #301305 52%, #0b0503 100%)',
   },
   {
     id: 'san-matias',
-    number: '07',
+    number: '06',
     preLabel: 'TEQUILA',
     name: 'San Matías',
     title: 'The Second-Oldest Tequila House in Mexico.',
     description:
-      'Casa San Matías has been distilling 100% blue agave in the highlands of Jalisco since 1886 - family-owned, quietly excellent. Reposado, Añejo and Extra-Añejo.',
-    shortDescription: 'Tequila · Jalisco, Mexico · Since 1886',
-    imageUrl: '/images/house-san-matias.png',
-    imageAlt: 'San Matías tequila bottle',
+      'Casa San Matías has been distilling 100% blue agave in the highlands of Jalisco since 1886 - family-owned, quietly excellent. Gran Reserva Extra-Añejo.',
+    shortDescription: 'Gran Reserva Tequila · Jalisco, Mexico · Since 1886',
+    imageUrl: '/images/san-matias-gran-reserva-extra-anejo-tequila.png',
+    imageAlt: 'San Matías Gran Reserva extra añejo tequila bottle in a Jalisco agave field',
+    scene: true,
+    country: 'Mexico',
+    accent: '#e6b84c',
+    bg: 'radial-gradient(120% 100% at 58% 22%, #4a3b12 0%, #271e08 52%, #0a0803 100%)',
+  },
+  {
+    id: 'whiskey-row',
+    number: '07',
+    preLabel: 'STRAIGHT BOURBON',
+    name: 'Whiskey Row',
+    title: 'The Birthplace of Bourbon.',
+    description:
+      'A blend of straight bourbon whiskey built on an eighteenth-century recipe. Straight, honest and made to move.',
+    shortDescription: 'Straight Bourbon · Louisville, Kentucky',
+    imageUrl: '/images/whiskey-row-straight-bourbon-kentucky.png',
+    imageAlt: 'Whiskey Row straight bourbon bottle on an oak barrel in Louisville Kentucky',
+    scene: true,
+    country: 'USA',
+    accent: '#4fbf87',
+    bg: 'radial-gradient(120% 100% at 58% 22%, #14432f 0%, #0b241a 52%, #04100b 100%)',
   },
 ]
 
 /* ── Single service row ─────────────────────────────────────────── */
 function ServiceRow({
-  svc, index, isHovered, isSelected, onEnter, onLeave,
+  svc, index, isHovered, isSelected, onEnter, onLeave, onSubEnter, onSubLeave,
 }: {
   svc: Service
   index: number
@@ -135,6 +196,8 @@ function ServiceRow({
   isSelected: boolean
   onEnter: () => void
   onLeave: () => void
+  onSubEnter: (item: GalleryItem) => void
+  onSubLeave: () => void
 }) {
   const active = isHovered || isSelected
   return (
@@ -255,88 +318,241 @@ function ServiceRow({
           <ArrowUpRight size={20} strokeWidth={1.8} />
         </motion.div>
       </div>
+
+      {/* Expandable submenu (e.g. Giffard range) — opens on hover */}
+      {svc.gallery && (
+        <AnimatePresence initial={false}>
+          {active && (
+            <motion.div
+              key="submenu"
+              initial={{ height: 0, opacity: 0 }}
+              animate={{ height: 'auto', opacity: 1 }}
+              exit={{ height: 0, opacity: 0 }}
+              transition={{ duration: 0.4, ease }}
+              style={{ position: 'relative', zIndex: 1, overflow: 'hidden' }}
+            >
+              <div style={{
+                display: 'grid',
+                gridTemplateColumns: 'repeat(auto-fill, minmax(120px, 1fr))',
+                gap: 'clamp(10px, 1.4vw, 18px)',
+                padding: '0 clamp(24px, 4vw, 64px) clamp(20px, 2.6vw, 30px) clamp(58px, 8vw, 160px)',
+              }}>
+                {svc.gallery.map((item, gi) => (
+                  <motion.div
+                    key={item.imageUrl}
+                    initial={{ opacity: 0, y: 12 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.35, delay: 0.08 + gi * 0.05, ease }}
+                    onMouseEnter={() => onSubEnter(item)}
+                    onMouseLeave={onSubLeave}
+                    whileHover={{ y: -4 }}
+                    style={{
+                      display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '10px',
+                      padding: 'clamp(12px, 1.4vw, 18px) 10px',
+                      borderRadius: '14px',
+                      background: 'rgba(232,68,111,0.05)',
+                      border: '1px solid rgba(232,68,111,0.14)',
+                      cursor: 'pointer',
+                    }}
+                  >
+                    <img
+                      src={item.imageUrl}
+                      alt={item.imageAlt}
+                      loading="lazy"
+                      style={{
+                        height: 'clamp(72px, 8vw, 108px)', width: 'auto',
+                        objectFit: 'contain',
+                        filter: 'drop-shadow(0 10px 20px rgba(0,0,0,0.18))',
+                      }}
+                    />
+                    <span style={{
+                      fontSize: 'clamp(11px, 0.95vw, 13px)',
+                      fontWeight: 600, letterSpacing: '-0.01em',
+                      color: NAVY, textAlign: 'center', lineHeight: 1.3,
+                    }}>
+                      {item.label}
+                    </span>
+                  </motion.div>
+                ))}
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      )}
     </motion.div>
   )
 }
 
 /* ── Sticky image panel ─────────────────────────────────────────── */
-function ImagePanel({ index }: { index: number }) {
+function ImagePanel({ index, override }: { index: number; override?: GalleryItem | null }) {
   const svc = SERVICES[index]
+  const imgUrl   = override ? override.imageUrl : svc.imageUrl
+  const imgAlt   = override ? override.imageAlt : svc.imageAlt
+  const imgKey   = override ? override.imageUrl : svc.id
+  const capTitle = override ? override.label : svc.title
+  const bg       = (override && override.bg) ? override.bg : svc.bg
+  const accent   = (override && override.accent) ? override.accent : svc.accent
+  const isScene  = override ? !!override.scene : !!svc.scene
   return (
     <div style={{
       position: 'relative', width: '100%', height: '100%', overflow: 'hidden',
-      background: 'radial-gradient(120% 100% at 60% 25%, #3a1320 0%, #1d0a12 55%, #0c0507 100%)',
     }}>
+      {/* Themed backdrop — crossfades per bottle/country */}
+      <AnimatePresence mode="sync">
+        <motion.div
+          key={bg}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.6, ease }}
+          style={{
+            position: 'absolute', inset: 0,
+            background: `radial-gradient(65% 45% at 58% 6%, rgba(255,255,255,0.16) 0%, transparent 55%), ${bg}`,
+          }}
+        />
+      </AnimatePresence>
+
+      {/* Accent glow behind the bottle + soft floor pool */}
+      <AnimatePresence mode="sync">
+        <motion.div
+          key={accent}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 0.6 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.6, ease }}
+          style={{
+            position: 'absolute', inset: 0, pointerEvents: 'none',
+            background: `radial-gradient(50% 40% at 58% 32%, ${accent}66 0%, transparent 70%), radial-gradient(45% 14% at 55% 82%, ${accent}40 0%, transparent 70%)`,
+          }}
+        />
+      </AnimatePresence>
+
+      {/* Vignette for depth */}
+      <div style={{
+        position: 'absolute', inset: 0, zIndex: 1, pointerEvents: 'none',
+        background: 'radial-gradient(120% 95% at 50% 38%, transparent 42%, rgba(0,0,0,0.5) 100%)',
+      }} />
+
+      {/* Film grain so it never reads as a flat colour */}
+      <div style={{
+        position: 'absolute', inset: 0, zIndex: 1, pointerEvents: 'none',
+        backgroundImage: NOISE_URL, backgroundSize: '160px 160px',
+        opacity: 0.11, mixBlendMode: 'overlay',
+      }} />
+
+      {/* Country chip (hidden for full scenes — the image carries its own) */}
+      {!isScene && (
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={svc.country}
+            initial={{ opacity: 0, y: -8 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -8 }}
+            transition={{ duration: 0.4, ease }}
+            style={{
+              position: 'absolute', top: 'clamp(24px, 3vw, 40px)', left: 'clamp(24px, 3vw, 40px)',
+              zIndex: 3,
+              display: 'inline-flex', alignItems: 'center', gap: '7px',
+              padding: '6px 14px',
+              background: 'rgba(12,5,7,0.5)',
+              backdropFilter: 'blur(8px)',
+              border: `1px solid ${accent}55`,
+              borderRadius: '100px',
+            }}
+          >
+            <div style={{ width: '6px', height: '6px', borderRadius: '50%', background: accent, flexShrink: 0 }} />
+            <span style={{ fontSize: '10px', fontWeight: 700, letterSpacing: '1.6px', textTransform: 'uppercase', color: 'rgba(255,255,255,0.82)' }}>
+              {svc.country}
+            </span>
+          </motion.div>
+        </AnimatePresence>
+      )}
       <AnimatePresence mode="wait">
         <motion.div
-          key={svc.id}
+          key={imgKey}
           initial={{ opacity: 0, scale: 1.06 }}
           animate={{ opacity: 1, scale: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.55, ease }}
           style={{
-            position: 'absolute', inset: 0,
+            position: 'absolute', inset: 0, zIndex: 2,
             display: 'flex', alignItems: 'center', justifyContent: 'center',
-            padding: 'clamp(4px, 1vw, 14px) clamp(4px, 1vw, 14px) clamp(120px, 15vh, 180px)',
+            padding: isScene ? 0 : 'clamp(4px, 1vw, 14px) clamp(4px, 1vw, 14px) clamp(120px, 15vh, 180px)',
           }}
         >
-          <img
-            src={svc.imageUrl}
-            alt={svc.imageAlt}
-            loading="lazy"
-            style={{
-              maxWidth: '100%', maxHeight: '100%',
-              width: 'auto', height: 'auto',
-              objectFit: 'contain',
-              filter: 'drop-shadow(0 30px 60px rgba(0,0,0,0.45))',
-            }}
-          />
+          {isScene ? (
+            <img
+              src={imgUrl}
+              alt={imgAlt}
+              loading="lazy"
+              style={{
+                width: '100%', height: '100%',
+                objectFit: 'cover', objectPosition: 'center',
+              }}
+            />
+          ) : (
+            <img
+              src={imgUrl}
+              alt={imgAlt}
+              loading="lazy"
+              style={{
+                maxWidth: '100%', maxHeight: '100%',
+                width: 'auto', height: 'auto',
+                objectFit: 'contain',
+                filter: 'drop-shadow(0 30px 60px rgba(0,0,0,0.45))',
+              }}
+            />
+          )}
         </motion.div>
       </AnimatePresence>
 
-      {/* Bottom fade - for caption legibility */}
+      {/* Bottom fade - deeper for the text caption, lighter for full scenes */}
       <div style={{
         position: 'absolute', inset: 0, zIndex: 2, pointerEvents: 'none',
-        background: 'linear-gradient(to top, rgba(12,5,7,0.95) 0%, rgba(12,5,7,0.4) 30%, transparent 55%)',
+        background: isScene
+          ? 'linear-gradient(to top, rgba(12,5,7,0.55) 0%, rgba(12,5,7,0.12) 22%, transparent 40%)'
+          : 'linear-gradient(to top, rgba(12,5,7,0.95) 0%, rgba(12,5,7,0.4) 30%, transparent 55%)',
       }} />
 
-      {/* Service info caption */}
-      <AnimatePresence mode="wait">
-        <motion.div
-          key={svc.id + '-caption'}
-          initial={{ opacity: 0, y: 18 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: -10 }}
-          transition={{ duration: 0.42, ease }}
-          style={{
-            position: 'absolute', bottom: 0, left: 0, right: 0,
-            zIndex: 3, padding: 'clamp(28px, 4vw, 52px)',
-          }}
-        >
-          <div style={{
-            fontSize: '9px', fontWeight: 700,
-            letterSpacing: '2.5px', textTransform: 'uppercase',
-            color: '#ff7d84', marginBottom: '10px',
-          }}>
-            {svc.preLabel}
-          </div>
-          <div style={{
-            fontSize: 'clamp(20px, 2.6vw, 34px)',
-            fontWeight: 700, color: '#ffffff',
-            letterSpacing: '-0.035em', lineHeight: 1.1,
-            marginBottom: '10px',
-          }}>
-            {svc.title}
-          </div>
-          <div style={{
-            fontSize: 'clamp(12px, 1vw, 13.5px)',
-            color: 'rgba(255,255,255,0.52)', lineHeight: 1.75,
-            maxWidth: '320px',
-          }}>
-            {svc.description}
-          </div>
-        </motion.div>
-      </AnimatePresence>
+      {/* Service info caption (scenes carry their own baked-in copy) */}
+      {!isScene && (
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={imgKey + '-caption'}
+            initial={{ opacity: 0, y: 18 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ duration: 0.42, ease }}
+            style={{
+              position: 'absolute', bottom: 0, left: 0, right: 0,
+              zIndex: 3, padding: 'clamp(28px, 4vw, 52px)',
+            }}
+          >
+            <div style={{
+              fontSize: '9px', fontWeight: 700,
+              letterSpacing: '2.5px', textTransform: 'uppercase',
+              color: accent, marginBottom: '10px',
+            }}>
+              {svc.preLabel}
+            </div>
+            <div style={{
+              fontSize: 'clamp(20px, 2.6vw, 34px)',
+              fontWeight: 700, color: '#ffffff',
+              letterSpacing: '-0.035em', lineHeight: 1.1,
+              marginBottom: '10px',
+            }}>
+              {capTitle}
+            </div>
+            <div style={{
+              fontSize: 'clamp(12px, 1vw, 13.5px)',
+              color: 'rgba(255,255,255,0.52)', lineHeight: 1.75,
+              maxWidth: '320px',
+            }}>
+              {svc.description}
+            </div>
+          </motion.div>
+        </AnimatePresence>
+      )}
 
       {/* Counter badge */}
       <div style={{
@@ -349,7 +565,7 @@ function ImagePanel({ index }: { index: number }) {
         border: '1px solid rgba(255,255,255,0.12)',
         borderRadius: '100px',
       }}>
-        <div style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#ff7d84', flexShrink: 0 }} />
+        <div style={{ width: '6px', height: '6px', borderRadius: '50%', background: accent, flexShrink: 0 }} />
         <span style={{ fontSize: '11px', fontWeight: 600, color: 'rgba(255,255,255,0.8)', letterSpacing: '0.3px' }}>
           {svc.number} / {String(SERVICES.length).padStart(2, '0')}
         </span>
@@ -362,6 +578,7 @@ function ImagePanel({ index }: { index: number }) {
 export function ServicesSection() {
   const [hovered,  setHovered]  = useState<number | null>(null)
   const [selected, setSelected] = useState<number | null>(null)
+  const [subItem,  setSubItem]  = useState<GalleryItem | null>(null)
   const active = hovered ?? selected ?? 0
 
   return (
@@ -474,7 +691,9 @@ export function ServicesSection() {
               isHovered={hovered === i}
               isSelected={selected === i}
               onEnter={() => { setHovered(i); setSelected(null) }}
-              onLeave={() => { setHovered(null); setSelected(i) }}
+              onLeave={() => { setHovered(null); setSelected(i); setSubItem(null) }}
+              onSubEnter={(item) => setSubItem(item)}
+              onSubLeave={() => setSubItem(null)}
             />
           ))}
         </div>
@@ -483,13 +702,14 @@ export function ServicesSection() {
         <div
           className="ss-panel"
           style={{
-            position: 'sticky', top: 0,
-            alignSelf: 'stretch',
-            height: '100%', overflow: 'hidden',
+            position: 'sticky', top: 'auto', bottom: 0,
+            alignSelf: 'end',
+            width: '100%', aspectRatio: '1 / 1',
+            overflow: 'hidden',
             display: 'none',
           }}
         >
-          <ImagePanel index={active} />
+          <ImagePanel index={active} override={subItem} />
         </div>
       </div>
 
@@ -497,7 +717,7 @@ export function ServicesSection() {
         @media (min-width: 900px) {
           .ss-intro       { grid-template-columns: 52fr 48fr !important; }
           .ss-intro-right { border-top: none !important; border-left: 1px solid rgba(var(--ink-rgb),0.07) !important; }
-          .ss-body        { grid-template-columns: 52fr 48fr !important; }
+          .ss-body        { grid-template-columns: 50fr 50fr !important; }
           .ss-panel       { display: block !important; }
         }
         @media (max-width: 600px) {
