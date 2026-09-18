@@ -41,13 +41,13 @@ const PLACES = [
 ]
 
 const COUNTRIES = [
-  { src: '/images/brandstrip-black-tears.png',  name: 'Black Tears'  },
-  { src: '/images/brandstrip-giffard.png',      name: 'Giffard'      },
-  { src: '/images/brandstrip-pueblo-viejo.png', name: 'Pueblo Viejo' },
-  { src: '/images/brandstrip-burnt-ends.png',   name: 'Burnt Ends'   },
-  { src: '/images/brandstrip-worthy-park.png',  name: 'Worthy Park'  },
-  { src: '/images/brandstrip-whiskey-row.png',  name: 'Whiskey Row'  },
-  { src: '/images/brandstrip-san-matias.png',   name: 'San Matías'   },
+  { src: '/images/brandstrip-black-tears.webp',  name: 'Black Tears'  },
+  { src: '/images/brandstrip-giffard.webp',      name: 'Giffard'      },
+  { src: '/images/brandstrip-pueblo-viejo.webp', name: 'Pueblo Viejo' },
+  { src: '/images/brandstrip-burnt-ends.webp',   name: 'Burnt Ends'   },
+  { src: '/images/brandstrip-worthy-park.webp',  name: 'Worthy Park'  },
+  { src: '/images/brandstrip-whiskey-row.webp',  name: 'Whiskey Row'  },
+  { src: '/images/brandstrip-san-matias.webp',   name: 'San Matías'   },
 ]
 
 // Repeat the 7 logos so one "half" of the track is always wider than the

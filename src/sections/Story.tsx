@@ -49,7 +49,7 @@ export default function Story() {
           <motion.div className={styles.imageWrap} style={{ y }}>
             <div className={styles.imageInner}>
               <img
-                src="/images/giffard-feature-2026.jpg"
+                src="/images/giffard-feature-2026.webp"
                 alt="Giffard Caribbean Pineapple — Drinks International Top 10 Bestselling & Trending, 2026"
                 className={styles.photo}
               />

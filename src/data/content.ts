@@ -128,7 +128,7 @@ export const brands: Brand[] = [
     description:
       'A spiced rum built on a coffee-and-cacao profile — dark, aromatic and unmistakably its own. Made to reinvent the rum & cola.',
     cta: 'Explore Black Tears',
-    image: '/images/house-black-tears.png',
+    image: '/images/house-black-tears.webp',
     hue: '#7a3346',
   },
   {
@@ -142,7 +142,7 @@ export const brands: Brand[] = [
       'Five generations of distillers in Angers, working with whole fruit. Chosen by sommeliers and head bartenders because they make the cocktail better.',
     accolade: '#7 Bestselling & #8 Top Trending Brand 2026',
     cta: 'Explore Giffard',
-    image: '/images/house-giffard.png',
+    image: '/images/house-giffard.webp',
     hue: '#e0546f',
   },
   {
@@ -154,7 +154,7 @@ export const brands: Brand[] = [
     description:
       'A blanco built on blue agave — clean, bright and made for the margarita. The bartender’s working tequila.',
     cta: 'Explore Pueblo Viejo',
-    image: '/images/house-pueblo-viejo.png',
+    image: '/images/house-pueblo-viejo.webp',
     hue: '#c98a3a',
   },
   {
@@ -166,7 +166,7 @@ export const brands: Brand[] = [
     description:
       'A charred-oak American whiskey with smoke and sweetness in balance. Built for the stirred-down classics.',
     cta: 'Explore Burnt Ends',
-    image: '/images/house-burnt-ends.png',
+    image: '/images/house-burnt-ends.webp',
     hue: '#8a4b2b',
   },
   {
@@ -178,7 +178,7 @@ export const brands: Brand[] = [
     description:
       'Single-estate Jamaican rum with all the funk and depth the island is famous for. From cane to bottle on one estate.',
     cta: 'Explore Worthy Park',
-    image: '/images/house-worthy-park.png',
+    image: '/images/house-worthy-park.webp',
     hue: '#b08a2e',
   },
   {
@@ -190,7 +190,7 @@ export const brands: Brand[] = [
     description:
       'An approachable, easy-pouring whiskey built for the well. Straight, honest and made to move.',
     cta: 'Explore Whiskey Row',
-    image: '/images/house-whiskey-row.png',
+    image: '/images/house-whiskey-row.webp',
     hue: '#9c5a34',
   },
   {
@@ -203,7 +203,7 @@ export const brands: Brand[] = [
     description:
       'Casa San Matías has been distilling 100% blue agave in the highlands of Jalisco since 1886 — family-owned, quietly excellent. Reposado, Añejo and Extra-Añejo.',
     cta: 'Explore San Matías',
-    image: '/images/house-san-matias.png',
+    image: '/images/house-san-matias.webp',
     hue: '#d98a4a',
   },
 ];

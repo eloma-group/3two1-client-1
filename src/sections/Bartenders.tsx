@@ -7,12 +7,12 @@ import styles from './Bartenders.module.css';
 
 /** Real cocktail photo per house. */
 const MEDIA: Record<string, string> = {
-  'Giffard':      '/images/brand-giffard-cocktail.png',
-  'Black Tears':  '/images/brand-black-tears-cocktail.png',
-  'Pueblo Viejo': '/images/brand-pueblo-viejo-cocktail.png',
-  'Worthy Park':  '/images/brand-worthy-park-cocktail.png',
-  'Burnt Ends':   '/images/brand-burnt-ends-cocktail.png',
-  'San Matías':   '/images/brand-san-matias-cocktail.png',
+  'Giffard':      '/images/brand-giffard-cocktail.webp',
+  'Black Tears':  '/images/brand-black-tears-cocktail.webp',
+  'Pueblo Viejo': '/images/brand-pueblo-viejo-cocktail.webp',
+  'Worthy Park':  '/images/brand-worthy-park-cocktail.webp',
+  'Burnt Ends':   '/images/brand-burnt-ends-cocktail.webp',
+  'San Matías':   '/images/brand-san-matias-cocktail.webp',
 };
 
 const EASE = [0.16, 1, 0.3, 1] as const;

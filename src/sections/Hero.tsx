@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import { useRef, useEffect } from 'react';
 import { motion, useScroll, useTransform, type Variants } from 'framer-motion';
 import { ArrowDown, Download, ArrowRight, Wine, Martini, Hotel, Coffee } from 'lucide-react';
 import { hero } from '../data/content';
@@ -15,7 +15,23 @@ import styles from './Hero.module.css';
 
 export default function Hero({ ready }: { ready: boolean }) {
   const ref = useRef<HTMLElement>(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
   const { scrollYProgress } = useScroll({ target: ref, offset: ['start start', 'end start'] });
+
+  // Hold the video buffered but paused during the splash, then play it from the
+  // very first frame once the loading screen is done — no mid-clip jump, no lag.
+  useEffect(() => {
+    const v = videoRef.current;
+    if (!v || !ready) return;
+    const start = () => {
+      try { v.currentTime = 0; } catch { /* metadata not ready yet */ }
+      const p = v.play();
+      if (p) p.catch(() => {});
+    };
+    if (v.readyState >= 2) start();
+    else v.addEventListener('canplay', start, { once: true });
+    return () => v.removeEventListener('canplay', start);
+  }, [ready]);
 
   const textY = useTransform(scrollYProgress, [0, 1], ['0%', '-45%']);
   const fade = useTransform(scrollYProgress, [0, 0.75], [1, 0]);
@@ -41,12 +57,13 @@ export default function Hero({ ready }: { ready: boolean }) {
       {/* Video background */}
       <motion.div className={styles.videoWrap} style={{ scale: videoScale }}>
         <video
+          ref={videoRef}
           className={styles.video}
           src="/videos/hero-clean.mp4"
-          autoPlay
           muted
           loop
           playsInline
+          preload="auto"
           poster="/images/logo.png"
         />
       </motion.div>

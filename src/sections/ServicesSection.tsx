@@ -73,7 +73,7 @@ const SERVICES: Service[] = [
     description:
       'A spiced rum built on a coffee-and-cacao profile - dark, aromatic and unmistakably its own. Made to reinvent the rum & cola.',
     shortDescription: 'Dry Spiced Rum · Cuba',
-    imageUrl: '/images/black-tears-dry-spiced-rum-cuba.png',
+    imageUrl: '/images/black-tears-dry-spiced-rum-cuba.webp',
     imageAlt: 'Black Tears dry spiced Cuban rum bottle on a Havana bar at sunset',
     scene: true,
     country: 'Cuba',
@@ -89,7 +89,7 @@ const SERVICES: Service[] = [
     description:
       'Single-estate Jamaican rum with all the funk and depth the island is famous for. From cane to bottle on one estate.',
     shortDescription: 'Single Estate Reserve · Jamaica · Est. 1670',
-    imageUrl: '/images/worthy-park-single-estate-jamaica-rum.png',
+    imageUrl: '/images/worthy-park-single-estate-jamaica-rum.webp',
     imageAlt: 'Worthy Park single estate Jamaica rum bottle with sugar cane and island coast',
     scene: true,
     country: 'Jamaica',
@@ -105,19 +105,19 @@ const SERVICES: Service[] = [
     description:
       'Five generations of distillers in Angers, working with whole fruit. Liqueurs, purées and syrups chosen by sommeliers and head bartenders because they make the cocktail better.',
     shortDescription: 'Liqueurs & Eaux-de-vie · Angers, France · Since 1885',
-    imageUrl: '/images/giffard-abricot-du-roussillon-apricot-liqueur.png',
+    imageUrl: '/images/giffard-abricot-du-roussillon-apricot-liqueur.webp',
     imageAlt: 'Giffard Abricot du Roussillon apricot liqueur bottle in a French terroir scene',
     scene: true,
     country: 'France',
     accent: '#e879a6',
     bg: 'radial-gradient(120% 100% at 58% 22%, #45163a 0%, #250c20 52%, #0a0509 100%)',
     gallery: [
-      { imageUrl: '/images/giffard-abricot-du-roussillon-apricot-liqueur.png', label: 'Abricot du Roussillon', imageAlt: 'Giffard Abricot du Roussillon apricot liqueur bottle in a French terroir scene', scene: true },
-      { imageUrl: '/images/giffard-lichi-li-lychee-liqueur.png',               label: 'Lichi-Li',              imageAlt: 'Giffard Lichi-Li lychee liqueur bottle with fresh lychees and blossom',           scene: true },
-      { imageUrl: '/images/giffard-watermelon-liqueur.png',                    label: 'Watermelon',           imageAlt: 'Giffard Watermelon liqueur bottle with fresh watermelon at Angers',              scene: true },
-      { imageUrl: '/images/giffard-passion-fruit-puree.png',                   label: 'Passion Fruit',        imageAlt: 'Giffard Passion Fruit purée bottle with tropical island backdrop',               scene: true },
-      { imageUrl: '/images/giffard-mango-syrup.png',                           label: 'Mango Sirop',          imageAlt: 'Giffard Mango syrup bottle with ripe mangoes in a tropical scene',               scene: true },
-      { imageUrl: '/images/giffard-coconut-syrup.png',                         label: 'Coconut Sirop',        imageAlt: 'Giffard Coconut syrup bottle with fresh coconuts and palm leaves',               scene: true },
+      { imageUrl: '/images/giffard-abricot-du-roussillon-apricot-liqueur.webp', label: 'Abricot du Roussillon', imageAlt: 'Giffard Abricot du Roussillon apricot liqueur bottle in a French terroir scene', scene: true },
+      { imageUrl: '/images/giffard-lichi-li-lychee-liqueur.webp',               label: 'Lichi-Li',              imageAlt: 'Giffard Lichi-Li lychee liqueur bottle with fresh lychees and blossom',           scene: true },
+      { imageUrl: '/images/giffard-watermelon-liqueur.webp',                    label: 'Watermelon',           imageAlt: 'Giffard Watermelon liqueur bottle with fresh watermelon at Angers',              scene: true },
+      { imageUrl: '/images/giffard-passion-fruit-puree.webp',                   label: 'Passion Fruit',        imageAlt: 'Giffard Passion Fruit purée bottle with tropical island backdrop',               scene: true },
+      { imageUrl: '/images/giffard-mango-syrup.webp',                           label: 'Mango Sirop',          imageAlt: 'Giffard Mango syrup bottle with ripe mangoes in a tropical scene',               scene: true },
+      { imageUrl: '/images/giffard-coconut-syrup.webp',                         label: 'Coconut Sirop',        imageAlt: 'Giffard Coconut syrup bottle with fresh coconuts and palm leaves',               scene: true },
     ],
   },
   {
@@ -129,7 +129,7 @@ const SERVICES: Service[] = [
     description:
       'A blanco built on blue agave - clean, bright and made for the margarita. The bartender’s working tequila.',
     shortDescription: 'Blanco Tequila · Jalisco, Mexico',
-    imageUrl: '/images/pueblo-viejo-blanco-tequila-jalisco-mexico.png',
+    imageUrl: '/images/pueblo-viejo-blanco-tequila-jalisco-mexico.webp',
     imageAlt: 'Pueblo Viejo Blanco 100% agave azul tequila bottle in a Jalisco agave field at sunset',
     scene: true,
     country: 'Mexico',
@@ -145,7 +145,7 @@ const SERVICES: Service[] = [
     description:
       'A peated and sherry-finished blended whiskey with smoke and sweetness in balance. The great pitmasters of America, in a bottle.',
     shortDescription: 'Blended Whiskey · USA',
-    imageUrl: '/images/burnt-ends-blended-whiskey-tennessee.png',
+    imageUrl: '/images/burnt-ends-blended-whiskey-tennessee.webp',
     imageAlt: 'Burnt Ends blended whiskey bottle on a Tennessee farm at sunset',
     scene: true,
     country: 'USA',
@@ -161,7 +161,7 @@ const SERVICES: Service[] = [
     description:
       'Casa San Matías has been distilling 100% blue agave in the highlands of Jalisco since 1886 - family-owned, quietly excellent. Gran Reserva Extra-Añejo.',
     shortDescription: 'Gran Reserva Tequila · Jalisco, Mexico · Since 1886',
-    imageUrl: '/images/san-matias-gran-reserva-extra-anejo-tequila.png',
+    imageUrl: '/images/san-matias-gran-reserva-extra-anejo-tequila.webp',
     imageAlt: 'San Matías Gran Reserva extra añejo tequila bottle in a Jalisco agave field',
     scene: true,
     country: 'Mexico',
@@ -177,7 +177,7 @@ const SERVICES: Service[] = [
     description:
       'A blend of straight bourbon whiskey built on an eighteenth-century recipe. Straight, honest and made to move.',
     shortDescription: 'Straight Bourbon · Louisville, Kentucky',
-    imageUrl: '/images/whiskey-row-straight-bourbon-kentucky.png',
+    imageUrl: '/images/whiskey-row-straight-bourbon-kentucky.webp',
     imageAlt: 'Whiskey Row straight bourbon bottle on an oak barrel in Louisville Kentucky',
     scene: true,
     country: 'USA',
