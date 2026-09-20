@@ -240,7 +240,17 @@ export function IntroductionSection() {
       </div>
 
       {/* ── Divider + flag ticker ── */}
-      <div style={{ borderTop: '1px solid rgba(var(--ink-rgb),0.07)', paddingTop: 'clamp(48px, 7vw, 80px)' }}>
+      <div style={{
+        borderTop: '1px solid rgba(0,0,0,0.07)',
+        paddingTop: 'clamp(48px, 7vw, 80px)',
+        background: '#fff',
+        marginLeft: 'calc(-1 * clamp(24px, 5vw, 80px))',
+        marginRight: 'calc(-1 * clamp(24px, 5vw, 80px))',
+        marginBottom: 'calc(-1 * clamp(96px, 12vw, 160px))',
+        paddingLeft: 'clamp(24px, 5vw, 80px)',
+        paddingRight: 'clamp(24px, 5vw, 80px)',
+        paddingBottom: 'clamp(96px, 12vw, 160px)',
+      }}>
 
         {/* Country flags */}
         <div
@@ -304,8 +314,8 @@ export function IntroductionSection() {
           </div>
 
           {/* ── Edge fades ── */}
-          <div style={{ position: 'absolute', left: 0, top: 0, bottom: 0, width: '64px', zIndex: 3, background: 'linear-gradient(to right, var(--surface), transparent)', pointerEvents: 'none' }} />
-          <div style={{ position: 'absolute', right: 0, top: 0, bottom: 0, width: '64px', zIndex: 3, background: 'linear-gradient(to left, var(--surface), transparent)', pointerEvents: 'none' }} />
+          <div style={{ position: 'absolute', left: 0, top: 0, bottom: 0, width: '64px', zIndex: 3, background: 'linear-gradient(to right, #fff, transparent)', pointerEvents: 'none' }} />
+          <div style={{ position: 'absolute', right: 0, top: 0, bottom: 0, width: '64px', zIndex: 3, background: 'linear-gradient(to left, #fff, transparent)', pointerEvents: 'none' }} />
         </div>
 
       </div>
