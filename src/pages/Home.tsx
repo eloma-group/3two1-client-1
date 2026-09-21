@@ -1,5 +1,5 @@
 import Hero from '../sections/Hero';
-import Reach from '../sections/Reach';
+import NetworkEditorial from '../sections/NetworkEditorial';
 import { ServicesSection } from '../sections/ServicesSection';
 import { IndustriesSection } from '../sections/IndustriesSection';
 import { IntroductionSection } from '../sections/IntroductionSection';
@@ -12,7 +12,7 @@ export default function Home({ ready }: { ready: boolean }) {
   return (
     <>
       <Hero ready={ready} />
-      <Reach />
+      <NetworkEditorial />
       <ServicesSection />
       <IndustriesSection />
       <IntroductionSection />
