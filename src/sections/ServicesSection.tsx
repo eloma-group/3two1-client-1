@@ -16,7 +16,7 @@
  * All styling is inline (no external CSS file needed).
  */
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { ArrowUpRight } from 'lucide-react'
 
@@ -41,6 +41,11 @@ export interface GalleryItem {
   accent?: string
 }
 
+export interface GalleryCategory {
+  label: string
+  items: GalleryItem[]
+}
+
 export interface Service {
   id: string
   number: string
@@ -60,7 +65,7 @@ export interface Service {
   /** Accent colour for glow, eyebrow and counter. */
   accent: string
   /** When present, the image panel shows the full range instead of one bottle. */
-  gallery?: GalleryItem[]
+  gallery?: GalleryCategory[]
 }
 
 const SERVICES: Service[] = [
@@ -112,12 +117,31 @@ const SERVICES: Service[] = [
     accent: '#e879a6',
     bg: 'radial-gradient(120% 100% at 58% 22%, #45163a 0%, #250c20 52%, #0a0509 100%)',
     gallery: [
-      { imageUrl: '/images/giffard-abricot-du-roussillon-apricot-liqueur.webp', label: 'Abricot du Roussillon', imageAlt: 'Giffard Abricot du Roussillon apricot liqueur bottle in a French terroir scene', scene: true },
-      { imageUrl: '/images/giffard-lichi-li-lychee-liqueur.webp',               label: 'Lichi-Li',              imageAlt: 'Giffard Lichi-Li lychee liqueur bottle with fresh lychees and blossom',           scene: true },
-      { imageUrl: '/images/giffard-watermelon-liqueur.webp',                    label: 'Watermelon',           imageAlt: 'Giffard Watermelon liqueur bottle with fresh watermelon at Angers',              scene: true },
-      { imageUrl: '/images/giffard-passion-fruit-puree.webp',                   label: 'Passion Fruit',        imageAlt: 'Giffard Passion Fruit purée bottle with tropical island backdrop',               scene: true },
-      { imageUrl: '/images/giffard-mango-syrup.webp',                           label: 'Mango Sirop',          imageAlt: 'Giffard Mango syrup bottle with ripe mangoes in a tropical scene',               scene: true },
-      { imageUrl: '/images/giffard-coconut-syrup.webp',                         label: 'Coconut Sirop',        imageAlt: 'Giffard Coconut syrup bottle with fresh coconuts and palm leaves',               scene: true },
+      {
+        label: 'Liquor',
+        items: [
+          { imageUrl: '/images/giffard-abricot-du-roussillon-apricot-liqueur.webp', label: 'Abricot Liquor', imageAlt: 'Giffard Abricot du Roussillon apricot liqueur bottle in a French terroir scene', scene: true },
+          { imageUrl: '/images/giffard-lichi-li-lychee-liqueur.webp',               label: 'Lichi Liquor',   imageAlt: 'Giffard Lichi-Li lychee liqueur bottle with fresh lychees and blossom',           scene: true },
+          { imageUrl: '/images/giffard-watermelon-liqueur.webp',                    label: 'Watermelon Liquor', imageAlt: 'Giffard Watermelon liqueur bottle with fresh watermelon at Angers',              scene: true },
+        ],
+      },
+      {
+        label: 'Syrup',
+        items: [
+          { imageUrl: '/images/giffard-mango-syrup.webp',   label: 'Mango Syrup',   imageAlt: 'Giffard Mango syrup bottle with ripe mangoes in a tropical scene',   scene: true },
+          { imageUrl: '/images/giffard-coconut-syrup.webp', label: 'Coconut Syrup', imageAlt: 'Giffard Coconut syrup bottle with fresh coconuts and palm leaves',    scene: true },
+        ],
+      },
+      {
+        label: 'Puree',
+        items: [],
+      },
+      {
+        label: 'Non-Alcoholic Bases',
+        items: [
+          { imageUrl: '/images/giffard-passion-fruit-puree.webp', label: 'Passion Fruit', imageAlt: 'Giffard Passion Fruit purée bottle with tropical island backdrop', scene: true },
+        ],
+      },
     ],
   },
   {
@@ -200,6 +224,28 @@ function ServiceRow({
   onSubLeave: () => void
 }) {
   const active = isHovered || isSelected
+
+  // Keep the viewport visually anchored while the submenu expands/collapses.
+  // When the changing block sits above the viewport top, its height delta would
+  // otherwise shove everything below it (and the Lenis scroll target) — making
+  // the page "slide" into the next section. Compensate the scroll by the same
+  // delta so the visible content stays put.
+  const anchorScroll = useCallback((node: HTMLDivElement | null) => {
+    if (!node) return
+    let prev = node.getBoundingClientRect().height
+    const ro = new ResizeObserver(() => {
+      const rect = node.getBoundingClientRect()
+      const dh = rect.height - prev
+      prev = rect.height
+      if (dh === 0 || rect.top >= 0) return
+      const lenis = (window as unknown as { lenis?: { scroll: number; scrollTo: (t: number, o?: object) => void } }).lenis
+      if (lenis) lenis.scrollTo(lenis.scroll + dh, { immediate: true, force: true })
+      else window.scrollBy(0, dh)
+    })
+    ro.observe(node)
+    return () => ro.disconnect()
+  }, [])
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 28 }}
@@ -325,53 +371,94 @@ function ServiceRow({
           {active && (
             <motion.div
               key="submenu"
+              ref={anchorScroll}
               initial={{ height: 0, opacity: 0 }}
               animate={{ height: 'auto', opacity: 1 }}
               exit={{ height: 0, opacity: 0 }}
-              transition={{ duration: 0.4, ease }}
-              style={{ position: 'relative', zIndex: 1, overflow: 'hidden' }}
+              transition={{
+                height:  { duration: 0.32, ease: [0.4, 0, 0.2, 1] },
+                opacity: { duration: 0.2, ease: 'linear' },
+              }}
+              style={{ position: 'relative', zIndex: 1, overflow: 'hidden', willChange: 'height' }}
             >
               <div style={{
-                display: 'grid',
-                gridTemplateColumns: 'repeat(auto-fill, minmax(120px, 1fr))',
-                gap: 'clamp(10px, 1.4vw, 18px)',
+                display: 'flex', flexDirection: 'column',
+                gap: 'clamp(18px, 2.2vw, 28px)',
                 padding: '0 clamp(24px, 4vw, 64px) clamp(20px, 2.6vw, 30px) clamp(58px, 8vw, 160px)',
               }}>
-                {svc.gallery.map((item, gi) => (
+                {svc.gallery.map((cat, ci) => (
                   <motion.div
-                    key={item.imageUrl}
+                    key={cat.label}
                     initial={{ opacity: 0, y: 12 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.35, delay: 0.08 + gi * 0.05, ease }}
-                    onMouseEnter={() => onSubEnter(item)}
-                    onMouseLeave={onSubLeave}
-                    whileHover={{ y: -4 }}
-                    style={{
-                      display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '10px',
-                      padding: 'clamp(12px, 1.4vw, 18px) 10px',
-                      borderRadius: '14px',
-                      background: 'rgba(232,68,111,0.05)',
-                      border: '1px solid rgba(232,68,111,0.14)',
-                      cursor: 'pointer',
-                    }}
+                    transition={{ duration: 0.35, delay: 0.08 + ci * 0.06, ease }}
                   >
-                    <img
-                      src={item.imageUrl}
-                      alt={item.imageAlt}
-                      loading="eager"
-                      style={{
-                        height: 'clamp(72px, 8vw, 108px)', width: 'auto',
-                        objectFit: 'contain',
-                        filter: 'drop-shadow(0 10px 20px rgba(0,0,0,0.18))',
-                      }}
-                    />
-                    <span style={{
-                      fontSize: 'clamp(11px, 0.95vw, 13px)',
-                      fontWeight: 600, letterSpacing: '-0.01em',
-                      color: NAVY, textAlign: 'center', lineHeight: 1.3,
+                    {/* Category label */}
+                    <div style={{
+                      fontSize: '9.5px', fontWeight: 700,
+                      letterSpacing: '2px', textTransform: 'uppercase',
+                      color: GREEN, marginBottom: '12px',
                     }}>
-                      {item.label}
-                    </span>
+                      {cat.label}
+                    </div>
+
+                    {cat.items.length > 0 ? (
+                      <div style={{
+                        display: 'grid',
+                        gridTemplateColumns: 'repeat(auto-fill, minmax(120px, 1fr))',
+                        gap: 'clamp(10px, 1.4vw, 18px)',
+                      }}>
+                        {cat.items.map((item, gi) => (
+                          <motion.div
+                            key={item.imageUrl}
+                            initial={{ opacity: 0, y: 10 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.32, delay: 0.12 + gi * 0.05, ease }}
+                            onMouseEnter={() => onSubEnter(item)}
+                            onMouseLeave={onSubLeave}
+                            whileHover={{ y: -4 }}
+                            style={{
+                              display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '10px',
+                              padding: 'clamp(12px, 1.4vw, 18px) 10px',
+                              borderRadius: '14px',
+                              background: 'rgba(232,68,111,0.05)',
+                              border: '1px solid rgba(232,68,111,0.14)',
+                              cursor: 'pointer',
+                            }}
+                          >
+                            <img
+                              src={item.imageUrl}
+                              alt={item.imageAlt}
+                              loading="eager"
+                              style={{
+                                height: 'clamp(72px, 8vw, 108px)', width: 'auto',
+                                objectFit: 'contain',
+                                filter: 'drop-shadow(0 10px 20px rgba(0,0,0,0.18))',
+                              }}
+                            />
+                            <span style={{
+                              fontSize: 'clamp(11px, 0.95vw, 13px)',
+                              fontWeight: 600, letterSpacing: '-0.01em',
+                              color: NAVY, textAlign: 'center', lineHeight: 1.3,
+                            }}>
+                              {item.label}
+                            </span>
+                          </motion.div>
+                        ))}
+                      </div>
+                    ) : (
+                      <div style={{
+                        padding: 'clamp(14px, 1.6vw, 20px)',
+                        borderRadius: '14px',
+                        border: '1px dashed rgba(232,68,111,0.22)',
+                        background: 'rgba(232,68,111,0.03)',
+                        fontSize: 'clamp(11px, 0.95vw, 13px)',
+                        fontWeight: 500, letterSpacing: '0.02em',
+                        color: 'rgba(var(--ink-rgb),0.4)',
+                      }}>
+                        Coming soon
+                      </div>
+                    )}
                   </motion.div>
                 ))}
               </div>
@@ -467,13 +554,13 @@ function ImagePanel({ index, override }: { index: number; override?: GalleryItem
           </motion.div>
         </AnimatePresence>
       )}
-      <AnimatePresence mode="wait">
+      <AnimatePresence>
         <motion.div
           key={imgKey}
-          initial={{ opacity: 0, scale: 1.06 }}
+          initial={{ opacity: 0, scale: 1.03 }}
           animate={{ opacity: 1, scale: 1 }}
           exit={{ opacity: 0 }}
-          transition={{ duration: 0.55, ease }}
+          transition={{ duration: 0.3, ease }}
           style={{
             position: 'absolute', inset: 0, zIndex: 2,
             display: 'flex', alignItems: 'center', justifyContent: 'center',
@@ -587,7 +674,7 @@ export function ServicesSection() {
     const urls = new Set<string>()
     SERVICES.forEach((s) => {
       urls.add(s.imageUrl)
-      s.gallery?.forEach((g) => urls.add(g.imageUrl))
+      s.gallery?.forEach((cat) => cat.items.forEach((g) => urls.add(g.imageUrl)))
     })
     urls.forEach((url) => { const img = new Image(); img.src = url })
   }, [])
