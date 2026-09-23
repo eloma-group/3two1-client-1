@@ -16,7 +16,7 @@
  * All styling is inline (no external CSS file needed).
  */
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { ArrowUpRight } from 'lucide-react'
 
@@ -358,7 +358,7 @@ function ServiceRow({
                     <img
                       src={item.imageUrl}
                       alt={item.imageAlt}
-                      loading="lazy"
+                      loading="eager"
                       style={{
                         height: 'clamp(72px, 8vw, 108px)', width: 'auto',
                         objectFit: 'contain',
@@ -484,7 +484,7 @@ function ImagePanel({ index, override }: { index: number; override?: GalleryItem
             <img
               src={imgUrl}
               alt={imgAlt}
-              loading="lazy"
+              loading="eager"
               style={{
                 width: '100%', height: '100%',
                 objectFit: 'cover', objectPosition: 'center',
@@ -494,7 +494,7 @@ function ImagePanel({ index, override }: { index: number; override?: GalleryItem
             <img
               src={imgUrl}
               alt={imgAlt}
-              loading="lazy"
+              loading="eager"
               style={{
                 maxWidth: '100%', maxHeight: '100%',
                 width: 'auto', height: 'auto',
@@ -580,6 +580,17 @@ export function ServicesSection() {
   const [selected, setSelected] = useState<number | null>(null)
   const [subItem,  setSubItem]  = useState<GalleryItem | null>(null)
   const active = hovered ?? selected ?? 0
+
+  // Preload every panel + gallery image on mount so switching on hover is
+  // instant — no blank background while the new image is fetched.
+  useEffect(() => {
+    const urls = new Set<string>()
+    SERVICES.forEach((s) => {
+      urls.add(s.imageUrl)
+      s.gallery?.forEach((g) => urls.add(g.imageUrl))
+    })
+    urls.forEach((url) => { const img = new Image(); img.src = url })
+  }, [])
 
   return (
     <section id="services" style={{ position: 'relative', overflow: 'clip', background: 'var(--surface)', color: NAVY, fontFamily: "'Inter', system-ui, sans-serif" }}>
