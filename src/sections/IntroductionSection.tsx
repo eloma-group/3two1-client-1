@@ -34,12 +34,6 @@ const GREEN = '#e8446f'
 const ease  = [0.16, 1, 0.3, 1] as [number, number, number, number]
 
 /* ── Data ───────────────────────────────────────────────────────── */
-const PLACES = [
-  'Darwin', 'Broome', 'Perth', 'Adelaide', 'Melbourne', 'Hobart',
-  'Brisbane', 'Gold Coast', 'Newcastle', 'Sydney', 'Auckland',
-  'Wellington', 'Vanuatu', 'Fiji', 'Cook Is.',
-]
-
 const COUNTRIES = [
   { src: '/images/brandstrip-black-tears.webp',  name: 'Black Tears'  },
   { src: '/images/brandstrip-giffard.webp',      name: 'Giffard'      },
@@ -169,7 +163,7 @@ export function IntroductionSection() {
             transition={{ duration: 0.78, delay: 0.18, ease }}
             style={{
               fontSize: 'clamp(15px, 1.3vw, 18px)',
-              color: 'rgba(var(--ink-rgb),0.52)',
+              color: 'rgba(var(--ink-rgb),0.78)',
               lineHeight: 1.8,
               margin: '0 0 30px',
             }}
@@ -179,51 +173,6 @@ export function IntroductionSection() {
             from blue-agave tequila to coffee-spiced rum - delivered to the best bars,
             bottle shops and cafés, coast to coast.
           </motion.p>
-
-          {/* Network place names */}
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: '-40px' }}
-            transition={{ duration: 0.7, delay: 0.26, ease }}
-            style={{ margin: '0 0 30px' }}
-          >
-            <div style={{
-              fontSize: '10px', fontWeight: 700, letterSpacing: '2.2px',
-              textTransform: 'uppercase', color: 'var(--rose-700)', marginBottom: '12px',
-            }}>
-              The 3two1 network
-            </div>
-            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '7px' }}>
-              {PLACES.map((p, i) => (
-                <motion.span
-                  key={p}
-                  initial={{ opacity: 0, y: 8 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: '-40px' }}
-                  transition={{ duration: 0.35, delay: 0.3 + i * 0.035, ease }}
-                  whileHover={{ y: -2 }}
-                  className="intro-place"
-                  style={{
-                    display: 'inline-flex', alignItems: 'center',
-                    fontSize: '11.5px', fontWeight: 600,
-                    letterSpacing: '0.02em',
-                    color: 'rgba(var(--ink-rgb),0.72)',
-                    padding: '6px 14px',
-                    background: 'var(--chip)',
-                    border: '1px solid rgba(232,68,111,0.22)',
-                    borderRadius: '100px',
-                    whiteSpace: 'nowrap',
-                    boxShadow: '0 2px 8px -3px rgba(110,16,48,0.18)',
-                    backdropFilter: 'blur(4px)',
-                    cursor: 'default',
-                  }}
-                >
-                  {p}
-                </motion.span>
-              ))}
-            </div>
-          </motion.div>
 
           <motion.div
             initial={{ opacity: 0, y: 18 }}

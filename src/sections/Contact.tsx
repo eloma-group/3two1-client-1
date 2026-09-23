@@ -20,7 +20,7 @@ export default function Contact() {
           <Reveal><p className="eyebrow" style={{ color: 'var(--rose-300)' }}>Become a Stockist</p></Reveal>
           <Reveal delay={0.08}>
             <h2 className={`display-lg ${styles.title}`}>
-              Put the portfolio <span className="gradient-text">behind your bar.</span>
+              Put the portfolio <br /><span className="gradient-text">in your venue.</span>
             </h2>
           </Reveal>
           <Reveal delay={0.15}>
