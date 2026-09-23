@@ -1,8 +1,8 @@
 import Hero from '../sections/Hero';
-import NetworkEditorial from '../sections/NetworkEditorial';
 import { ServicesSection } from '../sections/ServicesSection';
 import { IndustriesSection } from '../sections/IndustriesSection';
 import { IntroductionSection } from '../sections/IntroductionSection';
+import NetworkMap from '../sections/NetworkMap';
 import Story from '../sections/Story';
 import Bartenders from '../sections/Bartenders';
 import { TestimonialsSection } from '../sections/TestimonialsSection';
@@ -12,7 +12,7 @@ export default function Home({ ready }: { ready: boolean }) {
   return (
     <>
       <Hero ready={ready} />
-      <NetworkEditorial />
+      <NetworkMap />
       <ServicesSection />
       <IndustriesSection />
       <IntroductionSection />

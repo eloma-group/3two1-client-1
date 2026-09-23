@@ -35,13 +35,13 @@ const ease  = [0.16, 1, 0.3, 1] as [number, number, number, number]
 
 /* ── Data ───────────────────────────────────────────────────────── */
 const COUNTRIES = [
-  { src: '/images/brandstrip-black-tears.webp',  name: 'Black Tears'  },
-  { src: '/images/brandstrip-giffard.webp',      name: 'Giffard'      },
-  { src: '/images/brandstrip-pueblo-viejo.webp', name: 'Pueblo Viejo' },
-  { src: '/images/brandstrip-burnt-ends.webp',   name: 'Burnt Ends'   },
-  { src: '/images/brandstrip-worthy-park.webp',  name: 'Worthy Park'  },
-  { src: '/images/brandstrip-whiskey-row.webp',  name: 'Whiskey Row'  },
-  { src: '/images/brandstrip-san-matias.webp',   name: 'San Matías'   },
+  { src: '/images/brandstrip-black-tears.webp',  name: 'Black Tears',  link: 'https://blacktears.com' },
+  { src: '/images/brandstrip-giffard.webp',      name: 'Giffard',      link: 'https://www.giffard.com' },
+  { src: '/images/brandstrip-pueblo-viejo.webp', name: 'Pueblo Viejo', link: 'https://www.puebloviejotequila.com' },
+  { src: '/images/brandstrip-burnt-ends.webp',   name: 'Burnt Ends',   link: 'https://www.masterofmalt.com/' },
+  { src: '/images/brandstrip-worthy-park.webp',  name: 'Worthy Park',  link: 'https://worthyparkestate.com' },
+  { src: '/images/brandstrip-whiskey-row.webp',  name: 'Whiskey Row',  link: 'https://whiskeyrowbourbon.com' },
+  { src: '/images/brandstrip-san-matias.webp',   name: 'San Matías',   link: 'https://www.sanmatias.com' },
 ]
 
 // Repeat the 7 logos so one "half" of the track is always wider than the
@@ -217,7 +217,16 @@ export function IntroductionSection() {
             }}
           >
             {[...STRIP, ...STRIP].map((c, i) => (
-              <div key={`g${i}`} className="bivry-flag-item" onMouseEnter={() => activateL2(i)}>
+              <a
+                key={`g${i}`}
+                href={c.link}
+                target="_blank"
+                rel="noreferrer"
+                className="bivry-flag-item"
+                onMouseEnter={() => activateL2(i)}
+                aria-label={c.name}
+                style={{ display: 'block', textDecoration: 'none' }}
+              >
                 <div className="bivry-flag-tooltip">{c.name}</div>
                 <div className="bivry-flag-img">
                   <img
@@ -226,7 +235,7 @@ export function IntroductionSection() {
                     style={{ width: '100%', height: '100%', objectFit: 'contain', display: 'block' }}
                   />
                 </div>
-              </div>
+              </a>
             ))}
           </div>
 

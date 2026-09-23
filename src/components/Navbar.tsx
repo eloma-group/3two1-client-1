@@ -23,9 +23,15 @@ export default function Navbar() {
     document.documentElement.classList.toggle('lenis-stopped', open);
   }, [open]);
 
+  const isExternal = (to: string) => /^https?:\/\//.test(to);
+
   const go = (to: string) => {
     setOpen(false);
     setDrop(null);
+    if (isExternal(to)) {
+      window.open(to, '_blank', 'noopener,noreferrer');
+      return;
+    }
     const id = to.replace('/', '');
     setTimeout(() => scrollToHash(id), open ? 350 : 0);
   };

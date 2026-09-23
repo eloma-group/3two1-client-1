@@ -1,0 +1,164 @@
+/* ── NetworkMap — pinned, scroll-driven AU/NZ/Pacific map reveal ──────── */
+
+.wrap {
+  position: relative;
+  width: 100%;
+  background: var(--surface);
+  color: rgb(var(--ink-rgb));
+  font-family: var(--font-ui, 'Inter', system-ui, sans-serif);
+  --navy: #1c2440;
+  --coral: #e8446f;
+}
+
+/* The tall scroll track. Height sets how long the pin lasts. */
+.track {
+  position: relative;
+  height: 300vh;
+}
+
+/* The panel that gets pinned to the viewport by GSAP. */
+.panel {
+  position: relative;
+  height: 100vh;
+  overflow: hidden;
+  background: var(--surface);
+  display: flex;
+  align-items: center;
+}
+
+/* Soft brand glow behind the map */
+.pulse {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background: radial-gradient(60% 55% at 62% 52%, rgba(232, 68, 111, 0.16) 0%, rgba(232, 68, 111, 0) 60%);
+}
+
+.svg {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+/* 3D glossy glow map — nudged a touch brighter */
+.mapImg { filter: brightness(1.14) saturate(1.05); }
+
+.pinIcons { fill: #000; }
+.pinLabel {
+  fill: #000;
+  fill-opacity: 1;
+  font-size: 12px;
+  font-family: var(--font-ui);
+  font-weight: 700;
+  letter-spacing: 0.12em;
+}
+
+/* ── Left typographic layer ─────────────────────────────────────────── */
+.text {
+  position: relative;
+  z-index: 2;
+  width: min(46%, 620px);
+  padding-inline: clamp(24px, 5vw, 80px);
+  pointer-events: auto;
+  user-select: text;
+}
+
+/* ── Text — matches the NetworkEditorial left copy exactly ──────────── */
+.eyebrow {
+  margin: 0;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--coral);
+}
+.heading { margin: 1.4rem 0 0; display: flex; flex-direction: column; }
+.lineClip { display: block; overflow: hidden; padding-bottom: 0.22em; }
+.heading .lineClip > span {
+  display: block;
+  font-family: var(--font-display, Georgia, serif);
+  font-size: clamp(2.2rem, 4.6vw, 4.4rem);
+  line-height: 1.05;
+  letter-spacing: -0.015em;
+}
+.lineNavy { color: var(--navy); font-weight: 600; }
+.lineCoral { color: var(--coral); font-style: italic; font-weight: 500; }
+.divider { display: block; width: 46px; height: 2px; background: var(--coral); margin: 1.6rem 0 1.4rem; }
+.para {
+  margin: 0;
+  max-width: 30ch;
+  font-size: clamp(15px, 1.1vw, 17px);
+  line-height: 1.7;
+  color: rgba(28, 36, 64, 0.58);
+}
+.good {
+  margin: 2.6rem 0 0;
+  font-family: var(--font-display, Georgia, serif);
+  font-style: italic;
+  font-size: clamp(1.3rem, 2vw, 1.9rem);
+  line-height: 1.16;
+  color: rgba(28, 36, 64, 0.5);
+}
+.contact { margin-top: 2rem; display: flex; gap: 2.4rem; flex-wrap: wrap; }
+.contactBlock { display: flex; flex-direction: column; gap: 0.35rem; }
+.contactLabel {
+  font-size: 0.64rem;
+  font-weight: 600;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--coral);
+}
+.contactBlock a { color: var(--navy); font-size: 0.95rem; text-decoration: none; transition: color 0.25s; }
+.contactBlock a:hover { color: var(--coral); }
+
+/* Legend card (bottom-right) */
+.legend {
+  position: absolute;
+  right: clamp(20px, 3vw, 48px);
+  bottom: clamp(20px, 3vh, 44px);
+  z-index: 4;
+  display: flex;
+  flex-direction: column;
+  gap: 11px;
+  padding: 16px 20px;
+  background: var(--card, #fff);
+  border: 1px solid rgba(28, 36, 64, 0.12);
+  border-radius: 16px;
+  box-shadow: 0 14px 36px -14px rgba(28, 36, 64, 0.35);
+}
+.legend span {
+  display: inline-flex;
+  align-items: center;
+  gap: 11px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--navy);
+}
+.legIcon { width: 18px; height: 18px; flex-shrink: 0; }
+
+/* Scroll hint */
+.scroll {
+  position: absolute;
+  bottom: clamp(18px, 3vh, 32px);
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 3;
+  font-size: 11px;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: rgba(var(--ink-rgb), 0.55);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+@media (max-width: 860px) {
+  .text { width: 100%; }
+  .track { height: 260vh; }
+}

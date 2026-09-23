@@ -26,6 +26,8 @@
   width: 100%;
   height: auto;
   display: block;
+  /* GIF art sits slightly left in its frame — nudge right to visually centre */
+  transform: translateX(4%);
 }
 
 .tagline {
@@ -38,6 +40,8 @@
   color: #e8446f;
   overflow: hidden;
   display: flex;
+  width: 100%;
+  justify-content: center;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
