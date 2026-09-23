@@ -52,6 +52,7 @@ export const navMenu: MenuEntry[] = [
     to: '/#brands',
     children: [
       { label: 'Black Tears', to: 'https://blacktears.com' },
+      { label: 'Cuba Libre', to: '/#brands' },
       { label: 'Giffard', to: 'https://www.giffard.com' },
       { label: 'Pueblo Viejo', to: 'https://www.puebloviejotequila.com' },
       { label: 'Burnt Ends', to: 'https://www.masterofmalt.com/' },

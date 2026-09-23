@@ -4,7 +4,7 @@ import { ArrowDown, Download, ArrowRight, Wine, Martini, Hotel, Coffee } from 'l
 import { hero } from '../data/content';
 
 const channels = [
-  { icon: Wine, title: 'Retail', sub: 'Bottle Shop & Plain Retailers' },
+  { icon: Wine, title: 'Retail', sub: 'Bottle Shops & Chain Retailers' },
   { icon: Martini, title: 'Bars', sub: 'On-Premise Pours' },
   { icon: Hotel, title: 'Hospitality', sub: 'Hotels & Larger Venues' },
   { icon: Coffee, title: 'Coffee Shop & Cafe Wholesale', sub: 'Daytime & Zero-Proof' },

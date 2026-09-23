@@ -16,7 +16,7 @@
   height: 300vh;
 }
 
-/* The panel that gets pinned to the viewport by GSAP. */
+/* The panel that gets pinned to the viewport by GSAP while the map reveals. */
 .panel {
   position: relative;
   height: 100vh;
@@ -47,9 +47,9 @@
 /* 3D glossy glow map — nudged a touch brighter */
 .mapImg { filter: brightness(1.14) saturate(1.05); }
 
-.pinIcons { fill: #000; }
+.pinIcons { fill: rgb(var(--ink-rgb)); }
 .pinLabel {
-  fill: #000;
+  fill: rgb(var(--ink-rgb));
   fill-opacity: 1;
   font-size: 12px;
   font-family: var(--font-ui);
@@ -85,7 +85,7 @@
   line-height: 1.05;
   letter-spacing: -0.015em;
 }
-.lineNavy { color: var(--navy); font-weight: 600; }
+.lineNavy { color: rgb(var(--ink-rgb)); font-weight: 600; }
 .lineCoral { color: var(--coral); font-style: italic; font-weight: 500; }
 .divider { display: block; width: 46px; height: 2px; background: var(--coral); margin: 1.6rem 0 1.4rem; }
 .para {
@@ -93,7 +93,7 @@
   max-width: 30ch;
   font-size: clamp(15px, 1.1vw, 17px);
   line-height: 1.7;
-  color: rgba(28, 36, 64, 0.58);
+  color: rgba(var(--ink-rgb), 0.62);
 }
 .good {
   margin: 2.6rem 0 0;
@@ -101,7 +101,7 @@
   font-style: italic;
   font-size: clamp(1.3rem, 2vw, 1.9rem);
   line-height: 1.16;
-  color: rgba(28, 36, 64, 0.5);
+  color: rgba(var(--ink-rgb), 0.5);
 }
 .contact { margin-top: 2rem; display: flex; gap: 2.4rem; flex-wrap: wrap; }
 .contactBlock { display: flex; flex-direction: column; gap: 0.35rem; }
@@ -112,7 +112,7 @@
   text-transform: uppercase;
   color: var(--coral);
 }
-.contactBlock a { color: var(--navy); font-size: 0.95rem; text-decoration: none; transition: color 0.25s; }
+.contactBlock a { color: rgb(var(--ink-rgb)); font-size: 0.95rem; text-decoration: none; transition: color 0.25s; }
 .contactBlock a:hover { color: var(--coral); }
 
 /* Legend card (bottom-right) */
@@ -138,9 +138,9 @@
   font-weight: 600;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--navy);
+  color: rgb(var(--ink-rgb));
 }
-.legIcon { width: 18px; height: 18px; flex-shrink: 0; }
+.legIcon { width: 18px; height: 18px; flex-shrink: 0; fill: rgb(var(--ink-rgb)); }
 
 /* Scroll hint */
 .scroll {
@@ -160,5 +160,4 @@
 
 @media (max-width: 860px) {
   .text { width: 100%; }
-  .track { height: 260vh; }
 }

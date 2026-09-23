@@ -1,7 +1,9 @@
 import { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
+import { ArrowRight } from 'lucide-react';
 import { brand } from '../data/content';
 import Reveal from '../components/Reveal';
+import MagneticButton from '../components/MagneticButton';
 import styles from './Story.module.css';
 
 export default function Story() {
@@ -43,6 +45,14 @@ export default function Story() {
               </Reveal>
             ))}
           </div>
+
+          <Reveal delay={0.3}>
+            <div style={{ marginTop: 'clamp(1.8rem, 3vw, 2.6rem)' }}>
+              <MagneticButton variant="solid" href="#" cursorLabel="Read">
+                &lsquo;3Two1 Drinks&rsquo; Story <ArrowRight size={18} />
+              </MagneticButton>
+            </div>
+          </Reveal>
         </div>
 
         <div className={styles.right}>

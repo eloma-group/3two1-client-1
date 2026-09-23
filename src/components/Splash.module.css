@@ -21,6 +21,8 @@
 .gifWrap {
   will-change: transform, opacity;
   width: clamp(380px, 66vw, 720px);
+  position: relative;
+  overflow: hidden;
 }
 .gif {
   width: 100%;
@@ -28,6 +30,31 @@
   display: block;
   /* GIF art sits slightly left in its frame — nudge right to visually centre */
   transform: translateX(4%);
+}
+/* Glossy light streak sweeping across the logo */
+.gifWrap::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(
+    115deg,
+    transparent 32%,
+    rgba(255, 255, 255, 0.35) 46%,
+    rgba(255, 255, 255, 0.85) 50%,
+    rgba(255, 255, 255, 0.35) 54%,
+    transparent 68%
+  );
+  mix-blend-mode: screen;
+  transform: translateX(-130%);
+  animation: splashShine 3.6s ease-in-out infinite;
+}
+@keyframes splashShine {
+  0% { transform: translateX(-130%); }
+  55%, 100% { transform: translateX(130%); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .gifWrap::after { animation: none; opacity: 0; }
 }
 
 .tagline {
@@ -37,7 +64,7 @@
   font-weight: 500;
   font-size: clamp(1.7rem, 4.4vw, 3.1rem);
   letter-spacing: 0.01em;
-  color: #e8446f;
+  color: #ff9999;
   overflow: hidden;
   display: flex;
   width: 100%;

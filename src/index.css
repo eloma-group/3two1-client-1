@@ -64,6 +64,9 @@
   --chip-hover: linear-gradient(180deg, #ffffff, rgba(255, 255, 255, 0.8));
 
   color-scheme: light;
+
+  /* Set by JS to counter browser/display zoom for locked sections. */
+  --zoom-lock: 1;
 }
 
 /* ---------------- Dark / night mode ---------------- */

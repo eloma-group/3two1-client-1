@@ -12,6 +12,8 @@
   max-width: calc(100% - clamp(1.5rem, 5vw, 3rem));
   font-family: var(--font-ui);
   transition: top 0.4s var(--ease-out);
+  /* Locked to its 100% look at any zoom (centred pill just scales). */
+  zoom: var(--zoom-lock, 1);
 }
 .nav.scrolled { top: clamp(0.5rem, 1.2vw, 1rem); }
 

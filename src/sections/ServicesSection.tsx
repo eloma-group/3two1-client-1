@@ -44,6 +44,8 @@ export interface GalleryItem {
 export interface GalleryCategory {
   label: string
   items: GalleryItem[]
+  /** Small note shown under the row, e.g. "35 more liqueurs". */
+  note?: string
 }
 
 export interface Service {
@@ -118,7 +120,8 @@ const SERVICES: Service[] = [
     bg: 'radial-gradient(120% 100% at 58% 22%, #45163a 0%, #250c20 52%, #0a0509 100%)',
     gallery: [
       {
-        label: 'Liquor',
+        label: 'Liqueurs',
+        note: '35 more liqueurs',
         items: [
           { imageUrl: '/images/giffard-abricot-du-roussillon-apricot-liqueur.webp', label: 'Abricot Liquor', imageAlt: 'Giffard Abricot du Roussillon apricot liqueur bottle in a French terroir scene', scene: true },
           { imageUrl: '/images/giffard-lichi-li-lychee-liqueur.webp',               label: 'Lichi Liquor',   imageAlt: 'Giffard Lichi-Li lychee liqueur bottle with fresh lychees and blossom',           scene: true },
@@ -126,18 +129,20 @@ const SERVICES: Service[] = [
         ],
       },
       {
-        label: 'Syrup',
+        label: 'Syrups',
+        note: '40 more syrups',
         items: [
           { imageUrl: '/images/giffard-mango-syrup.webp',   label: 'Mango Syrup',   imageAlt: 'Giffard Mango syrup bottle with ripe mangoes in a tropical scene',   scene: true },
           { imageUrl: '/images/giffard-coconut-syrup.webp', label: 'Coconut Syrup', imageAlt: 'Giffard Coconut syrup bottle with fresh coconuts and palm leaves',    scene: true },
         ],
       },
       {
-        label: 'Puree',
+        label: 'Purees',
+        note: '8 more purées',
         items: [],
       },
       {
-        label: 'Non-Alcoholic Bases',
+        label: 'Non Alcoholic Spirits',
         items: [
           { imageUrl: '/images/giffard-passion-fruit-puree.webp', label: 'Passion Fruit', imageAlt: 'Giffard Passion Fruit purée bottle with tropical island backdrop', scene: true },
         ],
@@ -159,6 +164,14 @@ const SERVICES: Service[] = [
     country: 'Mexico',
     accent: '#3ad6b0',
     bg: 'radial-gradient(120% 100% at 58% 22%, #124a41 0%, #0a2723 52%, #04100e 100%)',
+    gallery: [
+      {
+        label: 'Signature Serve',
+        items: [
+          { imageUrl: '/images/brand-pueblo-viejo-cocktail.webp', label: "Tommy's Margarita", imageAlt: "Tommy's Margarita made with Pueblo Viejo Blanco tequila, fresh lime and agave", scene: true },
+        ],
+      },
+    ],
   },
   {
     id: 'burnt-ends',
@@ -207,6 +220,14 @@ const SERVICES: Service[] = [
     country: 'USA',
     accent: '#4fbf87',
     bg: 'radial-gradient(120% 100% at 58% 22%, #14432f 0%, #0b241a 52%, #04100b 100%)',
+    gallery: [
+      {
+        label: 'Signature Serve',
+        items: [
+          { imageUrl: '/images/brand-whiskey-row-cocktail.webp', label: 'Old Fashioned', imageAlt: 'Old Fashioned made with Whiskey Row straight bourbon', scene: true },
+        ],
+      },
+    ],
   },
 ]
 
@@ -403,6 +424,7 @@ function ServiceRow({
                     </div>
 
                     {cat.items.length > 0 ? (
+                      <>
                       <div style={{
                         display: 'grid',
                         gridTemplateColumns: 'repeat(auto-fill, minmax(120px, 1fr))',
@@ -446,6 +468,18 @@ function ServiceRow({
                           </motion.div>
                         ))}
                       </div>
+                      {cat.note && (
+                        <div style={{
+                          marginTop: '10px',
+                          fontSize: 'clamp(11px, 0.9vw, 12.5px)',
+                          fontStyle: 'italic', fontWeight: 500,
+                          letterSpacing: '0.01em',
+                          color: 'rgba(var(--ink-rgb),0.5)',
+                        }}>
+                          + {cat.note}
+                        </div>
+                      )}
+                      </>
                     ) : (
                       <div style={{
                         padding: 'clamp(14px, 1.6vw, 20px)',
@@ -454,9 +488,9 @@ function ServiceRow({
                         background: 'rgba(232,68,111,0.03)',
                         fontSize: 'clamp(11px, 0.95vw, 13px)',
                         fontWeight: 500, letterSpacing: '0.02em',
-                        color: 'rgba(var(--ink-rgb),0.4)',
+                        color: 'rgba(var(--ink-rgb),0.5)',
                       }}>
-                        Coming soon
+                        {cat.note ? `+ ${cat.note}` : 'Coming soon'}
                       </div>
                     )}
                   </motion.div>

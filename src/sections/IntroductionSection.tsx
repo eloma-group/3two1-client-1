@@ -99,7 +99,7 @@ export function IntroductionSection() {
       id="about"
       style={{
         background: 'var(--surface)',
-        padding: 'clamp(96px, 12vw, 160px) clamp(24px, 5vw, 80px)',
+        padding: 'clamp(36px, 4vw, 60px) clamp(24px, 5vw, 80px) clamp(96px, 12vw, 160px)',
         position: 'relative',
         overflow: 'hidden',
         fontFamily: "'Inter', system-ui, sans-serif",
@@ -109,7 +109,7 @@ export function IntroductionSection() {
       <div
         className="intro-top"
         style={{
-          display: 'grid',
+          display: 'none',
           gridTemplateColumns: '1fr 1fr',
           gap: 'clamp(40px, 6vw, 96px)',
           alignItems: 'flex-start',
@@ -190,8 +190,7 @@ export function IntroductionSection() {
 
       {/* ── Divider + flag ticker ── */}
       <div style={{
-        borderTop: '1px solid rgba(0,0,0,0.07)',
-        paddingTop: 'clamp(48px, 7vw, 80px)',
+        paddingTop: 'clamp(8px, 1.4vw, 20px)',
         background: '#fff',
         marginLeft: 'calc(-1 * clamp(24px, 5vw, 80px))',
         marginRight: 'calc(-1 * clamp(24px, 5vw, 80px))',

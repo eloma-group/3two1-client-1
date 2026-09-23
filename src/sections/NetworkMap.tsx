@@ -174,9 +174,9 @@ export default function NetworkMap() {
 
           {/* Legend card — what the map icons mean */}
           <div className={styles.legend}>
-            <span><svg className={styles.legIcon} viewBox="0 0 24 24" style={{ fill: '#000' }}><CatGlyph cat="bar" /></svg> Bars</span>
-            <span><svg className={styles.legIcon} viewBox="0 0 24 24" style={{ fill: '#1c2440' }}><CatGlyph cat="bottle" /></svg> Bottle Shops</span>
-            <span><svg className={styles.legIcon} viewBox="0 0 24 24" style={{ fill: '#1c2440' }}><CatGlyph cat="cafe" /></svg> Cafés</span>
+            <span><svg className={styles.legIcon} viewBox="0 0 24 24"><CatGlyph cat="bar" /></svg> Bars</span>
+            <span><svg className={styles.legIcon} viewBox="0 0 24 24"><CatGlyph cat="bottle" /></svg> Bottle Shops</span>
+            <span><svg className={styles.legIcon} viewBox="0 0 24 24"><CatGlyph cat="cafe" /></svg> Cafés</span>
           </div>
         </div>
       </div>
