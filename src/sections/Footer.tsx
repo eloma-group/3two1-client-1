@@ -11,7 +11,7 @@ export default function Footer() {
       <div className={`container ${styles.inner}`}>
         <div className={styles.top}>
           <div className={styles.brandCol}>
-            <img src="/images/logo.png" alt="3two1 drinks" className={styles.logo} />
+            <img src="/images/logo.svg" alt="3two1 drinks" className={styles.logo} />
             <p className={styles.tagline}>{brand.tagline}.</p>
             <p className={styles.regions}>{brand.regions}</p>
             <a href={contact.instagram} target="_blank" rel="noreferrer" className={styles.social} data-cursor="Follow">

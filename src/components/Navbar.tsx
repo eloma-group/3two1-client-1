@@ -83,7 +83,7 @@ export default function Navbar() {
               onClick={(e) => { e.preventDefault(); go('#top'); }}
               data-cursor="Top"
             >
-              <img src="/images/logo.png" alt="3two1 drinks" className={styles.logo} />
+              <img src="/images/logo.svg" alt="3two1 drinks" className={styles.logo} />
             </a>
             <nav className={styles.links}>{navMenu.map((m) => <Dropdown key={m.label} item={m} />)}</nav>
           </div>
