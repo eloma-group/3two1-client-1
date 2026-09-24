@@ -8,7 +8,7 @@
   align-items: center;
   overflow: hidden;
   isolation: isolate;
-  background: var(--ink-900);
+  background: #ffffff;
 }
 
 /* Video background */
@@ -17,6 +17,7 @@
   inset: 0;
   z-index: -3;
   will-change: transform;
+  display: none;
 }
 .video {
   width: 100%;
@@ -29,9 +30,7 @@
   position: absolute;
   inset: 0;
   z-index: -2;
-  background:
-    linear-gradient(to right, rgba(0, 0, 0, 0.62) 0%, rgba(0, 0, 0, 0.32) 34%, transparent 62%),
-    radial-gradient(70% 60% at 20% 30%, rgba(180, 31, 82, 0.35) 0%, transparent 60%);
+  display: none;
 }
 .grain {
   position: absolute;
@@ -50,7 +49,7 @@
   display: inline-flex;
   align-items: center;
   gap: 0.7rem;
-  color: #fff;
+  color: #111;
   margin-bottom: 1.6rem;
 }
 .dot {
@@ -67,7 +66,7 @@
 }
 
 .title {
-  color: #fff;
+  color: #111;
   margin-bottom: 1.8rem;
   font-family: var(--font-ui);
   font-weight: 500;
@@ -86,7 +85,7 @@
   max-width: 34ch;
   font-family: var(--font-ui);
   font-size: clamp(1rem, 1.5vw, 1.3rem);
-  color: #fff;
+  color: #111;
   line-height: 1.6;
   margin-bottom: 2.6rem;
 }
@@ -97,7 +96,7 @@
   display: flex;
   gap: 0.75rem;
   padding-top: 1.6rem;
-  border-top: 1px solid rgba(255, 255, 255, 0.16);
+  border-top: 1px solid rgba(0, 0, 0, 0.12);
   max-width: 56rem;
 }
 .channel {
@@ -154,7 +153,7 @@
   font-size: 0.64rem;
   letter-spacing: 0.28em;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.7);
+  color: rgba(0, 0, 0, 0.6);
   z-index: 2;
   text-align: center;
 }
