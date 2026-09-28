@@ -1,4 +1,5 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useId, useRef } from 'react';
+import createGlobe from 'cobe';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import styles from './NetworkMap.module.css';
@@ -6,31 +7,41 @@ import styles from './NetworkMap.module.css';
 gsap.registerPlugin(ScrollTrigger);
 
 /* City markers: icons sit ON the map at the city; the label is offset to a
-   free margin nearby. All coords are in the shared 1200×800 viewBox. */
+   free margin nearby. All coords are in the shared 1200×800 viewBox.
+
+   Positions are derived from each landmass's real lon/lat, fitted to that
+   landmass's drawn bounding box in the artwork. The map is a stylised graphic,
+   not a single projection — NZ and the Pacific islands are pulled much closer
+   to Australia than they really are, and drawn oversized — so mainland,
+   Tasmania and NZ each get their own fit rather than one global transform.
+   Brisbane/Gold Coast and Newcastle/Sydney sit ~8 and ~14 units apart at true
+   scale, closer than one icon row, so each pair is nudged a few units apart to
+   stay legible. */
 type Anchor = 'start' | 'middle' | 'end';
 type Cat = 'bar' | 'bottle' | 'cafe';
 interface Pin {
   name: string;
-  cx: number; cy: number;              // icon cluster centre (on the map)
+  cx: number; cy: number;              // icon cluster centre (on the flat map)
+  lat: number; lng: number;            // real coordinates (used by the globe)
   lx: number; ly: number; anchor: Anchor; // label position (off the map)
   cats: Cat[];
 }
 const PINS: Pin[] = [
-  { name: 'BROOME',     cx: 411, cy: 250, lx: 376,  ly: 254, anchor: 'end',    cats: ['bottle', 'cafe'] },
-  { name: 'PERTH',      cx: 333, cy: 471, lx: 298,  ly: 475, anchor: 'end',    cats: ['bar', 'bottle', 'cafe'] },
-  { name: 'ADELAIDE',   cx: 597, cy: 524, lx: 562,  ly: 528, anchor: 'end',    cats: ['bar', 'bottle', 'cafe'] },
-  { name: 'MELBOURNE',  cx: 660, cy: 599, lx: 660,  ly: 623, anchor: 'middle', cats: ['bar', 'bottle', 'cafe'] },
-  { name: 'HOBART',     cx: 676, cy: 646, lx: 676,  ly: 670, anchor: 'middle', cats: ['bar', 'cafe'] },
-  { name: 'DARWIN',     cx: 543, cy: 169, lx: 543,  ly: 152, anchor: 'middle', cats: ['bar', 'bottle', 'cafe'] },
-  { name: 'BRISBANE',   cx: 734, cy: 402, lx: 769,  ly: 406, anchor: 'start',  cats: ['bar', 'bottle', 'cafe'] },
-  { name: 'GOLD COAST', cx: 748, cy: 442, lx: 783,  ly: 446, anchor: 'start',  cats: ['bar', 'bottle', 'cafe'] },
-  { name: 'NEWCASTLE',  cx: 753, cy: 483, lx: 788,  ly: 487, anchor: 'start',  cats: ['bar', 'bottle', 'cafe'] },
-  { name: 'SYDNEY',     cx: 758, cy: 524, lx: 793,  ly: 528, anchor: 'start',  cats: ['bar', 'bottle', 'cafe'] },
-  { name: 'WELLINGTON', cx: 1042, cy: 512, lx: 1077, ly: 516, anchor: 'start', cats: ['bar', 'bottle', 'cafe'] },
-  { name: 'AUCKLAND',   cx: 989, cy: 419, lx: 1024, ly: 423, anchor: 'start',  cats: ['bar', 'bottle', 'cafe'] },
-  { name: 'FIJI',       cx: 1042, cy: 140, lx: 1077, ly: 144, anchor: 'start',  cats: ['cafe'] },
-  { name: 'COOK IS.',   cx: 1140, cy: 146, lx: 1175, ly: 150, anchor: 'start',  cats: ['bottle', 'cafe'] },
-  { name: 'VANUATU',    cx: 1082, cy: 92,  lx: 1117, ly: 96,  anchor: 'start',  cats: ['bar', 'cafe'] },
+  { name: 'BROOME',     cx: 370,  cy: 229, lx: 335,  ly: 233, lat: -17.955, lng: 122.236, anchor: 'end',    cats: ['bottle', 'cafe'] },
+  { name: 'PERTH',      cx: 273,  cy: 441, lx: 238,  ly: 445, lat: -31.953, lng: 115.857, anchor: 'end',    cats: ['bar', 'bottle', 'cafe'] },
+  { name: 'ADELAIDE',   cx: 620,  cy: 486, lx: 620,  ly: 510, lat: -34.929, lng: 138.6, anchor: 'middle', cats: ['bar', 'bottle', 'cafe'] },
+  { name: 'MELBOURNE',  cx: 717,  cy: 530, lx: 717,  ly: 554, lat: -37.84, lng: 144.946, anchor: 'middle', cats: ['bar', 'bottle', 'cafe'] },
+  { name: 'HOBART',     cx: 740,  cy: 615, lx: 740,  ly: 639, lat: -42.881, lng: 147.325, anchor: 'middle', cats: ['bar', 'cafe'] },
+  { name: 'DARWIN',     cx: 502,  cy: 146, lx: 502,  ly: 129, lat: -12.463, lng: 130.845, anchor: 'middle', cats: ['bar', 'bottle', 'cafe'] },
+  { name: 'BRISBANE',   cx: 841,  cy: 366, lx: 876,  ly: 370, lat: -27.47, lng: 153.025, anchor: 'start',  cats: ['bar', 'bottle', 'cafe'] },
+  { name: 'GOLD COAST', cx: 847,  cy: 388, lx: 882,  ly: 392, lat: -28.017, lng: 153.43, anchor: 'start',  cats: ['bar', 'bottle', 'cafe'] },
+  { name: 'NEWCASTLE',  cx: 822,  cy: 452, lx: 857,  ly: 456, lat: -32.927, lng: 151.784, anchor: 'start',  cats: ['bar', 'bottle', 'cafe'] },
+  { name: 'SYDNEY',     cx: 813,  cy: 474, lx: 848,  ly: 478, lat: -33.868, lng: 151.209, anchor: 'start',  cats: ['bar', 'bottle', 'cafe'] },
+  { name: 'WELLINGTON', cx: 1034, cy: 486, lx: 1034, ly: 510, lat: -41.286, lng: 174.776, anchor: 'middle', cats: ['bar', 'bottle', 'cafe'] },
+  { name: 'AUCKLAND',   cx: 1034, cy: 372, lx: 1000, ly: 338, lat: -36.848, lng: 174.763, anchor: 'end',    cats: ['bar', 'bottle', 'cafe'] },
+  { name: 'FIJI',       cx: 1064, cy: 200, lx: 1099, ly: 204, lat: -18.124, lng: 178.45, anchor: 'start',  cats: ['cafe'] },
+  { name: 'COOK IS.',   cx: 1101, cy: 237, lx: 1101, ly: 285, lat: -21.229, lng: -159.776, anchor: 'middle', cats: ['bottle', 'cafe'] },
+  { name: 'VANUATU',    cx: 1017, cy: 176, lx: 1017, ly: 157, lat: -17.741, lng: 168.315, anchor: 'middle', cats: ['bar', 'cafe'] },
 ];
 
 /* Channel glyphs (24×24) — same shapes as the site's legend icons. */
@@ -52,13 +63,152 @@ function CatGlyph({ cat }: { cat: Cat }) {
   );
 }
 
+/* ── Globe (cobe) ──────────────────────────────────────────────────────
+   cobe draws its markers inside WebGL, so the category icons have to be laid
+   over the canvas in DOM. That needs cobe's own projection, which was measured
+   against the real renderer rather than guessed: markers were rendered one at a
+   time at known coordinates and the transform fitted to where they landed
+   (mean residual 0.04px). The result:
+     globe radius = 0.425 x canvas size, centred in the canvas,
+     theta is used as given, and the effective rotation is phi + PI/2.        */
+const GLOBE_R_RATIO = 0.425;
+/* Vertical offset of a point on the centre meridian is sin(lat)cos(theta) -
+   cos(lat)sin(theta), i.e. zero when theta = lat. The network sits around 30S,
+   so this tilt lifts it to the middle of the globe instead of the bottom. */
+const GLOBE_THETA = -0.5;
+/* phi that centres a longitude: -(lng) - PI/2. 134degE ~ central Australia. */
+const GLOBE_PHI_START = -(134 * Math.PI) / 180 - Math.PI / 2 + 2 * Math.PI;
+const GLOBE_SPIN = 0.0016; // radians per frame
+
+function projectToGlobe(lat: number, lng: number, phi: number, theta: number, size: number) {
+  const a = (lat * Math.PI) / 180;
+  const b = (lng * Math.PI) / 180;
+  const vx = Math.cos(a) * Math.sin(b);
+  const vy = Math.sin(a);
+  const vz = Math.cos(a) * Math.cos(b);
+  const p = phi + Math.PI / 2;
+  const sp = Math.sin(p), cp = Math.cos(p), st = Math.sin(theta), ct = Math.cos(theta);
+  const x = vx * cp + vz * sp;
+  const y = vx * sp * st + vy * ct - vz * cp * st;
+  const z = -vx * sp * ct + vy * st + vz * cp * ct; // > 0 = facing the camera
+  const r = size * GLOBE_R_RATIO;
+  return { x: size / 2 + x * r, y: size / 2 - y * r, z };
+}
+
 const ICON = 16; // glyph size in viewBox units
 const GAP = 3;
 
-export default function NetworkMap() {
+export default function NetworkMap(
+  { anchorId = 'network-map', variant = 'map' }:
+  { anchorId?: string; variant?: 'map' | 'globe' } = {},
+) {
+  /* The section can be rendered more than once, so the anchor and the SVG
+     filter id must be unique per instance - two elements sharing an id would
+     make every copy resolve url(#...) to the first one. */
+  const tintId = `mapTint-${useId().replace(/[^a-zA-Z0-9]/g, '')}`;
   const root = useRef<HTMLDivElement>(null);
+  const canvas = useRef<HTMLCanvasElement>(null);
   const track = useRef<HTMLDivElement>(null);
   const panel = useRef<HTMLDivElement>(null);
+
+  /* Spin the globe and keep each city's icon row sitting on it. Positions are
+     written straight to the DOM every frame - re-rendering 15 pins at 60fps
+     through React would be wasteful. GSAP owns the [data-pin] wrapper's own
+     opacity/transform for the scroll reveal, so this only ever touches the
+     inner element, and positions the wrapper with left/top rather than a
+     transform, to avoid fighting it. */
+  useEffect(() => {
+    if (variant !== 'globe') return;
+    const canvasEl = canvas.current;
+    const rootEl = root.current;
+    if (!canvasEl || !rootEl) return;
+
+    const pinEls = Array.from(rootEl.querySelectorAll<HTMLElement>('[data-globe-pin]'));
+    let size = canvasEl.offsetWidth;
+    let phi = GLOBE_PHI_START;
+    let globe: ReturnType<typeof createGlobe> | null = null;
+    let raf = 0;
+
+    const place = () => {
+      for (const el of pinEls) {
+        const lat = Number(el.dataset.lat), lng = Number(el.dataset.lng);
+        const { x, y, z } = projectToGlobe(lat, lng, phi, GLOBE_THETA, size);
+        el.style.left = `${x}px`;
+        el.style.top = `${y}px`;
+        const inner = el.firstElementChild as HTMLElement | null;
+        if (inner) {
+          // fade out across the limb instead of popping at the horizon
+          inner.style.opacity = String(Math.max(0, Math.min(1, z * 6)));
+          inner.style.visibility = z > 0.02 ? 'visible' : 'hidden';
+        }
+      }
+    };
+
+    const build = () => {
+      globe?.destroy();
+      size = canvasEl.offsetWidth;
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      globe = createGlobe(canvasEl, {
+        devicePixelRatio: dpr,
+        width: size * dpr,
+        height: size * dpr,
+        phi,
+        theta: GLOBE_THETA,
+        dark: 0,
+        diffuse: 1.1,
+        mapSamples: 15000,
+        mapBrightness: 5.6,
+        baseColor: [1, 0.6, 0.6],        // #ff9999, matching the flat map
+        markerColor: [0.72, 0.12, 0.32],
+        glowColor: [1, 0.78, 0.78],
+        markers: PINS.map((pin) => ({ location: [pin.lat, pin.lng], size: 0.04 })),
+      });
+      place();
+    };
+
+    build();
+
+    /* cobe 2.x has no internal animation loop (and no onRender hook, despite
+       what its README shows) - it renders on create and on update(). So the
+       spin is driven here.
+
+       It only runs while the section is on screen, and rewinds to the starting
+       longitude on the way out. Spinning all the time would mean whoever
+       reaches this section a minute into the page finds the globe turned to the
+       far side, with none of the network showing - and it would burn a frame
+       loop on an off-screen canvas. */
+    const spin = window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 0 : GLOBE_SPIN;
+    const tick = () => {
+      phi += spin;
+      globe?.update({ phi });
+      place();
+      raf = requestAnimationFrame(tick);
+    };
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        cancelAnimationFrame(raf);
+        raf = 0;
+        if (entry.isIntersecting) {
+          if (spin) raf = requestAnimationFrame(tick);
+        } else {
+          phi = GLOBE_PHI_START;
+          globe?.update({ phi });
+          place();
+        }
+      },
+      { threshold: 0 },
+    );
+    io.observe(canvasEl);
+
+    const ro = new ResizeObserver(() => build());
+    ro.observe(canvasEl);
+    return () => {
+      cancelAnimationFrame(raf);
+      io.disconnect();
+      ro.disconnect();
+      globe?.destroy();
+    };
+  }, [variant]);
 
   useEffect(() => {
     const rootEl = root.current;
@@ -66,7 +216,7 @@ export default function NetworkMap() {
     const panelEl = panel.current;
     if (!rootEl || !trackEl || !panelEl) return;
 
-    const map = rootEl.querySelector('[data-map]');
+    const map = rootEl.querySelector('[data-map]'); // svg image or globe wrapper
     const pins = Array.from(rootEl.querySelectorAll('[data-pin]')) as SVGGElement[];
 
     const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -101,7 +251,7 @@ export default function NetworkMap() {
   }, []);
 
   return (
-    <div className={styles.wrap} id="network-map" ref={root}>
+    <div className={styles.wrap} id={anchorId} ref={root}>
       <div className={styles.track} ref={track}>
         <div className={styles.panel} ref={panel}>
           <div className={styles.pulse} aria-hidden="true" />
@@ -133,14 +283,60 @@ export default function NetworkMap() {
             </div>
           </div>
 
-          {/* Shared SVG canvas — map + pins (animated on scroll) */}
+          {/* Globe variant: cobe canvas, with the same places called out in DOM
+              over the top, since cobe's markers live inside WebGL. */}
+          {variant === 'globe' ? (
+            <div className={styles.globeWrap}>
+              <div className={styles.globeStage} data-map>
+                <canvas ref={canvas} className={styles.globeCanvas} />
+                {PINS.map((pin) => (
+                  <div
+                    key={pin.name}
+                    data-pin
+                    data-globe-pin
+                    data-lat={pin.lat}
+                    data-lng={pin.lng}
+                    className={styles.globePin}
+                  >
+                    <div className={styles.globePinInner} title={pin.name}>
+                      <span className={styles.globePinIcons} aria-label={pin.name}>
+                        {pin.cats.map((c) => (
+                          <svg key={c} viewBox="0 0 24 24" className={styles.globeIcon}>
+                            <CatGlyph cat={c} />
+                          </svg>
+                        ))}
+                      </span>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          ) : (
+          /* Shared SVG canvas — map + pins (animated on scroll) */
           <svg className={styles.svg} viewBox="0 0 1200 800" preserveAspectRatio="xMidYMid meet">
+            <defs>
+              {/* The artwork ships in the deep brand pink (#f83860). Retint it to
+                  a lighter #ff9999 without flattening the 3D shading: drop to
+                  luminance, then map that luminance onto the target colour, so
+                  the extruded side walls stay a darker shade of the same hue.
+                  feComposite clips back to the source alpha so the transparent
+                  surround doesn't pick up the intercept as a halo. */}
+              <filter id={tintId} colorInterpolationFilters="sRGB">
+                <feColorMatrix type="saturate" values="0" result="grey" />
+                <feComponentTransfer in="grey" result="tinted">
+                  <feFuncR type="linear" slope="0.789" intercept="0.684" />
+                  <feFuncG type="linear" slope="0.789" intercept="0.284" />
+                  <feFuncB type="linear" slope="0.789" intercept="0.284" />
+                </feComponentTransfer>
+                <feComposite in="tinted" in2="SourceGraphic" operator="in" />
+              </filter>
+            </defs>
             <image
               data-map
-              className={styles.mapImg}
               href="/images/au-nz-glow.webp"
               x="210" y="-90" width="960" height="960"
               preserveAspectRatio="xMidYMid meet"
+              style={{ filter: `url(#${tintId})` }}
             />
             <g>
               {PINS.map((p) => {
@@ -167,6 +363,7 @@ export default function NetworkMap() {
               })}
             </g>
           </svg>
+          )}
 
           <div className={styles.scroll} aria-hidden="true">
             Scroll to explore <span>↓</span>

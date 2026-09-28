@@ -44,8 +44,10 @@
   pointer-events: none;
 }
 
-/* 3D glossy glow map — nudged a touch brighter */
-.mapImg { filter: brightness(1.14) saturate(1.05); }
+/* The 3D map is retinted to a lighter #ff9999 by an SVG filter defined in
+   NetworkMap.tsx <defs>. It is applied there as an inline style rather than
+   from here: the id is unique per instance, and an inline style also wins over
+   a CSS filter, which would otherwise override the SVG filter attribute. */
 
 .pinIcons { fill: rgb(var(--ink-rgb)); }
 .pinLabel {
@@ -174,4 +176,39 @@
 
 @media (max-width: 860px) {
   .text { width: 100%; }
+}
+
+/* ── Globe variant (cobe) ─────────────────────────────────────────────── */
+.globeWrap {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding-right: clamp(16px, 6vw, 120px);
+  pointer-events: none;
+}
+/* Square stage: the projection maths assumes a square canvas, centred. */
+.globeStage {
+  position: relative;
+  width: min(62vw, 74vh, 660px);
+  aspect-ratio: 1;
+}
+.globeCanvas { width: 100%; height: 100%; display: block; }
+
+/* Positioned each frame with left/top (never transform — GSAP owns the
+   wrapper's transform for the scroll reveal). */
+.globePin { position: absolute; left: 0; top: 0; will-change: left, top; }
+.globePinInner {
+  position: absolute;
+  transform: translate(-50%, -125%);
+  white-space: nowrap;
+}
+.globePinIcons { display: inline-flex; align-items: center; gap: 2px; }
+.globeIcon { width: 10px; height: 10px; fill: rgb(var(--ink-rgb)); }
+
+@media (max-width: 860px) {
+  .globeWrap { justify-content: center; padding-right: 0; align-items: flex-end; padding-bottom: 8vh; }
+  .globeStage { width: min(86vw, 52vh); }
 }
