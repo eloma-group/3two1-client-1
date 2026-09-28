@@ -76,9 +76,10 @@ const GLOBE_R_RATIO = 0.425;
    cos(lat)sin(theta), i.e. zero when theta = lat. The network sits around 30S,
    so this tilt lifts it to the middle of the globe instead of the bottom. */
 const GLOBE_THETA = -0.5;
-/* phi that centres a longitude: -(lng) - PI/2. 134degE ~ central Australia. */
-const GLOBE_PHI_START = -(134 * Math.PI) / 180 - Math.PI / 2 + 2 * Math.PI;
-const GLOBE_SPIN = 0.0016; // radians per frame
+/* phi that centres a longitude: -(lng) - PI/2. 134degE ~ central Australia.
+   The globe is parked here rather than spun, so Australia always faces the
+   viewer and every pin in the network stays on the near side. */
+const GLOBE_PHI = -(134 * Math.PI) / 180 - Math.PI / 2 + 2 * Math.PI;
 
 function projectToGlobe(lat: number, lng: number, phi: number, theta: number, size: number) {
   const a = (lat * Math.PI) / 180;
@@ -125,14 +126,24 @@ export default function NetworkMap(
 
     const pinEls = Array.from(rootEl.querySelectorAll<HTMLElement>('[data-globe-pin]'));
     let size = canvasEl.offsetWidth;
-    let phi = GLOBE_PHI_START;
     let globe: ReturnType<typeof createGlobe> | null = null;
     let raf = 0;
 
-    const place = () => {
+    /* Drag to spin. `target` is where the drag has asked the globe to be and
+       `rot` chases it, so a flick eases out instead of stopping dead. Both are
+       offsets from GLOBE_PHI, so letting go leaves the globe where the reader
+       put it, and a reload comes back to Australia. */
+    let rot = 0;
+    let target = 0;
+    let dragging = false;
+    let dragStartX = 0;
+    let dragStartRot = 0;
+    const DRAG_RADIANS_PER_PX = 1 / 200; // matches cobe's own interactive demo
+
+    const place = (p: number) => {
       for (const el of pinEls) {
         const lat = Number(el.dataset.lat), lng = Number(el.dataset.lng);
-        const { x, y, z } = projectToGlobe(lat, lng, phi, GLOBE_THETA, size);
+        const { x, y, z } = projectToGlobe(lat, lng, p, GLOBE_THETA, size);
         el.style.left = `${x}px`;
         el.style.top = `${y}px`;
         const inner = el.firstElementChild as HTMLElement | null;
@@ -152,7 +163,7 @@ export default function NetworkMap(
         devicePixelRatio: dpr,
         width: size * dpr,
         height: size * dpr,
-        phi,
+        phi: GLOBE_PHI + rot,
         theta: GLOBE_THETA,
         dark: 0,
         diffuse: 1.1,
@@ -161,50 +172,70 @@ export default function NetworkMap(
         baseColor: [1, 0.6, 0.6],        // #ff9999, matching the flat map
         markerColor: [0.72, 0.12, 0.32],
         glowColor: [1, 0.78, 0.78],
-        markers: PINS.map((pin) => ({ location: [pin.lat, pin.lng], size: 0.04 })),
+        markers: PINS.map((pin) => ({ location: [pin.lat, pin.lng], size: 0.016 })),
       });
-      place();
+      place(GLOBE_PHI + rot);
     };
+
+    /* cobe 2.x renders on create and on update() only - it has no internal
+       animation loop. It also uploads its world texture from an Image.onload
+       without redrawing afterwards, so the one create-time draw lands before
+       the texture exists and leaves the canvas blank. So the loop runs while
+       there is something to show: the texture settling in after a build, a
+       drag in progress, or a released drag still easing to a stop. */
+    let renderUntil = 0;
+    const render = () => {
+      rot += (target - rot) * 0.12;
+      const p = GLOBE_PHI + rot;
+      globe?.update({ phi: p });
+      place(p);
+      const easing = Math.abs(target - rot) > 0.0002;
+      if (!easing) rot = target;
+      raf = dragging || easing || performance.now() < renderUntil
+        ? requestAnimationFrame(render)
+        : 0;
+    };
+    const kick = (ms = 0) => {
+      renderUntil = Math.max(renderUntil, performance.now() + ms);
+      if (!raf) raf = requestAnimationFrame(render);
+    };
+
+    const onPointerDown = (e: PointerEvent) => {
+      dragging = true;
+      dragStartX = e.clientX;
+      dragStartRot = target;
+      canvasEl.setPointerCapture(e.pointerId);
+      canvasEl.style.cursor = 'grabbing';
+      kick();
+    };
+    const onPointerMove = (e: PointerEvent) => {
+      if (!dragging) return;
+      target = dragStartRot + (e.clientX - dragStartX) * DRAG_RADIANS_PER_PX;
+      kick();
+    };
+    const endDrag = (e: PointerEvent) => {
+      if (!dragging) return;
+      dragging = false;
+      canvasEl.releasePointerCapture(e.pointerId);
+      canvasEl.style.cursor = 'grab';
+      kick();
+    };
+    canvasEl.addEventListener('pointerdown', onPointerDown);
+    canvasEl.addEventListener('pointermove', onPointerMove);
+    canvasEl.addEventListener('pointerup', endDrag);
+    canvasEl.addEventListener('pointercancel', endDrag);
 
     build();
+    kick(1500); // let the world texture land
 
-    /* cobe 2.x has no internal animation loop (and no onRender hook, despite
-       what its README shows) - it renders on create and on update(). So the
-       spin is driven here.
-
-       It only runs while the section is on screen, and rewinds to the starting
-       longitude on the way out. Spinning all the time would mean whoever
-       reaches this section a minute into the page finds the globe turned to the
-       far side, with none of the network showing - and it would burn a frame
-       loop on an off-screen canvas. */
-    const spin = window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 0 : GLOBE_SPIN;
-    const tick = () => {
-      phi += spin;
-      globe?.update({ phi });
-      place();
-      raf = requestAnimationFrame(tick);
-    };
-    const io = new IntersectionObserver(
-      ([entry]) => {
-        cancelAnimationFrame(raf);
-        raf = 0;
-        if (entry.isIntersecting) {
-          if (spin) raf = requestAnimationFrame(tick);
-        } else {
-          phi = GLOBE_PHI_START;
-          globe?.update({ phi });
-          place();
-        }
-      },
-      { threshold: 0 },
-    );
-    io.observe(canvasEl);
-
-    const ro = new ResizeObserver(() => build());
+    const ro = new ResizeObserver(() => { build(); kick(1500); });
     ro.observe(canvasEl);
     return () => {
       cancelAnimationFrame(raf);
-      io.disconnect();
+      canvasEl.removeEventListener('pointerdown', onPointerDown);
+      canvasEl.removeEventListener('pointermove', onPointerMove);
+      canvasEl.removeEventListener('pointerup', endDrag);
+      canvasEl.removeEventListener('pointercancel', endDrag);
       ro.disconnect();
       globe?.destroy();
     };
@@ -299,13 +330,14 @@ export default function NetworkMap(
                     className={styles.globePin}
                   >
                     <div className={styles.globePinInner} title={pin.name}>
-                      <span className={styles.globePinIcons} aria-label={pin.name}>
+                      <span className={styles.globePinIcons} aria-hidden="true">
                         {pin.cats.map((c) => (
                           <svg key={c} viewBox="0 0 24 24" className={styles.globeIcon}>
                             <CatGlyph cat={c} />
                           </svg>
                         ))}
                       </span>
+                      <span className={styles.globePinName}>{pin.name}</span>
                     </div>
                   </div>
                 ))}

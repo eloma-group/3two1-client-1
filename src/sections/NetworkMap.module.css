@@ -185,30 +185,53 @@
   z-index: 1;
   display: flex;
   align-items: center;
-  justify-content: flex-end;
-  padding-right: clamp(16px, 6vw, 120px);
+  justify-content: center;
+  /* Dead centre of the panel. The globe sits below .text (z-index 1 vs 2), so
+     the copy stays readable where the two overlap. */
   pointer-events: none;
 }
 /* Square stage: the projection maths assumes a square canvas, centred. */
 .globeStage {
   position: relative;
-  width: min(62vw, 74vh, 660px);
+  width: min(78vw, 90vh, 880px);
   aspect-ratio: 1;
 }
-.globeCanvas { width: 100%; height: 100%; display: block; }
+/* The wrapper is pointer-events:none so the copy stays selectable through it;
+   the canvas takes them back so the globe can be dragged. touch-action keeps a
+   horizontal drag from being stolen by the page scroll. */
+.globeCanvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+  pointer-events: auto;
+  cursor: grab;
+  touch-action: pan-y;
+}
 
 /* Positioned each frame with left/top (never transform — GSAP owns the
    wrapper's transform for the scroll reveal). */
 .globePin { position: absolute; left: 0; top: 0; will-change: left, top; }
 .globePinInner {
   position: absolute;
-  transform: translate(-50%, -125%);
+  transform: translate(-50%, -135%);
   white-space: nowrap;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
 }
 .globePinIcons { display: inline-flex; align-items: center; gap: 2px; }
+/* Same treatment as .pinLabel on the flat map. */
+.globePinName {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgb(var(--ink-rgb));
+}
 .globeIcon { width: 10px; height: 10px; fill: rgb(var(--ink-rgb)); }
 
 @media (max-width: 860px) {
-  .globeWrap { justify-content: center; padding-right: 0; align-items: flex-end; padding-bottom: 8vh; }
-  .globeStage { width: min(86vw, 52vh); }
+  .globeWrap { justify-content: center; padding-left: 0; align-items: flex-end; padding-bottom: 8vh; }
+  .globeStage { width: min(94vw, 64vh); }
 }
