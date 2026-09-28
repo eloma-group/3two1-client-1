@@ -86,7 +86,15 @@
   letter-spacing: -0.015em;
 }
 .lineNavy { color: rgb(var(--ink-rgb)); font-weight: 600; }
-.lineCoral { color: var(--coral); font-style: italic; font-weight: 500; }
+.lineCoral {
+  /* Brand gradient, matching the headline accents in the other sections. */
+  background: var(--grad-brand);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  font-style: italic;
+  font-weight: 500;
+}
 .divider { display: block; width: 46px; height: 2px; background: var(--coral); margin: 1.6rem 0 1.4rem; }
 .para {
   margin: 0;

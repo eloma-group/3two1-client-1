@@ -762,6 +762,7 @@ export function ServicesSection() {
             {(['Seven Houses.', 'One Portfolio.'] as const).map((line, i) => (
               <motion.div
                 key={line}
+                className={i === 0 ? undefined : 'gradient-text'}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: '0px' }}
@@ -770,7 +771,11 @@ export function ServicesSection() {
                   fontFamily: "'Inter', system-ui, sans-serif",
                   fontSize: 'clamp(36px, 5vw, 64px)',
                   fontWeight: 800, lineHeight: 1.06, letterSpacing: '-0.045em',
-                  color: i === 0 ? NAVY : GREEN,
+                  color: i === 0 ? NAVY : undefined,
+                  // Gradient is clipped to the text, so the box must hug the
+                  // glyphs - a full-width box spends most of the ramp on empty
+                  // space and the words read as flat pink.
+                  width: i === 0 ? undefined : 'fit-content',
                 }}
               >
                 {line}

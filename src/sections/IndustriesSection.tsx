@@ -350,7 +350,7 @@ Sectors We Deliver To
           </span>
         </div>
         <h2 style={{ fontFamily: "'Inter', system-ui, sans-serif", fontSize: 'clamp(28px,4vw,52px)', fontWeight: 800, color: FG, letterSpacing: '-0.04em', lineHeight: 1.08, margin: '0 0 14px' }}>
-          Sectors In Which<br /><span style={{ color: GREEN }}>We Deliver.</span>
+          Sectors In Which<br /><span className="gradient-text">We Deliver.</span>
         </h2>
         <p style={{ fontSize: 'clamp(14px,1.2vw,16px)', color: 'rgba(var(--ink-rgb),0.5)', lineHeight: 1.75, maxWidth: '460px', margin: '0 auto' }}>
           From cocktail bars to bottle shops - click any card to flip and explore all 8 sectors we deliver to.

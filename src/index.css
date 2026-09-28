@@ -65,8 +65,16 @@
 
   color-scheme: light;
 
-  /* Set by JS to counter browser/display zoom for locked sections. */
-  --zoom-lock: 1;
+  /* Space the fixed navbar occupies, so full-height sections can pad
+     themselves clear of it. Desktop = floating pill (top offset + height). */
+  --nav-clear: clamp(6.5rem, 12svh, 9rem);
+}
+
+/* Mobile swaps the pill for a solid full-width top bar (~73px), so the
+   clearance is fixed rather than viewport-scaled. Breakpoint matches the
+   navbar's own. */
+@media (max-width: 768px) {
+  :root { --nav-clear: 5.5rem; }
 }
 
 /* ---------------- Dark / night mode ---------------- */

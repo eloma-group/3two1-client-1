@@ -30,7 +30,6 @@ import MagneticButton from '../components/MagneticButton'
 
 /* ── Theme ──────────────────────────────────────────────────────── */
 const NAVY  = '#1d1015'
-const GREEN = '#e8446f'
 const ease  = [0.16, 1, 0.3, 1] as [number, number, number, number]
 
 /* ── Data ───────────────────────────────────────────────────────── */
@@ -127,15 +126,16 @@ export function IntroductionSection() {
             margin: 0,
           }}>
             {([
-              { text: 'Seven Houses,',   color: 'rgb(var(--ink-rgb))',  weight: 800, italic: false },
-              { text: 'One Portfolio,',  color: 'rgba(var(--ink-rgb),0.22)', weight: 700, italic: true  },
-              { text: 'Built for Trade.', color: GREEN,                weight: 800, italic: false },
+              { text: 'Seven Houses,',   color: 'rgb(var(--ink-rgb))',  weight: 800, italic: false, gradient: false },
+              { text: 'One Portfolio,',  color: undefined,            weight: 700, italic: true,  gradient: true  },
+              { text: 'Built for Trade.', color: undefined,            weight: 800, italic: false, gradient: true  },
             ] as const).map((line, i) => (
               <div
                 key={i}
                 style={{ overflow: 'hidden', paddingBottom: '0.06em', marginBottom: '-0.06em' }}
               >
                 <motion.span
+                  className={line.gradient ? 'gradient-text' : undefined}
                   initial={{ y: '105%', opacity: 0 }}
                   whileInView={{ y: '0%', opacity: 1 }}
                   viewport={{ once: true, margin: '-40px' }}

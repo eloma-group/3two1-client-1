@@ -62,11 +62,15 @@ export default function Splash({ onDone }: { onDone: () => void }) {
     <div className={styles.splash} ref={root}>
       <div className={styles.inner}>
         <div className={styles.gifWrap} ref={gifWrap}>
-          {/* animated logo GIF */}
-          <img
+          {/* transparent-background animated logo (white keyed out) */}
+          <video
             className={styles.gif}
-            src="/images/splash.gif"
-            alt="3two1 drinks"
+            src="/images/splash-alpha.webm?v=2"
+            autoPlay
+            muted
+            playsInline
+            loop
+            aria-label="3two1 drinks"
           />
         </div>
         <div className={styles.tagline} ref={tagline} aria-label={brand.tagline}>
