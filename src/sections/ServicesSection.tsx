@@ -86,6 +86,14 @@ const SERVICES: Service[] = [
     country: 'Cuba',
     accent: '#ff8a3d',
     bg: 'radial-gradient(120% 100% at 58% 22%, #5a3312 0%, #2e1808 52%, #0b0603 100%)',
+    gallery: [
+      {
+        label: 'Signature Serve',
+        items: [
+          { imageUrl: '/images/brand-black-tears-cuba-libre.webp', label: 'Cuba Libre', imageAlt: 'Cuba Libre made with Black Tears dry spiced rum, cola and a fresh lime wheel', scene: true },
+        ],
+      },
+    ],
   },
   {
     id: 'worthy-park',
@@ -123,9 +131,10 @@ const SERVICES: Service[] = [
         label: 'Liqueurs',
         note: '35 more liqueurs',
         items: [
-          { imageUrl: '/images/giffard-abricot-du-roussillon-apricot-liqueur.webp', label: 'Abricot Liquor', imageAlt: 'Giffard Abricot du Roussillon apricot liqueur bottle in a French terroir scene', scene: true },
-          { imageUrl: '/images/giffard-lichi-li-lychee-liqueur.webp',               label: 'Lichi Liquor',   imageAlt: 'Giffard Lichi-Li lychee liqueur bottle with fresh lychees and blossom',           scene: true },
-          { imageUrl: '/images/giffard-watermelon-liqueur.webp',                    label: 'Watermelon Liquor', imageAlt: 'Giffard Watermelon liqueur bottle with fresh watermelon at Angers',              scene: true },
+          { imageUrl: '/images/giffard-abricot-du-roussillon-apricot-liqueur.webp', label: 'Apricot Liqueur', imageAlt: 'Giffard Abricot du Roussillon apricot liqueur bottle in a French terroir scene', scene: true },
+          { imageUrl: '/images/giffard-lichi-li-lychee-liqueur.webp',               label: 'Lichi Liqueur',   imageAlt: 'Giffard Lichi-Li lychee liqueur bottle with fresh lychees and blossom',           scene: true },
+          { imageUrl: '/images/giffard-watermelon-liqueur.webp',                    label: 'Watermelon Liqueur', imageAlt: 'Giffard Watermelon liqueur bottle with fresh watermelon at Angers',              scene: true },
+          { imageUrl: '/images/giffard-caribbean-pineapple-liqueur.webp',           label: 'Caribbean Pineapple', imageAlt: 'Giffard Caribbean Pineapple liqueur bottle with fresh pineapple and palms', scene: true },
         ],
       },
       {
@@ -134,17 +143,29 @@ const SERVICES: Service[] = [
         items: [
           { imageUrl: '/images/giffard-mango-syrup.webp',   label: 'Mango Syrup',   imageAlt: 'Giffard Mango syrup bottle with ripe mangoes in a tropical scene',   scene: true },
           { imageUrl: '/images/giffard-coconut-syrup.webp', label: 'Coconut Syrup', imageAlt: 'Giffard Coconut syrup bottle with fresh coconuts and palm leaves',    scene: true },
+          { imageUrl: '/images/giffard-grenadine-syrup.webp',     label: 'Grenadine Syrup',     imageAlt: 'Giffard Grenadine syrup bottle with pomegranate, raspberries and a red serve',   scene: true },
+          { imageUrl: '/images/giffard-sugar-cane-syrup.webp',    label: 'Sugar Cane Syrup',    imageAlt: 'Giffard Sucre de Canne syrup bottle with cut sugar cane and raw sugar',           scene: true },
+          { imageUrl: '/images/giffard-passion-fruit-syrup.webp', label: 'Passion Fruit Syrup', imageAlt: 'Giffard Fruit de la Passion syrup bottle with fresh passion fruit and a serve', scene: true },
         ],
       },
       {
         label: 'Purees',
-        note: '8 more purées',
-        items: [],
+        note: '4 more purees',
+        items: [
+          { imageUrl: '/images/giffard-passion-fruit-puree.webp', label: 'Passion Fruit Puree', imageAlt: 'Giffard Passion Fruit puree bottle with tropical island backdrop', scene: true },
+          { imageUrl: '/images/giffard-mango-puree.webp', label: 'Mango Puree', imageAlt: 'Giffard Mango Fruit for Mix puree bottle with fresh mango and a chilled serve', scene: true },
+          { imageUrl: '/images/giffard-kiwi-puree.webp',  label: 'Kiwi Puree',  imageAlt: 'Giffard Kiwi Fruit for Mix puree bottle with fresh kiwi and a crushed-ice serve', scene: true },
+          { imageUrl: '/images/giffard-yuzu-puree.webp',  label: 'Yuzu Puree',  imageAlt: 'Giffard Yuzu Fruit for Mix puree bottle with fresh yuzu, blossom and a highball', scene: true },
+        ],
       },
       {
         label: 'Non Alcoholic Spirits',
+        note: '4 more Non-Alcoholic Spirits',
         items: [
-          { imageUrl: '/images/giffard-passion-fruit-puree.webp', label: 'Passion Fruit', imageAlt: 'Giffard Passion Fruit purée bottle with tropical island backdrop', scene: true },
+          { imageUrl: '/images/giffard-na-herbal-juniper.webp',   label: 'Brits Non-Alcoholic',    imageAlt: 'Giffard Herbal Juniper non-alcoholic base with juniper berries and a tall serve',  scene: true },
+          { imageUrl: '/images/giffard-na-aperitif-bitter.webp',  label: 'Bitter Non-Alcoholic',   imageAlt: 'Giffard Aperitif Bitter non-alcoholic base with orange and a negroni-style serve', scene: true },
+          { imageUrl: '/images/giffard-na-smoky-agave.webp',      label: 'Agave Non-Alcoholic',    imageAlt: 'Giffard Smoky Agave non-alcoholic base with agave, lime and a salted serve',       scene: true },
+          { imageUrl: '/images/giffard-na-ruby-grape.webp',       label: 'Vermouth Non-Alcoholic', imageAlt: 'Giffard Ruby Grape non-alcoholic base with red grapes and a chilled serve',        scene: true },
         ],
       },
     ],
@@ -168,7 +189,9 @@ const SERVICES: Service[] = [
       {
         label: 'Signature Serve',
         items: [
-          { imageUrl: '/images/brand-pueblo-viejo-cocktail.webp', label: "Tommy's Margarita", imageAlt: "Tommy's Margarita made with Pueblo Viejo Blanco tequila, fresh lime and agave", scene: true },
+          { imageUrl: '/images/brand-pueblo-viejo-cocktail.webp',        label: "Tommy's Margarita", imageAlt: "Tommy's Margarita made with Pueblo Viejo Blanco tequila, fresh lime and agave", scene: true },
+          { imageUrl: '/images/brand-pueblo-viejo-reposado-serve.webp',  label: 'Reposado',          imageAlt: 'Paloma served with Pueblo Viejo Reposado, grapefruit and a salt rim',            scene: true },
+          { imageUrl: '/images/brand-pueblo-viejo-anejo-serve.webp',     label: 'Anejo',             imageAlt: 'Pueblo Viejo Anejo stirred over a clear ice sphere with a citrus twist',         scene: true },
         ],
       },
     ],
@@ -181,7 +204,7 @@ const SERVICES: Service[] = [
     title: 'Charred-Oak Character.',
     description:
       'A peated and sherry-finished blended whiskey with smoke and sweetness in balance. The great pitmasters of America, in a bottle.',
-    shortDescription: 'Blended Whiskey · USA',
+    shortDescription: 'Blended Whiskey · USA · Peated Scotch & Spicy Rye',
     imageUrl: '/images/burnt-ends-blended-whiskey-tennessee.webp',
     imageAlt: 'Burnt Ends blended whiskey bottle on a Tennessee farm at sunset',
     scene: true,
@@ -224,7 +247,8 @@ const SERVICES: Service[] = [
       {
         label: 'Signature Serve',
         items: [
-          { imageUrl: '/images/brand-whiskey-row-cocktail.webp', label: 'Old Fashioned', imageAlt: 'Old Fashioned made with Whiskey Row straight bourbon', scene: true },
+          { imageUrl: '/images/brand-whiskey-row-cocktail.webp',  label: 'Old Fashioned', imageAlt: 'Old Fashioned made with Whiskey Row straight bourbon', scene: true },
+          { imageUrl: '/images/brand-whiskey-row-manhattan.webp', label: 'Manhattan',     imageAlt: 'Manhattan made with Whiskey Row straight bourbon, served up with a cherry', scene: true },
         ],
       },
     ],
@@ -467,18 +491,33 @@ function ServiceRow({
                             </span>
                           </motion.div>
                         ))}
+
+                        {/* "+ N more" sits in the grid as a card of its own, beside the range. */}
+                        {cat.note && (
+                          <motion.div
+                            initial={{ opacity: 0, y: 10 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.32, delay: 0.12 + cat.items.length * 0.05, ease }}
+                            style={{
+                              display: 'flex', flexDirection: 'column',
+                              alignItems: 'center', justifyContent: 'center', gap: '6px',
+                              padding: 'clamp(12px, 1.4vw, 18px) 10px',
+                              borderRadius: '14px',
+                              background: 'rgba(232,68,111,0.03)',
+                              border: '1px dashed rgba(232,68,111,0.22)',
+                            }}
+                          >
+                            <span style={{
+                              fontSize: 'clamp(11px, 0.95vw, 13px)',
+                              fontWeight: 600, letterSpacing: '-0.01em',
+                              color: 'rgba(var(--ink-rgb),0.55)',
+                              textAlign: 'center', lineHeight: 1.3,
+                            }}>
+                              + {cat.note}
+                            </span>
+                          </motion.div>
+                        )}
                       </div>
-                      {cat.note && (
-                        <div style={{
-                          marginTop: '10px',
-                          fontSize: 'clamp(11px, 0.9vw, 12.5px)',
-                          fontStyle: 'italic', fontWeight: 500,
-                          letterSpacing: '0.01em',
-                          color: 'rgba(var(--ink-rgb),0.5)',
-                        }}>
-                          + {cat.note}
-                        </div>
-                      )}
                       </>
                     ) : (
                       <div style={{
