@@ -263,12 +263,15 @@ Trade Stories
           <div style={{ height: '1px', width: '52px', background: `${GREEN}55` }}/>
         </div>
 
-        <h2 style={{
+        <h2 className="gradient-text" style={{
           fontFamily: "'Inter', system-ui, sans-serif",
           fontSize: 'clamp(30px,4vw,48px)',
-          fontWeight: 800, color: NAVY,
+          fontWeight: 800,
           letterSpacing: '-0.04em', lineHeight: 1.1,
-          margin: '0 0 18px',
+          // fit-content keeps the gradient on the glyphs; auto margins keep the
+          // heading centred now that the box no longer spans the full width.
+          width: 'fit-content',
+          margin: '0 auto 18px',
         }}>
           Loved Behind The Bar.
         </h2>

@@ -37,11 +37,17 @@
 }
 .lineNavy { color: var(--navy); font-weight: 600; }
 .lineCoral {
-  /* Brand gradient, matching the headline accents in the other sections. */
+  /* Brand gradient, matching the headline accents in the other sections.
+     The box must hug the glyphs - a full-width box spends part of the ramp
+     on empty space and the line reads as flat pink. */
   background: var(--grad-brand);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
+  width: fit-content;
+  /* Italic glyphs lean past their advance width; without this the background
+     box ends early and the last letter's overhang renders transparent. */
+  padding-right: 0.1em;
   font-style: italic;
   font-weight: 500;
 }
