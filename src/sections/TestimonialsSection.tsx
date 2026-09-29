@@ -265,7 +265,7 @@ Trade Stories
 
         <h2 className="gradient-text" style={{
           fontFamily: "'Inter', system-ui, sans-serif",
-          fontSize: 'clamp(30px,4vw,48px)',
+          fontSize: 'clamp(28px, min(4vw, 6svh), 48px)',
           fontWeight: 800,
           letterSpacing: '-0.04em', lineHeight: 1.1,
           // fit-content keeps the gradient on the glyphs; auto margins keep the
@@ -295,7 +295,7 @@ Trade Stories
         style={{
           display: 'flex',
           gap: '14px',
-          maxHeight: '680px',
+          maxHeight: 'min(680px, 72svh)',
           overflow: 'hidden',
           WebkitMaskImage: 'linear-gradient(to bottom, transparent 0%, black 12%, black 88%, transparent 100%)',
           maskImage:        'linear-gradient(to bottom, transparent 0%, black 12%, black 88%, transparent 100%)',

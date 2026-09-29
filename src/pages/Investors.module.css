@@ -1,0 +1,461 @@
+/* ══ About / Investors ══════════════════════════════════════════════════
+   One idea carries the page: a hairline that draws itself down the left as
+   you scroll, with the years pinned to it. Everything else hangs off that
+   spine — chapters, images, figures — so the page reads as one continuous
+   run rather than a stack of sections. */
+
+.page {
+  background: var(--surface);
+  color: rgb(var(--ink-rgb));
+  font-family: var(--font-ui);
+  overflow-x: clip;
+}
+
+/* Shared type ---------------------------------------------------------- */
+.kicker {
+  margin: 0 0 14px;
+  font-size: 9.5px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--rose-500);
+}
+.title {
+  margin: 0;
+  font-size: clamp(1.9rem, 4vw, 3.4rem);
+  font-weight: 800;
+  line-height: 1.06;
+  letter-spacing: -0.045em;
+}
+/* The gradient clips to the glyphs, so its box must hug them — a full-width
+   box spends most of the ramp on empty space and reads as flat pink. Italics
+   lean past their advance width, hence the trailing pad. */
+.title em { font-style: italic; font-weight: 700; padding-right: 0.08em; }
+.body {
+  margin: 1.2rem 0 0;
+  font-size: clamp(15px, 1.2vw, 17px);
+  line-height: 1.78;
+  color: rgba(var(--ink-rgb), 0.6);
+  max-width: 52ch;
+}
+.body + .body { margin-top: 1rem; }
+
+/* ── Hero ─────────────────────────────────────────────────────────────── */
+.hero {
+  position: relative;
+  min-height: min(84svh, 760px);
+  display: flex;
+  align-items: flex-end;
+  padding-top: var(--nav-clear);
+  padding-bottom: clamp(2.4rem, 5vw, 4.4rem);
+  overflow: hidden;
+  background: #1c0812;
+  color: #fff;
+}
+/* Taller than the frame so it can drift without exposing an edge. */
+.heroImgWrap { position: absolute; inset: -12% 0; will-change: transform; }
+.heroImg { width: 100%; height: 100%; object-fit: cover; display: block; }
+.heroScrim {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(to top, rgba(20, 6, 13, 0.92) 0%, rgba(20, 6, 13, 0.5) 44%, rgba(20, 6, 13, 0.14) 80%),
+    linear-gradient(115deg, rgba(180, 31, 82, 0.36), transparent 60%);
+}
+.heroInner { position: relative; z-index: 1; width: 100%; }
+.heroEyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  margin: 0 0 1.3rem;
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: var(--rose-200);
+}
+.heroEyebrow i { width: 7px; height: 7px; border-radius: 50%; background: var(--rose-400); }
+.heroTitle {
+  margin: 0;
+  font-size: clamp(2.8rem, 9vw, 7.5rem);
+  font-weight: 800;
+  line-height: 0.92;
+  letter-spacing: -0.052em;
+}
+.heroMeta {
+  margin-top: clamp(1.6rem, 3.5vw, 2.6rem);
+  padding-top: clamp(1.1rem, 2.2vw, 1.6rem);
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+.heroLede {
+  margin: 0;
+  max-width: 44ch;
+  font-size: clamp(15px, 1.3vw, 18px);
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.76);
+}
+.heroPlace {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.5);
+  white-space: nowrap;
+}
+
+/* ── Marquee of the seven houses ──────────────────────────────────────── */
+.rail {
+  border-bottom: 1px solid rgba(var(--ink-rgb), 0.1);
+  padding-block: clamp(1.1rem, 2.4vw, 1.8rem);
+  background: var(--surface);
+}
+.railText { color: rgba(var(--ink-rgb), 0.85); }
+
+/* ── The spine ────────────────────────────────────────────────────────── */
+.spineWrap { position: relative; padding-block: clamp(2.4rem, 5vw, 4.25rem); }
+.spineGrid {
+  display: grid;
+  grid-template-columns: 148px 1fr;
+  gap: clamp(1.5rem, 4vw, 3.5rem);
+  align-items: start;
+}
+
+/* Sticky left column: the drawn line plus the years. */
+.spineCol { position: sticky; top: calc(var(--nav-clear) + 1rem); height: min(66svh, 560px); }
+.spineLineBase {
+  position: absolute;
+  left: 7px;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: rgba(var(--ink-rgb), 0.14);
+}
+.spineLineFill {
+  position: absolute;
+  left: 6px;
+  top: 0;
+  width: 3px;
+  height: 100%;
+  border-radius: 2px;
+  background: var(--grad-brand);
+  transform-origin: top;
+  will-change: transform;
+}
+.years { position: relative; height: 100%; display: flex; flex-direction: column; justify-content: space-between; }
+.year { display: flex; align-items: center; gap: 14px; }
+.yearDot {
+  position: relative;
+  z-index: 1;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background: var(--surface);
+  border: 1px solid rgba(var(--ink-rgb), 0.18);
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  transition: border-color 0.4s var(--ease-out);
+}
+.yearDot::after {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgba(var(--ink-rgb), 0.2);
+  transition: background 0.4s var(--ease-out), transform 0.4s var(--ease-out);
+}
+.yearOn .yearDot { border-color: var(--rose-500); }
+.yearOn .yearDot::after { background: var(--rose-500); transform: scale(1.25); }
+.yearLabel {
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(var(--ink-rgb), 0.38);
+  transition: color 0.4s var(--ease-out);
+  white-space: nowrap;
+}
+.yearOn .yearLabel { color: rgb(var(--ink-rgb)); }
+
+/* Chapters hanging off the spine. */
+.chapters { display: flex; flex-direction: column; gap: clamp(2.75rem, 6vw, 5.5rem); }
+.chapter { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(1.8rem, 4vw, 3.5rem); align-items: center; }
+.chapterFlip .figure { order: -1; }
+
+/* Image whose mask wipes open as it enters. */
+.figure {
+  position: relative;
+  margin: 0;
+  border-radius: 24px;
+  overflow: hidden;
+  aspect-ratio: 4 / 5;
+  background: var(--surface-2);
+  box-shadow: 0 40px 90px -58px rgba(40, 12, 26, 0.6);
+}
+.figure img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.figure::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(205deg, rgba(232, 68, 111, 0.16), transparent 58%);
+  pointer-events: none;
+}
+
+.pull {
+  margin: 1.5rem 0 0;
+  font-size: clamp(1.2rem, 2.2vw, 1.8rem);
+  font-weight: 700;
+  font-style: italic;
+  letter-spacing: -0.03em;
+  line-height: 1.25;
+  width: fit-content;
+}
+.quote {
+  margin: 1.4rem 0 0;
+  padding: 1.1rem 1.4rem;
+  border-left: 3px solid var(--rose-500);
+  border-radius: 0 16px 16px 0;
+  background: var(--surface-2);
+  font-size: clamp(15px, 1.2vw, 17px);
+  line-height: 1.75;
+  color: rgba(var(--ink-rgb), 0.78);
+}
+.ctaRow { margin-top: 1.6rem; display: flex; gap: 1.1rem; flex-wrap: wrap; }
+
+/* Bulleted thesis inside a chapter. */
+.points { margin: 1.3rem 0 0; padding: 0; list-style: none; display: grid; gap: 0.75rem; max-width: 52ch; }
+.points li {
+  position: relative;
+  padding-left: 1.5rem;
+  font-size: clamp(14.5px, 1.1vw, 16px);
+  line-height: 1.72;
+  color: rgba(var(--ink-rgb), 0.6);
+}
+.points li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.66em;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--rose-500);
+}
+.points strong { color: rgb(var(--ink-rgb)); font-weight: 700; }
+
+.places { margin-top: 1.4rem; display: flex; flex-wrap: wrap; gap: 9px; }
+.place {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 15px;
+  border-radius: 100px;
+  border: 1px solid rgba(var(--ink-rgb), 0.12);
+  background: var(--chip);
+  font-size: 0.86rem;
+  font-weight: 600;
+  transition: background 0.25s, border-color 0.25s;
+}
+.place:hover { background: var(--chip-hover); border-color: rgba(232, 68, 111, 0.35); }
+.place i { width: 6px; height: 6px; border-radius: 50%; background: rgba(var(--ink-rgb), 0.25); }
+.hq { border-color: rgba(232, 68, 111, 0.4); }
+.hq i { background: var(--rose-500); }
+.hqTag { font-size: 0.64rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--rose-500); }
+
+/* ── Dark figures band ────────────────────────────────────────────────── */
+.figures {
+  position: relative;
+  overflow: hidden;
+  padding-block: clamp(2.6rem, 5.5vw, 4.75rem);
+  background:
+    radial-gradient(60% 90% at 78% 0%, rgba(180, 31, 82, 0.42), transparent 60%),
+    var(--grad-dark);
+  color: #fdf5f2;
+}
+.figures .kicker { color: var(--rose-300); }
+.figureGrid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; margin-top: clamp(1.5rem, 3vw, 2.4rem); }
+.figureCell { padding: clamp(1.2rem, 2.6vw, 2rem) clamp(1rem, 2.4vw, 2rem); border-left: 1px solid rgba(255, 255, 255, 0.14); }
+.figureCell:first-child { border-left: 0; padding-left: 0; }
+.figureNum {
+  display: block;
+  font-size: clamp(2.6rem, 7vw, 5.4rem);
+  font-weight: 800;
+  line-height: 0.95;
+  letter-spacing: -0.05em;
+  width: fit-content;
+  font-variant-numeric: tabular-nums;
+}
+.figureLabel { margin: 1rem 0 0; font-size: 0.9rem; line-height: 1.6; color: rgba(255, 255, 255, 0.58); max-width: 22ch; }
+
+/* ── Portfolio ────────────────────────────────────────────────────────── */
+.section { padding-block: clamp(2.6rem, 5.5vw, 4.75rem); }
+
+/* Standfirst under a section headline. */
+.lede {
+  margin: 1.1rem 0 0;
+  max-width: 62ch;
+  font-size: clamp(15px, 1.2vw, 17px);
+  line-height: 1.78;
+  color: rgba(var(--ink-rgb), 0.58);
+}
+
+/* ── How we work ──────────────────────────────────────────────────────── */
+.pillars {
+  margin-top: clamp(1.6rem, 3vw, 2.3rem);
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: clamp(0.9rem, 2vw, 1.5rem);
+}
+.pillar {
+  height: 100%;
+  padding: clamp(1.3rem, 2.4vw, 1.9rem);
+  border: 1px solid var(--card-border);
+  border-radius: 22px;
+  background: var(--card);
+  transition: border-color 0.25s, transform 0.4s var(--ease-out);
+}
+.pillar:hover { border-color: rgba(232, 68, 111, 0.4); transform: translateY(-4px); }
+.pillarN { font-size: 0.7rem; font-weight: 800; letter-spacing: 0.18em; color: var(--rose-500); }
+.pillarTitle {
+  margin: 0.7rem 0 0;
+  font-size: clamp(1.05rem, 1.7vw, 1.3rem);
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  line-height: 1.25;
+}
+.pillarBody { margin: 0.6rem 0 0; font-size: 0.95rem; line-height: 1.72; color: rgba(var(--ink-rgb), 0.6); }
+.houses {
+  margin-top: clamp(1.8rem, 3.5vw, 2.6rem);
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: clamp(0.8rem, 1.6vw, 1.3rem);
+}
+.house {
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+  aspect-ratio: 3 / 4;
+  background: #140a0e;
+}
+.house img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.8s var(--ease-out); }
+.house:hover img { transform: scale(1.07); }
+.houseName {
+  position: absolute;
+  inset: auto 0 0 0;
+  padding: 2.6rem 1rem 0.95rem;
+  background: linear-gradient(to top, rgba(12, 5, 7, 0.9), transparent);
+  color: #fff;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+/* ── Team ─────────────────────────────────────────────────────────────── */
+.team {
+  margin-top: clamp(1.8rem, 3.5vw, 2.6rem);
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(1rem, 2.5vw, 2rem);
+}
+.member {
+  display: flex;
+  align-items: center;
+  gap: 1.1rem;
+  background: var(--card);
+  border: 1px solid var(--card-border);
+  border-radius: 22px;
+  padding: clamp(1.2rem, 2.2vw, 1.7rem);
+  transition: border-color 0.25s, transform 0.4s var(--ease-out);
+}
+.member:hover { border-color: rgba(232, 68, 111, 0.4); transform: translateY(-4px); }
+.monogram {
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: var(--grad-brand-soft);
+  color: #fff;
+  font-size: 0.95rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+}
+.memberName { margin: 0; font-size: 1.05rem; font-weight: 700; letter-spacing: -0.02em; }
+.memberRole { margin: 0.3rem 0 0; font-size: 0.82rem; line-height: 1.5; color: rgba(var(--ink-rgb), 0.55); }
+
+/* ── Closing CTA ──────────────────────────────────────────────────────── */
+.cta { text-align: center; }
+.ctaTitle {
+  margin: 0 auto;
+  max-width: 16ch;
+  font-size: clamp(2.1rem, 5.5vw, 4.4rem);
+  font-weight: 800;
+  line-height: 1.02;
+  letter-spacing: -0.05em;
+  width: fit-content;
+}
+.ctaNote { margin: 1.2rem auto 0; max-width: 44ch; line-height: 1.75; color: rgba(var(--ink-rgb), 0.55); }
+.steps {
+  margin: 1.6rem auto 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 0.6rem;
+  width: fit-content;
+  max-width: 100%;
+  text-align: left;
+}
+.steps li {
+  display: flex;
+  align-items: baseline;
+  gap: 0.75rem;
+  font-size: 0.95rem;
+  line-height: 1.65;
+  color: rgba(var(--ink-rgb), 0.6);
+}
+.steps li span {
+  flex-shrink: 0;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  color: var(--rose-500);
+  font-variant-numeric: tabular-nums;
+}
+.ctaBtns { margin-top: 2rem; display: flex; justify-content: center; gap: 1.2rem; flex-wrap: wrap; }
+
+/* ── Tablet: the portfolio drops to three before the spine goes ───────── */
+@media (max-width: 1240px) {
+  .houses { grid-template-columns: repeat(3, 1fr); }
+}
+
+/* ── Narrow: the spine steps aside ────────────────────────────────────── */
+@media (max-width: 980px) {
+  .spineGrid { grid-template-columns: 1fr; }
+  .spineCol { display: none; }
+  .chapter { grid-template-columns: 1fr; }
+  .chapterFlip .figure { order: 0; }
+  .figure { aspect-ratio: 3 / 2; }
+  .figureGrid { grid-template-columns: 1fr; }
+  .figureCell { border-left: 0; border-top: 1px solid rgba(255, 255, 255, 0.14); padding-left: 0; }
+  .figureCell:first-child { border-top: 0; }
+  .houses { grid-template-columns: repeat(2, 1fr); }
+  .team { grid-template-columns: 1fr; }
+  .pillars { grid-template-columns: 1fr; }
+}
+
+/* ── Phone: single-column portfolio, tighter hero type ────────────────── */
+@media (max-width: 560px) {
+  .houses { grid-template-columns: 1fr; }
+  .house { aspect-ratio: 4 / 3; }
+  .heroMeta { gap: 1rem; }
+  .heroPlace { font-size: 0.64rem; }
+  .quote { padding: 0.9rem 1.1rem; }
+}

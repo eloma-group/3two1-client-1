@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useState } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { useLenis } from './hooks/useLenis';
 import Splash from './components/Splash';
@@ -6,6 +6,9 @@ import ScrollProgress from './components/ScrollProgress';
 import Navbar from './components/Navbar';
 import Footer from './sections/Footer';
 import Home from './pages/Home';
+import ContactPage from './pages/ContactPage';
+import Investors from './pages/Investors';
+import ScrollToTop from './components/ScrollToTop';
 
 export default function App() {
   useLenis();
@@ -13,18 +16,17 @@ export default function App() {
 
   const handleSplashDone = useCallback(() => setReady(true), []);
 
-  useEffect(() => {
-    document.title = '3two1 drinks — The Taste of Passion';
-  }, []);
-
   return (
     <BrowserRouter>
+      <ScrollToTop />
       <Splash onDone={handleSplashDone} />
       <ScrollProgress />
       <Navbar />
       <main>
         <Routes>
           <Route path="/" element={<Home ready={ready} />} />
+          <Route path="/contact" element={<ContactPage />} />
+          <Route path="/investors" element={<Investors />} />
           <Route path="*" element={<Home ready={ready} />} />
         </Routes>
       </main>

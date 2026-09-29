@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import Hero from '../sections/Hero';
 import { ServicesSection } from '../sections/ServicesSection';
 import { IndustriesSection } from '../sections/IndustriesSection';
@@ -9,6 +10,10 @@ import { TestimonialsSection } from '../sections/TestimonialsSection';
 import Contact from '../sections/Contact';
 
 export default function Home({ ready }: { ready: boolean }) {
+  useEffect(() => {
+    document.title = '3two1 drinks — The Taste of Passion';
+  }, []);
+
   return (
     <>
       <Hero ready={ready} />

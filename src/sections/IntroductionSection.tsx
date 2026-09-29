@@ -98,7 +98,7 @@ export function IntroductionSection() {
       id="about"
       style={{
         background: 'var(--surface)',
-        padding: 'clamp(36px, 4vw, 60px) clamp(24px, 5vw, 80px) clamp(96px, 12vw, 160px)',
+        padding: 'clamp(28px, 3vw, 60px) clamp(24px, 5vw, 80px) clamp(64px, min(12vw, 14svh), 160px)',
         position: 'relative',
         overflow: 'hidden',
         fontFamily: "'Inter', system-ui, sans-serif",
@@ -112,14 +112,14 @@ export function IntroductionSection() {
           gridTemplateColumns: '1fr 1fr',
           gap: 'clamp(40px, 6vw, 96px)',
           alignItems: 'flex-start',
-          marginBottom: 'clamp(64px, 9vw, 112px)',
+          marginBottom: 'clamp(48px, min(9vw, 10svh), 112px)',
         }}
       >
         {/* Left - headline */}
         <div>
           <h2 style={{
             fontFamily: "'Inter', system-ui, sans-serif",
-            fontSize: 'clamp(40px, 5.6vw, 74px)',
+            fontSize: 'clamp(36px, min(5.6vw, 8.6svh), 74px)',
             fontWeight: 800,
             lineHeight: 1.1,
             letterSpacing: '-0.045em',
@@ -191,13 +191,13 @@ export function IntroductionSection() {
       {/* ── Divider + flag ticker ── */}
       <div style={{
         paddingTop: 'clamp(8px, 1.4vw, 20px)',
-        background: '#fff',
+        background: 'var(--surface)',
         marginLeft: 'calc(-1 * clamp(24px, 5vw, 80px))',
         marginRight: 'calc(-1 * clamp(24px, 5vw, 80px))',
-        marginBottom: 'calc(-1 * clamp(96px, 12vw, 160px))',
+        marginBottom: 'calc(-1 * clamp(64px, min(12vw, 14svh), 160px))',
         paddingLeft: 'clamp(24px, 5vw, 80px)',
         paddingRight: 'clamp(24px, 5vw, 80px)',
-        paddingBottom: 'clamp(96px, 12vw, 160px)',
+        paddingBottom: 'clamp(64px, min(12vw, 14svh), 160px)',
       }}>
 
         {/* Country flags */}
@@ -271,8 +271,8 @@ export function IntroductionSection() {
           </div>
 
           {/* ── Edge fades ── */}
-          <div style={{ position: 'absolute', left: 0, top: 0, bottom: 0, width: '64px', zIndex: 3, background: 'linear-gradient(to right, #fff, transparent)', pointerEvents: 'none' }} />
-          <div style={{ position: 'absolute', right: 0, top: 0, bottom: 0, width: '64px', zIndex: 3, background: 'linear-gradient(to left, #fff, transparent)', pointerEvents: 'none' }} />
+          <div style={{ position: 'absolute', left: 0, top: 0, bottom: 0, width: '64px', zIndex: 3, background: 'linear-gradient(to right, var(--surface), transparent)', pointerEvents: 'none' }} />
+          <div style={{ position: 'absolute', right: 0, top: 0, bottom: 0, width: '64px', zIndex: 3, background: 'linear-gradient(to left, var(--surface), transparent)', pointerEvents: 'none' }} />
         </div>
 
       </div>

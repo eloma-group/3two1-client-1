@@ -1,12 +1,15 @@
 import { useEffect, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { Menu, X, ChevronDown, Download, ArrowRight } from 'lucide-react';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { navMenu, contact, type MenuEntry } from '../data/content';
 import { scrollToHash } from '../hooks/useLenis';
 import ThemeToggle from './ThemeToggle';
 import styles from './Navbar.module.css';
 
 export default function Navbar() {
+  const navigate = useNavigate();
+  const { pathname } = useLocation();
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const [drop, setDrop] = useState<string | null>(null);
@@ -32,8 +35,26 @@ export default function Navbar() {
       window.open(to, '_blank', 'noopener,noreferrer');
       return;
     }
-    const id = to.replace('/', '');
-    setTimeout(() => scrollToHash(id), open ? 350 : 0);
+
+    const delay = open ? 350 : 0; // let the mobile overlay finish closing first
+
+    // A plain path is its own page; anything with a hash is a section of the
+    // home page, so route there first when we are somewhere else.
+    const hash = to.indexOf('#');
+    if (hash === -1) {
+      setTimeout(() => navigate(to), delay);
+      return;
+    }
+    const id = to.slice(hash);
+    if (pathname !== '/') {
+      setTimeout(() => {
+        navigate('/');
+        // The home sections have to mount before they can be scrolled to.
+        requestAnimationFrame(() => setTimeout(() => scrollToHash(id), 120));
+      }, delay);
+      return;
+    }
+    setTimeout(() => scrollToHash(id), delay);
   };
 
   const Dropdown = ({ item }: { item: MenuEntry }) => (

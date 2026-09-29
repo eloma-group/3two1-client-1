@@ -1,5 +1,5 @@
 .story {
-  padding-block: clamp(5rem, 12vw, 11rem);
+  padding-block: clamp(4rem, min(12vw, 13svh), 11rem);
   background: var(--cream);
   overflow: hidden;
 }

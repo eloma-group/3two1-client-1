@@ -3,7 +3,7 @@
     radial-gradient(50% 60% at 85% 0%, rgba(180, 31, 82, 0.45), transparent 55%),
     var(--grad-dark);
   color: #fdf5f2;
-  padding-block: clamp(4rem, 10vw, 9rem);
+  padding-block: clamp(3.5rem, min(10vw, 11svh), 9rem);
 }
 .grid {
   display: grid;

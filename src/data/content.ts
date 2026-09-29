@@ -43,8 +43,8 @@ export const navMenu: MenuEntry[] = [
     label: 'About',
     to: '/#story',
     children: [
-      { label: 'Contact', to: '/#contact' },
-      { label: 'Investors', to: '/#story' },
+      { label: 'Contact', to: '/contact' },
+      { label: 'Investors', to: '/investors' },
     ],
   },
   {
@@ -91,7 +91,7 @@ export const navMenu: MenuEntry[] = [
       { label: 'Giffard West Cup', to: '/#trade' },
       { label: 'Trade Shows', to: '/#trade' },
       { label: 'Tastings', to: '/#trade' },
-      { label: 'Enquiries', to: '/#contact' },
+      { label: 'Enquiries', to: '/contact' },
     ],
   },
 ];
@@ -298,8 +298,8 @@ export const footerColumns = [
     title: 'Company',
     links: [
       { label: 'Our Story', to: '/#story' },
-      { label: 'Investors', to: '/#story' },
-      { label: 'Contact', to: '/#contact' },
+      { label: 'Investors', to: '/investors' },
+      { label: 'Contact', to: '/contact' },
     ],
   },
 ];

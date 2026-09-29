@@ -331,14 +331,14 @@ export function IndustriesSection() {
     setFlipped(prev => { const n = [...prev]; n[i] = !n[i]; return n })
 
   return (
-    <section id="industries" style={{ background: 'var(--surface)', paddingTop: 'clamp(64px,9vw,110px)', paddingBottom: 'clamp(40px,5vw,60px)', overflow: 'hidden', fontFamily: "'Inter', system-ui, sans-serif" }}>
+    <section id="industries" style={{ background: 'var(--surface)', paddingTop: 'clamp(48px, min(9vw, 11svh), 110px)', paddingBottom: 'clamp(40px,5vw,60px)', overflow: 'hidden', fontFamily: "'Inter', system-ui, sans-serif" }}>
 
       {/* Header - padded */}
       <motion.div
         initial={{ opacity: 0, y: 28 }} whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: '-40px' }}
         transition={{ duration: 0.72, ease: [0.16, 1, 0.3, 1] }}
-        style={{ textAlign: 'center', marginBottom: 'clamp(40px,6vw,72px)', padding: '0 clamp(24px,5vw,80px)' }}
+        style={{ textAlign: 'center', marginBottom: 'clamp(32px, min(6vw, 7svh), 72px)', padding: '0 clamp(24px,5vw,80px)' }}
       >
         <div style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', marginBottom: '16px' }}>
           <span style={{ display: 'inline-flex', gap: '3px' }}>

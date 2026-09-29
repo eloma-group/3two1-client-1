@@ -123,7 +123,10 @@ body {
   background: var(--bg);
   color: var(--fg);
   line-height: 1.5;
+  /* Sideways scroll is never wanted, but overflow:hidden on the body makes it
+     a scroll container and breaks position:sticky inside. clip does not. */
   overflow-x: hidden;
+  overflow-x: clip;
 }
 
 /* Lenis */
@@ -169,10 +172,12 @@ h1, h2, h3, h4 {
   color: transparent;
 }
 
-/* Fluid display sizes */
-.display-xl { font-size: clamp(2.6rem, 9vw, 9.5rem); }
-.display-lg { font-size: clamp(2.2rem, 6.5vw, 6rem); }
-.display-md { font-size: clamp(1.8rem, 4vw, 3.4rem); }
+/* Fluid display sizes. Laptop screens are wide but short - a MacBook Air is
+   1440x790 of usable viewport - so sizing on width alone puts type on the page
+   that the height cannot carry. Every step is capped by svh as well as vw. */
+.display-xl { font-size: clamp(2.6rem, min(9vw, 13svh), 9.5rem); }
+.display-lg { font-size: clamp(2.2rem, min(6.5vw, 9.5svh), 6rem); }
+.display-md { font-size: clamp(1.8rem, min(4vw, 6svh), 3.4rem); }
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {

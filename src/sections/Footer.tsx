@@ -1,10 +1,28 @@
 import { ArrowUpRight } from 'lucide-react';
 import { Instagram } from '../components/icons';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { brand, footerColumns, contact } from '../data/content';
 import { scrollToHash } from '../hooks/useLenis';
 import styles from './Footer.module.css';
 
 export default function Footer() {
+  const navigate = useNavigate();
+  const { pathname } = useLocation();
+
+  /* A plain path is its own page; a hash is a section of the home page, so
+     route there first when we are somewhere else. */
+  const go = (to: string) => {
+    const hash = to.indexOf('#');
+    if (hash === -1) { navigate(to); return; }
+    const id = to.slice(hash);
+    if (pathname !== '/') {
+      navigate('/');
+      requestAnimationFrame(() => setTimeout(() => scrollToHash(id), 120));
+      return;
+    }
+    scrollToHash(id);
+  };
+
   return (
     <footer className={styles.footer}>
       <div className={styles.grain} />
@@ -28,7 +46,7 @@ export default function Footer() {
                     <li key={i}>
                       <a
                         href={l.to}
-                        onClick={(e) => { e.preventDefault(); scrollToHash(l.to.replace('/', '')); }}
+                        onClick={(e) => { e.preventDefault(); go(l.to); }}
                       >
                         {l.label}
                       </a>

@@ -1,0 +1,140 @@
+/* Two doors: apply on the left, already-trading on the right. */
+.doors {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: clamp(1.5rem, 3vw, 2.5rem);
+  align-items: start;
+}
+
+/* ── Left: new trade account ─────────────────────────────────────────── */
+.card {
+  background: var(--card);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius);
+  padding: clamp(1.5rem, 3vw, 2.6rem);
+}
+.cardTitle {
+  margin: 0;
+  font-size: clamp(1.5rem, 2.6vw, 2.1rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+}
+.cardNote {
+  margin: 0.9rem 0 0;
+  font-size: 0.95rem;
+  line-height: 1.75;
+  color: rgba(var(--ink-rgb), 0.6);
+  max-width: 46ch;
+}
+
+.form { margin-top: 1.8rem; display: flex; flex-direction: column; gap: 1.1rem; }
+.row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.1rem; }
+.field { display: flex; flex-direction: column; gap: 0.5rem; }
+.field > span {
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: rgba(var(--ink-rgb), 0.5);
+}
+.field input,
+.field select,
+.field textarea {
+  background: var(--surface-2);
+  border: 1px solid rgba(var(--ink-rgb), 0.12);
+  border-radius: 12px;
+  padding: 0.85rem 1rem;
+  color: rgb(var(--ink-rgb));
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  transition: border-color 0.3s, background 0.3s;
+}
+.field textarea { resize: vertical; }
+.field input::placeholder,
+.field textarea::placeholder { color: rgba(var(--ink-rgb), 0.32); }
+.field input:focus,
+.field select:focus,
+.field textarea:focus {
+  outline: none;
+  border-color: var(--rose-500);
+  background: var(--surface);
+}
+
+.consent {
+  margin: 0.2rem 0 0;
+  font-size: 0.82rem;
+  line-height: 1.6;
+  color: rgba(var(--ink-rgb), 0.5);
+}
+.submit { margin-top: 0.4rem; display: flex; align-items: center; gap: 1.5rem; flex-wrap: wrap; }
+
+/* Success state — mirrors the homepage enquiry form. */
+.success { text-align: center; padding: clamp(2rem, 5vw, 4rem) 1rem; }
+.check {
+  display: inline-grid;
+  place-items: center;
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  background: var(--grad-brand-soft);
+  color: #fff;
+  margin-bottom: 1.2rem;
+}
+.success h3 { margin: 0 0 0.6rem; font-size: clamp(1.5rem, 3vw, 2rem); font-weight: 800; letter-spacing: -0.03em; }
+.success p { margin: 0 auto; max-width: 36ch; color: rgba(var(--ink-rgb), 0.6); line-height: 1.7; }
+
+/* ── Right: existing customer ────────────────────────────────────────── */
+.dark {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--radius);
+  padding: clamp(1.5rem, 3vw, 2.4rem);
+  background:
+    radial-gradient(60% 70% at 85% 0%, rgba(180, 31, 82, 0.45), transparent 58%),
+    var(--grad-dark);
+  color: #fdf5f2;
+}
+.dark .cardNote { color: rgba(255, 255, 255, 0.62); }
+.dark .kickerLight {
+  margin: 0 0 12px;
+  font-size: 9.5px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--rose-300);
+}
+
+.rows { margin-top: 1.8rem; display: flex; flex-direction: column; }
+.rowItem {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1.2rem;
+  padding: 0.95rem 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+}
+.rowItem:last-child { border-bottom: 1px solid rgba(255, 255, 255, 0.12); }
+.rowLabel {
+  flex-shrink: 0;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--rose-300);
+}
+.rowValue { text-align: right; font-size: 0.98rem; color: #fff; text-decoration: none; transition: color 0.25s; }
+a.rowValue:hover { color: var(--rose-300); }
+
+@media (max-width: 1120px) {
+  /* The form needs the room before the panel does. */
+  .doors { grid-template-columns: 1.3fr 0.7fr; }
+}
+@media (max-width: 960px) {
+  .doors { grid-template-columns: 1fr; }
+}
+@media (max-width: 560px) {
+  .row { grid-template-columns: 1fr; }
+  .rowItem { flex-direction: column; align-items: flex-start; gap: 0.35rem; }
+  .rowValue { text-align: left; }
+}
