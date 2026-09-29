@@ -195,8 +195,8 @@ export default function Investors() {
       kicker: 'Our story',
       heading: 'Built in Australia, poured everywhere.',
       gradientFrom: 2,
-      img: '/images/au-perth-dusk.webp',
-      alt: 'The Perth skyline at dusk, reflected in the Swan River',
+      img: '/images/about-story-toast.webp',
+      alt: 'Friends raising whisky over a barrel table as the sun sets behind the city',
       body: (
         <>
           <p className={styles.body}>
