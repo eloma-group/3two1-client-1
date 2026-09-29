@@ -49,6 +49,7 @@
 }
 
 .title {
+  text-transform: capitalize;
   margin: 0.9rem 0 0;
   font-size: clamp(2.1rem, 5vw, 4rem);
   font-weight: 800;
