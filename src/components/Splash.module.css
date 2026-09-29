@@ -20,7 +20,7 @@
 
 .gifWrap {
   will-change: transform, opacity;
-  width: clamp(130px, 22vw, 250px);
+  width: clamp(148px, 25vw, 285px);
   position: relative;
   overflow: hidden;
 }
@@ -37,54 +37,105 @@
   pointer-events: none;
   background: linear-gradient(
     115deg,
-    transparent 32%,
-    rgba(255, 255, 255, 0.35) 46%,
+    transparent 26%,
+    rgba(255, 255, 255, 0.28) 42%,
     rgba(255, 255, 255, 0.85) 50%,
-    rgba(255, 255, 255, 0.35) 54%,
-    transparent 68%
+    rgba(255, 255, 255, 0.28) 58%,
+    transparent 74%
   );
   mix-blend-mode: screen;
-  transform: translateX(-130%);
-  animation: splashShine 3.6s ease-in-out infinite;
+  transform: translateX(-140%);
+  animation: splashShine 5.4s cubic-bezier(0.45, 0, 0.2, 1) 0.8s infinite;
 }
 @keyframes splashShine {
-  0% { transform: translateX(-130%); }
-  55%, 100% { transform: translateX(130%); }
+  0% { transform: translateX(-140%); }
+  62%, 100% { transform: translateX(140%); }
 }
 @media (prefers-reduced-motion: reduce) {
-  .gifWrap::after { animation: none; opacity: 0; }
+  .gifWrap::after,
+  .tagline::after { animation: none; opacity: 0; }
 }
 
 .tagline {
   margin-top: 0.4rem;
+  position: relative;
+  display: inline-block;
+  overflow: hidden;
   font-family: 'Fraunces', Georgia, serif;
   font-style: italic;
   font-weight: 500;
   font-size: clamp(1.7rem, 4.4vw, 3.1rem);
   letter-spacing: 0.01em;
-  color: #ff9999;
-  overflow: hidden;
-  display: flex;
-  width: 100%;
-  justify-content: center;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
 }
-.tagline span { display: inline-block; }
+/* The same streak, timed to sweep once the characters have landed */
+.tagline::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(
+    115deg,
+    transparent 26%,
+    rgba(255, 255, 255, 0.3) 42%,
+    rgba(255, 255, 255, 0.92) 50%,
+    rgba(255, 255, 255, 0.3) 58%,
+    transparent 74%
+  );
+  mix-blend-mode: screen;
+  transform: translateX(-140%);
+  animation: splashShine 2s cubic-bezier(0.45, 0, 0.2, 1) 4.6s infinite;
+}
 
-.regions {
+/* rule — text — rule, the small line under the tagline */
+.regionsRow {
   margin-top: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+}
+.rule {
+  height: 1px;
+  width: 0;
+  flex-shrink: 0;
+  background: #ec5377;
+}
+.regions {
+  position: relative;
+  display: inline-block;
   font-family: var(--font-body);
   font-size: clamp(0.6rem, 1.4vw, 0.78rem);
   font-weight: 600;
   font-style: italic;
   letter-spacing: 0.32em;
   text-transform: uppercase;
-  color: #4a4a4a;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 0 0.5em;
 }
-.regions span { display: inline-block; will-change: transform, opacity; }
+
+/* Shared two-layer wipe: a faint line, and a solid copy revealed across it */
+.ghost,
+.fill {
+  display: block;
+  white-space: nowrap;
+}
+.tagline > .ghost { color: rgba(255, 153, 153, 0.3); }
+.tagline .fill { color: #ff9999; }
+.regions > .ghost { color: rgba(74, 74, 74, 0.18); }
+.regions .fill { color: #4a4a4a; }
+.wipe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 0;
+  overflow: hidden;
+}
+
+/* The regions line runs long — drop the rules and tighten it on small screens */
+@media (max-width: 620px) {
+  .regionsRow { gap: 0; }
+  .rule { display: none; }
+  .regions { letter-spacing: 0.16em; font-size: 0.55rem; }
+}
