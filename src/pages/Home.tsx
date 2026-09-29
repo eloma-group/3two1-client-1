@@ -18,7 +18,6 @@ export default function Home({ ready }: { ready: boolean }) {
     <>
       <Hero ready={ready} />
       <NetworkMap />
-      <NetworkMap anchorId="network-map-2" variant="globe" />
       <ServicesSection />
       <IndustriesSection />
       <IntroductionSection />
