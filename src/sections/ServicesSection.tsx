@@ -189,8 +189,8 @@ const SERVICES: Service[] = [
         label: 'Signature Serve',
         items: [
           { imageUrl: '/images/brand-pueblo-viejo-cocktail.webp',        label: "Tommy's Margarita", imageAlt: "Tommy's Margarita made with Pueblo Viejo Blanco tequila, fresh lime and agave", scene: true },
-          { imageUrl: '/images/brand-pueblo-viejo-reposado-serve.webp',  label: 'Reposado',          imageAlt: 'Paloma served with Pueblo Viejo Reposado, grapefruit and a salt rim',            scene: true },
-          { imageUrl: '/images/brand-pueblo-viejo-anejo-serve.webp',     label: 'Anejo',             imageAlt: 'Pueblo Viejo Anejo stirred over a clear ice sphere with a citrus twist',         scene: true },
+          { imageUrl: '/images/brand-pueblo-viejo-reposado-bottle.webp', label: 'Reposado',          imageAlt: 'Pueblo Viejo Reposado tequila bottle, rested nine months in American oak',      scene: false },
+          { imageUrl: '/images/brand-pueblo-viejo-anejo-bottle.webp',    label: 'Anejo',             imageAlt: 'Pueblo Viejo Anejo tequila bottle in its navy and gold livery',                 scene: false },
         ],
       },
     ],
