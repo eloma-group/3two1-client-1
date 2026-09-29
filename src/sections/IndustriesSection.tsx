@@ -42,7 +42,7 @@ export interface Industry {
 const INDUSTRIES: Industry[] = [
   { name: 'Cocktail Bars' },
   { name: 'Restaurants' },
-  { name: 'Sage Shops' },
+  { name: 'Luxury Hotels' },
   { name: 'Bottle Shops' },
   { name: 'Cafés' },
   { name: 'Retail Chain' },
@@ -61,7 +61,7 @@ type FaceMeta = {
 const FACE_META: Record<string, FaceMeta> = {
   'Cocktail Bars':     { bg: '#fdf2f6', accent: '#b41f52', Icon: Martini,         tags: ['Signature Serves', 'Back Bar']     },
   'Restaurants':       { bg: '#fff5f0', accent: '#c2410c', Icon: UtensilsCrossed, tags: ['By The Glass',     'Wine Pairing']  },
-  'Sage Shops':        { bg: '#fffbeb', accent: '#a16207', Icon: ShoppingBag,     tags: ['Curated Range',    'Specialty']     },
+  'Luxury Hotels':     { bg: '#fffbeb', accent: '#a16207', Icon: Hotel,           tags: ['Hotel Bars',       'Banquets']      },
   'Bottle Shops':      { bg: '#fdf4ff', accent: '#be185d', Icon: Wine,            tags: ['Retail Range',     'Take-Home']     },
   'Cafés':             { bg: '#fdf6ec', accent: '#92400e', Icon: Coffee,          tags: ['Coffee Liqueur',   'All-Day']       },
   'Retail Chain':      { bg: '#fdf2f8', accent: '#db2777', Icon: Store,           tags: ['High Volume',      'Nationwide']    },

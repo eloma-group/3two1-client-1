@@ -10,14 +10,16 @@ gsap.registerPlugin(ScrollTrigger);
 /* City markers: icons sit ON the map at the city; the label is offset to a
    free margin nearby. All coords are in the shared 1200×800 viewBox.
 
-   Positions are derived from each landmass's real lon/lat, fitted to that
-   landmass's drawn bounding box in the artwork. The map is a stylised graphic,
-   not a single projection — NZ and the Pacific islands are pulled much closer
-   to Australia than they really are, and drawn oversized — so mainland,
-   Tasmania and NZ each get their own fit rather than one global transform.
-   Brisbane/Gold Coast and Newcastle/Sydney sit ~8 and ~14 units apart at true
-   scale, closer than one icon row, so each pair is nudged a few units apart to
-   stay legible. */
+   Australian positions are real lon/lat run through one equirectangular fit of
+   the artwork: the AU_LAND_DOTS lattice (real land, from cobe's mask) was
+   projected onto the drawing and the scale and offsets solved for best overlap,
+   which lands mainland and Tasmania on the same transform. NZ and the Pacific
+   islands are drawn oversized and dragged much closer to Australia than they
+   really are, so no projection reaches them — those are placed on the artwork
+   by eye, keeping the real west-to-east and north-to-south order.
+   Brisbane/Gold Coast and Newcastle/Sydney sit ~10 and ~16 units apart at true
+   scale, closer than one icon row, so each pair is nudged a few units apart
+   along its own coastline to stay legible. */
 type Anchor = 'start' | 'middle' | 'end';
 /* Which way a globe label hangs off its point. The flat map fans its labels out
    with hand-placed lx/ly; the globe can't, because the points move as it spins,
@@ -33,18 +35,18 @@ interface Pin {
   cats: Cat[];
 }
 const PINS: Pin[] = [
-  { name: 'BROOME',     cx: 370,  cy: 229, lx: 335,  ly: 233, lat: -17.955, lng: 122.236, anchor: 'end',    side: 'w', cats: ['bottle', 'cafe'] },
-  { name: 'PERTH',      cx: 273,  cy: 441, lx: 238,  ly: 445, lat: -31.953, lng: 115.857, anchor: 'end',    side: 'w', cats: ['bar', 'bottle', 'cafe'] },
-  { name: 'ADELAIDE',   cx: 620,  cy: 486, lx: 620,  ly: 510, lat: -34.929, lng: 138.6, anchor: 'middle', side: 's', cats: ['bar', 'bottle', 'cafe'] },
-  { name: 'MELBOURNE',  cx: 717,  cy: 530, lx: 717,  ly: 554, lat: -37.84, lng: 144.946, anchor: 'middle', side: 's', cats: ['bar', 'bottle', 'cafe'] },
-  { name: 'HOBART',     cx: 740,  cy: 615, lx: 740,  ly: 639, lat: -42.881, lng: 147.325, anchor: 'middle', side: 's', cats: ['bar', 'cafe'] },
-  { name: 'DARWIN',     cx: 502,  cy: 146, lx: 502,  ly: 129, lat: -12.463, lng: 130.845, anchor: 'middle', side: 'n', cats: ['bar', 'bottle', 'cafe'] },
-  { name: 'BRISBANE',   cx: 841,  cy: 366, lx: 876,  ly: 370, lat: -27.47, lng: 153.025, anchor: 'start',  side: 'e', cats: ['bar', 'bottle', 'cafe'] },
-  { name: 'GOLD COAST', cx: 847,  cy: 388, lx: 882,  ly: 392, lat: -28.017, lng: 153.43, anchor: 'start',  side: 'e', cats: ['bar', 'bottle', 'cafe'] },
-  { name: 'NEWCASTLE',  cx: 822,  cy: 452, lx: 857,  ly: 456, lat: -32.927, lng: 151.784, anchor: 'start',  side: 'e', cats: ['bar', 'bottle', 'cafe'] },
-  { name: 'SYDNEY',     cx: 813,  cy: 474, lx: 848,  ly: 478, lat: -33.868, lng: 151.209, anchor: 'start',  side: 'e', cats: ['bar', 'bottle', 'cafe'] },
-  { name: 'WELLINGTON', cx: 1034, cy: 486, lx: 1034, ly: 510, lat: -41.286, lng: 174.776, anchor: 'middle', side: 'e', cats: ['bar', 'bottle', 'cafe'] },
-  { name: 'AUCKLAND',   cx: 1034, cy: 372, lx: 1000, ly: 338, lat: -36.848, lng: 174.763, anchor: 'end',    side: 'e', cats: ['bar', 'bottle', 'cafe'] },
+  { name: 'BROOME',     cx: 379,  cy: 256, lx: 344,  ly: 260, lat: -17.955, lng: 122.236, anchor: 'end',    side: 'w', cats: ['bottle', 'cafe'] },
+  { name: 'PERTH',      cx: 287,  cy: 457, lx: 252,  ly: 461, lat: -31.953, lng: 115.857, anchor: 'end',    side: 'w', cats: ['bar', 'bottle', 'cafe'] },
+  { name: 'ADELAIDE',   cx: 614,  cy: 500, lx: 614,  ly: 524, lat: -34.929, lng: 138.6, anchor: 'middle', side: 's', cats: ['bar', 'bottle', 'cafe'] },
+  { name: 'MELBOURNE',  cx: 705,  cy: 541, lx: 705,  ly: 565, lat: -37.84, lng: 144.946, anchor: 'middle', side: 's', cats: ['bar', 'bottle', 'cafe'] },
+  { name: 'HOBART',     cx: 740,  cy: 614, lx: 740,  ly: 638, lat: -42.881, lng: 147.325, anchor: 'middle', side: 's', cats: ['bar', 'cafe'] },
+  { name: 'DARWIN',     cx: 503,  cy: 177, lx: 503,  ly: 160, lat: -12.463, lng: 130.845, anchor: 'middle', side: 'n', cats: ['bar', 'bottle', 'cafe'] },
+  { name: 'BRISBANE',   cx: 816,  cy: 385, lx: 851,  ly: 389, lat: -27.47, lng: 153.025, anchor: 'start',  side: 'e', cats: ['bar', 'bottle', 'cafe'] },
+  { name: 'GOLD COAST', cx: 833,  cy: 408, lx: 868,  ly: 412, lat: -28.017, lng: 153.43, anchor: 'start',  side: 'e', cats: ['bar', 'bottle', 'cafe'] },
+  { name: 'NEWCASTLE',  cx: 806,  cy: 467, lx: 841,  ly: 471, lat: -32.927, lng: 151.784, anchor: 'start',  side: 'e', cats: ['bar', 'bottle', 'cafe'] },
+  { name: 'SYDNEY',     cx: 793,  cy: 488, lx: 828,  ly: 492, lat: -33.868, lng: 151.209, anchor: 'start',  side: 'e', cats: ['bar', 'bottle', 'cafe'] },
+  { name: 'WELLINGTON', cx: 1036, cy: 502, lx: 1036, ly: 526, lat: -41.286, lng: 174.776, anchor: 'middle', side: 'e', cats: ['bar', 'bottle', 'cafe'] },
+  { name: 'AUCKLAND',   cx: 1029, cy: 386, lx: 995,  ly: 352, lat: -36.848, lng: 174.763, anchor: 'end',    side: 'e', cats: ['bar', 'bottle', 'cafe'] },
   { name: 'FIJI',       cx: 1064, cy: 200, lx: 1099, ly: 204, lat: -18.124, lng: 178.45, anchor: 'start',  side: 'e', cats: ['cafe'] },
   { name: 'COOK IS.',   cx: 1101, cy: 237, lx: 1101, ly: 285, lat: -21.229, lng: -159.776, anchor: 'middle', side: 'e', cats: ['bottle', 'cafe'] },
   { name: 'VANUATU',    cx: 1017, cy: 176, lx: 1017, ly: 157, lat: -17.741, lng: 168.315, anchor: 'middle', side: 'n', cats: ['bar', 'cafe'] },
@@ -109,6 +111,11 @@ function projectToGlobe(lat: number, lng: number, phi: number, theta: number, si
 
 const ICON = 16; // glyph size in viewBox units
 const GAP = 3;
+/* Shifts the flat map right by pulling the viewBox window left. Artwork and pin
+   coordinates are all absolute in the same 1200x800 space, so nudging the
+   window moves them together — a transform on the artwork alone would leave the
+   pins behind, and GSAP owns that transform for the scroll reveal anyway. */
+const MAP_SHIFT_X = 60;
 
 export default function NetworkMap(
   { anchorId = 'network-map', variant = 'map' }:
@@ -430,7 +437,7 @@ export default function NetworkMap(
             </div>
           ) : (
           /* Shared SVG canvas — map + pins (animated on scroll) */
-          <svg className={styles.svg} viewBox="0 0 1200 800" preserveAspectRatio="xMidYMid meet">
+          <svg className={styles.svg} viewBox={`${-MAP_SHIFT_X} 0 1200 800`} preserveAspectRatio="xMidYMid meet">
             <defs>
               {/* The artwork ships in the deep brand pink (#f83860). Retint it to
                   a lighter #ff9999 without flattening the 3D shading: drop to

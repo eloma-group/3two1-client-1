@@ -63,7 +63,9 @@
   padding-top: 28px; /* clears the pill's bottom edge + hover-bridge gap */
 }
 .dropInner {
-  min-width: 210px;
+  /* The box hugs its widest label (every .dropLink is nowrap). The floor is
+     only so a two-item menu still reads as a menu rather than a tooltip. */
+  min-width: 140px;
   display: flex;
   flex-direction: column;
   gap: 0.1rem;
@@ -76,8 +78,10 @@
 }
 .twoCol {
   display: grid;
-  grid-template-columns: repeat(2, minmax(150px, 1fr));
-  gap: 0.1rem 0.35rem;
+  /* max-content, not 1fr: equal columns stretched the short column out to match
+     'Demonio de los Andes' and left a dead strip down the right of the box. */
+  grid-template-columns: repeat(2, max-content);
+  gap: 0.1rem 0.5rem;
 }
 .dropLink {
   display: flex;
@@ -89,9 +93,12 @@
   color: var(--ink-700);
   text-align: left;
   white-space: nowrap;
-  transition: background 0.25s, color 0.25s, padding-left 0.25s var(--ease-out);
+  transition: background 0.25s, color 0.25s, padding 0.25s var(--ease-out);
 }
-.dropLink:hover { background: rgba(232, 68, 111, 0.1); color: var(--rose-500); padding-left: 1.1rem; }
+/* The hover slide trades padding-right for padding-left rather than adding it:
+   the box is content-sized now, so growing total padding would push the label
+   past the column's edge. */
+.dropLink:hover { background: rgba(232, 68, 111, 0.1); color: var(--rose-500); padding-left: 1.1rem; padding-right: 0.7rem; }
 
 /* Logo (left) */
 .brand { display: inline-flex; align-items: center; }

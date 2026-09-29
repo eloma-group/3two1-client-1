@@ -143,7 +143,7 @@ const SERVICES: Service[] = [
         items: [
           { imageUrl: '/images/giffard-mango-syrup.webp',   label: 'Mango Syrup',   imageAlt: 'Giffard Mango syrup bottle with ripe mangoes in a tropical scene',   scene: true },
           { imageUrl: '/images/giffard-coconut-syrup.webp', label: 'Coconut Syrup', imageAlt: 'Giffard Coconut syrup bottle with fresh coconuts and palm leaves',    scene: true },
-          { imageUrl: '/images/giffard-sugar-cane-syrup.webp',    label: 'Sugar Cane Syrup',    imageAlt: 'Giffard Sucre de Canne syrup bottle with cut sugar cane and raw sugar',           scene: true },
+          { imageUrl: '/images/giffard-grenadine-syrup.webp',     label: 'Grenadine Syrup',     imageAlt: 'Giffard Grenadine syrup bottle with pomegranate, raspberries and a red serve',  scene: true },
           { imageUrl: '/images/giffard-passion-fruit-syrup.webp', label: 'Passion Fruit Syrup', imageAlt: 'Giffard Fruit de la Passion syrup bottle with fresh passion fruit and a serve', scene: true },
         ],
       },
@@ -262,7 +262,7 @@ const SERVICES: Service[] = [
       'Pisco made the Peruvian way - grape spirit taken to proof in one distillation, with nothing added and nothing pulled back out. Built for the Pisco Sour and for everything that comes after it.',
     shortDescription: 'Pisco · Ica, Peru',
     imageUrl: '/images/demonio-de-los-andes-pisco-peru.webp',
-    imageAlt: 'Demonio de los Andes pisco bottle',
+    imageAlt: 'Demonio de los Andes Acholado pisco bottle with red grapes and a Pisco Sour on a sunlit bar',
     scene: true,
     country: 'Peru',
     accent: '#e0a23c',
@@ -278,7 +278,7 @@ const SERVICES: Service[] = [
       'Cachaca pressed from fresh-cut sugarcane rather than molasses - grassy, bright and faintly wild. The backbone of a Caipirinha worth drinking.',
     shortDescription: 'Cachaça · Brazil',
     imageUrl: '/images/thoquino-cachaca-brazil.webp',
-    imageAlt: 'Thoquino cachaça bottle',
+    imageAlt: 'Thoquino cachaça bottle with cut sugarcane, fresh limes and a Caipirinha',
     scene: true,
     country: 'Brazil',
     accent: '#59c97c',
@@ -482,8 +482,8 @@ function ServiceRow({
                       <>
                       <div style={{
                         display: 'grid',
-                        gridTemplateColumns: 'repeat(auto-fill, minmax(120px, 1fr))',
-                        gap: 'clamp(10px, 1.4vw, 18px)',
+                        gridTemplateColumns: 'repeat(auto-fill, minmax(84px, 1fr))',
+                        gap: 'clamp(7px, 0.95vw, 12px)',
                       }}>
                         {cat.items.map((item, gi) => (
                           <motion.div
@@ -495,9 +495,9 @@ function ServiceRow({
                             onMouseLeave={onSubLeave}
                             whileHover={{ y: -4 }}
                             style={{
-                              display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '10px',
-                              padding: 'clamp(12px, 1.4vw, 18px) 10px',
-                              borderRadius: '14px',
+                              display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '7px',
+                              padding: 'clamp(7px, 0.9vw, 11px) 7px',
+                              borderRadius: '10px',
                               background: 'rgba(232,68,111,0.05)',
                               border: '1px solid rgba(232,68,111,0.14)',
                               cursor: 'pointer',
@@ -508,13 +508,13 @@ function ServiceRow({
                               alt={item.imageAlt}
                               loading="eager"
                               style={{
-                                height: 'clamp(72px, 8vw, 108px)', width: 'auto',
+                                height: 'clamp(46px, 5vw, 68px)', width: 'auto',
                                 objectFit: 'contain',
                                 filter: 'drop-shadow(0 10px 20px rgba(0,0,0,0.18))',
                               }}
                             />
                             <span style={{
-                              fontSize: 'clamp(11px, 0.95vw, 13px)',
+                              fontSize: 'clamp(9px, 0.72vw, 11px)',
                               fontWeight: 600, letterSpacing: '-0.01em',
                               color: NAVY, textAlign: 'center', lineHeight: 1.3,
                             }}>
@@ -532,14 +532,14 @@ function ServiceRow({
                             style={{
                               display: 'flex', flexDirection: 'column',
                               alignItems: 'center', justifyContent: 'center', gap: '6px',
-                              padding: 'clamp(12px, 1.4vw, 18px) 10px',
-                              borderRadius: '14px',
+                              padding: 'clamp(7px, 0.9vw, 11px) 7px',
+                              borderRadius: '10px',
                               background: 'rgba(232,68,111,0.03)',
                               border: '1px dashed rgba(232,68,111,0.22)',
                             }}
                           >
                             <span style={{
-                              fontSize: 'clamp(11px, 0.95vw, 13px)',
+                              fontSize: 'clamp(9px, 0.72vw, 11px)',
                               fontWeight: 600, letterSpacing: '-0.01em',
                               color: 'rgba(var(--ink-rgb),0.55)',
                               textAlign: 'center', lineHeight: 1.3,
@@ -552,11 +552,11 @@ function ServiceRow({
                       </>
                     ) : (
                       <div style={{
-                        padding: 'clamp(14px, 1.6vw, 20px)',
-                        borderRadius: '14px',
+                        padding: 'clamp(9px, 1.1vw, 14px)',
+                        borderRadius: '10px',
                         border: '1px dashed rgba(232,68,111,0.22)',
                         background: 'rgba(232,68,111,0.03)',
-                        fontSize: 'clamp(11px, 0.95vw, 13px)',
+                        fontSize: 'clamp(9px, 0.72vw, 11px)',
                         fontWeight: 500, letterSpacing: '0.02em',
                         color: 'rgba(var(--ink-rgb),0.5)',
                       }}>
@@ -804,7 +804,7 @@ export function ServicesSection() {
           fontSize: 'clamp(100px,18vw,200px)', fontWeight: 900, lineHeight: 1,
           color: 'rgba(var(--ink-rgb),0.04)', letterSpacing: '-0.06em',
           pointerEvents: 'none', userSelect: 'none', zIndex: 0,
-        }}>07</div>
+        }}>09</div>
 
         {/* Left - eyebrow + large headline */}
         <div style={{
