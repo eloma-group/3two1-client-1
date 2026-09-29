@@ -14,12 +14,16 @@
 .track {
   position: relative;
   height: 300vh;
+  height: 300svh;
 }
 
 /* The panel that gets pinned to the viewport by GSAP while the map reveals. */
 .panel {
   position: relative;
+  /* svh keeps the pinned panel from resizing as mobile browser chrome
+     retracts, which would otherwise re-trigger the ScrollTrigger pin. */
   height: 100vh;
+  height: 100svh;
   overflow: hidden;
   background: var(--surface);
   display: flex;
@@ -34,6 +38,10 @@
   pointer-events: none;
   background: radial-gradient(60% 55% at 62% 52%, rgba(232, 68, 111, 0.16) 0%, rgba(232, 68, 111, 0) 60%);
 }
+
+/* The globe variant runs on the bare surface — no brand wash behind it. The
+   flat-map section above still gets the glow, which is why this is scoped. */
+.plain .pulse { display: none; }
 
 .svg {
   position: absolute;
@@ -83,7 +91,7 @@
 .heading .lineClip > span {
   display: block;
   font-family: var(--font-display, Georgia, serif);
-  font-size: clamp(2.2rem, 4.6vw, 4.4rem);
+  font-size: clamp(2.2rem, min(4.6vw, 7svh), 4.4rem);
   line-height: 1.05;
   letter-spacing: -0.015em;
 }
@@ -178,6 +186,22 @@
   .text { width: 100%; }
 }
 
+/* Short viewports - laptops at 1440x790, and any phone or tablet turned
+   sideways - cannot carry the full block inside a 100svh pinned panel, so the
+   copy is trimmed to its headline, rule and paragraph. */
+@media (max-height: 700px) {
+  .heading .lineClip > span { font-size: clamp(1.6rem, 4.6svh, 2.6rem); }
+  .divider { margin: 1rem 0 0.9rem; }
+  .para { font-size: 14px; line-height: 1.55; }
+  .good { margin-top: 1.2rem; font-size: 1.1rem; }
+  .contact { margin-top: 1.1rem; gap: 1.4rem; }
+  .legend { display: none; }
+}
+@media (max-height: 560px) {
+  .good, .contact, .scroll { display: none; }
+  .eyebrow { font-size: 0.66rem; }
+}
+
 /* ── Globe variant (cobe) ─────────────────────────────────────────────── */
 .globeWrap {
   position: absolute;
@@ -185,15 +209,21 @@
   z-index: 1;
   display: flex;
   align-items: center;
-  justify-content: center;
-  /* Dead centre of the panel. The globe sits below .text (z-index 1 vs 2), so
-     the copy stays readable where the two overlap. */
+  /* Parked against the right edge, not centred in the panel: laptop viewports
+     are wide but short, and dead-centring a globe this size drops a third of it
+     straight on top of the headline. The left padding still clears .text's
+     width (min(46%, 620px)) so the two columns can never meet. */
+  justify-content: flex-end;
+  padding-left: min(46%, 620px);
+  padding-right: min(3vw, 44px);
   pointer-events: none;
 }
 /* Square stage: the projection maths assumes a square canvas, centred. */
 .globeStage {
   position: relative;
-  width: min(78vw, 90vh, 880px);
+  /* Capped by the free width AND by viewport height - a MacBook is ~1440x790,
+     where a height-only cap still produced a globe taller than the panel. */
+  width: min(56vw, 88svh, 880px);
   aspect-ratio: 1;
 }
 /* The wrapper is pointer-events:none so the copy stays selectable through it;
@@ -211,9 +241,10 @@
 /* Positioned each frame with left/top (never transform — GSAP owns the
    wrapper's transform for the scroll reveal). */
 .globePin { position: absolute; left: 0; top: 0; will-change: left, top; }
+/* The transform is set per frame in place() — it carries both the side the
+   label hangs off and any nudge needed to clear a neighbour. */
 .globePinInner {
   position: absolute;
-  transform: translate(-50%, -135%);
   white-space: nowrap;
   display: flex;
   flex-direction: column;
@@ -232,6 +263,45 @@
 .globeIcon { width: 10px; height: 10px; fill: rgb(var(--ink-rgb)); }
 
 @media (max-width: 860px) {
-  .globeWrap { justify-content: center; padding-left: 0; align-items: flex-end; padding-bottom: 8vh; }
-  .globeStage { width: min(94vw, 64vh); }
+  /* Phone: the globe stops floating over the copy and takes the bottom band of
+     the panel instead, so the two never collide. Still absolutely positioned —
+     making it a flow item fights the pinned panel's fixed height. Scoped to
+     .plain so the flat-map variant keeps its full-bleed SVG. */
+  .plain .panel { align-items: flex-start; padding-top: 84px; }  /* clears the fixed navbar */
+  /* The flourish line goes, so the globe below gets a usable size — the same
+     trade the short-viewport rule already makes, just at phone widths. */
+  .plain .good { display: none; }
+  .globeWrap {
+    top: auto;
+    height: 46svh;
+    padding: 0 0 9svh;   /* room for the legend strip below */
+    justify-content: center;
+    align-items: flex-end;
+  }
+  .globeStage { width: min(90vw, 38svh); }
+
+  /* The legend stops covering the globe: it becomes a strip along the bottom. */
+  .plain .legend {
+    right: auto;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: clamp(14px, 2.5svh, 24px);
+    flex-direction: row;
+    gap: 14px;
+    padding: 9px 14px;
+    border-radius: 12px;
+  }
+  .plain .legend span { font-size: 10px; gap: 7px; letter-spacing: 0.06em; white-space: nowrap; }
+
+  /* Below 860px the globe never gets past ~380px, and fifteen names will not
+     fit around an Australia that size whatever the spacing — they land on each
+     other. The flat map directly above already names every city at full size,
+     so here the globe keeps its markers and drops the labels. */
+  .globePinInner { display: none; }
+}
+
+@media (max-width: 620px) {
+  /* Phone heights can't carry the full copy AND a globe worth looking at.
+     Both lines repeat in the Contact section and the footer below. */
+  .plain .contact { display: none; }
 }

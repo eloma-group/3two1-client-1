@@ -3,6 +3,7 @@ import createGlobe from 'cobe';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import styles from './NetworkMap.module.css';
+import { AU_LAND_DOTS } from '../data/auLandDots';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -18,30 +19,35 @@ gsap.registerPlugin(ScrollTrigger);
    scale, closer than one icon row, so each pair is nudged a few units apart to
    stay legible. */
 type Anchor = 'start' | 'middle' | 'end';
+/* Which way a globe label hangs off its point. The flat map fans its labels out
+   with hand-placed lx/ly; the globe can't, because the points move as it spins,
+   so each pin declares a side and the positions are resolved every frame. */
+type Side = 'n' | 's' | 'e' | 'w';
 type Cat = 'bar' | 'bottle' | 'cafe';
 interface Pin {
   name: string;
   cx: number; cy: number;              // icon cluster centre (on the flat map)
   lat: number; lng: number;            // real coordinates (used by the globe)
   lx: number; ly: number; anchor: Anchor; // label position (off the map)
+  side: Side;                          // which way the label sits on the globe
   cats: Cat[];
 }
 const PINS: Pin[] = [
-  { name: 'BROOME',     cx: 370,  cy: 229, lx: 335,  ly: 233, lat: -17.955, lng: 122.236, anchor: 'end',    cats: ['bottle', 'cafe'] },
-  { name: 'PERTH',      cx: 273,  cy: 441, lx: 238,  ly: 445, lat: -31.953, lng: 115.857, anchor: 'end',    cats: ['bar', 'bottle', 'cafe'] },
-  { name: 'ADELAIDE',   cx: 620,  cy: 486, lx: 620,  ly: 510, lat: -34.929, lng: 138.6, anchor: 'middle', cats: ['bar', 'bottle', 'cafe'] },
-  { name: 'MELBOURNE',  cx: 717,  cy: 530, lx: 717,  ly: 554, lat: -37.84, lng: 144.946, anchor: 'middle', cats: ['bar', 'bottle', 'cafe'] },
-  { name: 'HOBART',     cx: 740,  cy: 615, lx: 740,  ly: 639, lat: -42.881, lng: 147.325, anchor: 'middle', cats: ['bar', 'cafe'] },
-  { name: 'DARWIN',     cx: 502,  cy: 146, lx: 502,  ly: 129, lat: -12.463, lng: 130.845, anchor: 'middle', cats: ['bar', 'bottle', 'cafe'] },
-  { name: 'BRISBANE',   cx: 841,  cy: 366, lx: 876,  ly: 370, lat: -27.47, lng: 153.025, anchor: 'start',  cats: ['bar', 'bottle', 'cafe'] },
-  { name: 'GOLD COAST', cx: 847,  cy: 388, lx: 882,  ly: 392, lat: -28.017, lng: 153.43, anchor: 'start',  cats: ['bar', 'bottle', 'cafe'] },
-  { name: 'NEWCASTLE',  cx: 822,  cy: 452, lx: 857,  ly: 456, lat: -32.927, lng: 151.784, anchor: 'start',  cats: ['bar', 'bottle', 'cafe'] },
-  { name: 'SYDNEY',     cx: 813,  cy: 474, lx: 848,  ly: 478, lat: -33.868, lng: 151.209, anchor: 'start',  cats: ['bar', 'bottle', 'cafe'] },
-  { name: 'WELLINGTON', cx: 1034, cy: 486, lx: 1034, ly: 510, lat: -41.286, lng: 174.776, anchor: 'middle', cats: ['bar', 'bottle', 'cafe'] },
-  { name: 'AUCKLAND',   cx: 1034, cy: 372, lx: 1000, ly: 338, lat: -36.848, lng: 174.763, anchor: 'end',    cats: ['bar', 'bottle', 'cafe'] },
-  { name: 'FIJI',       cx: 1064, cy: 200, lx: 1099, ly: 204, lat: -18.124, lng: 178.45, anchor: 'start',  cats: ['cafe'] },
-  { name: 'COOK IS.',   cx: 1101, cy: 237, lx: 1101, ly: 285, lat: -21.229, lng: -159.776, anchor: 'middle', cats: ['bottle', 'cafe'] },
-  { name: 'VANUATU',    cx: 1017, cy: 176, lx: 1017, ly: 157, lat: -17.741, lng: 168.315, anchor: 'middle', cats: ['bar', 'cafe'] },
+  { name: 'BROOME',     cx: 370,  cy: 229, lx: 335,  ly: 233, lat: -17.955, lng: 122.236, anchor: 'end',    side: 'w', cats: ['bottle', 'cafe'] },
+  { name: 'PERTH',      cx: 273,  cy: 441, lx: 238,  ly: 445, lat: -31.953, lng: 115.857, anchor: 'end',    side: 'w', cats: ['bar', 'bottle', 'cafe'] },
+  { name: 'ADELAIDE',   cx: 620,  cy: 486, lx: 620,  ly: 510, lat: -34.929, lng: 138.6, anchor: 'middle', side: 's', cats: ['bar', 'bottle', 'cafe'] },
+  { name: 'MELBOURNE',  cx: 717,  cy: 530, lx: 717,  ly: 554, lat: -37.84, lng: 144.946, anchor: 'middle', side: 's', cats: ['bar', 'bottle', 'cafe'] },
+  { name: 'HOBART',     cx: 740,  cy: 615, lx: 740,  ly: 639, lat: -42.881, lng: 147.325, anchor: 'middle', side: 's', cats: ['bar', 'cafe'] },
+  { name: 'DARWIN',     cx: 502,  cy: 146, lx: 502,  ly: 129, lat: -12.463, lng: 130.845, anchor: 'middle', side: 'n', cats: ['bar', 'bottle', 'cafe'] },
+  { name: 'BRISBANE',   cx: 841,  cy: 366, lx: 876,  ly: 370, lat: -27.47, lng: 153.025, anchor: 'start',  side: 'e', cats: ['bar', 'bottle', 'cafe'] },
+  { name: 'GOLD COAST', cx: 847,  cy: 388, lx: 882,  ly: 392, lat: -28.017, lng: 153.43, anchor: 'start',  side: 'e', cats: ['bar', 'bottle', 'cafe'] },
+  { name: 'NEWCASTLE',  cx: 822,  cy: 452, lx: 857,  ly: 456, lat: -32.927, lng: 151.784, anchor: 'start',  side: 'e', cats: ['bar', 'bottle', 'cafe'] },
+  { name: 'SYDNEY',     cx: 813,  cy: 474, lx: 848,  ly: 478, lat: -33.868, lng: 151.209, anchor: 'start',  side: 'e', cats: ['bar', 'bottle', 'cafe'] },
+  { name: 'WELLINGTON', cx: 1034, cy: 486, lx: 1034, ly: 510, lat: -41.286, lng: 174.776, anchor: 'middle', side: 'e', cats: ['bar', 'bottle', 'cafe'] },
+  { name: 'AUCKLAND',   cx: 1034, cy: 372, lx: 1000, ly: 338, lat: -36.848, lng: 174.763, anchor: 'end',    side: 'e', cats: ['bar', 'bottle', 'cafe'] },
+  { name: 'FIJI',       cx: 1064, cy: 200, lx: 1099, ly: 204, lat: -18.124, lng: 178.45, anchor: 'start',  side: 'e', cats: ['cafe'] },
+  { name: 'COOK IS.',   cx: 1101, cy: 237, lx: 1101, ly: 285, lat: -21.229, lng: -159.776, anchor: 'middle', side: 'e', cats: ['bottle', 'cafe'] },
+  { name: 'VANUATU',    cx: 1017, cy: 176, lx: 1017, ly: 157, lat: -17.741, lng: 168.315, anchor: 'middle', side: 'n', cats: ['bar', 'cafe'] },
 ];
 
 /* Channel glyphs (24×24) — same shapes as the site's legend icons. */
@@ -72,6 +78,11 @@ function CatGlyph({ cat }: { cat: Cat }) {
      globe radius = 0.425 x canvas size, centred in the canvas,
      theta is used as given, and the effective rotation is phi + PI/2.        */
 const GLOBE_R_RATIO = 0.425;
+/* cobe draws the sphere at `scale` x its natural size and lets the canvas crop
+   it, so 1 / (2 x GLOBE_R_RATIO) = 1.176 is the point where the sphere exactly
+   fills the canvas. This sits just under it: the largest Australia that still
+   leaves a whole, round globe inside the frame. */
+const GLOBE_SCALE = 1.16;
 /* Vertical offset of a point on the centre meridian is sin(lat)cos(theta) -
    cos(lat)sin(theta), i.e. zero when theta = lat. The network sits around 30S,
    so this tilt lifts it to the middle of the globe instead of the bottom. */
@@ -92,7 +103,7 @@ function projectToGlobe(lat: number, lng: number, phi: number, theta: number, si
   const x = vx * cp + vz * sp;
   const y = vx * sp * st + vy * ct - vz * cp * st;
   const z = -vx * sp * ct + vy * st + vz * cp * ct; // > 0 = facing the camera
-  const r = size * GLOBE_R_RATIO;
+  const r = size * GLOBE_R_RATIO * GLOBE_SCALE;
   return { x: size / 2 + x * r, y: size / 2 - y * r, z };
 }
 
@@ -140,17 +151,71 @@ export default function NetworkMap(
     let dragStartRot = 0;
     const DRAG_RADIANS_PER_PX = 1 / 200; // matches cobe's own interactive demo
 
+    /* A label block is roughly this tall, so two on the same side of the globe
+       need at least this much daylight between them; only pins in the same
+       vertical band can collide, hence the x test. */
+    /* Measured, not assumed: on a phone the labels drop their icon row and are
+       half as tall, and packing them as if they were still 27px tall would push
+       them apart far more than they need. */
+    let labelH = 27;
+    const measure = () => {
+      const inner = pinEls[0]?.firstElementChild as HTMLElement | undefined;
+      if (inner?.offsetHeight) labelH = inner.offsetHeight + 4;
+    };
+    /* How far apart two pins have to be horizontally before they stop being
+       each other's problem. Tied to the globe's size: a fixed pixel value is
+       most of a phone-sized globe, which cascades nudges down the whole coast. */
+    const xNear = () => Math.max(46, size * 0.1);
+    const OFFSET: Record<string, string> = {
+      n: 'translate(-50%, -135%)',
+      s: 'translate(-50%, 34%)',
+      e: 'translate(12px, -50%)',
+      w: 'translate(calc(-100% - 12px), -50%)',
+    };
+
     const place = (p: number) => {
-      for (const el of pinEls) {
+      const marks = pinEls.map((el) => {
         const lat = Number(el.dataset.lat), lng = Number(el.dataset.lng);
         const { x, y, z } = projectToGlobe(lat, lng, p, GLOBE_THETA, size);
-        el.style.left = `${x}px`;
-        el.style.top = `${y}px`;
-        const inner = el.firstElementChild as HTMLElement | null;
+        /* A label hanging off the outer edge would run past the stage — and
+           the reader can spin the globe, so this has to be decided per frame
+           rather than baked into the data. */
+        let side = el.dataset.side || 'n';
+        if (side === 'e' && x > size - 130) side = 'w';
+        else if (side === 'w' && x < 130) side = 'e';
+        return { el, x, y, z, side, dy: 0 };
+      });
+
+      /* Brisbane/Gold Coast and Newcastle/Sydney are about half a degree apart:
+         no globe size separates them, so the lower one of any overlapping pair
+         is pushed down until it clears. Resolved top-down, per side. */
+      for (const side of ['n', 's', 'e', 'w']) {
+        const group = marks
+          .filter((m) => m.side === side && m.z > 0.02)
+          .sort((a, b) => a.y - b.y);
+        for (let i = 0; i < group.length; i++) {
+          const m = group[i];
+          let y = m.y;
+          for (let j = 0; j < i; j++) {
+            const prev = group[j];
+            if (Math.abs(prev.x - m.x) > xNear()) continue;
+            const prevY = prev.y + prev.dy;
+            if (y - prevY < labelH) y = prevY + labelH;
+          }
+          m.dy = y - m.y;
+        }
+      }
+
+      for (const m of marks) {
+        m.el.style.left = `${m.x}px`;
+        m.el.style.top = `${m.y}px`;
+        const inner = m.el.firstElementChild as HTMLElement | null;
         if (inner) {
+          inner.style.transform =
+            m.dy ? `translateY(${m.dy}px) ${OFFSET[m.side]}` : OFFSET[m.side];
           // fade out across the limb instead of popping at the horizon
-          inner.style.opacity = String(Math.max(0, Math.min(1, z * 6)));
-          inner.style.visibility = z > 0.02 ? 'visible' : 'hidden';
+          inner.style.opacity = String(Math.max(0, Math.min(1, m.z * 6)));
+          inner.style.visibility = m.z > 0.02 ? 'visible' : 'hidden';
         }
       }
     };
@@ -158,6 +223,7 @@ export default function NetworkMap(
     const build = () => {
       globe?.destroy();
       size = canvasEl.offsetWidth;
+      measure();
       const dpr = Math.min(window.devicePixelRatio || 1, 2);
       globe = createGlobe(canvasEl, {
         devicePixelRatio: dpr,
@@ -165,14 +231,28 @@ export default function NetworkMap(
         height: size * dpr,
         phi: GLOBE_PHI + rot,
         theta: GLOBE_THETA,
+        scale: GLOBE_SCALE,
         dark: 0,
         diffuse: 1.1,
+        /* cobe's world map is off: mapSamples can't be zeroed (it falls back to
+           10,000 on any falsy value) so the dots are drawn at effectively zero
+           brightness instead, and Australia is drawn from AU_LAND_DOTS below. */
         mapSamples: 15000,
-        mapBrightness: 5.6,
-        baseColor: [1, 0.6, 0.6],        // #ff9999, matching the flat map
-        markerColor: [0.72, 0.12, 0.32],
-        glowColor: [1, 0.78, 0.78],
-        markers: PINS.map((pin) => ({ location: [pin.lat, pin.lng], size: 0.016 })),
+        mapBrightness: 0.0001,
+        mapBaseBrightness: 0,
+        baseColor: [0.86, 0.86, 0.87],   // neutral grey — the copy carries the colour here
+        markerColor: [0.24, 0.24, 0.26],
+        glowColor: [0.92, 0.92, 0.93],
+        // Markers sit on the surface, not floating above it, so the land reads flat.
+        markerElevation: 0,
+        markers: [
+          ...AU_LAND_DOTS.map(([lat, lng]) => ({ location: [lat, lng] as [number, number], size: 0.013 })),
+          ...PINS.map((pin) => ({
+            location: [pin.lat, pin.lng] as [number, number],
+            size: 0.02,
+            color: [0.1, 0.1, 0.12] as [number, number, number],
+          })),
+        ],
       });
       place(GLOBE_PHI + rot);
     };
@@ -282,7 +362,11 @@ export default function NetworkMap(
   }, []);
 
   return (
-    <div className={styles.wrap} id={anchorId} ref={root}>
+    <div
+      className={variant === 'globe' ? `${styles.wrap} ${styles.plain}` : styles.wrap}
+      id={anchorId}
+      ref={root}
+    >
       <div className={styles.track} ref={track}>
         <div className={styles.panel} ref={panel}>
           <div className={styles.pulse} aria-hidden="true" />
@@ -327,6 +411,7 @@ export default function NetworkMap(
                     data-globe-pin
                     data-lat={pin.lat}
                     data-lng={pin.lng}
+                    data-side={pin.side}
                     className={styles.globePin}
                   >
                     <div className={styles.globePinInner} title={pin.name}>
