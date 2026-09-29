@@ -132,7 +132,7 @@ const SERVICES: Service[] = [
         note: '35 more liqueurs',
         items: [
           { imageUrl: '/images/giffard-abricot-du-roussillon-apricot-liqueur.webp', label: 'Apricot Liqueur', imageAlt: 'Giffard Abricot du Roussillon apricot liqueur bottle in a French terroir scene', scene: true },
-          { imageUrl: '/images/giffard-lichi-li-lychee-liqueur.webp',               label: 'Lichi Liqueur',   imageAlt: 'Giffard Lichi-Li lychee liqueur bottle with fresh lychees and blossom',           scene: true },
+          { imageUrl: '/images/giffard-lichi-li-lychee-liqueur.webp',               label: 'Litchi Liqueur',   imageAlt: 'Giffard Litchi-Li litchi liqueur bottle with fresh litchis and blossom',           scene: true },
           { imageUrl: '/images/giffard-watermelon-liqueur.webp',                    label: 'Watermelon Liqueur', imageAlt: 'Giffard Watermelon liqueur bottle with fresh watermelon at Angers',              scene: true },
           { imageUrl: '/images/giffard-caribbean-pineapple-liqueur.webp',           label: 'Caribbean Pineapple', imageAlt: 'Giffard Caribbean Pineapple liqueur bottle with fresh pineapple and palms', scene: true },
         ],
@@ -143,7 +143,6 @@ const SERVICES: Service[] = [
         items: [
           { imageUrl: '/images/giffard-mango-syrup.webp',   label: 'Mango Syrup',   imageAlt: 'Giffard Mango syrup bottle with ripe mangoes in a tropical scene',   scene: true },
           { imageUrl: '/images/giffard-coconut-syrup.webp', label: 'Coconut Syrup', imageAlt: 'Giffard Coconut syrup bottle with fresh coconuts and palm leaves',    scene: true },
-          { imageUrl: '/images/giffard-grenadine-syrup.webp',     label: 'Grenadine Syrup',     imageAlt: 'Giffard Grenadine syrup bottle with pomegranate, raspberries and a red serve',   scene: true },
           { imageUrl: '/images/giffard-sugar-cane-syrup.webp',    label: 'Sugar Cane Syrup',    imageAlt: 'Giffard Sucre de Canne syrup bottle with cut sugar cane and raw sugar',           scene: true },
           { imageUrl: '/images/giffard-passion-fruit-syrup.webp', label: 'Passion Fruit Syrup', imageAlt: 'Giffard Fruit de la Passion syrup bottle with fresh passion fruit and a serve', scene: true },
         ],
@@ -776,7 +775,7 @@ export function ServicesSection() {
         {/* Left - eyebrow + large headline */}
         <div style={{
           position: 'relative', zIndex: 1,
-          padding: 'clamp(28px,3.5vw,44px) clamp(24px,5vw,80px)',
+          padding: 'clamp(24px, min(3.5vw, 4.4svh), 44px) clamp(24px,5vw,80px)',
           display: 'flex', flexDirection: 'column', justifyContent: 'center', gap: '14px',
         }}>
           {/* Eyebrow */}
@@ -808,7 +807,7 @@ export function ServicesSection() {
                 transition={{ duration: 0.7, delay: i * 0.1, ease }}
                 style={{
                   fontFamily: "'Inter', system-ui, sans-serif",
-                  fontSize: 'clamp(36px, 5vw, 64px)',
+                  fontSize: 'clamp(32px, min(5vw, 7.6svh), 64px)',
                   fontWeight: 800, lineHeight: 1.06, letterSpacing: '-0.045em',
                   color: i === 0 ? NAVY : undefined,
                   // Gradient is clipped to the text, so the box must hug the
@@ -880,7 +879,13 @@ export function ServicesSection() {
           style={{
             position: 'sticky', top: 'auto', bottom: 0,
             alignSelf: 'end',
-            width: '100%', aspectRatio: '1 / 1',
+            /* A square, always. Clamping the HEIGHT cropped the photo top and
+               bottom, because overflow is hidden and the image fills the box;
+               clamping the width shrinks the square instead, so a short laptop
+               gets a smaller frame rather than a cut one. Above ~820px tall the
+               cap never binds and the panel is the full column width. */
+            width: '100%', aspectRatio: '1 / 1', maxWidth: '88svh',
+            marginLeft: 'auto',
             overflow: 'hidden',
             display: 'none',
           }}
