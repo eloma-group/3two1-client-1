@@ -29,7 +29,9 @@ const PLACES = [
 ];
 
 /* The same brand strip the home page runs, rather than the names set in type —
-   on a page about the portfolio the marks carry more than the words do. */
+   on a page about the portfolio the marks carry more than the words do.
+   Demonio de los Andes and Thoquino sit out until their marks exist — the
+   houses grid below still runs the full nine. */
 const HOUSE_LOGOS = [
   { src: '/images/brandstrip-black-tears.webp',  alt: 'Black Tears' },
   { src: '/images/brandstrip-worthy-park.webp',  alt: 'Worthy Park' },
@@ -38,8 +40,6 @@ const HOUSE_LOGOS = [
   { src: '/images/brandstrip-burnt-ends.webp',   alt: 'Burnt Ends' },
   { src: '/images/brandstrip-san-matias.webp',   alt: 'San Matías' },
   { src: '/images/brandstrip-whiskey-row.webp',  alt: 'Whiskey Row' },
-  { src: '/images/brandstrip-demonio-de-los-andes.webp', alt: 'Demonio de los Andes' },
-  { src: '/images/brandstrip-thoquino.webp',             alt: 'Thoquino Cachaça' },
 ];
 
 /* The portfolio is the proof, so the houses get their own grid —

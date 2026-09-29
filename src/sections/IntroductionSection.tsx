@@ -33,6 +33,9 @@ const NAVY  = '#1d1015'
 const ease  = [0.16, 1, 0.3, 1] as [number, number, number, number]
 
 /* ── Data ───────────────────────────────────────────────────────── */
+/* Demonio de los Andes and Thoquino are absent on purpose: the strip runs
+   brand marks, and neither house publishes one we can use. They carry their
+   full weight everywhere the range is set in type or shown as bottles. */
 const COUNTRIES = [
   { src: '/images/brandstrip-black-tears.webp',  name: 'Black Tears',  link: 'https://blacktears.com' },
   { src: '/images/brandstrip-giffard.webp',      name: 'Giffard',      link: 'https://www.giffard.com' },
@@ -41,8 +44,6 @@ const COUNTRIES = [
   { src: '/images/brandstrip-worthy-park.webp',  name: 'Worthy Park',  link: 'https://worthyparkestate.com' },
   { src: '/images/brandstrip-whiskey-row.webp',  name: 'Whiskey Row',  link: 'https://whiskeyrowbourbon.com' },
   { src: '/images/brandstrip-san-matias.webp',   name: 'San Matías',   link: 'https://www.sanmatias.com' },
-  { src: '/images/brandstrip-demonio-de-los-andes.webp', name: 'Demonio de los Andes', link: '/#brands' },
-  { src: '/images/brandstrip-thoquino.webp',             name: 'Thoquino Cachaça',     link: '/#brands' },
 ]
 
 // Repeat the logos so one "half" of the track is always wider than the
