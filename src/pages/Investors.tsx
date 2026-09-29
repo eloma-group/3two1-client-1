@@ -28,9 +28,16 @@ const PLACES = [
   { name: 'Adelaide' },
 ];
 
-const HOUSE_NAMES = [
-  'Black Tears', 'Worthy Park', 'Giffard', 'Pueblo Viejo',
-  'Burnt Ends', 'San Matías', 'Whiskey Row',
+/* The same brand strip the home page runs, rather than the names set in type —
+   on a page about the portfolio the marks carry more than the words do. */
+const HOUSE_LOGOS = [
+  { src: '/images/brandstrip-black-tears.webp',  alt: 'Black Tears' },
+  { src: '/images/brandstrip-worthy-park.webp',  alt: 'Worthy Park' },
+  { src: '/images/brandstrip-giffard.webp',      alt: 'Giffard' },
+  { src: '/images/brandstrip-pueblo-viejo.webp', alt: 'Pueblo Viejo' },
+  { src: '/images/brandstrip-burnt-ends.webp',   alt: 'Burnt Ends' },
+  { src: '/images/brandstrip-san-matias.webp',   alt: 'San Matías' },
+  { src: '/images/brandstrip-whiskey-row.webp',  alt: 'Whiskey Row' },
 ];
 
 /* The portfolio is the proof, so the seven houses get their own grid —
@@ -349,7 +356,7 @@ export default function Investors() {
 
       {/* ══ Houses on a loop ══ */}
       <div className={styles.rail}>
-        <Marquee items={HOUSE_NAMES} className={styles.railText} />
+        <Marquee items={HOUSE_LOGOS} className={styles.railText} />
       </div>
 
       {/* ══ The spine ══ */}

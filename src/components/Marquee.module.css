@@ -9,6 +9,8 @@
   align-items: center;
   flex-shrink: 0;
   gap: 0;
+  min-width: 100%;
+  justify-content: space-around;
   animation: scroll 32s linear infinite;
 }
 .reverse .track { animation-direction: reverse; }
@@ -26,6 +28,21 @@
 }
 .dot { color: var(--rose-500); font-style: normal; font-size: 0.6em; }
 
+/* Logo cargo. The strips are square with the mark inset, so they are sized by
+   height and let their own padding do the spacing work. */
+.logo {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  padding-inline: clamp(0.6rem, 1.8vw, 1.6rem);
+}
+.logo img {
+  height: clamp(58px, 7vw, 96px);
+  width: auto;
+  display: block;
+  object-fit: contain;
+}
+
 @keyframes scroll {
-  to { transform: translateX(-50%); }
+  to { transform: translateX(-100%); }
 }
