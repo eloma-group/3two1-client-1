@@ -24,7 +24,7 @@ export default function Marquee({ items, reverse, className = '' }: Props) {
           </span>
         ) : (
           <span className={styles.logo} key={i}>
-            <img src={item.src} alt="" />
+            <img src={item.src} alt="" onError={(e) => { e.currentTarget.style.visibility = 'hidden' }} />
           </span>
         ),
       )}

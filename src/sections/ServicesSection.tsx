@@ -252,6 +252,38 @@ const SERVICES: Service[] = [
       },
     ],
   },
+  {
+    id: 'demonio-de-los-andes',
+    number: '08',
+    preLabel: 'PISCO',
+    name: 'Demonio de los Andes',
+    title: 'Peru, In A Single Pass.',
+    description:
+      'Pisco made the Peruvian way - grape spirit taken to proof in one distillation, with nothing added and nothing pulled back out. Built for the Pisco Sour and for everything that comes after it.',
+    shortDescription: 'Pisco · Ica, Peru',
+    imageUrl: '/images/demonio-de-los-andes-pisco-peru.webp',
+    imageAlt: 'Demonio de los Andes pisco bottle',
+    scene: true,
+    country: 'Peru',
+    accent: '#e0a23c',
+    bg: 'radial-gradient(120% 100% at 58% 22%, #59401a 0%, #2d2010 52%, #0c0805 100%)',
+  },
+  {
+    id: 'thoquino',
+    number: '09',
+    preLabel: 'CACHAÇA',
+    name: 'Thoquino Cachaça',
+    title: 'Cane, Straight From The Field.',
+    description:
+      'Cachaca pressed from fresh-cut sugarcane rather than molasses - grassy, bright and faintly wild. The backbone of a Caipirinha worth drinking.',
+    shortDescription: 'Cachaça · Brazil',
+    imageUrl: '/images/thoquino-cachaca-brazil.webp',
+    imageAlt: 'Thoquino cachaça bottle',
+    scene: true,
+    country: 'Brazil',
+    accent: '#59c97c',
+    bg: 'radial-gradient(120% 100% at 58% 22%, #1b4a2b 0%, #0e2818 52%, #04100a 100%)',
+  },
 ]
 
 /* ── Single service row ─────────────────────────────────────────── */
@@ -644,6 +676,7 @@ function ImagePanel({ index, override }: { index: number; override?: GalleryItem
               src={imgUrl}
               alt={imgAlt}
               loading="eager"
+              onError={(e) => { e.currentTarget.style.visibility = 'hidden' }}
               style={{
                 width: '100%', height: '100%',
                 objectFit: 'cover', objectPosition: 'center',
@@ -654,6 +687,7 @@ function ImagePanel({ index, override }: { index: number; override?: GalleryItem
               src={imgUrl}
               alt={imgAlt}
               loading="eager"
+              onError={(e) => { e.currentTarget.style.visibility = 'hidden' }}
               style={{
                 maxWidth: '100%', maxHeight: '100%',
                 width: 'auto', height: 'auto',
@@ -797,7 +831,7 @@ export function ServicesSection() {
 
           {/* Display headline */}
           <div>
-            {(['Seven Houses.', 'One Portfolio.'] as const).map((line, i) => (
+            {(['Nine Houses.', 'One Portfolio.'] as const).map((line, i) => (
               <motion.div
                 key={line}
                 className={i === 0 ? undefined : 'gradient-text'}
@@ -842,7 +876,7 @@ export function ServicesSection() {
                 lineHeight: 1.85, margin: 0,
               }}
             >
-              Seven houses placed by hand across the region - coast to coast,
+              Our brands placed by hand across the region - coast to coast,
               both sides of the Tasman, out to the Pacific.
             </motion.p>
           </div>

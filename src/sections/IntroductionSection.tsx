@@ -41,9 +41,11 @@ const COUNTRIES = [
   { src: '/images/brandstrip-worthy-park.webp',  name: 'Worthy Park',  link: 'https://worthyparkestate.com' },
   { src: '/images/brandstrip-whiskey-row.webp',  name: 'Whiskey Row',  link: 'https://whiskeyrowbourbon.com' },
   { src: '/images/brandstrip-san-matias.webp',   name: 'San Matías',   link: 'https://www.sanmatias.com' },
+  { src: '/images/brandstrip-demonio-de-los-andes.webp', name: 'Demonio de los Andes', link: '/#brands' },
+  { src: '/images/brandstrip-thoquino.webp',             name: 'Thoquino Cachaça',     link: '/#brands' },
 ]
 
-// Repeat the 7 logos so one "half" of the track is always wider than the
+// Repeat the logos so one "half" of the track is always wider than the
 // viewport → the GSAP -50% loop stays seamless on any screen size.
 const STRIP = [...COUNTRIES, ...COUNTRIES, ...COUNTRIES]
 
@@ -126,7 +128,7 @@ export function IntroductionSection() {
             margin: 0,
           }}>
             {([
-              { text: 'Seven Houses,',   color: 'rgb(var(--ink-rgb))',  weight: 800, italic: false, gradient: false },
+              { text: 'Nine Houses,',   color: 'rgb(var(--ink-rgb))',  weight: 800, italic: false, gradient: false },
               { text: 'One Portfolio,',  color: undefined,            weight: 700, italic: true,  gradient: true  },
               { text: 'Built for Trade.', color: undefined,            weight: 800, italic: false, gradient: true  },
             ] as const).map((line, i) => (
@@ -169,7 +171,7 @@ export function IntroductionSection() {
             }}
           >
             Curated imports. Trade-first service. A tight portfolio built for bartenders.
-            3two1 brings seven of the world's most respected drinks houses under one roof -
+            3two1 brings nine of the world's most respected drinks houses under one roof -
             from blue-agave tequila to coffee-spiced rum - delivered to the best bars,
             bottle shops and cafés, coast to coast.
           </motion.p>
@@ -231,6 +233,7 @@ export function IntroductionSection() {
                   <img
                     src={c.src}
                     alt={c.name}
+                    onError={(e) => { e.currentTarget.style.visibility = 'hidden' }}
                     style={{ width: '100%', height: '100%', objectFit: 'contain', display: 'block' }}
                   />
                 </div>
@@ -262,6 +265,7 @@ export function IntroductionSection() {
                     <img
                       src={c.src}
                       alt=""
+                      onError={(e) => { e.currentTarget.style.visibility = 'hidden' }}
                       style={{ width: '100%', height: '100%', objectFit: 'contain', display: 'block' }}
                     />
                   </div>

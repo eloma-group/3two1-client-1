@@ -14,7 +14,7 @@ const ease = [0.16, 1, 0.3, 1] as [number, number, number, number];
 
 const FIGURES = [
   { to: 450, suffix: '+',    label: 'active trade accounts nationally' },
-  { to: 7,   suffix: '',     label: 'brand houses, full national exclusivity' },
+  { to: 9,   suffix: '',     label: 'brand houses, full national exclusivity' },
   { to: 8,   suffix: ' yrs', label: 'independent and family-held' },
 ];
 
@@ -38,9 +38,11 @@ const HOUSE_LOGOS = [
   { src: '/images/brandstrip-burnt-ends.webp',   alt: 'Burnt Ends' },
   { src: '/images/brandstrip-san-matias.webp',   alt: 'San Matías' },
   { src: '/images/brandstrip-whiskey-row.webp',  alt: 'Whiskey Row' },
+  { src: '/images/brandstrip-demonio-de-los-andes.webp', alt: 'Demonio de los Andes' },
+  { src: '/images/brandstrip-thoquino.webp',             alt: 'Thoquino Cachaça' },
 ];
 
-/* The portfolio is the proof, so the seven houses get their own grid —
+/* The portfolio is the proof, so the houses get their own grid —
    reusing the scene shots the services section already ships. */
 const HOUSES = [
   { name: 'Black Tears',  img: '/images/black-tears-dry-spiced-rum-cuba.webp' },
@@ -50,6 +52,8 @@ const HOUSES = [
   { name: 'Burnt Ends',   img: '/images/burnt-ends-blended-whiskey-tennessee.webp' },
   { name: 'San Matías',   img: '/images/san-matias-gran-reserva-extra-anejo-tequila.webp' },
   { name: 'Whiskey Row',  img: '/images/whiskey-row-straight-bourbon-kentucky.webp' },
+  { name: 'Demonio de los Andes', img: '/images/demonio-de-los-andes-pisco-peru.webp' },
+  { name: 'Thoquino Cachaça',     img: '/images/thoquino-cachaca-brazil.webp' },
 ];
 
 const TEAM = [
@@ -64,7 +68,7 @@ const PILLARS = [
   {
     n: '01',
     title: 'We buy narrow, not wide',
-    body: 'Seven houses, not seventy. Every listing has to earn its place on the truck and behind the bar, which is why anyone here can talk through the whole range from memory.',
+    body: 'Nine houses, not ninety. Every listing has to earn its place on the truck and behind the bar, which is why anyone here can talk through the whole range from memory.',
   },
   {
     n: '02',
@@ -200,8 +204,8 @@ export default function Investors() {
             bottle shops deserved a distributor that genuinely cared which bottle ended up where.
           </p>
           <p className={styles.body}>
-            Eight years on, we represent seven world-class spirit houses across rum, tequila,
-            whiskey, bourbon and liqueur — working directly with bars, bottle shops and cafés across
+            Eight years on, we represent nine world-class spirit houses across rum, tequila,
+            whiskey, bourbon, pisco, cachaça and liqueur — working directly with bars, bottle shops and cafés across
             Australia, New Zealand and the Pacific Islands.
           </p>
           <p className={styles.body}>
@@ -457,13 +461,13 @@ export default function Investors() {
         <div className="container">
           <Reveal y={16}><p className={styles.kicker}>The portfolio</p></Reveal>
           <h2 className={styles.title}>
-            <RevealText text="Seven houses," />{' '}
+            <RevealText text="Nine houses," />{' '}
             <em className="gradient-text"><RevealText text="full national exclusivity." /></em>
           </h2>
           <Reveal y={16} delay={0.12}>
             <p className={styles.lede}>
               Rum from Cuba and Jamaica, tequila from Jalisco, bourbon and blended whiskey from the
-              States, and the full Giffard range out of Angers. Seven producers, ranged so they
+              States, pisco from Peru and cachaça from Brazil. Nine producers, ranged so they
               complement each other rather than compete for the same shelf.
             </p>
           </Reveal>
@@ -471,7 +475,12 @@ export default function Investors() {
             {HOUSES.map((h, i) => (
               <Reveal key={h.name} y={24} delay={0.05 + (i % 4) * 0.06}>
                 <div className={styles.house}>
-                  <img src={h.img} alt={`${h.name} — 3two1 portfolio`} loading="lazy" />
+                  <img
+                    src={h.img}
+                    alt={`${h.name} — 3two1 portfolio`}
+                    loading="lazy"
+                    onError={(e) => { e.currentTarget.style.visibility = 'hidden' }}
+                  />
                   <span className={styles.houseName}>{h.name}</span>
                 </div>
               </Reveal>

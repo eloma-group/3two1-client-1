@@ -382,7 +382,7 @@ export default function NetworkMap(
             </h2>
             <span className={styles.divider} />
             <p className={styles.para}>
-              Seven houses placed by hand across the region — coast to coast, both sides of the
+              Our brands placed by hand across the region — coast to coast, both sides of the
               Tasman, out to the Pacific.
             </p>
             <p className={styles.good}>Good places.<br />Great company.</p>

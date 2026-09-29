@@ -26,7 +26,7 @@ export default function Story() {
           </Reveal>
 
           <Reveal delay={0.1} className={styles.lede}>
-            <p>{brand.mission}. Since 2018 we have curated seven of the world's most respected drinks houses into a single, tightly-run portfolio.</p>
+            <p>{brand.mission}. Since 2018 we have curated nine of the world's most respected drinks houses into a single, tightly-run portfolio.</p>
           </Reveal>
 
           <Reveal delay={0.2} className={styles.intent}>

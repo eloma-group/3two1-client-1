@@ -106,7 +106,7 @@ const TESTIMONIALS: Testimonial[] = [
   },
   {
     id: 9,
-    quote: 'Seven houses under one portfolio means one order, one invoice, one relationship. 3two1 gets it to us on time every week and the range covers our whole cocktail list.',
+    quote: 'Nine houses under one portfolio means one order, one invoice, one relationship. 3two1 gets it to us on time every week and the range covers our whole cocktail list.',
     author: 'Jack Sullivan',
     role: 'Café & Bar Owner',
     company: 'Walsh & Daughters',

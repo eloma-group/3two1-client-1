@@ -414,7 +414,7 @@ Sectors We Deliver To
             animation: 'pulse-dot 2.2s ease-in-out infinite',
           }} />
           <span style={{ fontSize: '10.5px', fontWeight: 600, letterSpacing: '0.3px', color: 'rgba(var(--ink-rgb),0.45)' }}>
-            8 channels &nbsp;·&nbsp; seven houses &nbsp;·&nbsp; one portfolio
+            8 channels &nbsp;·&nbsp; nine houses &nbsp;·&nbsp; one portfolio
           </span>
         </div>
         <div style={{ height: '1px', width: '48px', background: 'linear-gradient(to left, transparent, rgba(var(--ink-rgb),0.12))' }} />

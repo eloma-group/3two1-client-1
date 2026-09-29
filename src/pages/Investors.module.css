@@ -110,7 +110,7 @@
   white-space: nowrap;
 }
 
-/* ── Marquee of the seven houses ──────────────────────────────────────── */
+/* ── Marquee of the houses ────────────────────────────────────────────── */
 .rail {
   border-bottom: 1px solid rgba(var(--ink-rgb), 0.1);
   padding-block: clamp(1.1rem, 2.4vw, 1.8rem);

@@ -59,6 +59,8 @@ export const navMenu: MenuEntry[] = [
       { label: 'Worthy Park', to: 'https://worthyparkestate.com' },
       { label: 'Whiskey Row', to: 'https://whiskeyrowbourbon.com' },
       { label: 'San Matías', to: 'https://www.sanmatias.com' },
+      { label: 'Demonio de los Andes', to: '/#brands' },
+      { label: 'Thoquino Cachaça', to: '/#brands' },
     ],
   },
   {
@@ -207,6 +209,30 @@ export const brands: Brand[] = [
     image: '/images/house-san-matias.webp',
     hue: '#d98a4a',
   },
+  {
+    id: 'demonio-de-los-andes',
+    name: 'Demonio de los Andes',
+    category: 'Pisco',
+    country: 'Ica, Peru',
+    tagline: 'Peru, in a single pass',
+    description:
+      'Pisco made the Peruvian way — grape spirit taken to proof in one distillation, with nothing added and nothing pulled back out. Built for the Pisco Sour.',
+    cta: 'Explore Demonio de los Andes',
+    image: '/images/house-demonio-de-los-andes.webp',
+    hue: '#c08a35',
+  },
+  {
+    id: 'thoquino',
+    name: 'Thoquino Cachaça',
+    category: 'Cachaça',
+    country: 'Brazil',
+    tagline: 'Cane, straight from the field',
+    description:
+      'Cachaça pressed from fresh-cut sugarcane rather than molasses — grassy, bright and faintly wild. The backbone of a Caipirinha worth drinking.',
+    cta: 'Explore Thoquino',
+    image: '/images/house-thoquino.webp',
+    hue: '#4f9c63',
+  },
 ];
 
 export interface Stat {
@@ -216,7 +242,7 @@ export interface Stat {
 
 export const stats: Stat[] = [
   { value: '2018', label: 'Established' },
-  { value: '7', label: 'Houses in portfolio' },
+  { value: '9', label: 'Houses in portfolio' },
   { value: '13', label: 'Cities served' },
   { value: '2,700', label: 'Venues and counting' },
 ];

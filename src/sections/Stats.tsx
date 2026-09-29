@@ -37,7 +37,7 @@ export default function Stats() {
     <section className={styles.stats}>
       <Marquee
         className={styles.marquee}
-        items={brand.regions.split(' — ').concat(['The Taste of Passion', 'Seven Houses', 'One Portfolio'])}
+        items={brand.regions.split(' — ').concat(['The Taste of Passion', 'Nine Houses', 'One Portfolio'])}
       />
       <div className={`container ${styles.grid}`}>
         {stats.map((s) => (
