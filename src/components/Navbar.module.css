@@ -21,7 +21,7 @@
   align-items: center;
   justify-content: center;
   gap: clamp(1.5rem, 4vw, 3.5rem);
-  padding: 0.5rem 0.5rem 0.5rem 1.4rem;
+  padding: 0.45rem 0.45rem 0.45rem 1.3rem;
   border-radius: 100px;
   background: var(--glass);
   backdrop-filter: blur(20px) saturate(160%);
@@ -43,7 +43,7 @@
   display: inline-flex;
   align-items: center;
   gap: 0.3rem;
-  font-size: 14.5px;
+  font-size: 12px;
   font-weight: 500;
   letter-spacing: 0.01em;
   color: var(--ink-800);
@@ -84,7 +84,7 @@
   align-items: center;
   padding: 0.7rem 0.9rem;
   border-radius: 10px;
-  font-size: 14.5px;
+  font-size: 12px;
   font-weight: 500;
   color: var(--ink-700);
   text-align: left;
@@ -96,13 +96,13 @@
 /* Logo (left) */
 .brand { display: inline-flex; align-items: center; }
 .logo {
-  height: clamp(44px, 4.4vw, 58px);
+  height: clamp(40px, 3.9vw, 52px);
   width: auto;
   opacity: 1;
   filter: drop-shadow(0 2px 6px rgba(110, 16, 48, 0.28));
   transition: height 0.4s var(--ease-out);
 }
-.scrolled .logo { height: clamp(38px, 3.6vw, 48px); }
+.scrolled .logo { height: clamp(36px, 3.3vw, 44px); }
 :global([data-theme='dark']) .logo {
   filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.5));
 }
@@ -238,15 +238,15 @@
     border-left: none;
     border-right: none;
     border-top: none;
-    padding: 0.7rem var(--page-x);
+    padding: 0.55rem var(--page-x);
     background: #fff;
     backdrop-filter: none;
     box-shadow: 0 6px 20px -14px rgba(0, 0, 0, 0.3);
   }
   .scrolled .bar { box-shadow: 0 8px 24px -14px rgba(0, 0, 0, 0.4); }
   /* Keep the original logo, sized so it stays clear */
-  .logo { height: 50px; }
-  .scrolled .logo { height: 46px; }
+  .logo { height: 44px; }
+  .scrolled .logo { height: 41px; }
 }
 
 @media (max-width: 560px) {
