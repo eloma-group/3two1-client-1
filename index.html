@@ -20,6 +20,10 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <title>3two1 drinks — The Taste of Passion</title>
+    <!-- The splash is white, so the ground under it is white from the very
+         first paint — otherwise the cream page background flashes before React
+         mounts and the stylesheet takes over. -->
+    <style>html,body{background:#fff}</style>
   </head>
   <body>
     <div id="root"></div>

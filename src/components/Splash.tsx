@@ -18,6 +18,14 @@ export default function Splash({ onDone }: { onDone: () => void }) {
   const ruleLeft = useRef<HTMLSpanElement>(null);
   const ruleRight = useRef<HTMLSpanElement>(null);
 
+  /* Hold the page behind the splash white for exactly as long as the splash is
+     mounted, so neither the fade in nor the fade out shows the cream ground. */
+  useEffect(() => {
+    if (!show) return;
+    document.documentElement.dataset.splash = 'on';
+    return () => { delete document.documentElement.dataset.splash; };
+  }, [show]);
+
   useEffect(() => {
     const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
@@ -65,14 +73,16 @@ export default function Splash({ onDone }: { onDone: () => void }) {
     <div className={styles.splash} ref={root}>
       <div className={styles.inner}>
         <div className={styles.gifWrap} ref={gifWrap}>
-          {/* transparent-background animated logo (white keyed out) */}
+          {/* The logo animation. It must not loop: playback starts about a
+              second after the page does, so a 5.1s clip restarts right as the
+              splash begins fading out and the last thing the reader sees is the
+              logo blanking and rebuilding. Held on its final frame instead. */}
           <video
             className={styles.gif}
-            src="/images/splash-alpha.webm?v=3"
+            src="/images/splash-alpha.webm?v=4"
             autoPlay
             muted
             playsInline
-            loop
             aria-label="3two1 drinks"
           />
         </div>

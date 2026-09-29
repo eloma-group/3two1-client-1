@@ -108,6 +108,12 @@ body {
   transition: background-color 0.5s var(--ease-out), color 0.5s var(--ease-out);
 }
 
+/* The splash paints pure white, so the page behind it does too — otherwise the
+   cream ground shows through before the splash fades in and again as it fades
+   out. Dropped the moment the splash unmounts, and the transition above eases
+   it back to the real background. */
+html[data-splash='on'] body { background: #ffffff; }
+
 *, *::before, *::after { box-sizing: border-box; }
 
 * { margin: 0; }
