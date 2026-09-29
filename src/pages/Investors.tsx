@@ -195,8 +195,8 @@ export default function Investors() {
       kicker: 'Our story',
       heading: 'Built in Australia, poured everywhere.',
       gradientFrom: 2,
-      img: '/images/about-hero-bar.webp',
-      alt: 'A back bar lined with spirits in a venue, lit warm at night',
+      img: '/images/au-perth-dusk.webp',
+      alt: 'The Perth skyline at dusk, reflected in the Swan River',
       body: (
         <>
           <p className={styles.body}>
@@ -332,8 +332,8 @@ export default function Investors() {
         <motion.div className={styles.heroImgWrap} style={reduced ? undefined : { y: heroY }}>
           <img
             className={styles.heroImg}
-            src="/images/au-perth-dusk.webp"
-            alt="The Perth skyline at dusk, reflected in the Swan River"
+            src="/images/about-hero-bar.webp"
+            alt="A back bar lined with spirits in a venue, lit warm at night"
           />
         </motion.div>
         <div className={styles.heroScrim} aria-hidden="true" />
