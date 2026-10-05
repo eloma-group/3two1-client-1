@@ -52,14 +52,14 @@ export const navMenu: MenuEntry[] = [
     to: '/#brands',
     children: [
       { label: 'Black Tears', to: 'https://blacktears.com' },
+      { label: 'Burnt Ends', to: 'https://www.masterofmalt.com/' },
+      { label: 'Demonio de los Andes', to: '/#brands' },
       { label: 'Giffard', to: 'https://www.giffard.com' },
       { label: 'Pueblo Viejo', to: 'https://www.puebloviejotequila.com' },
-      { label: 'Burnt Ends', to: 'https://www.masterofmalt.com/' },
-      { label: 'Worthy Park', to: 'https://worthyparkestate.com' },
-      { label: 'Whiskey Row', to: 'https://whiskeyrowbourbon.com' },
       { label: 'San Matías', to: 'https://www.sanmatias.com' },
-      { label: 'Demonio de los Andes', to: '/#brands' },
       { label: 'Thoquino Cachaça', to: '/#brands' },
+      { label: 'Whiskey Row', to: 'https://whiskeyrowbourbon.com' },
+      { label: 'Worthy Park', to: 'https://worthyparkestate.com' },
     ],
   },
   {

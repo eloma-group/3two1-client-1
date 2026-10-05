@@ -252,7 +252,7 @@ export default function Investors() {
       heading: "Building Australia's premier independent spirits portfolio.",
       gradientFrom: 3,
       img: '/images/pueblo-viejo-blanco-tequila-jalisco-mexico.webp',
-      alt: 'Blue agave fields in the highlands of Jalisco at sunset',
+      alt: 'Pueblo Viejo Blanco tequila bottle with a shot glass on sunlit stone',
       body: (
         <>
           <p className={styles.body}>

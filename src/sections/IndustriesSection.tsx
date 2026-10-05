@@ -248,7 +248,7 @@ const ITEMS = [
   { icon: Users,           label: 'Trade Only'      },
   { icon: Truck,           label: 'Delivery'        },
   { icon: Ship,            label: 'Imported'        },
-  { icon: Globe,           label: 'Worldwide'       },
+  { icon: Globe,           label: 'National Footprint' },
   { icon: MapPin,          label: 'Coast to Coast'  },
   { icon: Award,           label: 'Award-Winning'   },
   { icon: Star,            label: 'Premium'         },
