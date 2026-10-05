@@ -164,7 +164,7 @@ export default function Investors() {
   const [yearIndex, setYearIndex] = useState(0);
 
   useEffect(() => {
-    document.title = 'About & Investors — 3two1 drinks';
+    document.title = 'Our Story — 3two1 drinks';
   }, []);
 
   /* Hero parallax — the photograph drifts at roughly a third of scroll speed. */

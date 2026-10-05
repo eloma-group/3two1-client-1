@@ -1,5 +1,5 @@
 import { ArrowUpRight } from 'lucide-react';
-import { Instagram } from '../components/icons';
+import { Facebook, Instagram } from '../components/icons';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { brand, footerColumns, contact } from '../data/content';
 import { scrollToHash } from '../hooks/useLenis';
@@ -32,9 +32,14 @@ export default function Footer() {
             <img src="/images/logo.png" alt="3two1 drinks" className={styles.logo} />
             <p className={styles.tagline}>{brand.tagline}.</p>
             <p className={styles.regions}>{brand.regions}</p>
-            <a href={contact.instagram} target="_blank" rel="noreferrer" className={styles.social} data-cursor="Follow">
-              <Instagram size={18} /> Instagram
-            </a>
+            <div className={styles.socials}>
+              <a href={contact.instagram} target="_blank" rel="noreferrer" className={styles.social} data-cursor="Follow">
+                <Instagram size={18} /> Instagram
+              </a>
+              <a href={contact.facebook} target="_blank" rel="noreferrer" className={styles.social} data-cursor="Follow">
+                <Facebook size={18} /> Facebook
+              </a>
+            </div>
           </div>
 
           <div className={styles.cols}>
@@ -60,6 +65,9 @@ export default function Footer() {
               <ul>
                 <li><a href={`mailto:${contact.email}`}>{contact.email} <ArrowUpRight size={13} /></a></li>
                 <li><a href={`tel:${contact.phone.replace(/\s/g, '')}`}>{contact.phone}</a></li>
+                <li className={styles.info}><span>Existing Customer</span>{contact.hours}</li>
+                <li className={styles.info}><span>Warehouses</span>{contact.warehouses}</li>
+                <li className={styles.info}><span>Wholesalers</span>{contact.wholesalers}</li>
               </ul>
             </div>
           </div>
@@ -69,7 +77,7 @@ export default function Footer() {
 
         <div className={styles.bottom}>
           <span>© {new Date().getFullYear()} {brand.name} drinks. {brand.slogan}.</span>
-          <span className={styles.legal}>ABN {contact.abn} · Liquor Licence {contact.licence}</span>
+          <span className={styles.legal}>Liquor Licence {contact.licence}</span>
           <span className={styles.legal}>Enjoy 3two1 responsibly. Not for anyone under 18.</span>
         </div>
       </div>

@@ -35,8 +35,13 @@
   text-transform: uppercase;
   color: #fff;
 }
-.social {
+.socials {
   margin-top: 1.6rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+.social {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
@@ -71,6 +76,19 @@
   transition: color 0.3s;
 }
 .col a:hover { color: #fff; }
+.col .info {
+  font-size: 0.88rem;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.75);
+}
+.col .info span {
+  display: block;
+  font-size: 0.68rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.45);
+  margin-bottom: 0.2rem;
+}
 
 .ack {
   margin-top: 2.5rem;

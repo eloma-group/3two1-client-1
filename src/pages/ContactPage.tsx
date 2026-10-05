@@ -12,8 +12,8 @@ const SEGMENTS = ['Bar / Venue', 'Bottle Shop', 'Café', 'Restaurant / Hotel', '
 const EXISTING = [
   { label: 'Orders & admin', value: contact.email, href: `mailto:${contact.email}` },
   { label: 'Trade phone', value: contact.phone, href: `tel:${contact.phone.replace(/\s/g, '')}` },
-  { label: 'Hours', value: 'Mon–Fri · 8:30am – 5:00pm AWST' },
-  { label: 'Warehouse', value: '3two1 Drinks HQ, Australia' },
+  { label: 'Hours', value: contact.hours },
+  { label: 'Warehouses', value: contact.warehouses },
   { label: 'Order portal', value: 'portal.3two1.com.au', href: 'https://portal.3two1.com.au' },
 ];
 
@@ -97,32 +97,26 @@ export default function ContactPage() {
                         <input type="text" name="business" required placeholder="The Rooftop" />
                       </label>
                       <label className={styles.field}>
-                        <span>ABN</span>
-                        <input type="text" name="abn" required placeholder="00 000 000 000" />
-                      </label>
-                    </div>
-                    <div className={styles.row}>
-                      <label className={styles.field}>
                         <span>Contact name</span>
                         <input type="text" name="name" required placeholder="Jamie Rivera" />
                       </label>
+                    </div>
+                    <div className={styles.row}>
                       <label className={styles.field}>
                         <span>Phone</span>
                         <input type="tel" name="phone" required placeholder="0400 000 000" />
                       </label>
-                    </div>
-                    <div className={styles.row}>
                       <label className={styles.field}>
                         <span>Email</span>
                         <input type="email" name="email" required placeholder="you@venue.com.au" />
                       </label>
-                      <label className={styles.field}>
-                        <span>Trade segment</span>
-                        <select name="segment" defaultValue={SEGMENTS[0]}>
-                          {SEGMENTS.map((s) => <option key={s}>{s}</option>)}
-                        </select>
-                      </label>
                     </div>
+                    <label className={styles.field}>
+                      <span>Trade segment</span>
+                      <select name="segment" defaultValue={SEGMENTS[0]}>
+                        {SEGMENTS.map((s) => <option key={s}>{s}</option>)}
+                      </select>
+                    </label>
                     <label className={styles.field}>
                       <span>Message (optional)</span>
                       <textarea name="message" rows={4} placeholder="What are you pouring, and what are you looking for?" />

@@ -79,7 +79,7 @@ export default function Splash({ onDone }: { onDone: () => void }) {
               logo blanking and rebuilding. Held on its final frame instead. */}
           <video
             className={styles.gif}
-            src="/images/splash-alpha.webm?v=4"
+            src="/images/splash-alpha.webm?v=5"
             autoPlay
             muted
             playsInline

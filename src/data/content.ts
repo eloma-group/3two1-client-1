@@ -44,7 +44,7 @@ export const navMenu: MenuEntry[] = [
     to: '/#story',
     children: [
       { label: 'Contact', to: '/contact' },
-      { label: 'Investors', to: '/investors' },
+      { label: 'Our Story', to: '/our-story' },
     ],
   },
   {
@@ -300,9 +300,12 @@ export const cocktails: Cocktail[] = [
 export const contact = {
   email: 'orders@3two1.com.au',
   phone: '0420 222 313',
-  abn: '00 000 000 000',
   licence: '6090012345',
-  instagram: 'https://instagram.com',
+  hours: 'Mon–Fri · 8.30am – 7.00pm AEST',
+  warehouses: 'Sydney, Melbourne, Perth',
+  wholesalers: 'ALM, Paramount, Liquid Mix, ILG',
+  instagram: 'https://www.instagram.com/3two1_drinks/',
+  facebook: 'https://www.facebook.com/share/1CPbHuseCL/',
 } as const;
 
 export const footerColumns = [
@@ -322,8 +325,7 @@ export const footerColumns = [
   {
     title: 'Company',
     links: [
-      { label: 'Our Story', to: '/#story' },
-      { label: 'Investors', to: '/investors' },
+      { label: 'Our Story', to: '/our-story' },
       { label: 'Contact', to: '/contact' },
     ],
   },

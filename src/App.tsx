@@ -1,5 +1,5 @@
 import { useCallback, useState } from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { useLenis } from './hooks/useLenis';
 import Splash from './components/Splash';
 import ScrollProgress from './components/ScrollProgress';
@@ -26,7 +26,8 @@ export default function App() {
         <Routes>
           <Route path="/" element={<Home ready={ready} />} />
           <Route path="/contact" element={<ContactPage />} />
-          <Route path="/investors" element={<Investors />} />
+          <Route path="/our-story" element={<Investors />} />
+          <Route path="/investors" element={<Navigate to="/our-story" replace />} />
           <Route path="*" element={<Home ready={ready} />} />
         </Routes>
       </main>
