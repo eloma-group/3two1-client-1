@@ -114,7 +114,7 @@ export default function BlackTears() {
           <motion.span className={styles.wordBack} style={{ x: leftX }}>{first}</motion.span>
           <motion.img
             className={styles.heroBottle}
-            src={img('bottle-label')}
+            src={img('bottle-full')}
             alt={`${d.name} bottle`}
             style={{ y: bottleY, rotate: bottleR }}
             initial={reduce ? false : { opacity: 0, y: 80 }}
