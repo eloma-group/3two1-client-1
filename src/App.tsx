@@ -27,7 +27,7 @@ export default function App() {
         <Routes>
           <Route path="/" element={<Home ready={ready} />} />
           <Route path="/contact" element={<ContactPage />} />
-          <Route path="/our-story" element={<Investors />} />
+          <Route path="/our-story" element={<Investors ready={ready} />} />
           <Route path="/brands/:slug" element={<BrandRoute />} />
           <Route path="/investors" element={<Navigate to="/our-story" replace />} />
           <Route path="*" element={<Home ready={ready} />} />

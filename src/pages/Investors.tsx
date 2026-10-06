@@ -5,7 +5,7 @@ import {
 } from 'framer-motion';
 import { Mail, ArrowRight } from 'lucide-react';
 import { contact } from '../data/content';
-import Reveal, { RevealText } from '../components/Reveal';
+import Reveal, { RevealHeading, RevealText } from '../components/Reveal';
 import Marquee from '../components/Marquee';
 import MagneticButton from '../components/MagneticButton';
 import styles from './Investors.module.css';
@@ -156,7 +156,8 @@ interface Chapter {
   body: ReactNode;
 }
 
-export default function Investors() {
+/** `ready` flips once the splash starts to leave, so the hero rises in view. */
+export default function Investors({ ready = true }: { ready?: boolean }) {
   const navigate = useNavigate();
   const reduced = useReducedMotion();
 
@@ -344,8 +345,12 @@ export default function Investors() {
             <p className={styles.heroEyebrow}><i aria-hidden="true" /> About 3two1</p>
           </Reveal>
           <h1 className={styles.heroTitle}>
-            <RevealText text="In good" />{' '}
-            <span className="gradient-text"><RevealText text="company." /></span>
+            <RevealHeading
+              parts={[{ text: 'In good' }, { text: 'company.', accent: true }]}
+              accentAs="span"
+              play={ready}
+              delay={0.15}
+            />
           </h1>
           <Reveal y={18} delay={0.25}>
             <div className={styles.heroMeta}>
@@ -397,8 +402,7 @@ export default function Investors() {
                   <div>
                     <Reveal y={16}><p className={styles.kicker}>{c.kicker}</p></Reveal>
                     <h2 className={styles.title}>
-                      {head && <><RevealText text={head} />{' '}</>}
-                      <em className="gradient-text"><RevealText text={tail} /></em>
+                      <RevealHeading parts={[...(head ? [{ text: head }] : []), { text: tail, accent: true }]} />
                     </h2>
                     <Reveal y={18} delay={0.14}>{c.body}</Reveal>
                   </div>
@@ -415,8 +419,7 @@ export default function Investors() {
         <div className="container">
           <Reveal y={16}><p className={styles.kicker}>How we work</p></Reveal>
           <h2 className={styles.title}>
-            <RevealText text="Four rules we" />{' '}
-            <em className="gradient-text"><RevealText text="don't bend." /></em>
+            <RevealHeading parts={[{ text: 'Four rules we' }, { text: "don't bend.", accent: true }]} />
           </h2>
           <Reveal y={16} delay={0.12}>
             <p className={styles.lede}>
@@ -462,8 +465,7 @@ export default function Investors() {
         <div className="container">
           <Reveal y={16}><p className={styles.kicker}>The portfolio</p></Reveal>
           <h2 className={styles.title}>
-            <RevealText text="Nine houses," />{' '}
-            <em className="gradient-text"><RevealText text="full national exclusivity." /></em>
+            <RevealHeading parts={[{ text: 'Nine houses,' }, { text: 'full national exclusivity.', accent: true }]} />
           </h2>
           <Reveal y={16} delay={0.12}>
             <p className={styles.lede}>
@@ -495,8 +497,7 @@ export default function Investors() {
         <div className="container">
           <Reveal y={16}><p className={styles.kicker}>People</p></Reveal>
           <h2 className={styles.title}>
-            <RevealText text="The" />{' '}
-            <em className="gradient-text"><RevealText text="team." /></em>
+            <RevealHeading parts={[{ text: 'The' }, { text: 'team.', accent: true }]} />
           </h2>
           <Reveal y={16} delay={0.12}>
             <p className={styles.lede}>
@@ -524,8 +525,8 @@ export default function Investors() {
       <section className={`${styles.section} ${styles.cta}`}>
         <div className="container">
           <Reveal y={16}><p className={styles.kicker}>Contact</p></Reveal>
-          <h2 className={`${styles.ctaTitle} gradient-text`}>
-            <RevealText text="Talk to a real human." />
+          <h2 className={styles.ctaTitle}>
+            <RevealText text="Talk to a real human." accent />
           </h2>
           <Reveal y={18} delay={0.2}>
             <p className={styles.ctaNote}>
