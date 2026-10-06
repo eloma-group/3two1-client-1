@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { AnimatePresence, motion, useReducedMotion, useScroll, useTransform } from 'framer-motion';
 import { ArrowUpRight, Plus, Minus } from 'lucide-react';
 import { brandPage } from '../../data/brandPages';
+import { CRAFT_ROAD, CRAFT_ROAD_BOX, useRoadThrough } from '../../hooks/useRoadThrough';
 import styles from './Thoquino.module.css';
 
 const ease = [0.16, 1, 0.3, 1] as [number, number, number, number];
@@ -112,15 +113,15 @@ function StepIcon({ i }: { i: number }) {
 
 const SERVE_ART = [null, Coconut, Orange] as const;
 
+
 export default function Thoquino() {
   const d = brandPage('thoquino')!;
   const reduce = useReducedMotion();
   const hero = useRef<HTMLElement>(null);
   const { scrollYProgress } = useScroll({ target: hero, offset: ['start start', 'end start'] });
-  const wordX = useTransform(scrollYProgress, [0, 1], ['0%', reduce ? '0%' : '-18%']);
-  const bottleY = useTransform(scrollYProgress, [0, 1], [0, reduce ? 0 : 120]);
   const sunR = useTransform(scrollYProgress, [0, 1], [0, reduce ? 0 : 90]);
 
+  const { ref: journeyRef, path: journey } = useRoadThrough<HTMLOListElement>(styles.stepIcon, CRAFT_ROAD, CRAFT_ROAD_BOX);
   const [side, setSide] = useState<'cane' | 'molasses'>('cane');
   const [open, setOpen] = useState<number | null>(null);
 
@@ -131,29 +132,73 @@ export default function Thoquino() {
     transition: { duration: 0.9, delay, ease },
   });
 
+  // Above the fold, so it plays on load rather than waiting to be scrolled to.
+  const enter = (delay = 0) => ({
+    initial: { opacity: 0, y: reduce ? 0 : 24 },
+    animate: { opacity: 1, y: 0 },
+    transition: { duration: 0.9, delay, ease },
+  });
+
   const [first, ...rest] = d.name.split(' ');
 
   return (
     <div className={styles.page}>
-      {/* ── Hero ─────────────────────────────────────────── */}
+      {/* ── Hero — a Rio poster: the name across the top, then the bottle under
+             the sun with cane either side. Each piece keeps its own space. ── */}
       <section className={styles.hero} ref={hero}>
-        <motion.div className={styles.bigWord} style={{ x: wordX }} aria-hidden="true">
-          Cachaça Cachaça
-        </motion.div>
+        <h1 className={styles.title}>
+          <span className={styles.titleWord} aria-hidden="true">
+            {first.split('').map((ch, i) => (
+              <motion.span
+                key={i}
+                initial={{ y: reduce ? 0 : '105%' }}
+                animate={{ y: 0 }}
+                transition={{ duration: 1, delay: 0.15 + i * 0.05, ease }}
+              >
+                {ch}
+              </motion.span>
+            ))}
+          </span>
+          <motion.span
+            className={styles.titleTag}
+            aria-hidden="true"
+            initial={{ opacity: 0, scale: reduce ? 1 : 0.6, rotate: -14 }}
+            animate={{ opacity: 1, scale: 1, rotate: -6 }}
+            transition={{ duration: 0.8, delay: 0.75, ease }}
+          >
+            {rest.join(' ')}
+          </motion.span>
+          <span className={styles.srOnly}>{d.name}</span>
+        </h1>
 
-        <div className={styles.heroInner}>
+        <div className={styles.heroStage}>
+          <motion.div className={styles.sunWrap} style={{ rotate: sunR }}>
+            <Sun className={styles.sun} />
+          </motion.div>
+          <div className={styles.canesLeft} aria-hidden="true">
+            {[300, 420, 360, 480].map((h, i) => <Cane key={i} height={h} className={styles.cane} />)}
+          </div>
+          <div className={styles.canesRight} aria-hidden="true">
+            {[460, 340, 400, 300].map((h, i) => <Cane key={i} height={h} className={styles.cane} />)}
+          </div>
+          <Coconut className={styles.heroCoconut} />
+          <motion.img
+            src="/images/house-thoquino.webp"
+            alt={`${d.name} bottle`}
+            className={styles.heroBottle}
+            initial={{ opacity: 0, y: reduce ? 0 : 80 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1.2, delay: 0.35, ease }}
+          />
+          <Lime className={styles.heroLime} />
+        </div>
+
+        <div className={styles.heroFoot}>
           <div className={styles.heroCopy}>
-            <motion.p className={styles.eyebrow} {...rise(0.1)}>
-              <span className={styles.dot} /> {d.eyebrow}
-            </motion.p>
-            <motion.h1 className={styles.title} {...rise(0.18)}>
-              {first}
-              <span>{rest.join(' ')}</span>
-            </motion.h1>
-            <motion.p className={styles.quote} {...rise(0.28)}>
+            <motion.p className={styles.quote} {...enter(0.5)}>
               “{d.quote}”
             </motion.p>
-            <motion.div className={styles.ctas} {...rise(0.36)}>
+            <motion.div className={styles.ctas} {...enter(0.6)}>
               <Link to="/contact" className={styles.btnSolid}>
                 Become a stockist <ArrowUpRight size={18} />
               </Link>
@@ -162,27 +207,13 @@ export default function Thoquino() {
               </a>
             </motion.div>
           </div>
-
-          <div className={styles.heroArt}>
-            <motion.div className={styles.sunWrap} style={{ rotate: sunR }}>
-              <Sun className={styles.sun} />
-            </motion.div>
-            <div className={styles.canes}>
-              {[340, 460, 390, 520, 300, 480, 410, 540, 360].map((h, i) => (
-                <Cane key={i} height={h} className={styles.cane} />
-              ))}
-            </div>
-            <motion.img
-              src="/images/house-thoquino.webp"
-              alt={`${d.name} bottle`}
-              className={styles.heroBottle}
-              style={{ y: bottleY }}
-              initial={{ opacity: 0, y: reduce ? 0 : 60 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1.1, delay: 0.3, ease }}
-            />
-            <Lime className={styles.heroLime} />
-          </div>
+          <motion.ul className={styles.heroMeta} {...enter(0.7)}>
+            {d.eyebrow.split(' · ').map((part) => (
+              <li key={part}>
+                <span className={styles.dot} /> {part}
+              </li>
+            ))}
+          </motion.ul>
         </div>
         <div className={styles.waveBand} aria-hidden="true" />
       </section>
@@ -224,18 +255,19 @@ export default function Thoquino() {
         <div className={styles.craftInner}>
           <motion.p className={`${styles.kicker} ${styles.kickerLight}`} {...rise()}>02 · O ofício</motion.p>
           <motion.p className={styles.statement} {...rise(0.08)}>{d.craft.statement}</motion.p>
-          <ol className={styles.journey}>
-            <svg className={styles.journeyLine} viewBox="0 0 1000 120" preserveAspectRatio="none" aria-hidden="true">
+          <ol className={styles.journey} ref={journeyRef}>
+            <svg className={styles.journeyLine} viewBox={`0 0 ${journey.w || 1} ${journey.h || 1}`} aria-hidden="true">
               <motion.path
-                d="M20 60 C 180 -10, 320 130, 500 60 S 820 -10, 980 60"
+                key={journey.d ? 'road' : 'empty'}
+                d={journey.d}
                 fill="none"
                 stroke="#ffc93c"
                 strokeWidth="3"
-                strokeDasharray="8 10"
+                strokeDasharray="10 12"
                 initial={{ pathLength: reduce ? 1 : 0 }}
                 whileInView={{ pathLength: 1 }}
                 viewport={{ once: true }}
-                transition={{ duration: 1.6, ease }}
+                transition={{ duration: 2.2, ease }}
               />
             </svg>
             {d.craft.pillars.map((p, i) => (
@@ -267,16 +299,15 @@ export default function Thoquino() {
         </div>
         <div className={styles.split} data-side={side}>
           <div className={styles.half + ' ' + styles.caneHalf}>
-            <Cane height={360} className={styles.splitCane} />
+            <img className={styles.halfPhoto} src="/images/brands/thoquino/cane-juice.webp" alt="A glass of fresh-pressed sugarcane juice" loading="lazy" />
+            <small className={styles.halfCredit}>Photo: Fgnievinski · CC BY-SA 4.0</small>
             <span className={styles.halfTag}>Cachaça</span>
             <strong>Fresh-pressed cane juice</strong>
             <em>Green · bright · wild</em>
           </div>
           <div className={styles.half + ' ' + styles.molHalf}>
-            <svg className={styles.drip} viewBox="0 0 100 140" aria-hidden="true">
-              <path d="M50 4 C 30 50, 14 72, 14 94 a36 36 0 0 0 72 0 C 86 72, 70 50, 50 4Z" fill="#5a2f12" />
-              <ellipse cx="38" cy="92" rx="8" ry="14" fill="#8a4f22" />
-            </svg>
+            <img className={styles.halfPhoto} src="/images/brands/thoquino/molasses.webp" alt="Thick, dark molasses pouring from a spoon" loading="lazy" />
+            <small className={styles.halfCredit}>Photo: Badagnani · CC BY 3.0</small>
             <span className={styles.halfTag}>Most rum</span>
             <strong>Molasses, after sugar is made</strong>
             <em>Dark · round · sweet</em>

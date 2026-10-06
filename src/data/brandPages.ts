@@ -558,7 +558,7 @@ export const brandPages: BrandPage[] = [
     },
     range: [
       { name: 'Thoquino Cachaça', spec: '40% ABV · 700ml', note: 'The classic white. Fresh-cut grass, green banana and lime — made for the Caipirinha.', image: '/images/house-thoquino.webp' },
-      { name: 'Thoquino Aged', spec: '40% ABV · 700ml', note: 'Rested before bottling for a rounder, softer cane spirit. Sip it, or use it where a white feels too sharp.' },
+      { name: 'Thoquino Aged', spec: '40% ABV · 700ml', note: 'Rested before bottling for a rounder, softer cane spirit. Sip it, or use it where a white feels too sharp.', image: '/images/brands/thoquino/aged-bottle.webp' },
     ],
     tasting: {
       of: 'Thoquino Cachaça',
@@ -568,9 +568,9 @@ export const brandPages: BrandPage[] = [
       serve: 'A Caipirinha: half a lime cut into wedges, muddled with sugar in the glass, then Thoquino and plenty of crushed ice.',
     },
     serves: [
-      { name: 'Caipirinha', build: 'Thoquino, fresh lime wedges, sugar, crushed ice.', method: 'Muddle and build', glass: 'Rocks', image: '/images/thoquino-cachaca-brazil.webp' },
-      { name: 'Batida de Coco', build: 'Thoquino, coconut milk, condensed milk, crushed ice.', method: 'Blend or hard shake', glass: 'Rocks' },
-      { name: 'Rabo de Galo', build: 'Thoquino, sweet vermouth, Cynar, an orange twist.', method: 'Stir down', glass: 'Rocks' },
+      { name: 'Caipirinha', build: 'Thoquino, fresh lime wedges, sugar, crushed ice.', method: 'Muddle and build', glass: 'Rocks', image: '/images/brands/thoquino/caipirinha.webp' },
+      { name: 'Batida de Coco', build: 'Thoquino, coconut milk, condensed milk, crushed ice.', method: 'Blend or hard shake', glass: 'Rocks', image: '/images/brands/thoquino/batida-de-coco.webp' },
+      { name: 'Rabo de Galo', build: 'Thoquino, sweet vermouth, Cynar, an orange twist.', method: 'Stir down', glass: 'Rocks', image: '/images/brands/thoquino/rabo-de-galo.webp' },
     ],
     stock: 'Talk to our trade team about cachaça allocations, Caipirinha training, and Brazilian-night activations across Australia.',
     facts: [

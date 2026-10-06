@@ -4,6 +4,7 @@ import { AnimatePresence, motion, useReducedMotion, useScroll, useTransform } fr
 import { ArrowUpRight, Plus, Minus } from 'lucide-react';
 import { brandPage } from '../../data/brandPages';
 import Reveal from '../../components/Reveal';
+import { CRAFT_ROAD, CRAFT_ROAD_BOX, useRoadThrough } from '../../hooks/useRoadThrough';
 import styles from './PuebloViejo.module.css';
 
 const img = (f: string) => `/images/brands/pueblo-viejo/${f}.webp`;
@@ -151,6 +152,7 @@ export default function PuebloViejo() {
   const yMask = useTransform(scrollYProgress, [0, 1], [0, reduce ? 0 : -160]);
   const yPlant = useTransform(scrollYProgress, [0, 1], [0, reduce ? 0 : -90]);
   const rCard = useTransform(scrollYProgress, [0, 1], [4, reduce ? 4 : 10]);
+  const { ref: roadRef, path: road } = useRoadThrough<HTMLDivElement>(styles.stationDisc, CRAFT_ROAD, CRAFT_ROAD_BOX);
 
   const [firstWord, ...rest] = d.name.split(' ');
   const marquee = ['100% Agave', 'Lagos de Moreno', 'Jalisco', 'Stone-oven cooked', 'Copper pot', 'Salud'];
@@ -247,10 +249,11 @@ export default function PuebloViejo() {
           <Reveal><p className={styles.chapterLight}>Capítulo II · The Craft</p></Reveal>
           <Reveal delay={0.08}><p className={styles.statement}>{d.craft.statement}</p></Reveal>
         </div>
-        <div className={styles.path}>
-          <svg className={styles.pathLine} viewBox="0 0 1200 200" preserveAspectRatio="none" aria-hidden>
+        <div className={styles.path} ref={roadRef}>
+          <svg className={styles.pathLine} viewBox={`0 0 ${road.w || 1} ${road.h || 1}`} aria-hidden>
             <motion.path
-              d="M20 120 C 220 10, 380 190, 600 100 S 980 10, 1180 110"
+              key={road.d ? 'road' : 'empty'}
+              d={road.d}
               fill="none"
               stroke="#f2a516"
               strokeWidth="3"

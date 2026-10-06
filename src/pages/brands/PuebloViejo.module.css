@@ -383,10 +383,10 @@
 }
 .pathLine {
   position: absolute;
-  left: 0;
-  top: clamp(20px, 3vw, 40px);
+  inset: 0;
   width: 100%;
-  height: clamp(110px, 12vw, 170px);
+  height: 100%;
+  overflow: visible;
   pointer-events: none;
 }
 .station { position: relative; text-align: center; }

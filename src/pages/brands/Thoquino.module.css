@@ -72,105 +72,96 @@
 .hero {
   position: relative;
   min-height: 100svh;
-  padding: calc(var(--nav-clear) + 1rem) var(--page-x) 0;
+  padding: calc(var(--nav-clear) + clamp(1.5rem, 5svh, 3.5rem)) var(--page-x) 0;
   background:
     radial-gradient(70% 60% at 85% 30%, rgba(255, 201, 60, 0.32), transparent 70%),
     linear-gradient(180deg, #fff9e6 0%, var(--white) 70%);
   display: flex;
   flex-direction: column;
 }
-.bigWord {
-  position: absolute;
-  left: 0;
-  bottom: 13%;
-  white-space: nowrap;
-  font-family: var(--display);
-  font-weight: 900;
-  font-size: clamp(6rem, 22vw, 22rem);
-  line-height: 0.8;
-  letter-spacing: -0.05em;
-  text-transform: uppercase;
-  color: transparent;
-  -webkit-text-stroke: 2px rgba(31, 107, 58, 0.16);
-  pointer-events: none;
-  user-select: none;
-}
-.heroInner {
-  position: relative;
-  z-index: 1;
-  flex: 1;
-  display: grid;
-  grid-template-columns: 1.05fr 1fr;
-  align-items: center;
-  gap: 2rem;
-  max-width: 1440px;
-  width: 100%;
-  margin: 0 auto;
-  padding-bottom: 5rem;
-}
-.eyebrow {
-  display: inline-flex; align-items: center; gap: 0.6rem;
-  font-weight: 700; font-size: 0.8rem; letter-spacing: 0.16em; text-transform: uppercase;
-  color: var(--cane);
-  background: rgba(182, 214, 54, 0.25);
-  padding: 0.5rem 1rem;
-  border-radius: 999px;
-}
-.dot { width: 8px; height: 8px; border-radius: 50%; background: var(--cane); }
+
+/* Name and sticker share one row and wrap, never stack on each other. */
 .title {
-  margin-top: 1.4rem;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 0.4rem clamp(1rem, 2vw, 1.8rem);
   font-family: var(--display);
   font-weight: 900;
-  font-size: clamp(3.2rem, min(8.4vw, 13svh), 8.2rem);
-  line-height: 0.88;
-  letter-spacing: -0.05em;
+  line-height: 0.8;
+  letter-spacing: -0.06em;
   text-transform: uppercase;
   color: var(--deep);
 }
-.title span {
-  display: block;
-  font-size: 0.5em;
-  letter-spacing: -0.02em;
-  color: var(--cane);
-  margin-top: 0.15em;
+.titleWord {
+  display: inline-flex;
+  overflow: hidden;
+  padding: 0.04em 0.06em 0.02em;
+  font-size: clamp(2.4rem, 9.4vw, 10rem);
 }
-.quote {
-  margin-top: 1.6rem;
-  font-size: clamp(1.15rem, 1.7vw, 1.5rem);
-  font-style: italic;
-  color: var(--muted);
-  max-width: 28ch;
+.titleWord > span { display: inline-block; }
+/* "Cachaça" as a market-stall sticker beside the name. */
+.titleTag {
+  padding: 0.45em 0.9em 0.5em;
+  border-radius: 999px;
+  background: var(--lime);
+  color: var(--deep);
+  border: 3px solid var(--deep);
+  box-shadow: 5px 5px 0 var(--deep);
+  font-size: clamp(1rem, 2.4vw, 2.2rem);
+  letter-spacing: -0.02em;
+  line-height: 1;
+}
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
 }
 
-.heroArt {
+/* The stage. Everything is sized off its height so the gaps hold: the bottle
+   is 0.29 x its height wide, the sun ends above the cane line, and the cane
+   and fruit start outside the bottle's edge. */
+.heroStage {
+  --stage-h: clamp(280px, 44svh, 520px);
+  --bottle-half: calc(var(--stage-h) * 0.95 * 0.2916 / 2);
+  --fruit: calc(var(--stage-h) * 0.17);
   position: relative;
-  height: min(72svh, 640px);
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
+  height: var(--stage-h);
+  margin: clamp(1rem, 3svh, 2rem) auto 0;
+  max-width: 1440px;
+  width: 100%;
 }
 .sunWrap {
   position: absolute;
-  top: 2%;
-  right: 6%;
-  width: clamp(130px, 17vw, 240px);
+  z-index: 0;
+  left: 50%;
+  top: 0;
+  width: calc(var(--stage-h) * 0.56);
   aspect-ratio: 1;
+  translate: -50% 0;
 }
 .sun { width: 100%; height: 100%; color: var(--sun); }
-.canes {
+.canesLeft, .canesRight {
   position: absolute;
-  inset: auto 0 0 0;
-  height: 100%;
+  z-index: 1;
+  bottom: 0;
+  width: min(calc(var(--stage-h) * 0.6), calc(50% - var(--bottle-half) - var(--fruit) - 1.2rem));
+  height: 44%;
   display: flex;
-  justify-content: space-between;
   align-items: flex-end;
   pointer-events: none;
 }
+.canesLeft { right: calc(50% + var(--bottle-half) + var(--fruit) + 1.2rem); }
+.canesRight { left: calc(50% + var(--bottle-half) + var(--fruit) + 1.2rem); }
 .cane {
   flex: 1 1 0;
   min-width: 0;
-  max-width: 120px;
-  margin: 0 -1.5%;
+  max-height: 100%;
   height: auto;
   color: var(--cane);
   transform-origin: 50% 100%;
@@ -185,23 +176,64 @@
   50% { transform: rotate(2.5deg); }
 }
 .heroBottle {
-  position: relative;
-  z-index: 2;
-  height: 94%;
-  width: auto;
-  max-width: 40%;
-  object-fit: contain;
-  filter: drop-shadow(0 30px 40px rgba(12, 58, 33, 0.35));
-}
-.heroLime {
   position: absolute;
-  z-index: 3;
-  width: clamp(70px, 8vw, 120px);
-  bottom: 6%;
-  left: 54%;
-  transform: rotate(-18deg);
-  filter: drop-shadow(0 12px 18px rgba(0, 0, 0, 0.2));
+  z-index: 2;
+  left: 50%;
+  bottom: 0;
+  height: 95%;
+  width: auto;
+  translate: -50% 0;
+  object-fit: contain;
+  filter: drop-shadow(0 16px 18px rgba(12, 58, 33, 0.3));
 }
+.heroLime, .heroCoconut {
+  position: absolute;
+  z-index: 2;
+  bottom: 0;
+  width: var(--fruit);
+  filter: drop-shadow(0 8px 12px rgba(0, 0, 0, 0.18));
+}
+.heroLime { left: calc(50% + var(--bottle-half) + 0.6rem); transform: rotate(-18deg); }
+.heroCoconut { right: calc(50% + var(--bottle-half) + 0.6rem); transform: rotate(12deg); }
+
+/* Copy sits under the stage, split either side. */
+.heroFoot {
+  position: relative;
+  z-index: 5;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 2rem;
+  max-width: 1440px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 1.4rem 0 2.4rem;
+  border-top: 2px solid var(--deep);
+}
+.quote {
+  font-family: var(--display);
+  font-weight: 600;
+  font-size: clamp(1.1rem, 1.8vw, 1.6rem);
+  letter-spacing: -0.02em;
+  color: var(--cane);
+  max-width: 24ch;
+}
+.heroCopy .ctas { margin-top: 1.2rem; }
+.heroMeta {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.55rem;
+  justify-items: start;
+  font-weight: 700;
+  font-size: 0.78rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--deep);
+}
+.heroMeta li { display: inline-flex; align-items: center; gap: 0.6rem; }
+.dot { width: 8px; height: 8px; border-radius: 50%; background: var(--cane); flex-shrink: 0; }
 
 .waveBand, .waveBandBlue {
   position: relative;
@@ -314,12 +346,15 @@
 }
 .journeyLine {
   position: absolute;
-  left: 0; right: 0; top: 10px;
+  inset: 0;
   width: 100%;
-  height: 120px;
+  height: 100%;
+  overflow: visible;
   pointer-events: none;
 }
-.step { position: relative; list-style: none; }
+.step { position: relative; list-style: none; text-align: center; }
+/* The middle step drops lower, as on Pueblo Viejo, so the road swells between. */
+.step:nth-child(3) { margin-top: clamp(2rem, 5vw, 4.5rem); }
 .stepIcon {
   display: grid; place-items: center;
   width: 130px; height: 130px;
@@ -327,7 +362,8 @@
   background: var(--cane);
   color: var(--white);
   border: 3px solid var(--lime);
-  margin-bottom: 1.6rem;
+  outline: 8px solid var(--deep);
+  margin: 0 auto 1.6rem;
 }
 .stepIcon svg { width: 62px; height: 62px; }
 .stepNo {
@@ -344,7 +380,7 @@
   margin: 0.6rem 0 0.7rem;
   letter-spacing: -0.01em;
 }
-.step p { color: rgba(251, 247, 236, 0.78); line-height: 1.6; max-width: 32ch; }
+.step p { color: rgba(251, 247, 236, 0.78); line-height: 1.6; max-width: 32ch; margin-inline: auto; }
 
 /* ── Versus ────────────────────────────────────────────────── */
 .versus {
@@ -410,8 +446,41 @@
 .caneHalf .halfTag { background: var(--deep); color: var(--lime); }
 .molHalf { background: linear-gradient(160deg, #3d200c, #1f1006); color: #f3dcc0; }
 .molHalf .halfTag { background: #f3dcc0; color: #3d200c; }
-.splitCane { position: absolute; top: -20px; right: 12%; width: 110px; height: auto; color: var(--cane); transform: rotate(8deg); }
-.drip { position: absolute; top: 12%; left: 50%; width: 90px; transform: translateX(-50%); }
+/* Each half is a photo of its base, washed into the half's colour at the
+   foot so the label stays readable. */
+.halfPhoto {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.caneHalf .halfPhoto { object-position: 50% 40%; }
+.molHalf .halfPhoto { object-position: 55% 50%; }
+.split[data-side='cane'] .caneHalf .halfPhoto,
+.split[data-side='molasses'] .molHalf .halfPhoto { transform: scale(1.05); }
+.half::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+.caneHalf::after { background: linear-gradient(180deg, rgba(182, 214, 54, 0) 35%, rgba(182, 214, 54, 0.85) 68%, #b6d636 100%); }
+.molHalf::after { background: linear-gradient(180deg, rgba(31, 16, 6, 0.1) 30%, rgba(31, 16, 6, 0.85) 66%, #1f1006 100%); }
+.half > :not(.halfPhoto) { z-index: 1; }
+.halfCredit {
+  position: absolute;
+  top: 0.9rem;
+  right: 1rem;
+  z-index: 1;
+  font-size: 0.62rem;
+  letter-spacing: 0.04em;
+  padding: 0.2rem 0.5rem;
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.45);
+  color: #fff;
+}
 .split[data-side='molasses'] .caneHalf, .split[data-side='cane'] .molHalf { filter: saturate(0.6); }
 
 /* ── Range ─────────────────────────────────────────────────── */
@@ -592,9 +661,6 @@
 
 /* ── Responsive ────────────────────────────────────────────── */
 @media (max-width: 1024px) {
-  .heroInner { grid-template-columns: 1fr; padding-bottom: 3rem; }
-  .heroArt { height: 62svh; min-height: 420px; }
-  .bigWord { bottom: 6%; }
   .facts { grid-template-columns: repeat(2, 1fr); }
   .fact:nth-child(2) { border-right: 0; }
   .fact:nth-child(-n + 2) { border-bottom: 1px solid rgba(251, 247, 236, 0.15); }
@@ -608,7 +674,9 @@
 @media (max-width: 760px) {
   .journey { grid-template-columns: 1fr; gap: 2.5rem; }
   .journeyLine { display: none; }
-  .step { display: grid; grid-template-columns: 92px 1fr; column-gap: 1.2rem; align-items: start; }
+  .step { display: grid; grid-template-columns: 92px 1fr; column-gap: 1.2rem; align-items: start; text-align: left; }
+  .step:nth-child(3) { margin-top: 0; }
+  .step p { margin-inline: 0; }
   .stepIcon { width: 92px; height: 92px; grid-row: span 3; margin: 0; }
   .stepIcon svg { width: 46px; height: 46px; }
   .notes { grid-template-columns: 1fr; }
@@ -620,9 +688,10 @@
 }
 
 @media (max-width: 560px) {
-  .title { font-size: clamp(2.2rem, 11vw, 4rem); }
-  .heroArt { height: 54svh; min-height: 360px; }
-  .heroBottle { max-width: 46%; }
+  .titleWord { font-size: 13.2vw; }
+  .canesLeft, .canesRight { display: none; }
+  .heroStage { --stage-h: clamp(260px, 46svh, 380px); }
+  .heroFoot { flex-direction: column; align-items: stretch; gap: 1.6rem; }
   .facts { grid-template-columns: 1fr 1fr; }
   .factValue { font-size: 2.3rem; }
   .factLabel { font-size: 0.85rem; }
