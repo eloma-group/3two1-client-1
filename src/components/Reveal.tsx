@@ -33,10 +33,14 @@ export interface HeadingPart {
 /* Room around each word's clip box, so descenders, italic overhang and tight
    display line-heights are not shaved off. The negative margin hands the
    space straight back, so the words still sit where the text would. */
-const MASK_PAD = '0.06em 0.16em 0.2em';
-const MASK_PULL = '-0.06em -0.16em -0.2em';
-const GLYPH_PAD = '0 0.12em';
-const GLYPH_PULL = '0 -0.12em';
+const MASK_PAD = '0.1em 0.16em 0.3em';
+const MASK_PULL = '-0.1em -0.16em -0.3em';
+/* Gradient words paint only inside their own box. Tight display line-heights
+   leave descenders (the y in "company.") hanging below it and italics lean
+   past its right edge, so the box is padded to cover the whole glyph. The
+   mask's padding must stay larger than this, or the mask clips it again. */
+const GLYPH_PAD = '0.06em 0.12em 0.26em';
+const GLYPH_PULL = '-0.06em -0.12em -0.26em';
 
 /**
  * Word-by-word rise for headings. Every run shares one stagger, so a heading
@@ -107,8 +111,6 @@ export function RevealHeading({
           style={{
             display: 'inline-block',
             willChange: go && !reduce ? 'transform' : undefined,
-            /* The gradient only paints inside the word's own box, and italics
-               lean past it — pad the box so the last letter is not cut off. */
             ...(accent && { padding: GLYPH_PAD, margin: GLYPH_PULL }),
           }}
           initial={reduce ? false : { y: '118%' }}
