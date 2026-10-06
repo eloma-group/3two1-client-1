@@ -151,7 +151,7 @@ const SERVICES: Service[] = [
         items: [
           { imageUrl: '/images/giffard-abricot-du-roussillon-apricot-liqueur.webp', label: 'Apricot Liqueur', imageAlt: 'Giffard Abricot du Roussillon apricot liqueur bottle in a French terroir scene', scene: true },
           { imageUrl: '/images/giffard-caribbean-pineapple-liqueur.webp',           label: 'Caribbean Pineapple', imageAlt: 'Giffard Caribbean Pineapple liqueur bottle with fresh pineapple and palms', scene: true },
-          { imageUrl: '/images/giffard-lichi-li-lychee-liqueur.webp',               label: 'Litchi Liqueur',   imageAlt: 'Giffard Litchi-Li litchi liqueur bottle with fresh litchis and blossom',           scene: true },
+          { imageUrl: '/images/giffard-lychee-liqueur.webp',                        label: 'Lychee Liqueur',   imageAlt: 'Giffard Lychee-Li lychee liqueur bottle with fresh lychees and blossom',           scene: true },
           { imageUrl: '/images/giffard-watermelon-liqueur.webp',                    label: 'Watermelon Liqueur', imageAlt: 'Giffard Watermelon liqueur bottle with fresh watermelon at Angers',              scene: true },
         ],
       },
