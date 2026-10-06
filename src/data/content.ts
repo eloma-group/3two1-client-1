@@ -53,11 +53,11 @@ export const navMenu: MenuEntry[] = [
     children: [
       { label: 'Black Tears', to: '/brands/black-tears' },
       { label: 'Burnt Ends', to: '/brands/burnt-ends' },
-      { label: 'Demonio de los Andes', to: '/#brands' },
+      { label: 'Demonio de los Andes', to: '/brands/demonio-de-los-andes' },
       { label: 'Giffard', to: '/brands/giffard' },
       { label: 'Pueblo Viejo', to: '/brands/pueblo-viejo' },
       { label: 'San Matías', to: '/brands/san-matias' },
-      { label: 'Thoquino Cachaça', to: '/#brands' },
+      { label: 'Thoquino Cachaça', to: '/brands/thoquino' },
       { label: 'Whiskey Row', to: '/brands/whiskey-row' },
       { label: 'Worthy Park', to: '/brands/worthy-park' },
     ],
@@ -308,15 +308,10 @@ export const contact = {
   facebook: 'https://www.facebook.com/share/1CPbHuseCL/',
 } as const;
 
-const brandPageSlugs = new Set(['black-tears', 'pueblo-viejo', 'worthy-park', 'san-matias', 'giffard', 'burnt-ends', 'whiskey-row']);
-
 export const footerColumns = [
   {
     title: 'Brands',
-    links: brands.map((b) => ({
-      label: b.name,
-      to: brandPageSlugs.has(b.id) ? `/brands/${b.id}` : '/#brands',
-    })),
+    links: brands.map((b) => ({ label: b.name, to: `/brands/${b.id}` })),
   },
   {
     title: 'Trade',

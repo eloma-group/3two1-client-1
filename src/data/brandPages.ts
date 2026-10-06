@@ -1,6 +1,8 @@
 // Brand-page copy. Story, craft, range, tasting and serve text comes from the
 // 3Two1 reference site (3two1.pplx.app/brand-*.html) word for word; `facts`,
-// `trade` and `extra` are our own additions. Imagery is from each house's
+// `trade` and `extra` are our own additions. The reference has no Demonio de
+// los Andes or Thoquino pages, so their copy is ours, built on the home-page
+// lines and the producers' published facts. Imagery is from each house's
 // official site, under /public/images/brands/<slug>/.
 
 export interface Pillar { title: string; body: string }
@@ -29,7 +31,8 @@ export interface BrandPage {
   facts: Fact[];
   trade: string[];
   extra: { heading: string; body: string };
-  site: string;
+  /** Official site — omitted when the house has none of its own. */
+  site?: string;
 }
 
 const B = (slug: string) => (file: string) => `/images/brands/${slug}/${file}.webp`;
@@ -40,6 +43,7 @@ const wp = B('worthy-park');
 const sm = B('san-matias');
 const gf = B('giffard');
 const wr = B('whiskey-row');
+const dm = B('demonio-de-los-andes');
 
 export const brandPages: BrandPage[] = [
   {
@@ -466,6 +470,124 @@ export const brandPages: BrandPage[] = [
       body: 'Most bourbon leans on corn for sweetness. Whiskey Row pushes the rye up, which brings pepper, baking spice and a drier frame. In a cocktail that means less sugar, more structure, and a drink that still tastes of whiskey after the ice has done its work.',
     },
     site: 'https://whiskeyrowbourbon.com',
+  },
+  {
+    slug: 'demonio-de-los-andes',
+    name: 'Demonio de los Andes',
+    eyebrow: 'Ica, Peru · Pisco',
+    quote: 'Peru, in a single pass.',
+    story: {
+      heading: 'A devil of a name, from a very old vineyard.',
+      paragraphs: [
+        'Demonio de los Andes is made by Viña Tacama in the Ica Valley, on an estate whose vines trace back to the 1540s — among the oldest planted anywhere in South America. Ica is desert country: hot days, cold nights, almost no rain, and river water brought down from the Andes. Grapes there ripen hard and keep their acidity, which is exactly what a pisco wants.',
+        'The name belongs to Francisco de Carvajal, the sixteenth-century conquistador Peru remembers as the Demon of the Andes — feared, near-unbeatable in the field, and impossible to forget. His mounted figure rides across every label. It is a deliberately loud name for a spirit that is, underneath, made in the most disciplined way the category allows.',
+        'Pisco made the Peruvian way — grape spirit taken to proof in one distillation, with nothing added and nothing pulled back out. No water to bring the strength down, no sugar, no wood, no colour. What the grape and the still give you is what goes in the bottle. We bring it to Australia for the Pisco Sour and for everything that comes after it.',
+      ],
+    },
+    craft: {
+      statement: 'One distillation of freshly fermented grape must, straight to bottling strength. Nothing added, nothing taken away — the rules Peru writes into pisco itself.',
+      pillars: [
+        { title: 'Single distillation', body: 'Fermented must goes through the still once and comes off at proof. No redistilling, no dilution afterwards.' },
+        { title: 'Desert-grown grapes', body: 'Quebranta, Italia and friends from the Ica Valley — sun-ripened, with cold-night acidity, on river-fed vines.' },
+        { title: 'Rested, never aged', body: 'The spirit rests in neutral vessels before bottling. No wood, so the grape stays front and centre.' },
+      ],
+    },
+    values: {
+      label: 'The rules',
+      heading: 'What Peru does not allow.',
+      paragraphs: [
+        'Peruvian pisco is one of the most tightly defined spirits in the world. It must be distilled once, to proof. It cannot be cut with water. It cannot be sweetened, coloured or flavoured, and it cannot touch wood. It must rest before release. Each rule takes a shortcut off the table.',
+        'That is why a good pisco tastes so obviously of grapes — it has nowhere to hide. Demonio de los Andes leans into it: three expressions that show what the grape does, rather than what the distiller added.',
+      ],
+    },
+    range: [
+      { name: 'Demonio de los Andes Acholado', spec: '40% ABV · 700ml', note: 'The blend. Lime, orange and jasmine on the nose; dried nuts and blond tobacco in the mouth. Built for every cocktail.', image: dm('acholado') },
+      { name: 'Demonio de los Andes Quebranta', spec: '40% ABV · 700ml', note: 'The non-aromatic workhorse grape of pisco — earthy, rounded and quietly fruity. The classic Pisco Sour base.', image: dm('quebranta') },
+      { name: 'Demonio de los Andes Italia', spec: '40% ABV · 700ml', note: 'An aromatic grape — floral, juicy and perfumed. Lovely in a Chilcano, or neat and cold.', image: dm('italia') },
+    ],
+    tasting: {
+      of: 'Demonio de los Andes Acholado',
+      nose: 'Lime zest, orange peel and jasmine.',
+      palate: 'Bright and clean, with dried nuts and blond tobacco under the fruit.',
+      finish: 'Smooth, dry and pleasantly long.',
+      serve: 'A Pisco Sour: Acholado, fresh lime, sugar and egg white, shaken hard and finished with three drops of Amargo bitters.',
+    },
+    serves: [
+      { name: 'Pisco Sour', build: 'Acholado, lime, sugar syrup, egg white, Amargo bitters.', method: 'Dry shake, then wet', glass: 'Coupe', image: '/images/demonio-de-los-andes-pisco-peru.webp' },
+      { name: 'Chilcano', build: 'Quebranta, ginger ale, lime, a dash of bitters.', method: 'Build over cubes', glass: 'Highball', image: dm('vineyard') },
+      { name: 'El Capitán', build: 'Italia, sweet vermouth, bitters, an orange twist.', method: 'Stir, strain', glass: 'Coupe', image: dm('estate') },
+    ],
+    stock: 'Talk to our trade team about pisco allocations, Pisco Sour training, and Peruvian-night activations across Australia.',
+    facts: [
+      { value: '1540s', label: 'Roots of the Tacama vineyard in Ica' },
+      { value: '1', label: 'Distillation — straight to proof' },
+      { value: '0', label: 'Water, sugar, wood or colour added' },
+      { value: '40%', label: 'ABV across the range' },
+    ],
+    trade: [
+      'The Pisco Sour, done properly — with training to match',
+      'Chilcano as an easy, quick-build highball',
+      'A grape spirit for agave and gin drinkers to discover',
+    ],
+    extra: {
+      heading: 'Who was the Demon of the Andes?',
+      body: 'Francisco de Carvajal was a soldier in the civil wars that tore through sixteenth-century Peru, famous for his speed, his cunning and his ruthlessness — the rider who always seemed to arrive before anyone expected him. The legend stuck. Tacama put him on the label, at full gallop.',
+    },
+    site: 'https://www.tacama.com',
+  },
+  {
+    slug: 'thoquino',
+    name: 'Thoquino Cachaça',
+    eyebrow: 'Rio de Janeiro, Brazil · Cachaça · Since 1906',
+    quote: 'Cane, straight from the field.',
+    story: {
+      heading: 'Fresh cane, Campos country.',
+      paragraphs: [
+        'Thoquino has been distilling since 1906 in the Campos region of northern Rio de Janeiro state — flat, green sugarcane country between the mountains and the Atlantic. The distillery grows its own cane, which means it decides when to cut, and gets the juice to the still while it is still fresh.',
+        'That is the whole point of cachaça. It is pressed from fresh-cut sugarcane rather than molasses — grassy, bright and faintly wild. Where most rum starts from a by-product of sugar refining, cachaça starts from the plant itself, so the spirit tastes green and alive in a way molasses rum rarely does.',
+        'Thoquino distils at a low strength, keeping more of the cane character in the spirit, and it is ready to bottle soon after it comes off the still. It is the backbone of a Caipirinha worth drinking — and we bring it to Australia for bars that want the real thing in that glass.',
+      ],
+    },
+    craft: {
+      statement: 'Estate-grown cane, pressed fresh and distilled at low strength — so what reaches the glass still tastes like the field it came from.',
+      pillars: [
+        { title: 'Estate cane', body: 'Thoquino grows its own sugarcane, controlling the harvest from planting to cutting.' },
+        { title: 'Fresh juice, not molasses', body: 'Cane is pressed and the juice fermented straight away — the defining rule of cachaça.' },
+        { title: 'Low-strength distillation', body: 'Distilled gently to keep the grassy, vegetal character of the cane in the spirit.' },
+      ],
+    },
+    range: [
+      { name: 'Thoquino Cachaça', spec: '40% ABV · 700ml', note: 'The classic white. Fresh-cut grass, green banana and lime — made for the Caipirinha.', image: '/images/house-thoquino.webp' },
+      { name: 'Thoquino Aged', spec: '40% ABV · 700ml', note: 'Rested before bottling for a rounder, softer cane spirit. Sip it, or use it where a white feels too sharp.' },
+    ],
+    tasting: {
+      of: 'Thoquino Cachaça',
+      nose: 'Freshly cut cane, green grass, lime peel.',
+      palate: 'Bright and lively — sugarcane sweetness, green banana and a peppery edge.',
+      finish: 'Clean and fresh, with a faint vegetal snap.',
+      serve: 'A Caipirinha: half a lime cut into wedges, muddled with sugar in the glass, then Thoquino and plenty of crushed ice.',
+    },
+    serves: [
+      { name: 'Caipirinha', build: 'Thoquino, fresh lime wedges, sugar, crushed ice.', method: 'Muddle and build', glass: 'Rocks', image: '/images/thoquino-cachaca-brazil.webp' },
+      { name: 'Batida de Coco', build: 'Thoquino, coconut milk, condensed milk, crushed ice.', method: 'Blend or hard shake', glass: 'Rocks' },
+      { name: 'Rabo de Galo', build: 'Thoquino, sweet vermouth, Cynar, an orange twist.', method: 'Stir down', glass: 'Rocks' },
+    ],
+    stock: 'Talk to our trade team about cachaça allocations, Caipirinha training, and Brazilian-night activations across Australia.',
+    facts: [
+      { value: '1906', label: 'Distilling in the Campos region' },
+      { value: '100%', label: 'Fresh sugarcane juice — no molasses' },
+      { value: '1', label: 'Estate growing its own cane' },
+      { value: '40%', label: 'ABV, ready for the Caipirinha' },
+    ],
+    trade: [
+      'A real Caipirinha for the cocktail list',
+      'Batidas and frozen serves for summer menus',
+      'A fresh-cane story for rum-curious drinkers',
+    ],
+    extra: {
+      heading: 'Cachaça is not rum.',
+      body: 'Both come from sugarcane, but most rum is distilled from molasses — the dark syrup left after sugar is made. Cachaça must come from fresh cane juice, fermented and distilled in Brazil. That one rule is why it tastes greener, brighter and wilder than almost any rum on the shelf.',
+    },
   },
 ];
 

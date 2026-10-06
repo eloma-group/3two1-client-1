@@ -2,7 +2,7 @@ import { lazy, Suspense, useEffect, type ComponentType, type LazyExoticComponent
 import { Navigate, useParams } from 'react-router-dom';
 import { brandPage } from '../../data/brandPages';
 
-/* Each house gets its own hand-built page and stylesheet, so they load
+/* Each of the nine houses gets its own hand-built page and stylesheet, so they load
    on demand rather than shipping seven themes with the home page. */
 const PAGES: Record<string, LazyExoticComponent<ComponentType>> = {
   'black-tears': lazy(() => import('./BlackTears')),
@@ -12,6 +12,8 @@ const PAGES: Record<string, LazyExoticComponent<ComponentType>> = {
   giffard: lazy(() => import('./Giffard')),
   'burnt-ends': lazy(() => import('./BurntEnds')),
   'whiskey-row': lazy(() => import('./WhiskeyRow')),
+  'demonio-de-los-andes': lazy(() => import('./DemonioDeLosAndes')),
+  thoquino: lazy(() => import('./Thoquino')),
 };
 
 export default function BrandRoute() {
