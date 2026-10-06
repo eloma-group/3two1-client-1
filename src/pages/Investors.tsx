@@ -5,55 +5,58 @@ import {
 } from 'framer-motion';
 import { Mail, ArrowRight } from 'lucide-react';
 import { contact } from '../data/content';
-import Reveal, { RevealText } from '../components/Reveal';
+import Reveal, { RevealHeading, RevealText } from '../components/Reveal';
 import Marquee from '../components/Marquee';
 import MagneticButton from '../components/MagneticButton';
+import { AU_DOT_GRID } from '../data/auDotGrid';
 import styles from './Investors.module.css';
 
 const ease = [0.16, 1, 0.3, 1] as [number, number, number, number];
 
+/* Each figure carries one line of context, so the number reads as evidence
+   rather than a boast. */
 const FIGURES = [
-  { to: 450, suffix: '+',    label: 'active trade accounts nationally' },
-  { to: 9,   suffix: '',     label: 'brand houses, full national exclusivity' },
-  { to: 8,   suffix: ' yrs', label: 'independent and family-held' },
+  {
+    to: 450, suffix: '+', label: 'Active trade accounts',
+    note: 'Bars, bottle shops and cafés — from Perth metro to the east coast.',
+  },
+  {
+    to: 9, suffix: '', label: 'Brand houses',
+    note: 'Rum, tequila, whiskey, pisco, cachaça and liqueur, every one on exclusive national rights.',
+  },
+  {
+    to: 8, suffix: ' yrs', label: 'Independent & family-held',
+    note: 'Owner-operated since 2018, with the portfolio held outright.',
+  },
 ];
 
 const YEARS = ['2018 · Founded', 'Our story', 'Founders', 'Investors', 'Today'];
 
-const PLACES = [
-  { name: 'Perth', hq: true },
-  { name: 'Sydney' },
-  { name: 'Melbourne' },
-  { name: 'Brisbane' },
-  { name: 'Adelaide' },
+/* Real coordinates, drawn on the footprint map. `label` says which side of the
+   pin the name hangs: Brisbane and Sydney sit on the east coast, so theirs go
+   out over the sea; the southern cities hang theirs below. */
+const PLACES: {
+  name: string; lat: number; lng: number; label: 'below' | 'right'; hq?: boolean;
+}[] = [
+  { name: 'Perth',     lat: -31.953, lng: 115.857, label: 'below', hq: true },
+  { name: 'Sydney',    lat: -33.868, lng: 151.209, label: 'right' },
+  { name: 'Melbourne', lat: -37.814, lng: 144.963, label: 'below' },
+  { name: 'Brisbane',  lat: -27.47,  lng: 153.025, label: 'right' },
+  { name: 'Adelaide',  lat: -34.929, lng: 138.601, label: 'below' },
 ];
 
 /* The same brand strip the home page runs, rather than the names set in type —
-   on a page about the portfolio the marks carry more than the words do.
-   Demonio de los Andes and Thoquino sit out until their marks exist — the
-   houses grid below still runs the full nine. */
+   on a page about the portfolio the marks carry more than the words do. Each
+   mark opens that house's page.
+   Demonio de los Andes and Thoquino sit out until their marks exist. */
 const HOUSE_LOGOS = [
-  { src: '/images/brandstrip-black-tears.webp',  alt: 'Black Tears' },
-  { src: '/images/brandstrip-worthy-park.webp',  alt: 'Worthy Park' },
-  { src: '/images/brandstrip-giffard.webp',      alt: 'Giffard' },
-  { src: '/images/brandstrip-pueblo-viejo.webp', alt: 'Pueblo Viejo' },
-  { src: '/images/brandstrip-burnt-ends.webp',   alt: 'Burnt Ends' },
-  { src: '/images/brandstrip-san-matias.webp',   alt: 'San Matías' },
-  { src: '/images/brandstrip-whiskey-row.webp',  alt: 'Whiskey Row' },
-];
-
-/* The portfolio is the proof, so the houses get their own grid —
-   reusing the scene shots the services section already ships. */
-const HOUSES = [
-  { name: 'Black Tears',  img: '/images/black-tears-dry-spiced-rum-cuba.webp' },
-  { name: 'Worthy Park',  img: '/images/worthy-park-single-estate-jamaica-rum.webp' },
-  { name: 'Giffard',      img: '/images/giffard-abricot-du-roussillon-apricot-liqueur.webp' },
-  { name: 'Pueblo Viejo', img: '/images/pueblo-viejo-blanco-tequila-jalisco-mexico.webp' },
-  { name: 'Burnt Ends',   img: '/images/burnt-ends-blended-whiskey-tennessee.webp' },
-  { name: 'San Matías',   img: '/images/san-matias-gran-reserva-extra-anejo-tequila.webp' },
-  { name: 'Whiskey Row',  img: '/images/whiskey-row-straight-bourbon-kentucky.webp' },
-  { name: 'Demonio de los Andes', img: '/images/demonio-de-los-andes-pisco-peru.webp' },
-  { name: 'Thoquino Cachaça',     img: '/images/thoquino-cachaca-brazil.webp' },
+  { src: '/images/brandstrip-black-tears.webp',    alt: 'Black Tears',  to: '/brands/black-tears' },
+  { src: '/images/brandstrip-worthy-park.webp',    alt: 'Worthy Park',  to: '/brands/worthy-park' },
+  { src: '/images/brandstrip-giffard.webp',        alt: 'Giffard',      to: '/brands/giffard' },
+  { src: '/images/brandstrip-pueblo-viejo.webp',   alt: 'Pueblo Viejo', to: '/brands/pueblo-viejo' },
+  { src: '/images/brandstrip-burnt-ends.webp',     alt: 'Burnt Ends',   to: '/brands/burnt-ends' },
+  { src: '/images/brandstrip-san-matias.webp',     alt: 'San Matías',   to: '/brands/san-matias' },
+  { src: '/images/brandstrip-whiskey-row.webp',    alt: 'Whiskey Row',  to: '/brands/whiskey-row' },
 ];
 
 const TEAM = [
@@ -107,7 +110,7 @@ function CountUp({ to, suffix }: { to: number; suffix: string }) {
     const start = performance.now();
     let raf = 0;
     const tick = (now: number) => {
-      const p = Math.min(1, (now - start) / 1400);
+      const p = Math.min(1, (now - start) / 1200);
       setN(Math.round(to * (1 - Math.pow(1 - p, 3))));
       if (p < 1) raf = requestAnimationFrame(tick);
     };
@@ -144,18 +147,189 @@ function Plate({ src, alt }: { src: string; alt: string }) {
   );
 }
 
+/**
+ * By the numbers, set over a full-bleed bar photograph: the figures sit on one
+ * frosted panel along the bottom, and the photo drifts slower than the page.
+ */
+function FiguresBand() {
+  const reduced = useReducedMotion();
+  const ref = useRef<HTMLElement>(null);
+  const { scrollYProgress } = useScroll({ target: ref, offset: ['start end', 'end start'] });
+  const photoY = useTransform(scrollYProgress, [0, 1], ['-8%', '8%']);
+
+  return (
+    <section className={styles.figures} ref={ref}>
+      <motion.div className={styles.figuresPhoto} style={reduced ? undefined : { y: photoY }} aria-hidden="true">
+        <img src="/images/about-numbers-pour.webp" alt="" loading="lazy" decoding="async" />
+      </motion.div>
+      <div className={styles.figuresScrim} aria-hidden="true" />
+
+      <div className={`container ${styles.figuresInner}`}>
+        <div className={styles.figuresHead}>
+          <Reveal y={16}><p className={styles.kicker}>By the numbers</p></Reveal>
+          <h2 className={styles.title}>
+            <RevealHeading parts={[{ text: 'Small team,' }, { text: 'serious reach.', accent: true }]} />
+          </h2>
+          <Reveal y={16} delay={0.12}>
+            <p className={styles.figuresLede}>
+              Every figure below was earned behind a bar like this one — a venue, a house and a
+              year at a time.
+            </p>
+          </Reveal>
+        </div>
+
+        <Reveal y={30} delay={0.1}>
+          <dl className={styles.glass}>
+            {FIGURES.map((f) => (
+              <div key={f.label} className={styles.glassCell}>
+                <dt className={styles.glassLabel}>{f.label}</dt>
+                <dd className={styles.glassNum}>
+                  <CountUp to={f.to} suffix="" />
+                  {f.suffix && (
+                    <span className={`${styles.glassSuffix} ${f.suffix === '+' ? styles.glassSuffixUp : ''} gradient-text`}>
+                      {f.suffix.trim()}
+                    </span>
+                  )}
+                </dd>
+                <dd className={styles.glassNote}>{f.note}</dd>
+              </div>
+            ))}
+          </dl>
+        </Reveal>
+      </div>
+    </section>
+  );
+}
+
+/* Footprint map projection: equirectangular, with longitude squeezed by
+   cos 27deg (the middle of the continent) so Australia keeps its shape. */
+const MAP_K = Math.cos((27 * Math.PI) / 180);
+const MAP_S = 20;
+const project = (lat: number, lng: number) => ({
+  x: (lng - 112) * MAP_K * MAP_S,
+  y: (-lat - 10) * MAP_S,
+});
+/* West of the WA border (129E) is home turf, so those dots carry the brand tint. */
+const WA_BORDER = 129;
+const HQ = PLACES.find((p) => p.hq)!;
+
+/** Dot map of Australia: freight lines run out of Perth to every city we serve. */
+function FootprintMap() {
+  const reduced = useReducedMotion();
+  const ref = useRef<HTMLElement>(null);
+  const inView = useInView(ref, { once: true, margin: '-12% 0px' });
+  const open = reduced || inView;
+
+  const hq = project(HQ.lat, HQ.lng);
+  const routes = PLACES.filter((p) => !p.hq).map((p) => {
+    const to = project(p.lat, p.lng);
+    /* Bow each line north by a share of its length so the routes fan out over
+       the continent instead of stacking along the south coast. */
+    const dist = Math.hypot(to.x - hq.x, to.y - hq.y);
+    const cx = (hq.x + to.x) / 2;
+    const cy = (hq.y + to.y) / 2 - dist * 0.3;
+    return { name: p.name, d: `M${hq.x},${hq.y} Q${cx},${cy} ${to.x},${to.y}` };
+  });
+
+  return (
+    <figure
+      className={styles.mapFigure}
+      ref={ref}
+      role="img"
+      aria-label={`Map of Australia with delivery routes from Perth to ${routes.map((r) => r.name).join(', ')}`}
+    >
+      <svg viewBox="-30 0 900 700" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+        <motion.g
+          initial={reduced ? false : { opacity: 0 }}
+          animate={open ? { opacity: 1 } : undefined}
+          transition={{ duration: 0.9, ease }}
+        >
+          {AU_DOT_GRID.map(([lat, lng]) => {
+            const { x, y } = project(lat, lng);
+            return (
+              <circle
+                key={`${lat},${lng}`}
+                cx={x}
+                cy={y}
+                r={4.6}
+                className={lng < WA_BORDER ? styles.mapDotWa : styles.mapDot}
+              />
+            );
+          })}
+        </motion.g>
+
+        {routes.map((r, i) => (
+          <g key={r.name}>
+            <motion.path
+              d={r.d}
+              className={styles.mapRoute}
+              initial={reduced ? false : { pathLength: 0 }}
+              animate={open ? { pathLength: 1 } : undefined}
+              transition={{ duration: 1.3, delay: 0.5 + i * 0.16, ease }}
+            />
+            {/* Stock on the move: a dashed overlay that crawls along the route
+                once it has drawn. */}
+            {!reduced && (
+              <motion.path
+                d={r.d}
+                className={styles.mapFlow}
+                initial={{ opacity: 0 }}
+                animate={open ? { opacity: 1 } : undefined}
+                transition={{ duration: 0.6, delay: 1.8 + i * 0.16 }}
+              />
+            )}
+          </g>
+        ))}
+
+        {PLACES.map((p, i) => {
+          const { x, y } = project(p.lat, p.lng);
+          const right = p.label === 'right';
+          return (
+            <motion.g
+              key={p.name}
+              initial={reduced ? false : { opacity: 0, scale: 0.4 }}
+              animate={open ? { opacity: 1, scale: 1 } : undefined}
+              transition={{ duration: 0.6, delay: p.hq ? 0.3 : 1.4 + (i - 1) * 0.16, ease }}
+              style={{ transformOrigin: `${x}px ${y}px` }}
+            >
+              {p.hq && <circle cx={x} cy={y} r={12} className={styles.mapPulse} />}
+              <circle cx={x} cy={y} r={p.hq ? 12 : 8.5} className={styles.mapPin} />
+              <text
+                x={right ? x + 20 : x}
+                y={right ? y + 8 : y + 40}
+                textAnchor={right ? 'start' : 'middle'}
+                className={styles.mapLabel}
+              >
+                {p.name}
+                {p.hq && <tspan className={styles.mapHq} dx={8}>HQ</tspan>}
+              </text>
+            </motion.g>
+          );
+        })}
+      </svg>
+      <figcaption className={styles.mapKey}>
+        <span><i className={styles.mapKeyHq} aria-hidden="true" /> Perth HQ · weekly across WA</span>
+        <span><i className={styles.mapKeyRoute} aria-hidden="true" /> National freight</span>
+      </figcaption>
+    </figure>
+  );
+}
+
 interface Chapter {
   id: string;
   kicker: string;
   heading: string;
   gradientFrom?: number; // word index where the gradient half of the heading starts
   flip?: boolean;
-  img: string;
-  alt: string;
+  /* A chapter shows either a photograph (img + alt) or its own figure (media). */
+  img?: string;
+  alt?: string;
+  media?: ReactNode;
   body: ReactNode;
 }
 
-export default function Investors() {
+/** `ready` flips once the splash starts to leave, so the hero rises in view. */
+export default function Investors({ ready = true }: { ready?: boolean }) {
   const navigate = useNavigate();
   const reduced = useReducedMotion();
 
@@ -292,8 +466,7 @@ export default function Investors() {
       heading: 'From WA — to wherever it pours.',
       gradientFrom: 1,
       flip: true,
-      img: '/images/au-outback-road.webp',
-      alt: 'A highway running through red earth in regional Western Australia',
+      media: <FootprintMap />,
       body: (
         <>
           <p className={styles.body}>
@@ -343,8 +516,12 @@ export default function Investors() {
             <p className={styles.heroEyebrow}><i aria-hidden="true" /> About 3two1</p>
           </Reveal>
           <h1 className={styles.heroTitle}>
-            <RevealText text="In good" />{' '}
-            <span className="gradient-text"><RevealText text="company." /></span>
+            <RevealHeading
+              parts={[{ text: 'In good' }, { text: 'company.', accent: true }]}
+              accentAs="span"
+              play={ready}
+              delay={0.15}
+            />
           </h1>
           <Reveal y={18} delay={0.25}>
             <div className={styles.heroMeta}>
@@ -396,12 +573,11 @@ export default function Investors() {
                   <div>
                     <Reveal y={16}><p className={styles.kicker}>{c.kicker}</p></Reveal>
                     <h2 className={styles.title}>
-                      {head && <><RevealText text={head} />{' '}</>}
-                      <em className="gradient-text"><RevealText text={tail} /></em>
+                      <RevealHeading parts={[...(head ? [{ text: head }] : []), { text: tail, accent: true }]} />
                     </h2>
                     <Reveal y={18} delay={0.14}>{c.body}</Reveal>
                   </div>
-                  <Plate src={c.img} alt={c.alt} />
+                  {c.media ?? <Plate src={c.img!} alt={c.alt!} />}
                 </section>
               );
             })}
@@ -414,8 +590,7 @@ export default function Investors() {
         <div className="container">
           <Reveal y={16}><p className={styles.kicker}>How we work</p></Reveal>
           <h2 className={styles.title}>
-            <RevealText text="Four rules we" />{' '}
-            <em className="gradient-text"><RevealText text="don't bend." /></em>
+            <RevealHeading parts={[{ text: 'Four rules we' }, { text: "don't bend.", accent: true }]} />
           </h2>
           <Reveal y={16} delay={0.12}>
             <p className={styles.lede}>
@@ -438,81 +613,37 @@ export default function Investors() {
       </section>
 
       {/* ══ Figures ══ */}
-      <section className={styles.figures}>
-        <div className="container">
-          <Reveal y={16}><p className={styles.kicker}>By the numbers</p></Reveal>
-          <div className={styles.figureGrid}>
-            {FIGURES.map((f, i) => (
-              <Reveal key={f.label} y={24} delay={i * 0.08}>
-                <div className={styles.figureCell}>
-                  <span className={`${styles.figureNum} gradient-text`}>
-                    <CountUp to={f.to} suffix={f.suffix} />
-                  </span>
-                  <p className={styles.figureLabel}>{f.label}</p>
-                </div>
-              </Reveal>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ══ Portfolio ══ */}
-      <section className={styles.section}>
-        <div className="container">
-          <Reveal y={16}><p className={styles.kicker}>The portfolio</p></Reveal>
-          <h2 className={styles.title}>
-            <RevealText text="Nine houses," />{' '}
-            <em className="gradient-text"><RevealText text="full national exclusivity." /></em>
-          </h2>
-          <Reveal y={16} delay={0.12}>
-            <p className={styles.lede}>
-              Rum from Cuba and Jamaica, tequila from Jalisco, bourbon and blended whiskey from the
-              States, pisco from Peru and cachaça from Brazil. Nine producers, ranged so they
-              complement each other rather than compete for the same shelf.
-            </p>
-          </Reveal>
-          <div className={styles.houses}>
-            {HOUSES.map((h, i) => (
-              <Reveal key={h.name} y={24} delay={0.05 + (i % 4) * 0.06}>
-                <div className={styles.house}>
-                  <img
-                    src={h.img}
-                    alt={`${h.name} — 3two1 portfolio`}
-                    loading="lazy"
-                    onError={(e) => { e.currentTarget.style.visibility = 'hidden' }}
-                  />
-                  <span className={styles.houseName}>{h.name}</span>
-                </div>
-              </Reveal>
-            ))}
-          </div>
-        </div>
-      </section>
+      <FiguresBand />
 
       {/* ══ Team ══ */}
       <section className={styles.section}>
         <div className="container">
-          <Reveal y={16}><p className={styles.kicker}>People</p></Reveal>
-          <h2 className={styles.title}>
-            <RevealText text="The" />{' '}
-            <em className="gradient-text"><RevealText text="team." /></em>
-          </h2>
-          <Reveal y={16} delay={0.12}>
-            <p className={styles.lede}>
-              Small on purpose. Between them the team has spent the better part of two decades on
-              the other side of the bar — which is more or less the only thing we screen for.
-            </p>
-          </Reveal>
+          <div className={styles.teamHead}>
+            <div>
+              <Reveal y={16}><p className={styles.kicker}>People</p></Reveal>
+              <h2 className={styles.title}>
+                <RevealHeading parts={[{ text: 'The' }, { text: 'team.', accent: true }]} />
+              </h2>
+            </div>
+            <Reveal y={16} delay={0.12}>
+              <p className={styles.teamLede}>
+                Small on purpose. Between them the team has spent the better part of two decades on
+                the other side of the bar — which is more or less the only thing we screen for.
+              </p>
+            </Reveal>
+          </div>
           <div className={styles.team}>
             {TEAM.map((m, i) => (
-              <Reveal key={m.name} y={24} delay={0.08 + i * 0.08}>
-                <div className={styles.member}>
-                  <span className={styles.monogram} aria-hidden="true">{initials(m.name)}</span>
-                  <div>
-                    <p className={styles.memberName}>{m.name}</p>
-                    <p className={styles.memberRole}>{m.role}</p>
+              <Reveal key={m.name} y={28} delay={0.08 + i * 0.1}>
+                <article className={styles.member}>
+                  <div className={styles.memberTop}>
+                    <span className={styles.memberN}>{String(i + 1).padStart(2, '0')}</span>
+                    <span className={styles.memberRole}>{m.role}</span>
                   </div>
-                </div>
+                  {/* No portraits yet, so the initials stand in for one. */}
+                  <span className={styles.monogram} aria-hidden="true">{initials(m.name)}</span>
+                  <h3 className={styles.memberName}>{m.name}</h3>
+                </article>
               </Reveal>
             ))}
           </div>
@@ -523,8 +654,8 @@ export default function Investors() {
       <section className={`${styles.section} ${styles.cta}`}>
         <div className="container">
           <Reveal y={16}><p className={styles.kicker}>Contact</p></Reveal>
-          <h2 className={`${styles.ctaTitle} gradient-text`}>
-            <RevealText text="Talk to a real human." />
+          <h2 className={styles.ctaTitle}>
+            <RevealText text="Talk to a real human." accent />
           </h2>
           <Reveal y={18} delay={0.2}>
             <p className={styles.ctaNote}>
