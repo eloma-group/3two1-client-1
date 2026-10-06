@@ -81,121 +81,183 @@
 .btnLineLight:hover { background: var(--bone); color: var(--ink); }
 
 /* ── Hero ───────────────────────────────────────────────────────────── */
+/* Hero: dusk over the Andes. The sky, sun and ridges are drawn in code, so
+   they can rise, drift and glow. */
 .hero {
   position: relative;
   min-height: 100svh;
-  padding-top: calc(var(--nav-clear) + 1rem);
+  overflow: hidden;
+  isolation: isolate;
   display: flex;
   flex-direction: column;
-  background:
-    radial-gradient(90% 70% at 75% 40%, rgba(217, 180, 106, 0.28), transparent 70%),
-    linear-gradient(180deg, var(--bone), var(--sand));
-}
-.bigWord {
-  position: absolute;
-  left: -2vw;
-  top: 50%;
-  transform: translateY(-50%);
-  font-family: var(--display);
-  font-weight: 900;
-  font-size: clamp(7rem, 26vw, 26rem);
-  line-height: 0.8;
-  letter-spacing: -0.02em;
-  color: transparent;
-  -webkit-text-stroke: 1.5px rgba(179, 32, 42, 0.28);
-  white-space: nowrap;
-  pointer-events: none;
-  user-select: none;
-  z-index: 0;
-}
-.heroGrid {
-  position: relative;
-  z-index: 1;
-  flex: 1;
-  display: grid;
-  grid-template-columns: 1.05fr 0.95fr;
   align-items: center;
-  gap: clamp(2rem, 5vw, 5rem);
-  padding: 0 var(--page-x) clamp(2.5rem, 5vw, 4rem);
+  padding-top: calc(var(--nav-clear) + 0.5rem);
+  background: var(--ink);
+  color: var(--bone);
 }
+.sky {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  background:
+    linear-gradient(180deg, #120c0a 0%, #2a1310 26%, #5e1a1c 48%, #a5422a 64%, #d98a4a 76%, #f0c27a 86%, #f6d79c 100%);
+}
+.star {
+  position: absolute;
+  border-radius: 50%;
+  background: #f5ede0;
+  opacity: 0.2;
+  animation: twinkle 3.6s ease-in-out infinite;
+}
+@keyframes twinkle { 50% { opacity: 0.85; } }
+
+/* The sun sits low, centred behind the bottles, and breathes once it is up. */
+.sunWrap {
+  position: absolute;
+  left: 50%;
+  bottom: 22%;
+  width: clamp(220px, 30vw, 420px);
+  aspect-ratio: 1;
+  translate: -50% 0;
+}
+.sun {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: radial-gradient(circle, #fff1cf 0%, #ffd690 38%, #f3a65a 62%, rgba(243, 166, 90, 0) 72%);
+  box-shadow: 0 0 120px 60px rgba(243, 166, 90, 0.35);
+  animation: sunGlow 5s ease-in-out 2.4s infinite;
+}
+@keyframes sunGlow { 50% { box-shadow: 0 0 170px 90px rgba(243, 166, 90, 0.5); } }
+
+.ridge { position: absolute; left: 0; right: 0; bottom: 0; }
+.ridge svg { display: block; width: 100%; height: 100%; }
+.ridge0 { height: 62%; }
+.ridge1 { height: 48%; }
+.ridge2 { height: 34%; }
+.ridge0 path { fill: #8c3a2c; }
+.ridge1 path { fill: #5a1418; }
+.ridge2 path { fill: var(--ink); }
+
+/* Embers lifting off the valley floor. */
+.ember {
+  position: absolute;
+  bottom: 18%;
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: #ffcf8a;
+  box-shadow: 0 0 8px 2px rgba(255, 170, 90, 0.6);
+  opacity: 0;
+  animation: ember 8s linear infinite;
+}
+@keyframes ember {
+  0% { transform: translate(0, 0); opacity: 0; }
+  12% { opacity: 0.9; }
+  100% { transform: translate(30px, -55vh); opacity: 0; }
+}
+
+.heroHead { position: relative; z-index: 1; text-align: center; padding: 0 var(--page-x); }
 .eyebrow {
   display: inline-flex;
   align-items: center;
   gap: 0.6rem;
-  margin: 0 0 1.4rem;
-  font-size: 0.78rem;
+  margin: 0 0 1rem;
+  font-size: 0.76rem;
   font-weight: 500;
   letter-spacing: 0.34em;
   text-transform: uppercase;
-  color: var(--red);
+  color: var(--gold-soft);
 }
-.eyebrowMark { width: 20px; height: 20px; color: var(--gold); }
-.title {
-  font-family: var(--display);
+.eyebrowMark { width: 20px; height: 20px; color: var(--gold-soft); }
+.title { margin: 0; font-family: var(--display); color: var(--bone); }
+.titleMain {
+  display: block;
   font-weight: 900;
-  font-size: clamp(2.8rem, min(7.4vw, 12svh), 7.2rem);
-  line-height: 0.95;
-  letter-spacing: 0;
-  margin: 0;
-  color: var(--ink);
-  text-wrap: balance;
+  font-size: clamp(3.6rem, min(15vw, 18svh), 13.5rem);
+  line-height: 0.86;
+  letter-spacing: 0.02em;
+  text-shadow: 0 10px 40px rgba(23, 17, 13, 0.45);
+  perspective: 600px;
+}
+.titleChar { display: inline-block; transform-origin: 50% 100%; }
+/* "de los Andes" between two gold rules. */
+.titleSub {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.1rem;
+  margin-top: 0.7rem;
+  font-weight: 700;
+  font-size: clamp(1rem, 2.2vw, 1.9rem);
+  letter-spacing: 0.42em;
+  text-transform: uppercase;
+  color: #f0cf8a;
+  text-shadow: 0 2px 18px rgba(23, 17, 13, 0.45);
+}
+.titleSub::before,
+.titleSub::after {
+  content: '';
+  width: clamp(2.5rem, 8vw, 7rem);
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold-soft));
+}
+.titleSub::after { transform: scaleX(-1); }
+
+/* The bottles overlap the bottom of the title block. */
+.trio {
+  position: relative;
+  z-index: 2;
+  flex: 1;
+  width: min(100%, 760px);
+  min-height: clamp(220px, 40svh, 560px);
+  margin-top: clamp(0.6rem, 2svh, 1.6rem);
+}
+.trioBottle {
+  position: absolute;
+  bottom: 0;
+  animation: float 6s ease-in-out 2.6s infinite;
+}
+.trioScroll { display: block; height: 100%; transform-origin: 50% 100%; }
+.trioBottle img {
+  height: 100%;
+  width: auto;
+  max-width: none !important;
+  filter: drop-shadow(0 30px 30px rgba(23, 17, 13, 0.6));
+}
+@keyframes float { 50% { transform: translateY(-10px); } }
+.trioMain { left: 50%; height: 100%; translate: -50% 0; z-index: 2; }
+.trioLeft { left: 50%; height: 80%; translate: -112% 0; rotate: -5deg; z-index: 1; animation-delay: 3.4s; }
+.trioRight { left: 50%; height: 80%; translate: 12% 0; rotate: 5deg; z-index: 1; animation-delay: 4.1s; }
+.trioLeft img, .trioRight img { filter: drop-shadow(0 30px 30px rgba(23, 17, 13, 0.6)) brightness(0.9); }
+
+.heroFoot {
+  position: relative;
+  z-index: 3;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 1.5rem 2rem;
+  flex-wrap: wrap;
+  padding: clamp(1.2rem, 3vw, 2rem) var(--page-x) clamp(1.6rem, 3.5vw, 2.6rem);
 }
 .quote {
   font-family: var(--serif);
   font-style: italic;
   font-size: clamp(1.35rem, 2.2vw, 2rem);
-  color: var(--red-deep);
-  margin: 1.4rem 0 2.2rem;
-}
-
-.stage {
-  position: relative;
-  aspect-ratio: 4 / 5;
-  max-height: 74svh;
-  width: 100%;
-  justify-self: end;
-  max-width: 560px;
-  overflow: hidden;
-  border-radius: 280px 280px 6px 6px;
-  box-shadow: 0 40px 80px -40px rgba(23, 17, 13, 0.55);
-  outline: 1px solid rgba(184, 138, 62, 0.6);
-  outline-offset: 10px;
-}
-.stageBg {
-  position: absolute;
-  inset: -6% 0 0;
-  width: 100%;
-  height: 112%;
-  object-fit: cover;
-}
-.stageArch {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(180deg, transparent 55%, rgba(124, 18, 25, 0.25));
-}
-.stageBottle {
-  position: absolute;
-  left: 50%;
-  bottom: 4%;
-  height: 86%;
-  width: auto;
-  max-width: none;
-  translate: -50% 0;
-  filter: drop-shadow(18px 24px 22px rgba(60, 35, 15, 0.38));
-}
-.stageTag {
-  position: absolute;
-  left: 50%;
-  bottom: 1.2rem;
-  translate: -50% 0;
-  font-size: 0.68rem;
-  letter-spacing: 0.3em;
-  text-transform: uppercase;
   color: var(--bone);
-  background: var(--ink);
-  padding: 0.45rem 0.9rem;
-  white-space: nowrap;
+  margin: 0;
 }
+.hero .weave { position: relative; z-index: 3; width: 100%; overflow: hidden; }
+/* The band is one pattern tile wider than the frame and slides by one tile. */
+.hero .weave svg { width: calc(100% + 48px); animation: weave 2.4s linear infinite; }
+@keyframes weave { to { transform: translateX(-48px); } }
+
+/* Reduced motion: everything rests in its final place. */
+.still .star, .still .sun, .still .ember, .still .trioBottle, .still .weave svg { animation: none; }
+.still .ember { display: none; }
 
 /* ── Facts ──────────────────────────────────────────────────────────── */
 .facts {
@@ -669,19 +731,22 @@
   color: var(--red);
 }
 .posterRider {
-  height: clamp(220px, 26vw, 320px);
+  height: clamp(240px, 28vw, 340px);
   margin: 1.4rem auto;
   position: relative;
   display: flex;
   justify-content: center;
+  align-items: center;
 }
+/* The ring is sized off the height, so the whole bottle sits inside it
+   rather than spilling over its top and bottom. */
 .posterRider::before {
   content: '';
   position: absolute;
   left: 50%;
   top: 50%;
   translate: -50% -50%;
-  width: 62%;
+  height: 100%;
   aspect-ratio: 1;
   border-radius: 50%;
   border: 1px solid rgba(23, 17, 13, 0.3);
@@ -689,7 +754,7 @@
 }
 .posterRider img {
   position: relative;
-  height: 100%;
+  height: 82%;
   width: auto;
   max-width: none;
   filter: sepia(0.35) contrast(1.05) drop-shadow(8px 14px 14px rgba(23, 17, 13, 0.3));
@@ -773,8 +838,6 @@
 
 /* ── Responsive ─────────────────────────────────────────────────────── */
 @media (max-width: 1024px) {
-  .heroGrid { grid-template-columns: 1fr; padding-top: 1rem; }
-  .stage { justify-self: center; max-height: none; max-width: 440px; }
   .facts { grid-template-columns: repeat(2, 1fr); }
   .fact:nth-child(3) { border-left: 0; padding-left: var(--page-x); }
   .fact:nth-child(n + 3) { border-top: 1px solid rgba(184, 138, 62, 0.25); }
@@ -784,7 +847,9 @@
   .pillars { grid-template-columns: 1fr; }
 }
 @media (max-width: 640px) {
-  .bigWord { top: 18%; font-size: 34vw; }
+  .titleSub { letter-spacing: 0.28em; gap: 0.7rem; }
+  .trio { min-height: 46svh; margin-top: 0.4rem; }
+  .heroFoot { flex-direction: column; align-items: flex-start; }
   .ghostNote { left: auto; right: 0; top: -1.6rem; font-size: 0.95rem; }
   .routeSvg { height: 120px; }
   .station { translate: -50% -22px; }
