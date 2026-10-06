@@ -42,6 +42,10 @@
   display: block;
   object-fit: contain;
 }
+.logoLink img { transition: transform 0.4s var(--ease-out); }
+.logoLink:hover img,
+.logoLink:focus-visible img { transform: scale(1.08); }
+.logoLink:focus-visible { outline: 2px solid var(--rose-500); outline-offset: 4px; border-radius: 8px; }
 
 @keyframes scroll {
   to { transform: translateX(-100%); }

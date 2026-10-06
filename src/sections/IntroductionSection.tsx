@@ -26,6 +26,7 @@ import { useEffect, useRef } from 'react'
 import { motion } from 'framer-motion'
 import { Download } from 'lucide-react'
 import gsap from 'gsap'
+import { Link } from 'react-router-dom'
 import MagneticButton from '../components/MagneticButton'
 
 /* ── Theme ──────────────────────────────────────────────────────── */
@@ -36,14 +37,15 @@ const ease  = [0.16, 1, 0.3, 1] as [number, number, number, number]
 /* Demonio de los Andes and Thoquino are absent on purpose: the strip runs
    brand marks, and neither house publishes one we can use. They carry their
    full weight everywhere the range is set in type or shown as bottles. */
+/* Each mark opens that house's page on this site. */
 const COUNTRIES = [
-  { src: '/images/brandstrip-black-tears.webp',  name: 'Black Tears',  link: 'https://blacktears.com' },
-  { src: '/images/brandstrip-giffard.webp',      name: 'Giffard',      link: 'https://www.giffard.com' },
-  { src: '/images/brandstrip-pueblo-viejo.webp', name: 'Pueblo Viejo', link: 'https://www.puebloviejotequila.com' },
-  { src: '/images/brandstrip-burnt-ends.webp',   name: 'Burnt Ends',   link: 'https://www.masterofmalt.com/' },
-  { src: '/images/brandstrip-worthy-park.webp',  name: 'Worthy Park',  link: 'https://worthyparkestate.com' },
-  { src: '/images/brandstrip-whiskey-row.webp',  name: 'Whiskey Row',  link: 'https://whiskeyrowbourbon.com' },
-  { src: '/images/brandstrip-san-matias.webp',   name: 'San Matías',   link: 'https://www.sanmatias.com' },
+  { src: '/images/brandstrip-black-tears.webp',  name: 'Black Tears',  link: '/brands/black-tears' },
+  { src: '/images/brandstrip-giffard.webp',      name: 'Giffard',      link: '/brands/giffard' },
+  { src: '/images/brandstrip-pueblo-viejo.webp', name: 'Pueblo Viejo', link: '/brands/pueblo-viejo' },
+  { src: '/images/brandstrip-burnt-ends.webp',   name: 'Burnt Ends',   link: '/brands/burnt-ends' },
+  { src: '/images/brandstrip-worthy-park.webp',  name: 'Worthy Park',  link: '/brands/worthy-park' },
+  { src: '/images/brandstrip-whiskey-row.webp',  name: 'Whiskey Row',  link: '/brands/whiskey-row' },
+  { src: '/images/brandstrip-san-matias.webp',   name: 'San Matías',   link: '/brands/san-matias' },
 ]
 
 // Repeat the logos so one "half" of the track is always wider than the
@@ -219,11 +221,9 @@ export function IntroductionSection() {
             }}
           >
             {[...STRIP, ...STRIP].map((c, i) => (
-              <a
+              <Link
                 key={`g${i}`}
-                href={c.link}
-                target="_blank"
-                rel="noreferrer"
+                to={c.link}
                 className="bivry-flag-item"
                 onMouseEnter={() => activateL2(i)}
                 aria-label={c.name}
@@ -238,7 +238,7 @@ export function IntroductionSection() {
                     style={{ width: '100%', height: '100%', objectFit: 'contain', display: 'block' }}
                   />
                 </div>
-              </a>
+              </Link>
             ))}
           </div>
 

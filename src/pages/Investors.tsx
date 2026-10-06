@@ -29,17 +29,18 @@ const PLACES = [
 ];
 
 /* The same brand strip the home page runs, rather than the names set in type —
-   on a page about the portfolio the marks carry more than the words do.
+   on a page about the portfolio the marks carry more than the words do. Each
+   mark opens that house's page.
    Demonio de los Andes and Thoquino sit out until their marks exist — the
    houses grid below still runs the full nine. */
 const HOUSE_LOGOS = [
-  { src: '/images/brandstrip-black-tears.webp',  alt: 'Black Tears' },
-  { src: '/images/brandstrip-worthy-park.webp',  alt: 'Worthy Park' },
-  { src: '/images/brandstrip-giffard.webp',      alt: 'Giffard' },
-  { src: '/images/brandstrip-pueblo-viejo.webp', alt: 'Pueblo Viejo' },
-  { src: '/images/brandstrip-burnt-ends.webp',   alt: 'Burnt Ends' },
-  { src: '/images/brandstrip-san-matias.webp',   alt: 'San Matías' },
-  { src: '/images/brandstrip-whiskey-row.webp',  alt: 'Whiskey Row' },
+  { src: '/images/brandstrip-black-tears.webp',    alt: 'Black Tears',  to: '/brands/black-tears' },
+  { src: '/images/brandstrip-worthy-park.webp',    alt: 'Worthy Park',  to: '/brands/worthy-park' },
+  { src: '/images/brandstrip-giffard.webp',        alt: 'Giffard',      to: '/brands/giffard' },
+  { src: '/images/brandstrip-pueblo-viejo.webp',   alt: 'Pueblo Viejo', to: '/brands/pueblo-viejo' },
+  { src: '/images/brandstrip-burnt-ends.webp',     alt: 'Burnt Ends',   to: '/brands/burnt-ends' },
+  { src: '/images/brandstrip-san-matias.webp',     alt: 'San Matías',   to: '/brands/san-matias' },
+  { src: '/images/brandstrip-whiskey-row.webp',    alt: 'Whiskey Row',  to: '/brands/whiskey-row' },
 ];
 
 /* The portfolio is the proof, so the houses get their own grid —
