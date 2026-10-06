@@ -43,8 +43,8 @@ export const navMenu: MenuEntry[] = [
     label: 'About',
     to: '/#story',
     children: [
-      { label: 'Contact', to: '/contact' },
       { label: 'Our Story', to: '/our-story' },
+      { label: 'Contact', to: '/contact' },
     ],
   },
   {
