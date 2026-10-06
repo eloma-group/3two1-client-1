@@ -14,6 +14,26 @@ const FORBIDDEN = ['Water', 'Sugar', 'Wood', 'Colour'];
 const CAPSULE = ['#b3202a', '#1f3f8f', '#2f7a3d'];
 const STATIONS = ['Grape', 'Still', 'Bottle'];
 
+/* Hero sky: three Andes ridges on a 1440x420 canvas, far to near, drawn once
+   (midpoint displacement with a few raised peaks) and kept as plain paths. */
+const RIDGES = [
+  'M0 420L0 223L11 222L22 224L34 223L45 220L56 218L68 213L79 209L90 207L101 208L112 205L124 199L135 192L146 186L158 182L169 172L180 163L191 158L202 150L214 146L225 139L236 128L248 119L259 111L270 125L281 133L292 145L304 157L315 166L326 175L338 185L349 192L360 195L371 199L382 200L394 201L405 202L416 207L428 206L439 205L450 204L461 201L472 201L484 201L495 200L506 196L518 195L529 191L540 190L551 191L562 193L574 196L585 198L596 197L608 199L619 200L630 203L641 204L652 202L664 200L675 199L686 202L698 201L709 201L720 196L731 192L742 189L754 180L765 172L776 168L788 162L799 156L810 147L821 141L832 134L844 124L855 112L866 101L878 89L889 76L900 87L911 102L922 117L934 127L945 137L956 150L968 161L979 169L990 179L1001 185L1012 193L1024 203L1035 209L1046 214L1058 218L1069 219L1080 217L1091 217L1102 220L1114 217L1125 213L1136 208L1148 201L1159 188L1170 178L1181 171L1192 162L1204 153L1215 142L1226 129L1238 118L1249 130L1260 141L1271 153L1282 165L1294 178L1305 190L1316 197L1328 205L1339 210L1350 212L1361 214L1372 214L1384 211L1395 213L1406 211L1418 212L1429 214L1440 215L1440 420Z',
+  'M0 420L0 290L11 292L22 296L34 297L45 301L56 300L68 301L79 302L90 302L101 301L112 302L124 303L135 304L146 305L158 307L169 304L180 303L191 305L202 306L214 303L225 303L236 303L248 303L259 300L270 300L281 300L292 302L304 301L315 302L326 303L338 304L349 306L360 304L371 298L382 291L394 284L405 278L416 273L428 265L439 259L450 253L461 244L472 235L484 229L495 221L506 232L518 242L529 249L540 258L551 266L562 271L574 277L585 284L596 291L608 300L619 306L630 310L641 314L652 318L664 320L675 323L686 326L698 332L709 332L720 336L731 336L742 336L754 334L765 333L776 333L788 331L799 333L810 336L821 332L832 329L844 328L855 325L866 326L878 327L889 326L900 324L911 325L922 323L934 322L945 323L956 323L968 325L979 324L990 320L1001 317L1012 311L1024 305L1035 299L1046 290L1058 282L1069 276L1080 268L1091 261L1102 251L1114 239L1125 248L1136 257L1148 262L1159 268L1170 270L1181 277L1192 282L1204 289L1215 295L1226 296L1238 300L1249 301L1260 304L1271 306L1282 304L1294 304L1305 306L1316 308L1328 308L1339 306L1350 305L1361 304L1372 302L1384 299L1395 296L1406 292L1418 290L1429 288L1440 288L1440 420Z',
+  'M0 420L0 351L11 350L22 350L34 348L45 346L56 343L68 340L79 336L90 331L101 328L112 325L124 321L135 317L146 323L158 328L169 333L180 338L191 343L202 346L214 350L225 354L236 357L248 359L259 361L270 361L281 361L292 361L304 361L315 361L326 360L338 360L349 357L360 356L371 356L382 356L394 356L405 357L416 358L428 360L439 360L450 361L461 362L472 362L484 364L495 366L506 366L518 366L529 365L540 365L551 365L562 364L574 364L585 363L596 362L608 361L619 360L630 358L641 357L652 357L664 356L675 355L686 355L698 354L709 353L720 353L731 354L742 356L754 358L765 360L776 361L788 363L799 365L810 365L821 364L832 364L844 365L855 364L866 364L878 364L889 363L900 363L911 363L922 364L934 363L945 362L956 361L968 360L979 359L990 359L1001 358L1012 357L1024 356L1035 356L1046 355L1058 353L1069 352L1080 351L1091 351L1102 351L1114 351L1125 351L1136 350L1148 350L1159 350L1170 350L1181 350L1192 351L1204 352L1215 350L1226 349L1238 347L1249 345L1260 341L1271 336L1282 330L1294 324L1305 318L1316 311L1328 318L1339 324L1350 331L1361 335L1372 338L1384 343L1395 346L1406 348L1418 350L1429 350L1440 350L1440 420Z',
+];
+/* Fixed, not random, so the sky is the same on every render. */
+const STARS = Array.from({ length: 28 }, (_, i) => ({
+  x: (i * 37 + 11) % 100,
+  y: (i * 23 + 7) % 42,
+  d: (i % 5) * 0.7,
+  s: i % 3 === 0 ? 3 : 2,
+}));
+const EMBERS = Array.from({ length: 14 }, (_, i) => ({
+  x: 8 + ((i * 53) % 84),
+  d: (i * 0.83) % 7,
+  t: 7 + (i % 4) * 1.6,
+}));
+
 const rise = {
   hidden: { opacity: 0, y: 34 },
   show: { opacity: 1, y: 0, transition: { duration: 0.9, ease } },
@@ -76,9 +96,27 @@ export default function DemonioDeLosAndes() {
 
   const heroRef = useRef<HTMLElement>(null);
   const { scrollYProgress: hp } = useScroll({ target: heroRef, offset: ['start start', 'end start'] });
-  const wordX = useTransform(hp, [0, 1], reduce ? ['0%', '0%'] : ['0%', '-18%']);
   const bottleY = useTransform(hp, [0, 1], reduce ? ['0%', '0%'] : ['0%', '14%']);
-  const stageY = useTransform(hp, [0, 1], reduce ? ['0%', '0%'] : ['0%', '8%']);
+  const sunY = useTransform(hp, [0, 1], reduce ? ['0%', '0%'] : ['0%', '40%']);
+  const farY = useTransform(hp, [0, 1], reduce ? ['0%', '0%'] : ['0%', '22%']);
+  const midY = useTransform(hp, [0, 1], reduce ? ['0%', '0%'] : ['0%', '12%']);
+  const ridgeY = [farY, midY, undefined];
+  /* As the hero scrolls away the side bottles fan out and tip, and Acholado
+     steps forward. */
+  const still = (v: number) => (reduce ? [v, v] : null);
+  const sideX = useTransform(hp, [0, 0.7], still(0) ?? [0, 70]);
+  const sideR = useTransform(hp, [0, 0.7], still(0) ?? [0, 14]);
+  const sideY = useTransform(hp, [0, 0.7], still(0) ?? [0, -20]);
+  const leftX = useTransform(sideX, (v) => `${-v}%`);
+  const rightX = useTransform(sideX, (v) => `${v}%`);
+  const leftR = useTransform(sideR, (v) => -v);
+  const mainScale = useTransform(hp, [0, 0.7], still(1) ?? [1, 1.14]);
+  const mainY = useTransform(hp, [0, 0.7], still(0) ?? [0, -30]);
+  const bottleScroll = {
+    quebranta: { x: leftX, rotate: leftR, y: sideY },
+    'italia-plain': { x: rightX, rotate: sideR, y: sideY },
+    acholado: { scale: mainScale, y: mainY },
+  };
 
   const passRef = useRef<HTMLElement>(null);
   const { scrollYProgress: pp } = useScroll({ target: passRef, offset: ['start 80%', 'center 45%'] });
@@ -92,60 +130,125 @@ export default function DemonioDeLosAndes() {
 
   return (
     <article className={styles.page}>
-      {/* ── Hero: the horseman on a sunlit wall ─────────────────── */}
-      <header className={styles.hero} ref={heroRef}>
-        <motion.div className={styles.bigWord} style={{ x: wordX }} aria-hidden="true">
-          DEMONIO
+      {/* ── Hero: dusk over the Andes — the sun comes up behind the bottles ── */}
+      <header className={`${styles.hero} ${reduce ? styles.still : ''}`} ref={heroRef}>
+        <div className={styles.sky} aria-hidden="true">
+          {STARS.map((st, i) => (
+            <i
+              key={i}
+              className={styles.star}
+              style={{ left: `${st.x}%`, top: `${st.y}%`, width: st.s, height: st.s, animationDelay: `${st.d}s` }}
+            />
+          ))}
+          <motion.div className={styles.sunWrap} style={{ y: sunY }}>
+            <motion.div
+              className={styles.sun}
+              initial={reduce ? false : { y: '55%', opacity: 0 }}
+              animate={{ y: '0%', opacity: 1 }}
+              transition={{ duration: 2.2, delay: 0.1, ease }}
+            />
+          </motion.div>
+          {RIDGES.map((path, i) => (
+            /* Outer layer drifts with the scroll, inner one rises in on load. */
+            <motion.div key={i} className={`${styles.ridge} ${styles[`ridge${i}`]}`} style={{ y: ridgeY[i] }}>
+              <motion.svg
+                viewBox="0 0 1440 420"
+                preserveAspectRatio="xMidYMax slice"
+                initial={reduce ? false : { opacity: 0, y: 80 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 1.6, delay: 0.3 + i * 0.18, ease }}
+              >
+                <path d={path} />
+              </motion.svg>
+            </motion.div>
+          ))}
+          {EMBERS.map((e, i) => (
+            <i
+              key={i}
+              className={styles.ember}
+              style={{ left: `${e.x}%`, animationDelay: `${e.d}s`, animationDuration: `${e.t}s` }}
+            />
+          ))}
+        </div>
+
+        <div className={styles.heroHead}>
+          <motion.p
+            className={styles.eyebrow}
+            initial={reduce ? false : { opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.9, delay: 0.2, ease }}
+          >
+            <Chakana className={styles.eyebrowMark} />
+            {d.eyebrow}
+          </motion.p>
+          <h1 className={styles.title} aria-label={d.name}>
+            {/* One letter at a time, rising out of the ridge line. */}
+            <span className={styles.titleMain} aria-hidden="true">
+              {'Demonio'.split('').map((ch, i) => (
+                <motion.span
+                  key={i}
+                  className={styles.titleChar}
+                  initial={reduce ? false : { opacity: 0, y: '60%', rotateX: -70 }}
+                  animate={{ opacity: 1, y: '0%', rotateX: 0 }}
+                  transition={{ duration: 1, delay: 0.45 + i * 0.07, ease }}
+                >
+                  {ch}
+                </motion.span>
+              ))}
+            </span>
+            <motion.span
+              className={styles.titleSub}
+              aria-hidden="true"
+              initial={reduce ? false : { opacity: 0, letterSpacing: '0.9em' }}
+              animate={{ opacity: 1, letterSpacing: '0.42em' }}
+              transition={{ duration: 1.4, delay: 1, ease }}
+            >
+              de los Andes
+            </motion.span>
+          </h1>
+        </div>
+
+        {/* Acholado leads; Quebranta and Italia stand behind it, one each side.
+            Each rises in, then idles with a slow float. */}
+        <motion.div className={styles.trio} style={{ y: bottleY }}>
+          {[
+            { f: 'quebranta', cls: styles.trioLeft, i: 1, delay: 1.15 },
+            { f: 'italia-plain', cls: styles.trioRight, i: 2, delay: 1.3 },
+            { f: 'acholado', cls: styles.trioMain, i: 0, delay: 0.95 },
+          ].map(({ f, cls, i, delay }) => (
+            /* Three layers, so the motions never fight over one transform:
+               the span floats (CSS), the middle layer follows the scroll, and
+               the image itself rises in on load. */
+            <span key={f} className={`${styles.trioBottle} ${cls}`}>
+              <motion.span className={styles.trioScroll} style={bottleScroll[f as keyof typeof bottleScroll]}>
+                <motion.img
+                  src={img(f)}
+                  alt={`${d.range[i].name} bottle`}
+                  initial={reduce ? false : { opacity: 0, y: 120 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 1.4, delay, ease }}
+                />
+              </motion.span>
+            </span>
+          ))}
         </motion.div>
 
-        <div className={styles.heroGrid}>
-          <motion.div
-            className={styles.heroText}
-            initial="hidden"
-            animate="show"
-            variants={{ show: { transition: { staggerChildren: 0.1, delayChildren: 0.2 } } }}
-          >
-            <motion.p variants={rise} className={styles.eyebrow}>
-              <Chakana className={styles.eyebrowMark} />
-              {d.eyebrow}
-            </motion.p>
-            <motion.h1 variants={rise} className={styles.title}>
-              {d.name}
-            </motion.h1>
-            <motion.p variants={rise} className={styles.quote}>
-              “{d.quote}”
-            </motion.p>
-            <motion.div variants={rise} className={styles.ctas}>
-              <Link to="/contact" className={styles.btnRed}>
-                Become a stockist <ArrowUpRight size={16} />
-              </Link>
-              <a href="#range" className={styles.btnLine}>
-                Meet the three
-              </a>
-            </motion.div>
-          </motion.div>
-
-          <div className={styles.stage}>
-            <motion.img
-              src={img('backdrop')}
-              alt=""
-              className={styles.stageBg}
-              style={{ y: stageY }}
-              fetchPriority="high"
-            />
-            <div className={styles.stageArch} />
-            <motion.img
-              src={img('acholado')}
-              alt={`${d.range[0].name} bottle`}
-              className={styles.stageBottle}
-              style={{ y: bottleY }}
-              initial={{ opacity: 0, y: 60 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1.2, delay: 0.35, ease }}
-            />
-            <span className={styles.stageTag}>Acholado · Ica</span>
+        <motion.div
+          className={styles.heroFoot}
+          initial={reduce ? false : { opacity: 0, y: 24 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, delay: 1.5, ease }}
+        >
+          <p className={styles.quote}>“{d.quote}”</p>
+          <div className={styles.ctas}>
+            <Link to="/contact" className={styles.btnRed}>
+              Become a stockist <ArrowUpRight size={16} />
+            </Link>
+            <a href="#range" className={styles.btnLineLight}>
+              Meet the three
+            </a>
           </div>
-        </div>
+        </motion.div>
         <Weave />
       </header>
 

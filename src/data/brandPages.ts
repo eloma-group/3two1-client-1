@@ -510,12 +510,12 @@ export const brandPages: BrandPage[] = [
       nose: 'Lime zest, orange peel and jasmine.',
       palate: 'Bright and clean, with dried nuts and blond tobacco under the fruit.',
       finish: 'Smooth, dry and pleasantly long.',
-      serve: 'A Pisco Sour: Acholado, fresh lime, sugar and egg white, shaken hard and finished with three drops of Amargo bitters.',
+      serve: 'A Pisco Sour: Acholado, fresh lime, sugar syrup and egg white, shaken hard and finished with a few drops of Angostura bitters.',
     },
     serves: [
-      { name: 'Pisco Sour', build: 'Acholado, lime, sugar syrup, egg white, Amargo bitters.', method: 'Dry shake, then wet', glass: 'Coupe', image: '/images/demonio-de-los-andes-pisco-peru.webp' },
-      { name: 'Chilcano', build: 'Quebranta, ginger ale, lime, a dash of bitters.', method: 'Build over cubes', glass: 'Highball', image: dm('vineyard') },
-      { name: 'El Capitán', build: 'Italia, sweet vermouth, bitters, an orange twist.', method: 'Stir, strain', glass: 'Coupe', image: dm('estate') },
+      { name: 'Pisco Sour', build: 'Acholado, fresh lime and sugar syrup at 3 : 1 : 1, egg white, a few drops of Angostura bitters.', method: 'Shake hard over ice for the foam', glass: 'Coupe', image: dm('serve-pisco-sour') },
+      { name: 'Chilcano', build: 'Acholado (60 ml), fresh lime (15 ml), chilled ginger ale (120–150 ml), 2–3 drops of Angostura.', method: 'Build over ice, top slowly with ginger ale, stir once; lime wheel', glass: 'Highball', image: dm('serve-chilcano') },
+      { name: 'El Capitán', build: 'Quebranta Reserva de Familia (60 ml), vermouth rosso (60 ml), an orange twist.', method: 'Stir over ice for 20–25 seconds — never shaken; express the orange peel', glass: 'Coupe', image: dm('serve-capitan') },
     ],
     stock: 'Talk to our trade team about pisco allocations, Pisco Sour training, and Peruvian-night activations across Australia.',
     facts: [
