@@ -8,6 +8,7 @@ import Footer from './sections/Footer';
 import Home from './pages/Home';
 import ContactPage from './pages/ContactPage';
 import Investors from './pages/Investors';
+import BrandRoute from './pages/brands/BrandRoute';
 import ScrollToTop from './components/ScrollToTop';
 
 export default function App() {
@@ -27,6 +28,7 @@ export default function App() {
           <Route path="/" element={<Home ready={ready} />} />
           <Route path="/contact" element={<ContactPage />} />
           <Route path="/our-story" element={<Investors />} />
+          <Route path="/brands/:slug" element={<BrandRoute />} />
           <Route path="/investors" element={<Navigate to="/our-story" replace />} />
           <Route path="*" element={<Home ready={ready} />} />
         </Routes>

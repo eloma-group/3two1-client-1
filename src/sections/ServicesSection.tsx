@@ -18,6 +18,8 @@
 
 import { useState, useEffect, useCallback } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
+import { Link } from 'react-router-dom'
+import { brandPage } from '../data/brandPages'
 import { ArrowUpRight } from 'lucide-react'
 
 /* ── Theme ──────────────────────────────────────────────────────── */
@@ -437,7 +439,18 @@ function ServiceRow({
           transition={{ duration: 0.28, ease }}
           style={{ flexShrink: 0, color: GREEN }}
         >
-          <ArrowUpRight size={20} strokeWidth={1.8} />
+          {brandPage(svc.id) ? (
+            <Link
+              to={`/brands/${svc.id}`}
+              aria-label={`Explore ${svc.name}`}
+              data-cursor="Explore"
+              style={{ display: 'grid', placeItems: 'center', padding: '10px', margin: '-10px', color: 'inherit' }}
+            >
+              <ArrowUpRight size={20} strokeWidth={1.8} />
+            </Link>
+          ) : (
+            <ArrowUpRight size={20} strokeWidth={1.8} />
+          )}
         </motion.div>
       </div>
 
