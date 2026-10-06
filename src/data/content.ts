@@ -51,15 +51,15 @@ export const navMenu: MenuEntry[] = [
     label: 'Brands',
     to: '/#brands',
     children: [
-      { label: 'Black Tears', to: 'https://blacktears.com' },
-      { label: 'Burnt Ends', to: 'https://www.masterofmalt.com/' },
-      { label: 'Demonio de los Andes', to: '/#brands' },
-      { label: 'Giffard', to: 'https://www.giffard.com' },
-      { label: 'Pueblo Viejo', to: 'https://www.puebloviejotequila.com' },
-      { label: 'San Matías', to: 'https://www.sanmatias.com' },
-      { label: 'Thoquino Cachaça', to: '/#brands' },
-      { label: 'Whiskey Row', to: 'https://whiskeyrowbourbon.com' },
-      { label: 'Worthy Park', to: 'https://worthyparkestate.com' },
+      { label: 'Black Tears', to: '/brands/black-tears' },
+      { label: 'Burnt Ends', to: '/brands/burnt-ends' },
+      { label: 'Demonio de los Andes', to: '/brands/demonio-de-los-andes' },
+      { label: 'Giffard', to: '/brands/giffard' },
+      { label: 'Pueblo Viejo', to: '/brands/pueblo-viejo' },
+      { label: 'San Matías', to: '/brands/san-matias' },
+      { label: 'Thoquino Cachaça', to: '/brands/thoquino' },
+      { label: 'Whiskey Row', to: '/brands/whiskey-row' },
+      { label: 'Worthy Park', to: '/brands/worthy-park' },
     ],
   },
   {
@@ -311,7 +311,7 @@ export const contact = {
 export const footerColumns = [
   {
     title: 'Brands',
-    links: brands.map((b) => ({ label: b.name, to: `/#brands` })),
+    links: brands.map((b) => ({ label: b.name, to: `/brands/${b.id}` })),
   },
   {
     title: 'Trade',
