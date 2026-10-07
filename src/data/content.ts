@@ -311,7 +311,9 @@ export const contact = {
 export const footerColumns = [
   {
     title: 'Brands',
-    links: brands.map((b) => ({ label: b.name, to: `/brands/${b.id}` })),
+    links: [...brands]
+      .sort((a, b) => a.name.localeCompare(b.name))
+      .map((b) => ({ label: b.name, to: `/brands/${b.id}` })),
   },
   {
     title: 'Trade',
