@@ -269,17 +269,20 @@
   position: relative;
   overflow: hidden;
   border-radius: 2px;
-  aspect-ratio: 4 / 3.4;
-  /* Burnt edge — a torn, charred border via mask. */
-  -webkit-mask: radial-gradient(130% 120% at 50% 50%, #000 62%, transparent 100%);
-  mask: radial-gradient(130% 120% at 50% 50%, #000 62%, transparent 100%);
+  /* Square like the photo, so the bottle is never cropped; capped so the
+     sticky column still fits under the nav. */
+  aspect-ratio: 1;
+  width: min(100%, 68svh);
+  /* Burnt edge — charred corners via mask, kept clear of the bottle cap. */
+  -webkit-mask: radial-gradient(150% 140% at 50% 50%, #000 70%, transparent 100%);
+  mask: radial-gradient(150% 140% at 50% 50%, #000 70%, transparent 100%);
 }
 .charFrame img { width: 100%; height: 100%; object-fit: cover; filter: contrast(1.08) saturate(1.1); }
 .charFrame::after {
   content: '';
   position: absolute;
   inset: 0;
-  box-shadow: inset 0 0 80px 20px rgba(11, 9, 8, 0.85);
+  box-shadow: inset 0 0 60px 6px rgba(11, 9, 8, 0.75);
 }
 
 .docket {
