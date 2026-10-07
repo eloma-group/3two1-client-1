@@ -395,9 +395,9 @@ export const brandPages: BrandPage[] = [
       serve: 'A smoked highball with a long lemon swatch, or neat with a single large rock alongside something off the grill.',
     },
     serves: [
-      { name: 'Burnt Ends Highball', build: 'Whiskey, premium soda, charred lemon peel.', method: 'Build over cubes', glass: 'Highball', image: '/images/brand-burnt-ends-cocktail.webp' },
-      { name: 'Smoked Manhattan', build: 'Whiskey, sweet vermouth, mole bitters, glass smoked with hickory.', method: 'Stir, smoke the glass', glass: 'Coupe', image: '/images/brand-whiskey-row-manhattan.webp' },
-      { name: 'Ember Sour', build: 'Whiskey, lemon, brown sugar, a teaspoon of egg white.', method: 'Dry shake, then wet', glass: 'Rocks', image: '/images/brand-worthy-park-cocktail.webp' },
+      { name: 'Burnt Ends Highball', build: 'Whiskey, premium soda, charred lemon peel.', method: 'Build over cubes', glass: 'Highball', image: '/images/brands/burnt-ends/serve-highball.webp' },
+      { name: 'Smoked Manhattan', build: 'Whiskey, sweet vermouth, mole bitters, glass smoked with hickory.', method: 'Stir, smoke the glass', glass: 'Coupe', image: '/images/brands/burnt-ends/serve-manhattan.webp' },
+      { name: 'Ember Sour', build: 'Whiskey, lemon, brown sugar, a teaspoon of egg white.', method: 'Dry shake, then wet', glass: 'Rocks', image: '/images/brands/burnt-ends/serve-sour.webp' },
     ],
     stock: 'Talk to our trade team about pairings, allocations, and fire-driven kitchen activations across Australia.',
     facts: [
