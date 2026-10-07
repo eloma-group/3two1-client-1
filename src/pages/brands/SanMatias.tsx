@@ -1,7 +1,8 @@
 import { useRef, useState } from 'react';
+import type { PointerEvent } from 'react';
 import { Link } from 'react-router-dom';
 import {
-  AnimatePresence, motion, useReducedMotion, useScroll, useTransform,
+  AnimatePresence, motion, useMotionValue, useReducedMotion, useScroll, useSpring, useTransform,
 } from 'framer-motion';
 import { ArrowUpRight, Plus, Minus } from 'lucide-react';
 import { brandPage } from '../../data/brandPages';
@@ -10,6 +11,15 @@ import styles from './SanMatias.module.css';
 
 const ease = [0.16, 1, 0.3, 1] as [number, number, number, number];
 const img = (f: string) => `/images/brands/san-matias/${f}.webp`;
+
+/* Creative Commons photos on this page need their authors credited. */
+const PHOTO_CREDITS = [
+  { what: 'Agave fields at dusk', who: 'Juan Carlos Fonseca Mata', license: 'CC BY-SA 4.0', href: 'https://commons.wikimedia.org/wiki/File:Paisaje_agavero_(Tequila,_Jalisco)_2.jpg' },
+  { what: 'tahona', who: 'mickou', license: 'CC BY 2.0', href: 'https://www.flickr.com/photos/93376778@N00/4829878332' },
+  { what: 'margarita', who: 'Ralf Roletschek', license: 'CC BY-SA 3.0', href: 'https://commons.wikimedia.org/wiki/File:15-09-26-RalfR-WLC-0247.jpg' },
+  { what: 'old fashioned', who: 'Qwertzu111111', license: 'CC BY-SA 4.0', href: 'https://commons.wikimedia.org/wiki/File:Images_of_drinks_with_neutral_Background;_Old_Fashioned_(cocktail),_Whisky.jpg' },
+  { what: 'paloma', who: 'Erich Wagner', license: 'CC BY-SA 4.0', href: 'https://commons.wikimedia.org/wiki/File:Paloma_Cocktail2.jpg' },
+];
 const ROMAN = ['I', 'II', 'III', 'IV', 'V', 'VI'];
 
 export default function SanMatias() {
@@ -18,11 +28,32 @@ export default function SanMatias() {
 
   const hero = useRef<HTMLElement>(null);
   const { scrollYProgress: heroP } = useScroll({ target: hero, offset: ['start start', 'end start'] });
-  const heroImgY = useTransform(heroP, [0, 1], ['0%', reduced ? '0%' : '18%']);
-  const heroScale = useTransform(heroP, [0, 1], [1, reduced ? 1 : 1.12]);
-  const yearY = useTransform(heroP, [0, 1], ['0%', reduced ? '0%' : '-40%']);
+  const lineAX = useTransform(heroP, [0, 1], ['0%', reduced ? '0%' : '-18%']);
+  const lineBX = useTransform(heroP, [0, 1], ['0%', reduced ? '0%' : '18%']);
+  const bottleScale = useTransform(heroP, [0, 1], [1, reduced ? 1 : 1.1]);
+  const bottleY = useTransform(heroP, [0, 1], ['0%', reduced ? '0%' : '10%']);
+  const lightOpacity = useTransform(heroP, [0, 0.8], [1, reduced ? 1 : 0.35]);
+
+  // Pointer tilt: the bottle turns a few degrees toward the cursor.
+  const px = useMotionValue(0);
+  const py = useMotionValue(0);
+  const tiltY = useSpring(useTransform(px, [-0.5, 0.5], [-9, 9]), { stiffness: 120, damping: 18 });
+  const tiltX = useSpring(useTransform(py, [-0.5, 0.5], [6, -6]), { stiffness: 120, damping: 18 });
+  const lightX = useSpring(useTransform(px, [-0.5, 0.5], ['-4%', '4%']), { stiffness: 80, damping: 20 });
+  const onHeroMove = (e: PointerEvent<HTMLElement>) => {
+    if (reduced || e.pointerType !== 'mouse') return;
+    const r = e.currentTarget.getBoundingClientRect();
+    px.set((e.clientX - r.left) / r.width - 0.5);
+    py.set((e.clientY - r.top) / r.height - 0.5);
+  };
+  const onHeroLeave = () => { px.set(0); py.set(0); };
+  const gran = d.range.find((r) => r.name.includes('Gran Reserva'))!;
 
   const tahona = useRef<HTMLElement>(null);
+  const craft = useRef<HTMLElement>(null);
+  const { scrollYProgress: craftP } = useScroll({ target: craft, offset: ['start end', 'end start'] });
+  const craftSpin = useTransform(craftP, [0, 1], [0, reduced ? 0 : 160]);
+  const craftY = useTransform(craftP, [0, 1], ['8%', reduced ? '8%' : '-8%']);
   const { scrollYProgress: tahP } = useScroll({ target: tahona, offset: ['start end', 'end start'] });
   const spin = useTransform(tahP, [0, 1], [0, reduced ? 0 : 220]);
 
@@ -32,33 +63,88 @@ export default function SanMatias() {
 
   return (
     <div className={styles.page}>
-      {/* ── Hero: the agave fields through the hacienda arch ───────── */}
-      <section className={styles.hero} ref={hero}>
-        <div className={styles.heroWall} aria-hidden />
-        <div className={styles.heroGrid}>
-          <div className={styles.heroCopy}>
-            <motion.p
-              className={styles.kicker}
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.9, ease }}
+      {/* ── Hero: a gallery at night. One spotlight on the black Gran Reserva,
+             SAN / MATÍAS set huge behind it, a gilt frame drawn round the room. ── */}
+      <section className={styles.hero} ref={hero} onPointerMove={onHeroMove} onPointerLeave={onHeroLeave}>
+        <div className={styles.heroFrame} aria-hidden>
+          {(['top', 'bottom'] as const).map((side) => (
+            <motion.span
+              key={side}
+              className={`${styles.frameH} ${styles[side]}`}
+              initial={reduced ? false : { scaleX: 0 }}
+              animate={{ scaleX: 1 }}
+              transition={{ duration: 1.6, delay: 0.1, ease }}
+            />
+          ))}
+          {(['left', 'right'] as const).map((side) => (
+            <motion.span
+              key={side}
+              className={`${styles.frameV} ${styles[side]}`}
+              initial={reduced ? false : { scaleY: 0 }}
+              animate={{ scaleY: 1 }}
+              transition={{ duration: 1.6, delay: 0.3, ease }}
+            />
+          ))}
+        </div>
+
+        <motion.div className={styles.spot} style={{ opacity: lightOpacity, x: lightX }} aria-hidden>
+          <motion.span
+            initial={reduced ? false : { opacity: 0 }}
+            animate={{ opacity: [0, 0.6, 0.2, 1] }}
+            transition={{ duration: 1.4, delay: 0.5, times: [0, 0.3, 0.45, 1] }}
+          />
+        </motion.div>
+
+        <motion.p
+          className={styles.heroMeta}
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, delay: 0.9, ease }}
+        >
+          <span>Casa San Matías</span>
+          <span>{d.eyebrow}</span>
+        </motion.p>
+
+        <h1 className={styles.giant} aria-label={d.name}>
+          {[nameA, nameB].map((word, li) => (
+            <motion.span
+              key={word}
+              className={`${styles.giantLine} ${li ? styles.giantB : styles.giantA}`}
+              style={{ x: li ? lineBX : lineAX }}
+              aria-hidden
             >
-              <span className={styles.rule} /> {d.eyebrow}
-            </motion.p>
-            <h1 className={styles.title}>
-              {[nameA, nameB].map((w, i) => (
-                <span className={styles.lineMask} key={w}>
+              {word.split('').map((ch, i) => (
+                <span className={styles.charMask} key={i}>
                   <motion.span
-                    className={i === 1 ? styles.titleItalic : undefined}
-                    initial={{ y: '105%' }}
+                    initial={reduced ? false : { y: '110%' }}
                     animate={{ y: 0 }}
-                    transition={{ duration: 1.1, delay: 0.15 + i * 0.12, ease }}
+                    transition={{ duration: 1.2, delay: 0.35 + li * 0.2 + i * 0.05, ease }}
                   >
-                    {w}
+                    {ch}
                   </motion.span>
                 </span>
               ))}
-            </h1>
+            </motion.span>
+          ))}
+        </h1>
+
+        <div className={styles.heroStage}>
+          <motion.div
+            className={styles.heroBottle}
+            initial={reduced ? false : { opacity: 0, filter: 'blur(14px)', y: 70 }}
+            animate={{ opacity: 1, filter: 'blur(0px)', y: 0 }}
+            transition={{ duration: 1.8, delay: 0.8, ease }}
+          >
+            <motion.div className={styles.bottleTilt} style={{ scale: bottleScale, y: bottleY, rotateX: tiltX, rotateY: tiltY }}>
+              <img src={img('bottle-gran-reserva')} alt="San Matías Gran Reserva Extra Añejo bottle" />
+              <img className={styles.reflection} src={img('bottle-gran-reserva')} alt="" aria-hidden />
+            </motion.div>
+          </motion.div>
+          <span className={styles.floor} aria-hidden />
+        </div>
+
+        <div className={styles.heroFoot}>
+          <div className={styles.heroCopy}>
             <motion.p
               className={styles.quote}
               initial={{ opacity: 0 }}
@@ -73,31 +159,48 @@ export default function SanMatias() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.9, delay: 0.7, ease }}
             >
-              <Link to="/contact" className={styles.btnSolid}>
+              <Link to="/contact" className={styles.btnGold}>
                 Become a stockist <ArrowUpRight size={16} />
               </Link>
-              <a href="#casa" className={styles.btnLine}>Enter the casa</a>
+              <a href="#casa" className={styles.btnLineLight}>Enter the casa</a>
             </motion.div>
           </div>
 
-          <motion.div
-            className={styles.heroArch}
-            initial={{ clipPath: 'inset(100% 0 0 0 round 999px 999px 0 0)' }}
-            animate={{ clipPath: 'inset(0% 0 0 0 round 999px 999px 0 0)' }}
-            transition={{ duration: 1.5, ease }}
+          <motion.dl
+            className={styles.spec}
+            initial="hide"
+            animate="show"
+            variants={{ show: { transition: { staggerChildren: 0.1, delayChildren: 1.4 } } }}
           >
-            <motion.img
-              src={img('agave-close')}
-              alt="Blue Weber agave in the Jalisco highlands"
-              style={{ y: heroImgY, scale: heroScale }}
-            />
-            <div className={styles.archShade} />
-            <motion.span className={styles.year} style={{ y: yearY }}>1886</motion.span>
-          </motion.div>
+            {[
+              ['Expresión', 'Gran Reserva'],
+              ['Clase', 'Extra Añejo'],
+              ['Barrica', 'Three years in oak'],
+              ['Graduación', gran.spec],
+            ].map(([k, v]) => (
+              <motion.div
+                key={k}
+                variants={{ hide: { opacity: 0, x: 16 }, show: { opacity: 1, x: 0, transition: { duration: 0.8, ease } } }}
+              >
+                <dt>{k}</dt>
+                <dd>{v}</dd>
+              </motion.div>
+            ))}
+          </motion.dl>
         </div>
 
-        <div className={styles.tileBand} aria-hidden />
+        <motion.span
+          className={styles.scrollCue}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1, delay: 2 }}
+          aria-hidden
+        >
+          Desliza
+        </motion.span>
       </section>
+
+      <div className={styles.tileBand} aria-hidden />
 
       {/* ── Facts as engraved ledger ─────────────────────────────── */}
       <section className={styles.ledger}>
@@ -119,9 +222,9 @@ export default function SanMatias() {
         <div className={styles.storyBody}>
           <Reveal className={styles.storyFigure}>
             <div className={styles.archSmall}>
-              <img src={img('agave-field')} alt="Rows of blue agave running to the horizon" loading="lazy" />
+              <img src={img('agave-valley')} alt="Blue agave fields at dusk below the Tequila volcano" loading="lazy" />
             </div>
-            <span className={styles.caption}>Los Altos de Jalisco</span>
+            <span className={styles.caption}>Paisaje agavero · Tequila, Jalisco</span>
           </Reveal>
 
           <div className={styles.storyText}>
@@ -141,10 +244,46 @@ export default function SanMatias() {
         </div>
       </section>
 
-      {/* ── Craft: statement over the steaming ovens ─────────────── */}
-      <section className={styles.craft}>
+      {/* ── Craft: the Tahona bottle beside the statement. A text ring turns
+             with the scroll, oven steam drifts up, and the bottle floats. ── */}
+      <section className={styles.craft} ref={craft}>
         <div className={styles.craftMedia}>
-          <img src={img('oven')} alt="Steam rising from a traditional stone oven" loading="lazy" />
+          <span className={styles.craftGlow} aria-hidden="true" />
+          <motion.svg className={styles.craftRing} viewBox="0 0 200 200" style={{ rotate: craftSpin }} aria-hidden="true">
+            <defs>
+              <path id="smCraftRing" d="M100 100 m-86 0 a86 86 0 1 1 172 0 a86 86 0 1 1 -172 0" />
+            </defs>
+            <circle cx="100" cy="100" r="96" />
+            <circle cx="100" cy="100" r="76" />
+            <text>
+              <textPath href="#smCraftRing" textLength="535">
+                HORNO DE PIEDRA · TAHONA · 100% AGAVE AZUL · DESDE 1886 ·
+              </textPath>
+            </text>
+          </motion.svg>
+          {!reduced && (
+            <div className={styles.steam} aria-hidden="true">
+              {[0, 1, 2, 3, 4, 5].map((n) => <span key={n} />)}
+            </div>
+          )}
+          <motion.div
+            className={styles.craftBottleWrap}
+            initial={{ opacity: 0, y: 80, rotate: -4 }}
+            whileInView={{ opacity: 1, y: 0, rotate: 0 }}
+            viewport={{ once: true, margin: '-15%' }}
+            transition={{ duration: 1.3, ease }}
+          >
+            <motion.div style={{ y: craftY }}>
+              <motion.img
+                className={styles.craftBottle}
+                src={img('bottle-tahona')}
+                alt="San Matías Tahona Blanco bottle"
+                loading="lazy"
+                animate={reduced ? undefined : { y: [0, -14, 0], rotate: [0, 1.2, 0] }}
+                transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
+              />
+            </motion.div>
+          </motion.div>
         </div>
         <div className={styles.craftInner}>
           <Reveal><p className={`${styles.label} ${styles.labelLight}`}>El Oficio</p></Reveal>
@@ -186,7 +325,7 @@ export default function SanMatias() {
             </svg>
           </motion.div>
           <div className={styles.stoneCore}>
-            <img src={img('tahona')} alt="The tahona stone wheel over cooked agave" loading="lazy" />
+            <img src={img('tahona-wheel')} alt="A tahona stone wheel in its milling pit" loading="lazy" />
           </div>
         </div>
         <div className={styles.tahonaText}>
@@ -365,6 +504,17 @@ export default function SanMatias() {
           </ul>
         </div>
       </section>
+
+      <p className={styles.credits}>
+        Photos:{' '}
+        {PHOTO_CREDITS.map((c, i) => (
+          <span key={c.what}>
+            {i > 0 && ' · '}
+            {c.what} by <a href={c.href} target="_blank" rel="noreferrer">{c.who}</a>, {c.license}
+          </span>
+        ))}
+        . Bottle images © Casa San Matías.
+      </p>
     </div>
   );
 }
