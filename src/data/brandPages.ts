@@ -208,9 +208,9 @@ export const brandPages: BrandPage[] = [
       serve: 'Neat in a Glencairn, or in a rum old fashioned with demerara and a flamed orange peel.',
     },
     serves: [
-      { name: 'Worthy Park Daiquiri', build: 'Single Estate, lime, demerara — three ingredients, perfectly balanced.', method: 'Shake, fine strain', glass: 'Coupe', image: '/images/brand-worthy-park-cocktail.webp' },
-      { name: 'Rum Old Fashioned', build: 'Single Estate, demerara, mole bitters, flamed orange.', method: 'Stir down', glass: 'Rocks', image: wp('rum-ginger') },
-      { name: 'Jamaican Mai Tai', build: 'Worthy Park 109, orgeat, lime, dry curaçao.', method: 'Shake, crushed ice', glass: 'Double rocks', image: wp('dark-stormy') },
+      { name: 'Worthy Park Daiquiri', build: 'Single Estate, lime, demerara — three ingredients, perfectly balanced.', method: 'Shake, fine strain', glass: 'Coupe', image: wp('serve-daiquiri') },
+      { name: 'Rum Old Fashioned', build: 'Single Estate, demerara, mole bitters, flamed orange.', method: 'Stir down', glass: 'Rocks', image: wp('serve-old-fashioned') },
+      { name: 'Jamaican Mai Tai', build: 'Worthy Park 109, orgeat, lime, dry curaçao.', method: 'Shake, crushed ice', glass: 'Double rocks', image: wp('serve-mai-tai') },
     ],
     stock: "Talk to our trade team about full-range allocations, rum education, and bar training with the estate's heritage in mind.",
     facts: [

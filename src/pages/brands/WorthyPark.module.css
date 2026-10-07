@@ -84,48 +84,38 @@
 .btnGhost { border: 1px solid rgba(226, 200, 143, 0.55); color: var(--gold-soft); }
 .btnGhost:hover { border-color: var(--gold-soft); background: rgba(226, 200, 143, 0.08); }
 
-/* ── Hero ── */
+/* ── Hero ── the estate ledger: no photo, deep green with a gilt spotlight */
 .hero {
   position: relative;
   min-height: 100svh;
+  padding: calc(var(--nav-clear) + 1rem) var(--page-x) 0;
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
-  padding: calc(var(--nav-clear) + 2rem) var(--page-x) 0;
   isolation: isolate;
-}
-.heroMedia { position: absolute; inset: 0; z-index: -3; }
-.heroMedia img { width: 100%; height: 100%; object-fit: cover; }
-.heroShade {
-  position: absolute;
-  inset: 0;
-  z-index: -2;
   background:
-    linear-gradient(180deg, rgba(8, 24, 15, 0.55) 0%, rgba(8, 24, 15, 0.15) 35%, rgba(15, 42, 30, 0.85) 78%, var(--green) 100%),
-    radial-gradient(80% 60% at 20% 80%, rgba(8, 24, 15, 0.6), transparent 70%);
+    radial-gradient(34% 46% at 50% 46%, rgba(201, 164, 92, 0.22), transparent 70%),
+    radial-gradient(70% 60% at 50% 110%, var(--green-deep), transparent 70%),
+    repeating-linear-gradient(0deg, rgba(226, 200, 143, 0.035) 0 1px, transparent 1px 34px),
+    var(--green);
 }
-.heroYear {
-  position: absolute;
-  z-index: -1;
-  right: -0.04em;
-  top: calc(var(--nav-clear) - 1rem);
-  font-family: var(--serif);
-  font-weight: 500;
-  font-size: clamp(7rem, 30vw, 30rem);
-  line-height: 0.8;
-  color: transparent;
-  -webkit-text-stroke: 1.5px rgba(226, 200, 143, 0.7);
-  letter-spacing: -0.04em;
-  pointer-events: none;
-  user-select: none;
+.heroGrid {
+  flex: 1;
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) auto minmax(0, 0.8fr);
+  align-items: center;
+  gap: clamp(1.5rem, 4vw, 4.5rem);
+  max-width: 1440px;
+  width: 100%;
+  margin: 0 auto;
+  padding-bottom: clamp(1.5rem, 4vh, 3rem);
 }
-.heroInner { max-width: 60rem; padding-bottom: clamp(2rem, 6vh, 4rem); }
+
 .heroEyebrow {
   display: inline-flex;
   align-items: center;
   gap: 0.9rem;
   font-family: var(--sc);
-  font-size: clamp(0.85rem, 1.2vw, 1rem);
+  font-size: clamp(0.82rem, 1.1vw, 0.95rem);
   letter-spacing: 0.22em;
   text-transform: lowercase;
   color: var(--gold-soft);
@@ -133,6 +123,7 @@
 .seal {
   display: grid;
   place-items: center;
+  flex-shrink: 0;
   width: 2.6rem;
   height: 2.6rem;
   border-radius: 50%;
@@ -146,23 +137,125 @@
   box-shadow: inset 0 0 0 3px var(--green), inset 0 0 0 4px rgba(201, 164, 92, 0.5);
 }
 .heroTitle {
-  font-size: clamp(3.6rem, min(13vw, 18svh), 11rem);
-  line-height: 0.88;
-  margin-top: 1rem;
+  margin: 1.4rem 0 0;
+  font-size: clamp(3.6rem, min(8.4vw, 15svh), 9rem);
+  line-height: 0.9;
   color: var(--parch);
 }
+.heroTitleLine { display: block; overflow: hidden; padding-bottom: 0.08em; }
+.heroTitleLine > span { display: inline-block; }
+.heroTitleItalic { font-style: italic; color: var(--gold-soft); padding-left: 0.5em; }
 .heroQuote {
   margin-top: 1.4rem;
   font-family: var(--serif);
   font-style: italic;
-  font-size: clamp(1.3rem, 2.4vw, 2rem);
-  color: var(--gold-soft);
-  max-width: 34rem;
+  font-size: clamp(1.2rem, 1.9vw, 1.7rem);
+  color: rgba(242, 233, 212, 0.75);
+  max-width: 24ch;
 }
+
+/* The bottle's gilt arch, with the estate seal turning over its crown. */
+.heroArch {
+  position: relative;
+  width: clamp(240px, 24vw, 360px);
+  height: min(64svh, 600px);
+  border: 1px solid rgba(201, 164, 92, 0.65);
+  border-radius: 999px 999px 4px 4px;
+  outline: 1px solid rgba(201, 164, 92, 0.25);
+  outline-offset: 10px;
+  background: radial-gradient(80% 60% at 50% 40%, rgba(201, 164, 92, 0.18), transparent 70%), var(--green-deep);
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  margin-top: 3.5rem;
+}
+.heroSeal {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  width: clamp(110px, 10vw, 150px);
+  margin-left: calc(clamp(110px, 10vw, 150px) / -2);
+  translate: 0 -50%;
+  z-index: 3;
+  color: var(--gold);
+  background: var(--green);
+  border-radius: 50%;
+  font-family: var(--sc);
+  font-size: 13px;
+  letter-spacing: 0.12em;
+  fill: var(--gold-soft);
+}
+.heroSealMark {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 34px;
+  letter-spacing: 0;
+  fill: var(--gold);
+}
+.heroBottle {
+  position: relative;
+  z-index: 2;
+  /* Clear of the seal: half its size hangs inside the arch, plus a gap. */
+  height: calc(100% - clamp(110px, 10vw, 150px) / 2 - 2.6rem - 1.6rem);
+  width: auto;
+  max-width: 130%;
+  object-fit: contain;
+  margin-bottom: 2.6rem;
+  filter: drop-shadow(0 30px 40px rgba(0, 0, 0, 0.6));
+}
+.heroArchFoot {
+  position: absolute;
+  bottom: 0.9rem;
+  left: 0;
+  right: 0;
+  text-align: center;
+  font-family: var(--sc);
+  font-size: 0.78rem;
+  letter-spacing: 0.24em;
+  text-transform: lowercase;
+  color: var(--gold);
+}
+
+/* The register: a ruled ledger column. */
+.heroLedger { margin: 0; justify-self: end; width: 100%; max-width: 20rem; }
+.heroLedgerHead {
+  font-family: var(--sc);
+  font-size: 0.85rem;
+  letter-spacing: 0.24em;
+  text-transform: lowercase;
+  color: var(--gold);
+  padding-bottom: 0.8rem;
+  border-bottom: 1px solid var(--gold);
+}
+.heroLedger div {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.85rem 0;
+  border-bottom: 1px solid rgba(201, 164, 92, 0.22);
+}
+.heroLedger dt {
+  font-family: var(--sc);
+  font-size: 0.8rem;
+  letter-spacing: 0.2em;
+  text-transform: lowercase;
+  color: rgba(242, 233, 212, 0.55);
+}
+.heroLedger dd {
+  margin: 0;
+  font-family: var(--serif);
+  font-size: 1.1rem;
+  text-align: right;
+  color: var(--parch);
+}
+
 .heroFoot {
   display: flex;
   justify-content: space-between;
   gap: 1rem;
+  max-width: 1440px;
+  width: 100%;
+  margin: 0 auto;
   padding: 1.1rem 0 1.4rem;
   border-top: 1px solid rgba(201, 164, 92, 0.3);
   font-family: var(--sc);
@@ -572,6 +665,9 @@
 
 /* ── Responsive ── */
 @media (max-width: 1024px) {
+  .heroGrid { grid-template-columns: minmax(0, 1fr) auto; }
+  .heroLedger { grid-column: 1 / -1; justify-self: stretch; max-width: none; display: grid; grid-template-columns: repeat(2, 1fr); column-gap: 2rem; }
+  .heroLedgerHead { grid-column: 1 / -1; }
   .craft { grid-template-columns: 1fr; min-height: 0; }
   .craftMedia { min-height: 60vw; }
   .craftMedia::after { background: linear-gradient(180deg, transparent 60%, rgba(15, 42, 30, 0.8)); }
@@ -584,6 +680,9 @@
 }
 
 @media (max-width: 760px) {
+  .heroGrid { grid-template-columns: minmax(0, 1fr); }
+  .heroArch { justify-self: center; }
+  .heroLedger { grid-template-columns: 1fr; }
   .facts { grid-template-columns: repeat(2, 1fr); }
   .fact { padding: 1.8rem 1rem; border-bottom: 1px solid rgba(201, 164, 92, 0.22); }
   .fact:nth-child(odd) { padding-left: 0; }
@@ -607,6 +706,8 @@
   .row { grid-template-columns: 2rem minmax(0, 1fr) 4.2rem; }
   .rowSize { display: none; }
   .honours { grid-template-columns: 1fr; text-align: left; }
+  .heroArch { width: min(78vw, 300px); height: 62svh; min-height: 420px; }
+  .heroLedger { max-width: none; }
   .heroFoot span:nth-child(2) { display: none; }
 }
 
@@ -615,3 +716,4 @@
   .entries li { grid-template-columns: 2.8rem 1fr; }
   .btnGold, .btnGhost { width: 100%; justify-content: center; }
 }
+
