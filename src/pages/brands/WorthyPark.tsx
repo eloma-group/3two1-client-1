@@ -13,10 +13,21 @@ const JOURNEY = ['Cane', 'Molasses', 'Ferment', 'Pot still', 'Tropical ageing', 
 const NOTHING_ADDED = ['Sugar', 'Glycerol', 'Colouring', 'Flavouring'];
 const ROMAN = ['I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'X'];
 
-const rise = {
-  hidden: { opacity: 0, y: 36 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.9, ease } },
+const parseSpec = (spec: string) => {
+  const [abv, size] = spec.split('·').map((part) => part.trim());
+  return { abv: abv.replace(' ABV', ''), size };
 };
+
+/* The estate register beside the bottle. Every line is from the brand copy. */
+const LEDGER = (abv: string, size: string) => [
+  ['Estate', 'Lluidas Vale, Jamaica'],
+  ['Still', '100% pot still'],
+  ['Ageing', 'Tropical, 5+ years'],
+  ['Strength', `${abv} ABV · ${size}`],
+  ['Added', 'Nothing. Ever.'],
+];
+
+const SEAL_TEXT = 'Single Estate · Lluidas Vale · Est. 1670 · ';
 
 function Folio({ n, label }: { n: string; label: string }) {
   return (
@@ -34,9 +45,11 @@ export default function WorthyPark() {
 
   const heroRef = useRef<HTMLElement>(null);
   const { scrollYProgress: heroP } = useScroll({ target: heroRef, offset: ['start start', 'end start'] });
-  const heroScale = useTransform(heroP, [0, 1], reduce ? [1.05, 1.05] : [1.05, 1.25]);
-  const heroY = useTransform(heroP, [0, 1], reduce ? ['0%', '0%'] : ['0%', '18%']);
-  const yearY = useTransform(heroP, [0, 1], reduce ? ['0%', '0%'] : ['0%', '-40%']);
+  const bottleY = useTransform(heroP, [0, 1], reduce ? ['0%', '0%'] : ['0%', '14%']);
+  const sealR = useTransform(heroP, [0, 1], reduce ? [0, 0] : [0, 120]);
+  const [first, ...rest] = b.name.split(' ');
+  const reserve = b.range[0];
+  const { abv, size } = parseSpec(reserve.spec);
 
   const journeyRef = useRef<HTMLElement>(null);
   const { scrollYProgress: jP } = useScroll({ target: journeyRef, offset: ['start end', 'end start'] });
@@ -48,36 +61,35 @@ export default function WorthyPark() {
 
   const [openServe, setOpenServe] = useState<number | null>(null);
 
-  const parseSpec = (spec: string) => {
-    const [abv, size] = spec.split('·').map((s) => s.trim());
-    return { abv: abv.replace(' ABV', ''), size };
-  };
-
   return (
     <article className={styles.page}>
-      {/* ── Hero ───────────────────────────────────────── */}
+      {/* ── Hero — the estate ledger: name and pitch on the left, the bottle in
+             a gilt arch under a turning estate seal, the register on the right. */}
       <header className={styles.hero} ref={heroRef}>
-        <motion.div className={styles.heroMedia} style={{ scale: heroScale, y: heroY }}>
-          <img src={img('valley')} alt="Aerial view of the cane fields of Lluidas Vale, Jamaica" />
-        </motion.div>
-        <div className={styles.heroShade} />
-        <motion.span className={styles.heroYear} style={{ y: yearY }} aria-hidden>
-          1670
-        </motion.span>
-
-        <div className={styles.heroInner}>
-          <motion.div initial="hidden" animate="show" variants={{ show: { transition: { staggerChildren: 0.12 } } }}>
-            <motion.p variants={rise} className={styles.heroEyebrow}>
+        <div className={styles.heroGrid}>
+          <div className={styles.heroCopy}>
+            <motion.p className={styles.heroEyebrow} initial={reduce ? false : { opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.9, delay: 0.1, ease }}>
               <span className={styles.seal}>WP</span>
               {b.eyebrow}
             </motion.p>
-            <motion.h1 variants={rise} className={styles.heroTitle}>
-              {b.name}
-            </motion.h1>
-            <motion.p variants={rise} className={styles.heroQuote}>
+            <h1 className={styles.heroTitle}>
+              {[first, rest.join(' ')].map((word, i) => (
+                <span key={word} className={styles.heroTitleLine}>
+                  <motion.span
+                    className={i ? styles.heroTitleItalic : undefined}
+                    initial={reduce ? false : { y: '110%' }}
+                    animate={{ y: 0 }}
+                    transition={{ duration: 1.1, delay: 0.2 + i * 0.12, ease }}
+                  >
+                    {word}
+                  </motion.span>
+                </span>
+              ))}
+            </h1>
+            <motion.p className={styles.heroQuote} initial={reduce ? false : { opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1, delay: 0.5, ease }}>
               “{b.quote}”
             </motion.p>
-            <motion.div variants={rise} className={styles.heroCtas}>
+            <motion.div className={styles.heroCtas} initial={reduce ? false : { opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1, delay: 0.6, ease }}>
               <Link to="/contact" className={styles.btnGold}>
                 Become a stockist <ArrowUpRight size={16} />
               </Link>
@@ -85,12 +97,48 @@ export default function WorthyPark() {
                 Open the register
               </a>
             </motion.div>
+          </div>
+
+          <motion.div
+            className={styles.heroArch}
+            initial={reduce ? false : { opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1.2, delay: 0.15, ease }}
+          >
+            <motion.svg className={styles.heroSeal} viewBox="0 0 200 200" style={{ rotate: sealR }} aria-hidden>
+              <defs>
+                <path id="wp-seal-ring" d="M100 100 m-78 0 a78 78 0 1 1 156 0 a78 78 0 1 1 -156 0" />
+              </defs>
+              <circle cx="100" cy="100" r="96" fill="none" stroke="currentColor" strokeWidth="1" />
+              <circle cx="100" cy="100" r="62" fill="none" stroke="currentColor" strokeWidth="1" />
+              <text>
+                <textPath href="#wp-seal-ring" textLength="490">{SEAL_TEXT.repeat(2)}</textPath>
+              </text>
+              <text x="100" y="112" textAnchor="middle" className={styles.heroSealMark}>WP</text>
+            </motion.svg>
+            <motion.img
+              className={styles.heroBottle}
+              src={reserve.image}
+              alt={`${b.name} ${reserve.name} bottle`}
+              style={{ y: bottleY }}
+            />
+            <span className={styles.heroArchFoot}>{reserve.name}</span>
           </motion.div>
+
+          <motion.dl className={styles.heroLedger} initial={reduce ? false : { opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1, delay: 0.7, ease }}>
+            <p className={styles.heroLedgerHead}>Estate register</p>
+            {LEDGER(abv, size).map(([k, v]) => (
+              <div key={k}>
+                <dt>{k}</dt>
+                <dd>{v}</dd>
+              </div>
+            ))}
+          </motion.dl>
         </div>
 
         <div className={styles.heroFoot}>
           <span>Est. Lluidas Vale</span>
-          <span>Single estate</span>
+          <span>Cane to bottle, one estate</span>
           <span>Scroll</span>
         </div>
       </header>
