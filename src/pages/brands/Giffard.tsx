@@ -3,21 +3,18 @@ import { Link } from 'react-router-dom';
 import { AnimatePresence, motion, useReducedMotion, useScroll, useTransform } from 'framer-motion';
 import { ArrowUpRight, Plus, Minus } from 'lucide-react';
 import { brandPage } from '../../data/brandPages';
+import { giffardGallery } from '../../data/giffardRange';
 import Reveal from '../../components/Reveal';
 import styles from './Giffard.module.css';
 
 const ease = [0.16, 1, 0.3, 1] as [number, number, number, number];
 const img = (f: string) => `/images/brands/giffard/${f}.webp`;
 
-/* One fruit colour per bottle on the shelf, in range order. */
-const FRUIT = [
-  { swatch: '#4a1638', ink: '#f6ecf2', word: 'Cassis' },
-  { swatch: '#e08a3c', ink: '#2a1406', word: 'Abricot' },
-  { swatch: '#e9c54a', ink: '#2c2205', word: 'Banane' },
-  { swatch: '#c99a2e', ink: '#241a04', word: 'Ananas' },
-  { swatch: '#3f9e86', ink: '#f2fbf7', word: 'Menthe' },
-  { swatch: '#7b5ea7', ink: '#f5f0fb', word: 'Violette' },
-];
+const HERO_BOTTLES = [
+  { src: img('cassis'), alt: 'Giffard Crème de Cassis bottle', slot: 'left', fromX: '40%', tilt: -5, float: 5.6 },
+  { src: '/images/house-giffard.webp', alt: 'Giffard Coconut syrup bottle', slot: 'right', fromX: '-40%', tilt: 5, float: 6.2 },
+  { src: img('menthe'), alt: 'Giffard Menthe-Pastille bottle', slot: 'centre', fromX: '0%', tilt: 0, float: 5 },
+] as const;
 
 const ROMAN = ['I', 'II', 'III', 'IV', 'V', 'VI'];
 
@@ -37,9 +34,13 @@ export default function Giffard() {
   const reduce = useReducedMotion();
   const hero = useRef<HTMLElement>(null);
   const { scrollYProgress } = useScroll({ target: hero, offset: ['start start', 'end start'] });
-  const photoY = useTransform(scrollYProgress, [0, 1], ['0%', reduce ? '0%' : '14%']);
+  const liftY = useTransform(scrollYProgress, [0, 1], ['0%', reduce ? '0%' : '-8%']);
+  const fanLeft = useTransform(scrollYProgress, [0, 1], ['0%', reduce ? '0%' : '-22%']);
+  const fanRight = useTransform(scrollYProgress, [0, 1], ['0%', reduce ? '0%' : '22%']);
   const sealRot = useTransform(scrollYProgress, [0, 1], [-8, reduce ? -8 : 40]);
   const [openServe, setOpenServe] = useState<number | null>(null);
+  const [shelfTab, setShelfTab] = useState(0);
+  const shelf = giffardGallery[shelfTab];
 
   const [firstPara, ...restParas] = d.story.paragraphs;
 
@@ -86,15 +87,36 @@ export default function Giffard() {
             </div>
           </motion.div>
 
-          <motion.div
-            className={styles.heroPhoto}
-            initial={{ opacity: 0, clipPath: 'inset(100% 0 0 0 round 999px 999px 0 0)' }}
-            animate={{ opacity: 1, clipPath: 'inset(0% 0 0 0 round 999px 999px 0 0)' }}
-            transition={{ duration: 1.4, delay: 0.15, ease }}
-          >
-            <motion.img src={img('mint-harvest')} alt="Fresh mint picked by hand for Giffard Menthe-Pastille" style={{ y: photoY }} />
-            <span className={styles.photoCaption}>Mentha piperita · récolte</span>
-          </motion.div>
+          {/* Three Giffard bottles in place of a photo: they rise in, fan out,
+              bob gently, and spread further as the page scrolls. */}
+          <div className={styles.heroStage}>
+            <motion.span
+              className={styles.heroGlow}
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 1.6, delay: 0.1, ease }}
+              aria-hidden="true"
+            />
+            {HERO_BOTTLES.map((b, i) => (
+              <motion.div
+                key={b.src}
+                className={`${styles.heroBottle} ${styles[b.slot]}`}
+                initial={reduce ? false : { opacity: 0, y: 90, x: b.fromX, rotate: 0 }}
+                animate={{ opacity: 1, y: 0, x: 0, rotate: b.tilt }}
+                transition={{ duration: 1.3, delay: 0.35 + i * 0.15, ease }}
+              >
+                <motion.div style={{ x: b.slot === 'left' ? fanLeft : b.slot === 'right' ? fanRight : 0, y: b.slot === 'centre' ? liftY : 0 }}>
+                  <motion.img
+                    src={b.src}
+                    alt={b.alt}
+                    animate={reduce ? undefined : { y: [0, -12, 0] }}
+                    transition={{ duration: b.float, repeat: Infinity, ease: 'easeInOut', delay: 1.6 + i * 0.4 }}
+                  />
+                </motion.div>
+              </motion.div>
+            ))}
+            <span className={styles.heroFloor} aria-hidden="true" />
+          </div>
 
           <motion.div className={styles.seal} style={{ rotate: sealRot }} aria-hidden="true">
             <svg viewBox="0 0 100 100">
@@ -228,47 +250,59 @@ export default function Giffard() {
           <p className={styles.kicker}>Chapitre III · L’étagère</p>
           <Reveal>
             <h2 className={styles.h2}>
-              Six bottles, <em>six orchards.</em>
+              Four shelves, <em>one house.</em>
             </h2>
           </Reveal>
-        </div>
-        <div className={styles.shelf}>
-          {d.range.map((r, i) => {
-            const f = FRUIT[i % FRUIT.length];
-            return (
-              <motion.article
-                key={r.name}
-                className={styles.bottleCard}
-                style={{ ['--swatch' as string]: f.swatch, ['--sink' as string]: f.ink }}
-                initial={{ opacity: 0, y: 40 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: '-8%' }}
-                transition={{ duration: 0.8, delay: (i % 3) * 0.09, ease }}
+          <p className={styles.rangeLede}>
+            Liqueurs, purées and syrups chosen by sommeliers and head bartenders because they make the cocktail better.
+          </p>
+          <div className={styles.shelfTabs} role="tablist" aria-label="Giffard range">
+            {giffardGallery.map((cat, i) => (
+              <button
+                key={cat.label}
+                role="tab"
+                aria-selected={shelfTab === i}
+                className={styles.shelfTab}
+                onClick={() => setShelfTab(i)}
               >
-                <div className={styles.bottleStage}>
-                  {r.image ? (
-                    <img src={r.image} alt={r.name} loading="lazy" />
-                  ) : (
-                    <div className={styles.typeLabel} aria-label={r.name} role="img">
-                      <span className={styles.tlTop}>Giffard · Angers</span>
-                      <span className={styles.tlWord}>{f.word}</span>
-                      <span className={styles.tlRule} />
-                      <span className={styles.tlSub}>Liqueur de fruit</span>
-                      <span className={styles.tlYear}>1885</span>
-                    </div>
-                  )}
-                </div>
-                <div className={styles.bottleInfo}>
-                  <span className={styles.roman}>{ROMAN[i]}</span>
-                  <span className={styles.swatch} />
-                  <h3>{r.name}</h3>
-                  <p className={styles.spec}>{r.spec}</p>
-                  <p>{r.note}</p>
-                </div>
-              </motion.article>
-            );
-          })}
+                {cat.label}
+              </button>
+            ))}
+          </div>
         </div>
+        <AnimatePresence mode="wait" initial={false}>
+          <motion.div
+            key={shelf.label}
+            role="tabpanel"
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -12 }}
+            transition={{ duration: 0.5, ease }}
+          >
+            <div className={styles.shelf}>
+              {shelf.items.map((item, i) => (
+                <motion.article
+                  key={item.imageUrl}
+                  className={styles.bottleCard}
+                  initial={{ opacity: 0, y: 40 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: '-8%' }}
+                  transition={{ duration: 0.8, delay: i * 0.08, ease }}
+                >
+                  <figure className={styles.bottleStage}>
+                    <img src={item.imageUrl} alt={item.imageAlt} loading="lazy" />
+                  </figure>
+                  <div className={styles.bottleInfo}>
+                    <span className={styles.roman}>{ROMAN[i]}</span>
+                    <p className={styles.spec}>Giffard · {shelf.label}</p>
+                    <h3>{item.label}</h3>
+                  </div>
+                </motion.article>
+              ))}
+            </div>
+            {shelf.note && <p className={styles.shelfNote}>+ {shelf.note} in the range</p>}
+          </motion.div>
+        </AnimatePresence>
       </section>
 
       {/* ── Tasting: the prescription ───────────────────────────── */}
