@@ -78,7 +78,7 @@ function LoteriaCard({ n, name, spec, note, image }: { n: number; name: string; 
       className={`${styles.card} ${flipped ? styles.cardFlipped : ''}`}
       onClick={() => setFlipped((f) => !f)}
       aria-pressed={flipped}
-      aria-label={`${name} — ${flipped ? 'show card' : 'show tasting note'}`}
+      aria-label={`${name} - ${flipped ? 'show card' : 'show tasting note'}`}
       initial={{ opacity: 0, y: 60, rotate: n % 2 ? -4 : 4 }}
       whileInView={{ opacity: 1, y: 0, rotate: n === 2 ? 0 : n === 1 ? -3 : 3 }}
       viewport={{ once: true, margin: '-10%' }}
@@ -307,7 +307,7 @@ export default function PuebloViejo() {
               </div>
             ))}
           </dl>
-          <p className={styles.boardServe}><span>La casa recomienda —</span> {d.tasting.serve}</p>
+          <p className={styles.boardServe}><span>La casa recomienda - </span> {d.tasting.serve}</p>
           <img src={img('bottle-roses')} alt="" className={styles.boardBottle} loading="lazy" />
         </Reveal>
       </section>

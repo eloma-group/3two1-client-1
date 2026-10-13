@@ -289,14 +289,16 @@ export default function Giffard() {
                   viewport={{ once: true, margin: '-8%' }}
                   transition={{ duration: 0.8, delay: i * 0.08, ease }}
                 >
-                  <figure className={styles.bottleStage}>
-                    <img src={item.imageUrl} alt={item.imageAlt} loading="lazy" />
-                  </figure>
-                  <div className={styles.bottleInfo}>
-                    <span className={styles.roman}>{ROMAN[i]}</span>
-                    <p className={styles.spec}>Giffard · {shelf.label}</p>
-                    <h3>{item.label}</h3>
-                  </div>
+                  <Link to={item.to ?? '/brands/giffard'} aria-label={item.label} style={{ display: 'contents', color: 'inherit' }}>
+                    <figure className={styles.bottleStage}>
+                      <img src={item.imageUrl} alt={item.imageAlt} loading="lazy" />
+                    </figure>
+                    <div className={styles.bottleInfo}>
+                      <span className={styles.roman}>{ROMAN[i]}</span>
+                      <p className={styles.spec}>Giffard · {shelf.label}</p>
+                      <h3>{item.label}</h3>
+                    </div>
+                  </Link>
                 </motion.article>
               ))}
             </div>
@@ -316,7 +318,7 @@ export default function Giffard() {
             <span className={styles.rxSymbol}>℞</span>
           </div>
           <p className={styles.rxFor}>
-            Ordonnance — <em>{d.tasting.of}</em>
+            Ordonnance - <em>{d.tasting.of}</em>
           </p>
           <dl className={styles.rxList}>
             <div>
@@ -336,7 +338,7 @@ export default function Giffard() {
             <span>Posologie</span>
             {d.tasting.serve}
           </p>
-          <p className={styles.rxSign}>— E.G.</p>
+          <p className={styles.rxSign}> - E.G.</p>
         </Reveal>
         <motion.img
           className={styles.rxBottle}

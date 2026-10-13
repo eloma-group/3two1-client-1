@@ -389,10 +389,10 @@ export default function NetworkMap(
             </h2>
             <span className={styles.divider} />
             <p className={styles.para}>
-              Our brands placed by hand across the region — coast to coast, both sides of the
+              Our brands placed by hand across the region - coast to coast, both sides of the
               Tasman, out to the Pacific.
             </p>
-            <p className={styles.good}>Good places.<br />Great company.</p>
+            <p className={styles.good}>Great Company.<br />Greater Relationships.</p>
             <div className={styles.contact}>
               <div className={styles.contactBlock}>
                 <span className={styles.contactLabel}>Enquiries</span>

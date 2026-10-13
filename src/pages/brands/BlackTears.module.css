@@ -1,5 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Anton&family=Instrument+Serif:ital@0;1&family=Space+Mono:wght@400;700&display=swap');
-
 /* ── Black Tears · "Havana Noir" ──────────────────────────────────────
    Ink, bone paper, one blood-rust accent. Fixed palette — this page does
    not follow the site light/dark toggle. */
@@ -13,9 +11,9 @@
   --rust: #b3261e;
   --rust-2: #8e1c16;
   --smoke: rgba(239, 230, 214, 0.62);
-  --display: 'Anton', 'Bebas Neue', Impact, sans-serif;
-  --serif: 'Instrument Serif', 'Playfair Display', Georgia, serif;
-  --mono: 'Space Mono', ui-monospace, monospace;
+  --display: var(--font-display);
+  --serif: var(--font-display);
+  --mono: var(--font-display);
 
   position: relative;
   background: var(--ink);
@@ -93,7 +91,8 @@
 .wordFront {
   position: absolute;
   font-family: var(--display);
-  font-size: clamp(5.5rem, min(26vw, 34svh), 24rem);
+  font-weight: 800;
+  font-size: calc(clamp(5.5rem, min(26vw, 34svh), 24rem) * 0.6);
   line-height: 0.82;
   letter-spacing: -0.01em;
   white-space: nowrap;
@@ -155,7 +154,7 @@
 .quote {
   font-family: var(--serif);
   font-style: italic;
-  font-size: clamp(1.5rem, 3.2vw, 2.8rem);
+  font-size: calc(clamp(1.5rem, 3.2vw, 2.8rem) * 0.82);
   line-height: 1.1;
   max-width: 18ch;
   color: var(--bone);
@@ -218,8 +217,8 @@
 }
 .stamp strong {
   font-family: var(--display);
-  font-size: clamp(1.8rem, 3vw, 2.6rem);
-  font-weight: 400;
+  font-size: calc(clamp(1.8rem, 3vw, 2.6rem) * 0.6);
+  font-weight: 800;
   line-height: 1;
 }
 .stamp span {
@@ -259,9 +258,9 @@
 }
 .storyHead {
   font-family: var(--display);
-  font-weight: 400;
+  font-weight: 800;
   text-transform: uppercase;
-  font-size: clamp(2.6rem, 6vw, 5.4rem);
+  font-size: calc(clamp(2.6rem, 6vw, 5.4rem) * 0.6);
   line-height: 0.92;
   letter-spacing: 0;
   margin-bottom: 2.4rem;
@@ -282,7 +281,8 @@
 .dropcap::first-letter {
   float: left;
   font-family: var(--display);
-  font-size: 4.6rem;
+  font-weight: 800;
+  font-size: calc(4.6rem * 0.6);
   line-height: 0.85;
   padding: 0.3rem 0.6rem 0 0;
   color: var(--rust);
@@ -343,7 +343,7 @@
 }
 .craftStatement {
   font-family: var(--serif);
-  font-size: clamp(1.8rem, 4vw, 3.6rem);
+  font-size: calc(clamp(1.8rem, 4vw, 3.6rem) * 0.82);
   line-height: 1.12;
   max-width: 26ch;
   margin-bottom: clamp(3rem, 7vw, 6rem);
@@ -380,9 +380,9 @@
 .flashCell:hover .flashMark { transform: rotate(-8deg) scale(1.06); }
 .flashCell h3 {
   font-family: var(--display);
-  font-weight: 400;
+  font-weight: 800;
   text-transform: uppercase;
-  font-size: clamp(1.6rem, 2.4vw, 2.2rem);
+  font-size: calc(clamp(1.6rem, 2.4vw, 2.2rem) * 0.6);
   letter-spacing: 0.01em;
   margin-bottom: 0.8rem;
 }
@@ -423,17 +423,17 @@
 }
 .provStamp strong {
   font-family: var(--display);
-  font-weight: 400;
-  font-size: 2.4rem;
+  font-weight: 800;
+  font-size: calc(2.4rem * 0.6);
   letter-spacing: 0.06em;
   line-height: 1;
   margin: 0.2rem 0;
 }
 .provHead {
   font-family: var(--display);
-  font-weight: 400;
+  font-weight: 800;
   text-transform: uppercase;
-  font-size: clamp(2.4rem, 5vw, 4.6rem);
+  font-size: calc(clamp(2.4rem, 5vw, 4.6rem) * 0.6);
   line-height: 0.94;
   letter-spacing: 0;
   margin-bottom: 2rem;
@@ -521,9 +521,9 @@
 }
 .cardRow h3 {
   font-family: var(--display);
-  font-weight: 400;
+  font-weight: 800;
   text-transform: uppercase;
-  font-size: clamp(1.6rem, 3vw, 2.4rem);
+  font-size: calc(clamp(1.6rem, 3vw, 2.4rem) * 0.6);
   letter-spacing: 0.01em;
   line-height: 1;
 }
@@ -574,6 +574,7 @@
 }
 .notes dt {
   font-family: var(--display);
+  font-weight: 800;
   text-transform: uppercase;
   font-size: 1.15rem;
   letter-spacing: 0.04em;
@@ -602,9 +603,9 @@
 }
 .servesTitle {
   font-family: var(--display);
-  font-weight: 400;
+  font-weight: 800;
   text-transform: uppercase;
-  font-size: clamp(3rem, 9vw, 8rem);
+  font-size: calc(clamp(3rem, 9vw, 8rem) * 0.6);
   line-height: 0.86;
   letter-spacing: 0;
 }
@@ -644,7 +645,7 @@
   font-family: var(--serif);
   font-style: italic;
   font-weight: 400;
-  font-size: 1.7rem;
+  font-size: calc(1.7rem * 0.82);
   letter-spacing: 0;
   line-height: 1.05;
   margin-bottom: 0.5rem;
@@ -702,16 +703,16 @@
 .d3 { width: 44%; left: 26%; bottom: 0; z-index: 3; }
 .darkHead {
   font-family: var(--display);
-  font-weight: 400;
+  font-weight: 800;
   text-transform: uppercase;
-  font-size: clamp(3rem, 7vw, 6.4rem);
+  font-size: calc(clamp(3rem, 7vw, 6.4rem) * 0.6);
   line-height: 0.88;
   letter-spacing: 0;
   margin-bottom: 1.6rem;
 }
 .darkBody {
   font-family: var(--serif);
-  font-size: clamp(1.25rem, 1.8vw, 1.6rem);
+  font-size: calc(clamp(1.25rem, 1.8vw, 1.6rem) * 0.82);
   line-height: 1.4;
   color: var(--smoke);
   max-width: 34ch;
@@ -760,9 +761,9 @@
 .stockStrip img:hover { filter: none; mix-blend-mode: normal; transform: rotate(0) scale(1.04); }
 .stockHead {
   font-family: var(--display);
-  font-weight: 400;
+  font-weight: 800;
   text-transform: uppercase;
-  font-size: clamp(3.4rem, 12vw, 11rem);
+  font-size: calc(clamp(3.4rem, 12vw, 11rem) * 0.6);
   /* Anton's capitals stand taller than 0.84 of the size, so a tighter line
      stacks STOCK straight into BLACK. 0.96 keeps the block tight but clear. */
   line-height: 0.96;

@@ -313,7 +313,7 @@ export default function WorthyPark() {
             transition={{ duration: 1, ease }}
           >
             <img src={img('range')} alt="The Worthy Park and Rum-Bar lineup" loading="lazy" />
-            <figcaption>The family of bottles — Worthy Park &amp; Rum-Bar</figcaption>
+            <figcaption>The family of bottles - Worthy Park &amp; Rum-Bar</figcaption>
           </motion.figure>
           <div className={styles.register} role="table" aria-label="Worthy Park range">
             <div className={`${styles.row} ${styles.rowHead}`} role="row">
@@ -362,7 +362,7 @@ export default function WorthyPark() {
           />
         </div>
         <div className={styles.tastingText}>
-          <Folio n="VI" label={`Tasting notes — ${b.tasting.of}`} />
+          <Folio n="VI" label={`Tasting notes - ${b.tasting.of}`} />
           <h2>The pour.</h2>
           <dl className={styles.notes}>
             {([

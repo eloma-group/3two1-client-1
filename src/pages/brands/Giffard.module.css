@@ -1,5 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Cormorant+SC:wght@500;600&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&display=swap');
-
 /* ── Maison Giffard · Belle Époque apothecary ─────────────────────
    Fixed palette — ivory paper, Menthe-Pastille mint, cassis, gold foil. */
 .page {
@@ -16,9 +14,9 @@
   --gold-hi: #e3c77f;
   --gold-foil: linear-gradient(115deg, #8c6a26 0%, #e3c77f 28%, #b8913f 50%, #f3dfa4 70%, #9a752d 100%);
 
-  --serif: 'Playfair Display', 'Didot', Georgia, serif;
-  --sc: 'Cormorant SC', 'Cormorant Garamond', Georgia, serif;
-  --text: 'Cormorant Garamond', Georgia, serif;
+  --serif: var(--font-display);
+  --sc: var(--font-display);
+  --text: var(--font-display);
 
   background: var(--ivory);
   color: var(--paper-ink);
@@ -45,7 +43,7 @@
 .ornament { width: 120px; height: 12px; color: var(--gold); display: block; margin: 0 auto; }
 
 .kicker, .kickerLight {
-  font-family: var(--sc);
+  font-family: var(--sc); font-variant-caps: small-caps;
   font-size: 0.95rem;
   letter-spacing: 0.32em;
   text-transform: lowercase;
@@ -58,7 +56,7 @@
 .h2 {
   font-family: var(--serif);
   font-weight: 500;
-  font-size: clamp(2.2rem, min(5vw, 8svh), 4.4rem);
+  font-size: calc(clamp(2.2rem, min(5vw, 8svh), 4.4rem) * 0.9);
   line-height: 1.04;
   letter-spacing: -0.02em;
 }
@@ -71,7 +69,7 @@
   align-items: center;
   gap: 0.5rem;
   padding: 0.85rem 1.5rem;
-  font-family: var(--sc);
+  font-family: var(--sc); font-variant-caps: small-caps;
   font-size: 1rem;
   letter-spacing: 0.18em;
   border-radius: 2px;
@@ -113,7 +111,7 @@
 .bl { bottom: -13px; left: -13px; } .br { bottom: -13px; right: -13px; }
 
 .maison {
-  font-family: var(--sc);
+  font-family: var(--sc); font-variant-caps: small-caps;
   letter-spacing: 0.36em;
   font-size: clamp(0.8rem, 1vw, 0.95rem);
   color: var(--muted);
@@ -121,7 +119,7 @@
 }
 .eyebrow {
   margin-top: 1rem;
-  font-family: var(--sc);
+  font-family: var(--sc); font-variant-caps: small-caps;
   letter-spacing: 0.22em;
   font-size: clamp(0.85rem, 1vw, 1rem);
   color: var(--mint-deep);
@@ -130,7 +128,7 @@
   font-family: var(--serif);
   font-style: italic;
   font-weight: 500;
-  font-size: clamp(4rem, min(13vw, 21svh), 11rem);
+  font-size: calc(clamp(4rem, min(13vw, 21svh), 11rem) * 0.9);
   line-height: 0.95;
   letter-spacing: -0.03em;
   color: var(--cassis);
@@ -141,7 +139,7 @@
 .quote {
   font-family: var(--text);
   font-style: italic;
-  font-size: clamp(1.25rem, 2vw, 1.75rem);
+  font-size: calc(clamp(1.25rem, 2vw, 1.75rem) * 0.86);
   color: var(--paper-ink);
   margin-bottom: 1.2rem;
 }
@@ -214,8 +212,8 @@
   z-index: 2;
 }
 .seal svg { position: absolute; inset: 0; width: 100%; height: 100%; }
-.seal text { font-family: var(--sc); font-size: 8.4px; letter-spacing: 0.12em; fill: var(--gold-hi); }
-.seal span { font-family: var(--serif); font-style: italic; font-size: clamp(1.1rem, 1.6vw, 1.5rem); }
+.seal text { font-family: var(--sc); font-variant-caps: small-caps; font-size: calc(8.4px * 0.85); letter-spacing: 0.12em; fill: var(--gold-hi); }
+.seal span { font-family: var(--serif); font-style: italic; font-size: calc(clamp(1.1rem, 1.6vw, 1.5rem) * 0.9); }
 
 .ledger {
   max-width: 1400px;
@@ -239,7 +237,7 @@
 .ledgerItem + .ledgerItem { border-left: 1px solid rgba(184, 145, 63, 0.45); }
 .ledgerItem dt {
   font-family: var(--serif);
-  font-size: clamp(2rem, 3.4vw, 3rem);
+  font-size: calc(clamp(2rem, 3.4vw, 3rem) * 0.9);
   font-style: italic;
   font-weight: 600;
   color: var(--cassis);
@@ -253,7 +251,7 @@
   display: flex;
   align-items: center;
   gap: 1rem;
-  font-family: var(--sc);
+  font-family: var(--sc); font-variant-caps: small-caps;
   letter-spacing: 0.3em;
   font-size: 0.95rem;
   color: var(--mint-deep);
@@ -262,7 +260,7 @@
 .chapter i { flex: 1; height: 1px; background: var(--gold); }
 .storyGrid { display: grid; grid-template-columns: 1.25fr 0.75fr; gap: clamp(2rem, 5vw, 5rem); align-items: start; }
 .storyText .h2 { margin-bottom: 2rem; max-width: 14ch; }
-.dropcap { font-size: clamp(1.2rem, 1.45vw, 1.4rem); line-height: 1.6; margin-bottom: 2rem; }
+.dropcap { font-size: calc(clamp(1.2rem, 1.45vw, 1.4rem) * 0.86); line-height: 1.6; margin-bottom: 2rem; }
 .dropcap::first-letter {
   float: left;
   font-family: var(--serif);
@@ -281,7 +279,7 @@
 .framed.small { width: 72%; justify-self: end; transform: rotate(2deg); }
 .framed.small img { aspect-ratio: 4 / 3.4; }
 .framed figcaption { padding-top: 0.6rem; font-style: italic; font-size: 0.95rem; color: var(--muted); }
-.framed figcaption span { font-family: var(--sc); font-style: normal; color: var(--gold); margin-right: 0.4rem; letter-spacing: 0.1em; }
+.framed figcaption span { font-family: var(--sc); font-variant-caps: small-caps; font-style: normal; color: var(--gold); margin-right: 0.4rem; letter-spacing: 0.1em; }
 
 /* ── Craft: drawers ───────────────────────────────────────────── */
 .craft {
@@ -297,7 +295,7 @@
 .statement {
   font-family: var(--serif);
   font-style: italic;
-  font-size: clamp(1.6rem, 3.1vw, 2.8rem);
+  font-size: calc(clamp(1.6rem, 3.1vw, 2.8rem) * 0.9);
   line-height: 1.22;
   letter-spacing: -0.01em;
 }
@@ -323,7 +321,7 @@
   outline: 1px solid var(--gold);
   outline-offset: -5px;
 }
-.drawerNo { font-family: var(--sc); letter-spacing: 0.22em; font-size: 1rem; color: var(--mint-deep); }
+.drawerNo { font-family: var(--sc); font-variant-caps: small-caps; letter-spacing: 0.22em; font-size: 1rem; color: var(--mint-deep); }
 .knob {
   position: absolute;
   left: 50%;
@@ -336,7 +334,7 @@
   box-shadow: 0 6px 10px rgba(0, 0, 0, 0.45);
 }
 .drawerBody { padding: 2rem 1.5rem 1.8rem; }
-.drawerBody h3 { font-family: var(--serif); font-weight: 500; font-size: clamp(1.4rem, 2vw, 1.8rem); margin-bottom: 0.6rem; color: #fff6e2; }
+.drawerBody h3 { font-family: var(--serif); font-weight: 500; font-size: calc(clamp(1.4rem, 2vw, 1.8rem) * 0.9); margin-bottom: 0.6rem; color: #fff6e2; }
 .drawerBody p { color: rgba(246, 234, 210, 0.85); }
 
 /* ── Values ───────────────────────────────────────────────────── */
@@ -351,7 +349,7 @@
 .valuesPhoto img { width: 100%; height: 100%; object-fit: cover; filter: saturate(0.85) contrast(1.05); }
 .valuesPhoto::after { content: ''; position: absolute; inset: 0; background: linear-gradient(90deg, transparent 60%, var(--cassis)); }
 .valuesText { padding: clamp(3rem, 7vw, 6rem) var(--page-x) clamp(3rem, 7vw, 6rem) clamp(2rem, 5vw, 5rem); align-self: center; }
-.valuesH { font-family: var(--serif); font-style: italic; font-weight: 500; font-size: clamp(2.4rem, 5vw, 4.4rem); line-height: 1; margin-bottom: 1.8rem; color: var(--gold-hi); }
+.valuesH { font-family: var(--serif); font-style: italic; font-weight: 500; font-size: calc(clamp(2.4rem, 5vw, 4.4rem) * 0.9); line-height: 1; margin-bottom: 1.8rem; color: var(--gold-hi); }
 .valuesText p { margin-bottom: 1.2rem; max-width: 54ch; color: rgba(243, 232, 238, 0.86); }
 
 /* ── Range shelf ──────────────────────────────────────────────── */
@@ -361,7 +359,7 @@
 
 .shelfTabs { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.6rem; margin-top: 2.2rem; }
 .shelfTab {
-  font-family: var(--sc);
+  font-family: var(--sc); font-variant-caps: small-caps;
   font-size: 1rem;
   letter-spacing: 0.16em;
   color: var(--mint-deep);
@@ -399,9 +397,9 @@
 
 .bottleInfo { position: relative; padding: 1.6rem 0.2rem 0; text-align: center; }
 .roman { display: block; font-family: var(--serif); font-style: italic; color: var(--gold); font-size: 1.2rem; margin-bottom: 0.3rem; }
-.bottleInfo h3 { font-family: var(--serif); font-weight: 500; font-size: clamp(1.25rem, 1.6vw, 1.55rem); line-height: 1.15; }
-.spec { font-family: var(--sc); letter-spacing: 0.16em; font-size: 0.85rem; color: var(--mint-deep); margin-bottom: 0.4rem; }
-.shelfNote { margin-top: clamp(2.4rem, 5vw, 3.6rem); text-align: center; font-family: var(--sc); letter-spacing: 0.2em; font-size: 1rem; color: var(--cassis-2); }
+.bottleInfo h3 { font-family: var(--serif); font-weight: 500; font-size: calc(clamp(1.25rem, 1.6vw, 1.55rem) * 0.9); line-height: 1.15; }
+.spec { font-family: var(--sc); font-variant-caps: small-caps; letter-spacing: 0.16em; font-size: 0.85rem; color: var(--mint-deep); margin-bottom: 0.4rem; }
+.shelfNote { margin-top: clamp(2.4rem, 5vw, 3.6rem); text-align: center; font-family: var(--sc); font-variant-caps: small-caps; letter-spacing: 0.2em; font-size: 1rem; color: var(--cassis-2); }
 
 /* ── Tasting: prescription ────────────────────────────────────── */
 .tastingWrap {
@@ -422,18 +420,18 @@
   transform: rotate(-1deg);
 }
 .rxHead { display: flex; justify-content: space-between; align-items: flex-start; border-bottom: 2px solid var(--mint-deep); padding-bottom: 1rem; margin-bottom: 1.4rem; }
-.rxHouse { font-family: var(--sc); letter-spacing: 0.22em; font-size: 1.05rem; color: var(--mint-deep); }
+.rxHouse { font-family: var(--sc); font-variant-caps: small-caps; letter-spacing: 0.22em; font-size: 1.05rem; color: var(--mint-deep); }
 .rxAddr { font-style: italic; color: var(--muted); font-size: 0.95rem; }
-.rxSymbol { font-family: var(--serif); font-size: clamp(3rem, 6vw, 4.5rem); line-height: 0.8; color: var(--cassis); }
-.rxFor { font-family: var(--serif); font-size: clamp(1.3rem, 2.2vw, 1.8rem); margin-bottom: 1.4rem; }
+.rxSymbol { font-family: var(--serif); font-size: calc(clamp(3rem, 6vw, 4.5rem) * 0.9); line-height: 0.8; color: var(--cassis); }
+.rxFor { font-family: var(--serif); font-size: calc(clamp(1.3rem, 2.2vw, 1.8rem) * 0.9); margin-bottom: 1.4rem; }
 .rxFor em { color: var(--cassis); }
 .rxList { display: grid; gap: 1rem; margin-bottom: 1.6rem; }
 .rxList > div { display: grid; grid-template-columns: 7rem 1fr; gap: 1rem; align-items: baseline; }
-.rxList dt { font-family: var(--sc); letter-spacing: 0.2em; color: var(--mint-deep); }
+.rxList dt { font-family: var(--sc); font-variant-caps: small-caps; letter-spacing: 0.2em; color: var(--mint-deep); }
 .rxList dd { font-style: italic; font-size: 1.15em; }
 .rxDose { padding: 1rem 1.2rem; background: rgba(63, 158, 134, 0.1); border-left: 3px solid var(--mint); }
-.rxDose span { display: block; font-family: var(--sc); letter-spacing: 0.22em; color: var(--mint-deep); margin-bottom: 0.3rem; }
-.rxSign { text-align: right; font-family: var(--serif); font-style: italic; font-size: 1.6rem; color: var(--cassis); margin-top: 0.8rem; }
+.rxDose span { display: block; font-family: var(--sc); font-variant-caps: small-caps; letter-spacing: 0.22em; color: var(--mint-deep); margin-bottom: 0.3rem; }
+.rxSign { text-align: right; font-family: var(--serif); font-style: italic; font-size: calc(1.6rem * 0.9); color: var(--cassis); margin-top: 0.8rem; }
 .rxBottle { height: clamp(320px, 42vw, 560px); width: auto; mix-blend-mode: multiply; filter: drop-shadow(0 30px 30px rgba(58, 16, 48, 0.25)); }
 
 /* ── Serves: menu cards ───────────────────────────────────────── */
@@ -451,9 +449,9 @@
 .menuImg { position: relative; aspect-ratio: 4 / 4.6; overflow: hidden; border-radius: 999px 999px 0 0; }
 .menuImg img { width: 100%; height: 100%; object-fit: cover; transition: transform 1s cubic-bezier(0.16, 1, 0.3, 1); }
 .menuCard:hover .menuImg img { transform: scale(1.06); }
-.menuNo { position: absolute; bottom: 0.8rem; left: 0.8rem; background: var(--ivory); padding: 0.2rem 0.7rem; font-family: var(--sc); letter-spacing: 0.18em; font-size: 0.85rem; color: var(--cassis); }
+.menuNo { position: absolute; bottom: 0.8rem; left: 0.8rem; background: var(--ivory); padding: 0.2rem 0.7rem; font-family: var(--sc); font-variant-caps: small-caps; letter-spacing: 0.18em; font-size: 0.85rem; color: var(--cassis); }
 .menuBody { text-align: center; padding: 1.4rem 0.8rem 1rem; }
-.menuBody h3 { font-family: var(--serif); font-style: italic; font-weight: 500; font-size: clamp(1.5rem, 2.1vw, 1.95rem); }
+.menuBody h3 { font-family: var(--serif); font-style: italic; font-weight: 500; font-size: calc(clamp(1.5rem, 2.1vw, 1.95rem) * 0.9); }
 .menuOrn { margin: 0.7rem auto; }
 .menuBody > p { color: #4a443a; }
 .recipeBtn {
@@ -461,7 +459,7 @@
   display: inline-flex;
   align-items: center;
   gap: 0.4rem;
-  font-family: var(--sc);
+  font-family: var(--sc); font-variant-caps: small-caps;
   letter-spacing: 0.18em;
   font-size: 0.95rem;
   color: var(--mint-deep);
@@ -471,7 +469,7 @@
 }
 .recipe { overflow: hidden; display: grid; gap: 0.4rem; margin-top: 1rem; }
 .recipe > div { display: flex; justify-content: space-between; gap: 1rem; border-top: 1px dotted var(--gold); padding-top: 0.5rem; }
-.recipe dt { font-family: var(--sc); letter-spacing: 0.16em; color: var(--muted); }
+.recipe dt { font-family: var(--sc); font-variant-caps: small-caps; letter-spacing: 0.16em; color: var(--muted); }
 .recipe dd { font-style: italic; text-align: right; }
 
 /* ── Invitation + trade ───────────────────────────────────────── */
@@ -497,12 +495,12 @@
   border-image: var(--gold-foil) 1;
   pointer-events: none;
 }
-.cardTop { font-family: var(--sc); letter-spacing: 0.24em; color: var(--muted); margin-bottom: 1rem; }
+.cardTop { font-family: var(--sc); font-variant-caps: small-caps; letter-spacing: 0.24em; color: var(--muted); margin-bottom: 1rem; }
 .cardH {
   font-family: var(--serif);
   font-style: italic;
   font-weight: 600;
-  font-size: clamp(2.2rem, 4.5vw, 3.8rem);
+  font-size: calc(clamp(2.2rem, 4.5vw, 3.8rem) * 0.9);
   line-height: 1.05;
   margin: 1rem 0;
   background: var(--gold-foil);
@@ -511,7 +509,7 @@
   color: transparent;
 }
 .cardBody { max-width: 46ch; margin: 0 auto 1.4rem; color: #3b372f; }
-.cardFoot { margin-top: 1rem; font-family: var(--sc); letter-spacing: 0.24em; color: var(--cassis); }
+.cardFoot { margin-top: 1rem; font-family: var(--sc); font-variant-caps: small-caps; letter-spacing: 0.24em; color: var(--cassis); }
 .trade ol { display: grid; gap: 0; }
 .trade li {
   display: grid;
@@ -521,7 +519,7 @@
   padding: 1.3rem 0;
   border-bottom: 1px solid rgba(227, 199, 127, 0.35);
   font-family: var(--serif);
-  font-size: clamp(1.2rem, 1.9vw, 1.6rem);
+  font-size: calc(clamp(1.2rem, 1.9vw, 1.6rem) * 0.9);
   line-height: 1.3;
 }
 .trade li span { font-style: italic; color: var(--gold-hi); }
@@ -540,7 +538,7 @@
   padding: clamp(2rem, 4vw, 3rem) 0;
 }
 .stockBottle { height: clamp(260px, 32vw, 420px); width: auto; mix-blend-mode: multiply; }
-.stockH { font-family: var(--serif); font-weight: 500; font-size: clamp(2.8rem, 6.5vw, 5.6rem); line-height: 1; letter-spacing: -0.02em; margin-bottom: 1.2rem; }
+.stockH { font-family: var(--serif); font-weight: 500; font-size: calc(clamp(2.8rem, 6.5vw, 5.6rem) * 0.9); line-height: 1; letter-spacing: -0.02em; margin-bottom: 1.2rem; }
 .stockH em { font-style: italic; color: var(--cassis); }
 .stockText { max-width: 52ch; color: #3b372f; }
 .stock .heroCtas { justify-content: flex-start; }

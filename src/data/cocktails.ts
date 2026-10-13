@@ -26,7 +26,7 @@ export const recipeHouses: RecipeHouse[] = [
       {
         tag: 'Signature',
         name: 'Caribbean Pineapple Sour',
-        lede: 'A clean, sun-bright sour built on Giffard Caribbean Pineapple — the #7 bestselling cocktail liqueur of 2026.',
+        lede: 'A clean, sun-bright sour built on Giffard Caribbean Pineapple - the #7 bestselling cocktail liqueur of 2026.',
         ingredients: [
           ['Giffard Caribbean Pineapple', '30 ml'],
           ['Blanco rum', '45 ml'],
@@ -61,7 +61,7 @@ export const recipeHouses: RecipeHouse[] = [
       {
         tag: 'Café',
         name: 'Vanille de Madagascar Latte',
-        lede: 'For cafés running a "spiked drinks" hour. Giffard syrup, no spirit — same brand, two channels.',
+        lede: 'For cafés running a "spiked drinks" hour. Giffard syrup, no spirit - same brand, two channels.',
         ingredients: [
           ['Giffard Vanille de Madagascar syrup', '15 ml'],
           ['Double espresso', '60 ml'],
@@ -80,7 +80,7 @@ export const recipeHouses: RecipeHouse[] = [
       {
         tag: 'Signature',
         name: 'Black Tears & Cola',
-        lede: 'The simplest serve. Done correctly it sells itself — house highball in three pours.',
+        lede: 'The simplest serve. Done correctly it sells itself - house highball in three pours.',
         ingredients: [
           ['Black Tears', '45 ml'],
           ['Premium cola', '120 ml'],
@@ -103,7 +103,7 @@ export const recipeHouses: RecipeHouse[] = [
       {
         tag: 'Stirred',
         name: 'Black Old Fashioned',
-        lede: 'Spiced rum stands up to the format — chocolate & clove notes carry.',
+        lede: 'Spiced rum stands up to the format - chocolate & clove notes carry.',
         ingredients: [
           ['Black Tears', '50 ml'],
           ['Demerara syrup', '5 ml'],
@@ -196,7 +196,7 @@ export const recipeHouses: RecipeHouse[] = [
       {
         tag: 'Tiki',
         name: 'Rumbar Mai Tai',
-        lede: 'Overproof split — funk forward, balanced with orgeat & orange curaçao.',
+        lede: 'Overproof split - funk forward, balanced with orgeat & orange curaçao.',
         ingredients: [
           ['Worthy Park Estate', '30 ml'],
           ['Rumbar Overproof', '15 ml'],
@@ -229,7 +229,7 @@ export const recipeHouses: RecipeHouse[] = [
       {
         tag: 'Sour',
         name: 'Penicillin (Row Edit)',
-        lede: 'A bourbon-base spin on the classic — honey, ginger and a smoky float.',
+        lede: 'A bourbon-base spin on the classic - honey, ginger and a smoky float.',
         ingredients: [
           ['Whiskey Row Bourbon', '50 ml'],
           ['Honey-ginger syrup', '20 ml'],
@@ -254,7 +254,7 @@ export const recipeHouses: RecipeHouse[] = [
           ['San Matías Reposado', '30 ml'],
           ['Orange wedge', '1'],
         ],
-        method: 'Pour at room temperature into a copita. Serve with a wedge of orange on the side — Mexican style.',
+        method: 'Pour at room temperature into a copita. Serve with a wedge of orange on the side - Mexican style.',
       },
       {
         tag: 'Signature',

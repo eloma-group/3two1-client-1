@@ -42,6 +42,8 @@ export interface GalleryItem {
   /** Optional per-item panel theme (falls back to the parent house). */
   bg?: string
   accent?: string
+  /** Optional page the card links to. */
+  to?: string
 }
 
 export interface GalleryCategory {
@@ -93,7 +95,7 @@ const SERVICES: Service[] = [
       {
         label: 'Signature Serve',
         items: [
-          { imageUrl: '/images/brand-black-tears-cuba-libre.webp', label: 'Cuba Libre', imageAlt: 'Cuba Libre made with Black Tears dry spiced rum, cola and a fresh lime wheel', scene: true },
+          { imageUrl: '/images/brand-black-tears-cuba-libre.webp', label: 'Cuba Libre', imageAlt: 'Cuba Libre made with Black Tears dry spiced rum, cola and a fresh lime wheel', scene: true, to: '/brands/black-tears/cuba-libre' },
         ],
       },
     ],
@@ -166,9 +168,9 @@ const SERVICES: Service[] = [
       {
         label: 'Signature Serve',
         items: [
-          { imageUrl: '/images/brand-pueblo-viejo-cocktail.webp',        label: "Tommy's Margarita", imageAlt: "Tommy's Margarita made with Pueblo Viejo Blanco tequila, fresh lime and agave", scene: true },
-          { imageUrl: '/images/brand-pueblo-viejo-reposado-bottle.webp', label: 'Reposado',          imageAlt: 'Pueblo Viejo Reposado tequila bottle with agave, a woven blanket and a serve on the rocks in the sun', scene: true },
-          { imageUrl: '/images/brand-pueblo-viejo-anejo-bottle.webp',    label: 'Anejo',             imageAlt: 'Pueblo Viejo Anejo tequila bottle with blue agave and a serve on the rocks on sunlit stone steps', scene: true },
+          { imageUrl: '/images/brand-pueblo-viejo-cocktail.webp',        label: "Tommy's Margarita", imageAlt: "Tommy's Margarita made with Pueblo Viejo Blanco tequila, fresh lime and agave", scene: true, to: '/brands/pueblo-viejo/tommys-margarita' },
+          { imageUrl: '/images/brand-pueblo-viejo-reposado-bottle.webp', label: 'Reposado',          imageAlt: 'Pueblo Viejo Reposado tequila bottle with agave, a woven blanket and a serve on the rocks in the sun', scene: true, to: '/brands/pueblo-viejo/reposado' },
+          { imageUrl: '/images/brand-pueblo-viejo-anejo-bottle.webp',    label: 'Anejo',             imageAlt: 'Pueblo Viejo Anejo tequila bottle with blue agave and a serve on the rocks on sunlit stone steps', scene: true, to: '/brands/pueblo-viejo/anejo' },
         ],
       },
     ],
@@ -224,8 +226,8 @@ const SERVICES: Service[] = [
       {
         label: 'Signature Serve',
         items: [
-          { imageUrl: '/images/brand-whiskey-row-cocktail.webp',  label: 'Old Fashioned', imageAlt: 'Old Fashioned made with Whiskey Row straight bourbon', scene: true },
-          { imageUrl: '/images/brand-whiskey-row-manhattan.webp', label: 'Manhattan',     imageAlt: 'Manhattan made with Whiskey Row straight bourbon, served up with a cherry', scene: true },
+          { imageUrl: '/images/brand-whiskey-row-cocktail.webp',  label: 'Old Fashioned', imageAlt: 'Old Fashioned made with Whiskey Row straight bourbon', scene: true, to: '/brands/whiskey-row/old-fashioned' },
+          { imageUrl: '/images/brand-whiskey-row-manhattan.webp', label: 'Manhattan',     imageAlt: 'Manhattan made with Whiskey Row straight bourbon, served up with a cherry', scene: true, to: '/brands/whiskey-row/manhattan' },
         ],
       },
     ],
@@ -458,7 +460,8 @@ function ServiceRow({
                         gridTemplateColumns: 'repeat(auto-fill, minmax(84px, 1fr))',
                         gap: 'clamp(7px, 0.95vw, 12px)',
                       }}>
-                        {cat.items.map((item, gi) => (
+                        {cat.items.map((item, gi) => {
+                          const card = (
                           <motion.div
                             key={item.imageUrl}
                             initial={{ opacity: 0, y: 10 }}
@@ -494,7 +497,19 @@ function ServiceRow({
                               {item.label}
                             </span>
                           </motion.div>
-                        ))}
+                          )
+                          return item.to ? (
+                            <Link
+                              key={item.imageUrl}
+                              to={item.to}
+                              aria-label={item.label}
+                              data-cursor="Explore"
+                              style={{ display: 'block', textDecoration: 'none', color: 'inherit' }}
+                            >
+                              {card}
+                            </Link>
+                          ) : card
+                        })}
 
                         {/* "+ N more" sits in the grid as a card of its own, beside the range. */}
                         {cat.note && (

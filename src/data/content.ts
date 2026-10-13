@@ -7,10 +7,10 @@ export const brand = {
   wordmark: '3two1',
   suffix: 'drinks',
   tagline: 'The Taste of Passion',
-  regions: 'Australia — New Zealand — Pacific Islands',
+  regions: 'Australia - New Zealand - Pacific Islands',
   slogan: 'A house of premium spirits, built for trade',
   mission: "Australia's premier independent spirits distributor",
-  intent: 'Imported with intent — placed where it belongs',
+  intent: 'Imported with intent - placed where it belongs',
   acknowledgement:
     '3two1 acknowledges the Whadjuk Noongar people as Traditional Owners of the land on which we work.',
 } as const;
@@ -51,7 +51,6 @@ export const navMenu: MenuEntry[] = [
     label: 'Brands',
     to: '/#brands',
     children: [
-      { label: '2026 Portfolio', to: '/portfolio' },
       { label: 'Black Tears', to: '/brands/black-tears' },
       { label: 'Burnt Ends', to: '/brands/burnt-ends' },
       { label: 'Demonio de los Andes', to: '/brands/demonio-de-los-andes' },
@@ -129,7 +128,7 @@ export const brands: Brand[] = [
     country: 'Cuba',
     tagline: 'Coffee, cacao, midnight',
     description:
-      'A spiced rum built on a coffee-and-cacao profile — dark, aromatic and unmistakably its own. Made to reinvent the rum & cola.',
+      'A spiced rum built on a coffee-and-cacao profile - dark, aromatic and unmistakably its own. Made to reinvent the rum & cola.',
     cta: 'Explore Black Tears',
     image: '/images/house-black-tears.webp',
     hue: '#7a3346',
@@ -155,7 +154,7 @@ export const brands: Brand[] = [
     country: 'Jalisco, Mexico',
     tagline: 'Pure blue agave',
     description:
-      'A blanco built on blue agave — clean, bright and made for the margarita. The bartender’s working tequila.',
+      'A blanco built on blue agave - clean, bright and made for the margarita. The bartender’s working tequila.',
     cta: 'Explore Pueblo Viejo',
     image: '/images/house-pueblo-viejo.webp',
     hue: '#c98a3a',
@@ -204,7 +203,7 @@ export const brands: Brand[] = [
     since: '1886',
     tagline: 'The second-oldest tequila house in Mexico',
     description:
-      'Casa San Matías has been distilling 100% blue agave in the highlands of Jalisco since 1886 — family-owned, quietly excellent. Reposado, Añejo and Extra-Añejo.',
+      'Casa San Matías has been distilling 100% blue agave in the highlands of Jalisco since 1886 - family-owned, quietly excellent. Reposado, Añejo and Extra-Añejo.',
     cta: 'Explore San Matías',
     image: '/images/house-san-matias.webp',
     hue: '#d98a4a',
@@ -216,7 +215,7 @@ export const brands: Brand[] = [
     country: 'Ica, Peru',
     tagline: 'Peru, in a single pass',
     description:
-      'Pisco made the Peruvian way — grape spirit taken to proof in one distillation, with nothing added and nothing pulled back out. Built for the Pisco Sour.',
+      'Pisco made the Peruvian way - grape spirit taken to proof in one distillation, with nothing added and nothing pulled back out. Built for the Pisco Sour.',
     cta: 'Explore Demonio de los Andes',
     image: '/images/house-demonio-de-los-andes.webp',
     hue: '#c08a35',
@@ -228,7 +227,7 @@ export const brands: Brand[] = [
     country: 'Brazil',
     tagline: 'Cane, straight from the field',
     description:
-      'Cachaça pressed from fresh-cut sugarcane rather than molasses — grassy, bright and faintly wild. The backbone of a Caipirinha worth drinking.',
+      'Cachaça pressed from fresh-cut sugarcane rather than molasses - grassy, bright and faintly wild. The backbone of a Caipirinha worth drinking.',
     cta: 'Explore Thoquino',
     image: '/images/house-thoquino.webp',
     hue: '#4f9c63',
@@ -290,10 +289,10 @@ export interface Cocktail {
 }
 
 export const cocktails: Cocktail[] = [
-  { name: 'Garden Spritz', brand: 'Giffard', ingredients: 'Giffard Crème de Pêche, Prosecco, soda', desc: 'Bright, low-ABV and built for daytime. Peach liqueur, prosecco and a splash of soda — built in the glass in under 30 seconds.' },
-  { name: 'Coffee Cuba Libre', brand: 'Black Tears', ingredients: 'Black Tears Spiced, cola, lime', desc: 'A Havana classic, rebuilt around a coffee-and-cacao rum. Tall over ice with a fat squeeze of lime — house cola does the rest.' },
-  { name: "Tommy's Margarita", brand: 'Pueblo Viejo', ingredients: 'Pueblo Viejo Blanco, agave, lime', desc: 'No triple sec, no shortcuts. Blanco tequila, fresh lime and agave — the margarita, purist style.' },
-  { name: 'Estate Daiquiri', brand: 'Worthy Park', ingredients: 'Worthy Park Single Estate Rum, lime, sugar', desc: 'Three ingredients, Jamaican funk. Fresh lime, a hard shake on ice — the daiquiri the way the estate drinks it.' },
+  { name: 'Garden Spritz', brand: 'Giffard', ingredients: 'Giffard Crème de Pêche, Prosecco, soda', desc: 'Bright, low-ABV and built for daytime. Peach liqueur, prosecco and a splash of soda - built in the glass in under 30 seconds.' },
+  { name: 'Coffee Cuba Libre', brand: 'Black Tears', ingredients: 'Black Tears Spiced, cola, lime', desc: 'A Havana classic, rebuilt around a coffee-and-cacao rum. Tall over ice with a fat squeeze of lime - house cola does the rest.' },
+  { name: "Tommy's Margarita", brand: 'Pueblo Viejo', ingredients: 'Pueblo Viejo Blanco, agave, lime', desc: 'No triple sec, no shortcuts. Blanco tequila, fresh lime and agave - the margarita, purist style.' },
+  { name: 'Estate Daiquiri', brand: 'Worthy Park', ingredients: 'Worthy Park Single Estate Rum, lime, sugar', desc: 'Three ingredients, Jamaican funk. Fresh lime, a hard shake on ice - the daiquiri the way the estate drinks it.' },
   { name: 'Smoked Manhattan', brand: 'Burnt Ends', ingredients: 'Burnt Ends American Whiskey, vermouth, bitters', desc: 'Charred-oak whiskey stirred down with sweet vermouth and a whisper of orange bitters. Served over a single inch with a branded cherry.' },
   { name: 'Paloma Brava', brand: 'San Matías', ingredients: 'San Matías Gran Reserva, pink grapefruit, salt', desc: 'Aged tequila stretched long over pink grapefruit soda and a generous pinch of sea salt. The Mexican highball, done properly.' },
 ];

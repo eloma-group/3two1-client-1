@@ -1,5 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Unbounded:wght@400;600;800;900&family=Figtree:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap');
-
 /* ── Thoquino · Rio modernist ──────────────────────────────────────────
    Copacabana wave pavement, cane green, lime, sun and Atlantic blue.
    Nothing here depends on photography beyond the two shots that exist. */
@@ -15,8 +13,8 @@
   --ink: #10231a;
   --amber: #c9862f;
   --muted: #4b5e53;
-  --display: 'Unbounded', system-ui, sans-serif;
-  --sans: 'Figtree', system-ui, sans-serif;
+  --display: var(--font-display);
+  --sans: var(--font-display);
   --wave: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='40' viewBox='0 0 80 40'%3E%3Cpath d='M0 14 Q20 0 40 14 T80 14 V26 Q60 40 40 26 T0 26Z' fill='%23111'/%3E%3C/svg%3E");
 
   background: var(--white);

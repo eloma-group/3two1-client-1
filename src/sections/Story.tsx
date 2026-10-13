@@ -36,7 +36,7 @@ export default function Story() {
 
           <div className={styles.pillars}>
             {[
-              { t: 'Imported with intent', d: 'Every house earns its place. No filler, no fashion — only bottles that make the drink better.' },
+              { t: 'Imported with intent', d: 'Every house earns its place. No filler, no fashion - only bottles that make the drink better.' },
               { t: 'Placed where it belongs', d: 'From cocktail bars to bottle shops and cafés, we match each brand to the room it was built for.' },
             ].map((p, i) => (
               <Reveal key={p.t} delay={0.15 + i * 0.1} className={styles.pillar}>
@@ -60,7 +60,7 @@ export default function Story() {
             <div className={styles.imageInner}>
               <img
                 src="/images/giffard-feature-2026.webp"
-                alt="Giffard Caribbean Pineapple — Drinks International Top 10 Bestselling & Trending, 2026"
+                alt="Giffard Caribbean Pineapple - Drinks International Top 10 Bestselling & Trending, 2026"
                 className={styles.photo}
               />
             </div>

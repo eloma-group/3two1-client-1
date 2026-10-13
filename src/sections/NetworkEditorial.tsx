@@ -84,11 +84,11 @@ export default function NetworkEditorial() {
           </h2>
           <motion.span className={styles.divider} variants={{ hidden: { scaleX: 0 }, show: { scaleX: 1, transition: { duration: 0.6, ease: EASE } } }} style={{ transformOrigin: 'left' }} />
           <motion.p className={styles.para} variants={rise}>
-            Our brands placed by hand across the region — coast to coast, both sides of the
+            Our brands placed by hand across the region - coast to coast, both sides of the
             Tasman, out to the Pacific.
           </motion.p>
 
-          <motion.p className={styles.good} variants={rise}>Good places.<br />Great company.</motion.p>
+          <motion.p className={styles.good} variants={rise}>Great Company.<br />Greater Relationships.</motion.p>
 
           <motion.div className={styles.contact} variants={rise}>
             <div className={styles.contactBlock}>

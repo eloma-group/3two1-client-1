@@ -217,7 +217,7 @@ export default function BurntEnds() {
       <section className={styles.story}>
         <div className={styles.storyMedia}>
           <Sear>
-            <p className={styles.label}>01 — The story</p>
+            <p className={styles.label}>01 - The story</p>
             <h2 className={styles.h2}>{d.story.heading}</h2>
           </Sear>
           <Sear delay={0.1} className={styles.charFrame}>
@@ -254,7 +254,7 @@ export default function BurntEnds() {
       {/* ── CRAFT: branded stamps ───────────────────────── */}
       <section className={styles.craft}>
         <Sear className={styles.craftHead}>
-          <p className={styles.label}>02 — The craft</p>
+          <p className={styles.label}>02 - The craft</p>
           <p className={styles.statement}>{d.craft.statement}</p>
         </Sear>
         <div className={styles.stamps}>
@@ -287,7 +287,7 @@ export default function BurntEnds() {
         </div>
         <div className={styles.pourCopy}>
           <Sear>
-            <p className={styles.label}>03 — The lineup</p>
+            <p className={styles.label}>03 - The lineup</p>
             <h2 className={styles.h2}>{range.name}</h2>
             <p className={styles.specRow}>
               {range.spec.split(' · ').map((s) => <span key={s}>{s}</span>)}
@@ -296,7 +296,7 @@ export default function BurntEnds() {
           </Sear>
 
           <div className={styles.gauge}>
-            <p className={styles.mono}>Tasting — {d.tasting.of} · heat read</p>
+            <p className={styles.mono}>Tasting - {d.tasting.of} · heat read</p>
             {gauges.map((g, i) => (
               <div key={g.k} className={styles.gaugeRow}>
                 <div className={styles.gaugeTop}>
@@ -335,7 +335,7 @@ export default function BurntEnds() {
       {/* ── SERVES ─────────────────────────────────────── */}
       <section className={styles.serves}>
         <Sear className={styles.servesHead}>
-          <p className={styles.label}>04 — Signature serves</p>
+          <p className={styles.label}>04 - Signature serves</p>
           <h2 className={styles.h2}>Off the pass.</h2>
         </Sear>
         <div className={styles.serveGrid}>

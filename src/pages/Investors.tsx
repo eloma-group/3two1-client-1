@@ -18,7 +18,7 @@ const ease = [0.16, 1, 0.3, 1] as [number, number, number, number];
 const FIGURES = [
   {
     to: 450, suffix: '+', label: 'Active trade accounts',
-    note: 'Bars, bottle shops and cafés — from Perth metro to the east coast.',
+    note: 'Bars, bottle shops and cafés - from Perth metro to the east coast.',
   },
   {
     to: 9, suffix: '', label: 'Brand houses',
@@ -81,7 +81,7 @@ const PILLARS = [
   {
     n: '03',
     title: 'Placed, not dumped',
-    body: 'We would rather a bottle sat in forty venues that pour it well than four hundred that never open it. Volume follows placement — it does not lead it.',
+    body: 'We would rather a bottle sat in forty venues that pour it well than four hundred that never open it. Volume follows placement - it does not lead it.',
   },
   {
     n: '04',
@@ -93,7 +93,7 @@ const PILLARS = [
 const NEXT_STEPS = [
   'Tell us the venue and the kind of list you run.',
   'We send the range, trade pricing and a sample plan.',
-  'A rep walks it through with you — in person wherever we can get there.',
+  'A rep walks it through with you - in person wherever we can get there.',
 ];
 
 const initials = (name: string) => name.split(' ').map((w) => w[0]).join('');
@@ -172,7 +172,7 @@ function FiguresBand() {
           </h2>
           <Reveal y={16} delay={0.12}>
             <p className={styles.figuresLede}>
-              Every figure below was earned behind a bar like this one — a venue, a house and a
+              Every figure below was earned behind a bar like this one - a venue, a house and a
               year at a time.
             </p>
           </Reveal>
@@ -338,7 +338,7 @@ export default function Investors({ ready = true }: { ready?: boolean }) {
   const [yearIndex, setYearIndex] = useState(0);
 
   useEffect(() => {
-    document.title = 'Our Story — 3two1 drinks';
+    document.title = 'Our Story - 3two1 drinks';
   }, []);
 
   /* Hero parallax — the photograph drifts at roughly a third of scroll speed. */
@@ -374,18 +374,18 @@ export default function Investors({ ready = true }: { ready?: boolean }) {
       body: (
         <>
           <p className={styles.body}>
-            3two1 Drinks was founded in 2018 with a single idea — that Australia's best venues and
+            3two1 Drinks was founded in 2018 with a single idea - that Australia's best venues and
             bottle shops deserved a distributor that genuinely cared which bottle ended up where.
           </p>
           <p className={styles.body}>
             Eight years on, we represent nine world-class spirit houses across rum, tequila,
-            whiskey, bourbon, pisco, cachaça and liqueur — working directly with bars, bottle shops and cafés across
+            whiskey, bourbon, pisco, cachaça and liqueur - working directly with bars, bottle shops and cafés across
             Australia, New Zealand and the Pacific Islands.
           </p>
           <p className={styles.body}>
             Day to day that means a warehouse in Perth, a delivery run we drive ourselves, and a
             phone answered by someone who has worked a Friday service. The range gets chosen the
-            way a good back bar gets chosen — by people who have had to stand behind it.
+            way a good back bar gets chosen - by people who have had to stand behind it.
           </p>
           <p className={`${styles.pull} gradient-text`}>
             Independent. Family-held. Intentionally small.
@@ -430,13 +430,13 @@ export default function Investors({ ready = true }: { ready?: boolean }) {
       body: (
         <>
           <p className={styles.body}>
-            We're growing — carefully — and we partner with a small group of aligned investors who
+            We're growing - carefully - and we partner with a small group of aligned investors who
             believe in doing this for the long run. Premium agave, heritage liqueur, and rum done
             properly is a category that rewards patience, distribution discipline, and good taste.
           </p>
           <ul className={styles.points}>
             <li>
-              <strong>Exclusive national rights</strong> across every house we carry — an owned
+              <strong>Exclusive national rights</strong> across every house we carry - an owned
               book, not a shared agency shelf.
             </li>
             <li>
@@ -444,7 +444,7 @@ export default function Investors({ ready = true }: { ready?: boolean }) {
               decisions made by the people who service the accounts.
             </li>
             <li>
-              <strong>Premium-led categories</strong> — agave, aged rum and heritage liqueur —
+              <strong>Premium-led categories</strong> - agave, aged rum and heritage liqueur -
               where value compounds with age, scarcity and placement.
             </li>
           </ul>
@@ -463,7 +463,7 @@ export default function Investors({ ready = true }: { ready?: boolean }) {
     {
       id: 'footprint',
       kicker: 'Distribution footprint',
-      heading: 'From WA — to wherever it pours.',
+      heading: 'From WA - to wherever it pours.',
       gradientFrom: 1,
       flip: true,
       media: <FootprintMap />,
@@ -526,7 +526,7 @@ export default function Investors({ ready = true }: { ready?: boolean }) {
           <Reveal y={18} delay={0.25}>
             <div className={styles.heroMeta}>
               <p className={styles.heroLede}>
-                A small Western Australian distributor with a stubborn belief — that the right
+                A small Western Australian distributor with a stubborn belief - that the right
                 bottle, in the right hands, makes the night.
               </p>
               <span className={styles.heroPlace}>Perth · Western Australia</span>
@@ -594,7 +594,7 @@ export default function Investors({ ready = true }: { ready?: boolean }) {
           </h2>
           <Reveal y={16} delay={0.12}>
             <p className={styles.lede}>
-              Everything above is the story. This is the operating model underneath it — the part
+              Everything above is the story. This is the operating model underneath it - the part
               buyers ask about on the first call and investors ask about on the second.
             </p>
           </Reveal>
@@ -628,7 +628,7 @@ export default function Investors({ ready = true }: { ready?: boolean }) {
             <Reveal y={16} delay={0.12}>
               <p className={styles.teamLede}>
                 Small on purpose. Between them the team has spent the better part of two decades on
-                the other side of the bar — which is more or less the only thing we screen for.
+                the other side of the bar - which is more or less the only thing we screen for.
               </p>
             </Reveal>
           </div>

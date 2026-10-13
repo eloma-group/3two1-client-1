@@ -425,7 +425,7 @@ export default function SanMatias() {
               </div>
             ))}
           </dl>
-          <p className={styles.cardServe}><em>Serve —</em> {d.tasting.serve}</p>
+          <p className={styles.cardServe}><em>Serve - </em> {d.tasting.serve}</p>
           <span className={styles.signature}>Casa San Matías</span>
         </motion.div>
       </section>

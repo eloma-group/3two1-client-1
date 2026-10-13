@@ -299,7 +299,7 @@ export default function WhiskeyRow() {
           <div className={styles.receiptHead}>
             <strong>{d.name.toUpperCase()} BAR</strong>
             <span>Main St · Louisville KY</span>
-            <span>Tasting ticket — {d.tasting.of}</span>
+            <span>Tasting ticket - {d.tasting.of}</span>
           </div>
           <dl className={styles.receiptList}>
             {([

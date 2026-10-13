@@ -107,7 +107,7 @@ export default function BlackTears() {
       <section className={styles.hero} ref={hero}>
         <div className={styles.heroTop}>
           <span className={styles.eyebrow}>{d.eyebrow}</span>
-          <span className={styles.heroNo}>Nº 001 — La Habana</span>
+          <span className={styles.heroNo}>Nº 001 - La Habana</span>
         </div>
 
         <div className={styles.wordmark} aria-label={d.name}>
@@ -175,7 +175,7 @@ export default function BlackTears() {
           <Drift src={img('street')} alt="Black Tears in a Havana courtyard" rot={5} speed={90} className={styles.c2} />
           <Drift src={img('mural')} alt="Black Tears in front of a Havana mural" rot={-3} speed={60} className={styles.c3} />
           <Rose className={styles.collageRose} />
-          <span className={styles.scribble}>Havana, 3pm —<br />coffee &amp; rain</span>
+          <span className={styles.scribble}>Havana, 3pm - <br />coffee &amp; rain</span>
         </div>
       </section>
 
@@ -247,7 +247,7 @@ export default function BlackTears() {
             </div>
           ))}
 
-          <div className={styles.cardRule}><span>Tasting notes — {d.tasting.of}</span></div>
+          <div className={styles.cardRule}><span>Tasting notes - {d.tasting.of}</span></div>
           <dl className={styles.notes}>
             {([['Nose', d.tasting.nose], ['Palate', d.tasting.palate], ['Finish', d.tasting.finish]] as const).map(([k, v]) => (
               <div key={k}>
@@ -256,7 +256,7 @@ export default function BlackTears() {
               </div>
             ))}
           </dl>
-          <p className={styles.cardServe}><em>Serve —</em> {d.tasting.serve}</p>
+          <p className={styles.cardServe}><em>Serve - </em> {d.tasting.serve}</p>
         </Rise>
       </section>
 

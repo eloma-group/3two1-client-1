@@ -16,6 +16,8 @@ const Cocktails = lazy(() => import('./pages/Cocktails'));
 const Events = lazy(() => import('./pages/Events'));
 const Portfolio = lazy(() => import('./pages/Portfolio'));
 const TradePage = lazy(() => import('./pages/TradePage'));
+const CubaLibre = lazy(() => import('./pages/brands/CubaLibre'));
+const ProductPage = lazy(() => import('./pages/brands/ProductPage'));
 const blank = <div style={{ minHeight: '100svh' }} />;
 
 export default function App() {
@@ -35,6 +37,8 @@ export default function App() {
           <Route path="/" element={<Home ready={ready} />} />
           <Route path="/contact" element={<ContactPage />} />
           <Route path="/our-story" element={<Investors ready={ready} />} />
+          <Route path="/brands/black-tears/cuba-libre" element={<Suspense fallback={blank}><CubaLibre /></Suspense>} />
+          <Route path="/brands/:house/:product" element={<Suspense fallback={blank}><ProductPage /></Suspense>} />
           <Route path="/brands/:slug" element={<BrandRoute />} />
           <Route path="/cocktails" element={<Suspense fallback={blank}><Cocktails /></Suspense>} />
           <Route path="/events" element={<Suspense fallback={blank}><Events /></Suspense>} />

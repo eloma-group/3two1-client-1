@@ -1,81 +1,95 @@
-/* ── Events calendar ──────────────────────────────────────────────────── */
+/* ── Events: the bits the bento kit does not cover ── */
 
-.list { display: flex; flex-direction: column; border-top: 1px solid rgba(var(--ink-rgb), 0.12); }
+.fill { height: 100%; }
+.lead { max-width: 52ch; font-size: clamp(1rem, 1.3vw, 1.15rem); }
 
-.row {
-  display: grid;
-  grid-template-columns: 170px 1fr auto;
-  align-items: center;
-  gap: 1.2rem clamp(1.5rem, 4vw, 3.5rem);
-  padding-block: clamp(1.4rem, 2.6vw, 2rem);
-  border-bottom: 1px solid rgba(var(--ink-rgb), 0.12);
-  transition: background 0.4s var(--ease-out);
-}
-.row:hover { background: rgba(232, 68, 111, 0.04); }
-
-.date { display: grid; grid-template-columns: auto 1fr; column-gap: 0.6rem; align-items: baseline; }
-.dd {
-  font-size: clamp(2.4rem, 4vw, 3.2rem);
-  font-weight: 800;
+/* Countdown tile */
+.countTile { display: flex; flex-direction: column; justify-content: space-between; gap: 1.2rem; }
+.count { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem 0.8rem; }
+.countNum {
+  display: block;
+  font-size: clamp(2.6rem, 4.6vw, 3.8rem);
+  font-weight: 700;
   line-height: 1;
   letter-spacing: -0.05em;
+  font-variant-numeric: tabular-nums;
 }
-.mon {
-  font-size: 1rem;
+.countLabel {
+  display: block;
+  margin-top: 0.25rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--rose-300);
+}
+.countDone { margin: 0; font-size: 1.8rem; font-weight: 700; letter-spacing: -0.03em; }
+
+.register { display: flex; flex-direction: column; }
+.registerAction { margin-top: auto; padding-top: 1.4rem; }
+.split { display: flex; justify-content: space-between; align-items: flex-end; gap: 1.5rem 3rem; flex-wrap: wrap; }
+.bigger { font-size: clamp(3.4rem, 7vw, 6.2rem); }
+.split > p { max-width: 34ch; margin: 0; }
+
+/* Calendar: one panel, rows with calendar-app date badges */
+.list { padding: 0.5rem clamp(1rem, 2.4vw, 2rem); }
+.row {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 1rem clamp(1rem, 3vw, 2.2rem);
+  padding: clamp(1.2rem, 2.2vw, 1.7rem) 0;
+  border-bottom: 1px solid rgba(var(--ink-rgb), 0.08);
+}
+.row:last-child { border-bottom: none; }
+.badge {
+  width: 68px;
+  border-radius: 16px;
+  overflow: hidden;
+  text-align: center;
+  background: var(--surface-2);
+  box-shadow: 0 1px 0 rgba(var(--ink-rgb), 0.06), 0 6px 18px -10px rgba(29, 16, 21, 0.3);
+}
+.badgeMon {
+  display: block;
+  padding: 0.28rem 0;
+  background: var(--rose-500);
+  color: #fff;
+  font-size: 0.7rem;
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: var(--rose-500);
+  letter-spacing: 0.06em;
 }
-.date small {
-  grid-column: 1 / -1;
-  margin-top: 0.4rem;
-  font-size: 0.72rem;
+.badgeDay {
+  display: block;
+  padding: 0.3rem 0 0.4rem;
+  font-size: 1.85rem;
   font-weight: 600;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: rgba(var(--ink-rgb), 0.5);
+  letter-spacing: -0.03em;
 }
-
 .meta h3 {
   margin: 0;
-  font-size: clamp(1.1rem, 1.7vw, 1.4rem);
+  font-size: clamp(1.1rem, 1.6vw, 1.35rem);
   font-weight: 700;
   letter-spacing: -0.02em;
   line-height: 1.25;
 }
-.meta p {
+.where { margin: 0.25rem 0 0; font-size: 0.86rem; font-weight: 600; color: var(--rose-500); }
+.body {
   margin: 0.45rem 0 0;
-  max-width: 62ch;
-  font-size: 0.93rem;
-  line-height: 1.65;
+  max-width: 64ch;
+  font-size: 0.95rem;
+  line-height: 1.55;
   color: rgba(var(--ink-rgb), 0.6);
 }
+.past .meta h3, .past .badgeDay { color: rgba(var(--ink-rgb), 0.45); }
+.past .badgeMon { background: rgba(var(--ink-rgb), 0.25); }
+.past .where { color: rgba(var(--ink-rgb), 0.4); }
+.wrapped { font-size: 0.86rem; font-weight: 600; color: rgba(var(--ink-rgb), 0.42); }
 
-.rsvp {
-  padding: 0.7rem 1.3rem;
-  border-radius: 100px;
-  border: 1.5px solid var(--btn-border);
-  font-size: 0.76rem;
-  font-weight: 600;
-  letter-spacing: 0.12em;
-  white-space: nowrap;
-  transition: background 0.3s, color 0.3s, border-color 0.3s;
-}
-.rsvp:hover { background: var(--grad-brand-soft); border-color: transparent; color: #fff; }
+.showCopy { display: flex; flex-direction: column; }
+.showTitle { font-size: clamp(2rem, 3.6vw, 3.2rem); }
 
-/* Dates that have already gone by stay listed, quietly. */
-.past .dd, .past .meta h3 { color: rgba(var(--ink-rgb), 0.45); }
-.past .mon { color: rgba(var(--ink-rgb), 0.4); }
-.done {
-  font-size: 0.7rem;
-  font-weight: 700;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: rgba(var(--ink-rgb), 0.4);
-}
-
-@media (max-width: 760px) {
-  .row { grid-template-columns: 1fr; gap: 0.8rem; }
-  .rsvp, .done { justify-self: start; }
+@media (max-width: 680px) {
+  .row { grid-template-columns: auto 1fr; }
+  .row > :last-child { grid-column: 2; justify-self: start; }
+  .badge { width: 58px; }
 }

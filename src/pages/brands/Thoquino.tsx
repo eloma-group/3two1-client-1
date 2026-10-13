@@ -338,8 +338,8 @@ export default function Thoquino() {
                     <path d="M50 44 h20 v40 c0 18 30 26 30 56 v236 c0 10 -8 16 -18 16 h-44 c-10 0 -18 -6 -18 -16 v-236 c0 -30 30 -38 30 -56z" fill="url(#thoAged)" />
                     <rect x="22" y="200" width="76" height="110" rx="6" fill="#fbf6ea" />
                     <rect x="22" y="200" width="76" height="22" rx="6" fill="#1f6b3a" />
-                    <text x="60" y="262" textAnchor="middle" fontSize="11" fontWeight="700" fill="#1f6b3a" fontFamily="Unbounded, sans-serif" textLength="62" lengthAdjust="spacingAndGlyphs">THOQUINO</text>
-                    <text x="60" y="282" textAnchor="middle" fontSize="10" fill="#a8641c" fontFamily="Figtree, sans-serif" letterSpacing="2">AGED</text>
+                    <text x="60" y="262" textAnchor="middle" fontSize="11" fontWeight="700" fill="#1f6b3a" fontFamily="Inter, sans-serif" textLength="62" lengthAdjust="spacingAndGlyphs">THOQUINO</text>
+                    <text x="60" y="282" textAnchor="middle" fontSize="10" fill="#a8641c" fontFamily="Inter, sans-serif" letterSpacing="2">AGED</text>
                     <path d="M30 70 c 6 -10 14 -14 20 -16" stroke="rgba(255,255,255,0.5)" strokeWidth="4" fill="none" strokeLinecap="round" />
                   </svg>
                 )}
@@ -359,7 +359,7 @@ export default function Thoquino() {
       <section className={styles.tasting}>
         <div className={styles.tastingInner}>
           <div className={styles.tastingHead}>
-            <motion.p className={`${styles.kicker} ${styles.kickerLight}`} {...rise()}>05 · Prova — {d.tasting.of}</motion.p>
+            <motion.p className={`${styles.kicker} ${styles.kickerLight}`} {...rise()}>05 · Prova - {d.tasting.of}</motion.p>
             <motion.h2 className={`${styles.h2} ${styles.h2Light}`} {...rise(0.06)}>The pour.</motion.h2>
           </div>
           <div className={styles.notes}>

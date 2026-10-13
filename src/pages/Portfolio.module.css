@@ -1,97 +1,63 @@
-/* ── Portfolio ────────────────────────────────────────────────────────── */
+/* ── Portfolio: the bits the bento kit does not cover ── */
 
-.filters {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.4rem;
-  margin-bottom: clamp(1.6rem, 3vw, 2.4rem);
-}
-.filter {
-  position: relative;
-  padding: 0.6rem 1.15rem;
-  border-radius: 100px;
-  border: 1px solid rgba(var(--ink-rgb), 0.14);
-  font-size: 0.82rem;
-  font-weight: 600;
-  color: rgba(var(--ink-rgb), 0.7);
-  transition: color 0.25s, border-color 0.25s;
-}
-.filter:hover { color: var(--rose-500); border-color: var(--rose-500); }
-.filterOn, .filterOn:hover { color: #fff; border-color: transparent; }
-.pill {
-  position: absolute;
-  inset: -1px;
-  border-radius: inherit;
-  background: var(--grad-brand-soft);
-}
-.filterLabel { position: relative; }
-
-.grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: clamp(1rem, 2vw, 1.5rem);
-}
+.filters { margin-top: 1.8rem; display: flex; justify-content: center; }
 
 .card {
   display: flex;
   flex-direction: column;
-  padding: 0.8rem 0.8rem 1.5rem;
-  border-radius: var(--radius);
-  background: var(--card);
-  border: 1px solid var(--card-border);
-  transition: box-shadow 0.5s var(--ease-out);
+  text-align: center;
+  min-height: 100%;
 }
-.card:hover { box-shadow: 0 24px 50px -30px rgba(180, 31, 82, 0.45); }
-.cardImg {
-  aspect-ratio: 4 / 3;
-  border-radius: calc(var(--radius) - 8px);
-  overflow: hidden;
-  background: var(--surface-2);
-  margin-bottom: 1.2rem;
-}
-.cardImg img,
-.cardImg > div { width: 100%; height: 100%; transition: transform 1s var(--ease-out); }
-/* Bottle shots: show the whole bottle rather than cropping the label. */
-.cardImg img { object-fit: contain; padding: 1rem; }
-.card:hover .cardImg img { transform: scale(1.05); }
-.cardMeta {
-  padding-inline: 0.6rem;
-  font-size: 0.68rem;
+.copy { position: relative; z-index: 1; }
+.meta { margin: 0; font-size: 0.85rem; font-weight: 600; color: var(--hue); }
+.name {
+  margin: 0.35rem 0 0;
+  font-size: clamp(1.6rem, 2.6vw, 2.3rem);
   font-weight: 700;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--rose-500);
+  letter-spacing: -0.04em;
+  line-height: 1.05;
 }
-.card h3 {
-  padding-inline: 0.6rem;
-  margin: 0.55rem 0 0;
-  font-size: clamp(1.3rem, 2vw, 1.6rem);
-  font-weight: 800;
-  letter-spacing: -0.03em;
-}
-.card p {
-  padding-inline: 0.6rem;
-  margin: 0.6rem 0 0;
-  font-size: 0.92rem;
-  line-height: 1.68;
-  color: rgba(var(--ink-rgb), 0.6);
-}
-.cardLink {
-  padding-inline: 0.6rem;
-  margin-top: auto;
-  padding-top: 1.2rem;
-  font-size: 0.78rem;
-  font-weight: 600;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: rgb(var(--ink-rgb));
-  transition: color 0.25s;
-}
-.card:hover .cardLink { color: var(--rose-500); }
+.go { padding-block: 0.6rem 0; }
 
-@media (max-width: 1000px) {
-  .grid { grid-template-columns: repeat(2, 1fr); }
+/* Bottle shot with the house colour glowing behind it */
+.bottle {
+  position: relative;
+  margin: 1.2rem auto 0;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  /* A tall bottle shot must not stretch the box past its ratio. */
+  min-height: 0;
+  overflow: hidden;
 }
-@media (max-width: 600px) {
-  .grid { grid-template-columns: 1fr; }
+.bottle img,
+.bottle > div:last-child { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; }
+.glow {
+  position: absolute;
+  left: 50%;
+  bottom: 4%;
+  width: 70%;
+  aspect-ratio: 1;
+  transform: translateX(-50%);
+  border-radius: 50%;
+  background: radial-gradient(circle, color-mix(in srgb, var(--hue) 40%, transparent), transparent 68%);
+  opacity: 0.55;
+  transition: opacity 0.5s;
+}
+.card:hover .glow { opacity: 1; }
+.under { margin-top: 1rem; }
+
+/* Featured tile: copy on the left, bottle on the right */
+.featured {
+  flex-direction: row;
+  align-items: center;
+  text-align: left;
+  gap: 2rem;
+}
+.featured .copy { flex: 1; }
+.featured .bottle { flex: 1; margin: 0; aspect-ratio: 1; max-height: 420px; }
+.featured .name { font-size: clamp(2.2rem, 4vw, 3.6rem); }
+
+@media (max-width: 680px) {
+  .featured { flex-direction: column; text-align: center; }
+  .featured .bottle { width: 100%; }
 }

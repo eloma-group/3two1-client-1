@@ -1,5 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=DM+Sans:ital,opsz,wght@0,9..40,400..700;1,9..40,400..500&family=Caveat:wght@500;700&display=swap');
-
 /* ── Cantina Lotería ───────────────────────────────────────────
    Cream paper, terracotta, hot pink, agave teal, marigold. The page
    keeps its own palette whatever the site theme is doing. */
@@ -17,9 +15,9 @@
   --terracotta: #c8522d;
   --board: #1d2a26;
 
-  --slab: 'Alfa Slab One', Georgia, serif;
-  --sans: 'DM Sans', system-ui, sans-serif;
-  --hand: 'Caveat', cursive;
+  --slab: var(--font-display);
+  --sans: var(--font-display);
+  --hand: var(--font-display);
 
   position: relative;
   overflow: clip;
@@ -136,8 +134,8 @@
 .title {
   margin: clamp(1rem, 2vw, 1.5rem) 0 0;
   font-family: var(--slab);
-  font-weight: 400;
-  font-size: clamp(3.4rem, min(11vw, 17svh), 10.5rem);
+  font-weight: 800;
+  font-size: calc(clamp(3.4rem, min(11vw, 17svh), 10.5rem) * 0.92);
   line-height: 0.88;
   color: var(--ink);
   text-transform: uppercase;
@@ -149,7 +147,7 @@
 .quote {
   margin-top: clamp(1.25rem, 2.5vw, 2rem);
   font-family: var(--hand);
-  font-size: clamp(1.6rem, 2.6vw, 2.4rem);
+  font-size: calc(clamp(1.6rem, 2.6vw, 2.4rem) * 0.72);
   color: var(--terracotta);
   line-height: 1.1;
   transform: rotate(-2deg);
@@ -177,6 +175,7 @@
   display: flex;
   justify-content: space-between;
   font-family: var(--slab);
+  font-weight: 800;
   font-size: 0.95rem;
   padding: 0 4px 8px;
 }
@@ -209,9 +208,10 @@
 }
 .heroCardName {
   font-family: var(--slab);
+  font-weight: 800;
   text-transform: uppercase;
   text-align: center;
-  font-size: clamp(1.4rem, 2.4vw, 2rem);
+  font-size: calc(clamp(1.4rem, 2.4vw, 2rem) * 0.92);
   padding-top: 10px;
   color: var(--pink);
 }
@@ -248,8 +248,9 @@
   display: inline-flex;
   align-items: center;
   font-family: var(--slab);
+  font-weight: 800;
   text-transform: uppercase;
-  font-size: clamp(1rem, 1.8vw, 1.5rem);
+  font-size: calc(clamp(1rem, 1.8vw, 1.5rem) * 0.92);
   white-space: nowrap;
 }
 .ribbonTrack i { font-style: normal; color: var(--marigold); margin: 0 1.6rem; }
@@ -273,26 +274,28 @@
 .factValue {
   display: block;
   font-family: var(--slab);
-  font-size: clamp(2.8rem, 6vw, 5.5rem);
+  font-weight: 800;
+  font-size: calc(clamp(2.8rem, 6vw, 5.5rem) * 0.92);
   line-height: 1;
   color: var(--marigold);
   text-shadow: 4px 4px 0 var(--ink);
 }
-.factLabel { display: block; margin-top: 0.8rem; font-size: 0.95rem; line-height: 1.45; max-width: 22ch; }
+.factLabel { display: block; margin-top: 0.8rem; font-size: 0.95rem; line-height: 1.45; max-width: 22ch; font-weight: 600; }
 
 /* ── Story ─────────────────────────────────────────────────── */
 .chapter, .chapterLight {
   font-family: var(--hand);
-  font-size: clamp(1.4rem, 2vw, 1.8rem);
-  color: var(--pink);
+  font-size: calc(clamp(1.4rem, 2vw, 1.8rem) * 0.72);
+  color: var(--pink-deep);
+  font-weight: 600;
   margin-bottom: 0.6rem;
 }
 .chapterLight { color: var(--marigold); }
 
 .h2 {
   font-family: var(--slab);
-  font-weight: 400;
-  font-size: clamp(2.3rem, min(5vw, 8svh), 4.6rem);
+  font-weight: 800;
+  font-size: calc(clamp(2.3rem, min(5vw, 8svh), 4.6rem) * 0.92);
   line-height: 0.98;
   text-transform: uppercase;
 }
@@ -342,6 +345,7 @@
 .dropCap::first-letter {
   float: left;
   font-family: var(--slab);
+  font-weight: 800;
   font-size: 5.2em;
   line-height: 0.82;
   padding: 0.08em 0.12em 0 0;
@@ -369,7 +373,8 @@
 .craftHead { max-width: 1050px; }
 .statement {
   font-family: var(--slab);
-  font-size: clamp(1.8rem, 3.6vw, 3.3rem);
+  font-weight: 800;
+  font-size: calc(clamp(1.8rem, 3.6vw, 3.3rem) * 0.92);
   line-height: 1.12;
   text-transform: uppercase;
 }
@@ -407,7 +412,8 @@
 .stationDisc img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
 .stationStill {
   font-family: var(--slab);
-  font-size: clamp(2.8rem, 5vw, 4rem);
+  font-weight: 800;
+  font-size: calc(clamp(2.8rem, 5vw, 4rem) * 0.92);
   color: var(--paper);
   background: radial-gradient(circle at 35% 30%, #e0884e, #a5481f 70%);
   width: 100%;
@@ -426,11 +432,12 @@
   background: var(--pink);
   color: #fff;
   font-family: var(--slab);
+  font-weight: 800;
   display: grid;
   place-items: center;
   border: 3px solid var(--teal-deep);
 }
-.station h3 { font-family: var(--slab); font-weight: 400; font-size: clamp(1.25rem, 1.8vw, 1.6rem); text-transform: uppercase; color: var(--marigold); }
+.station h3 { font-family: var(--slab); font-weight: 800; font-size: calc(clamp(1.25rem, 1.8vw, 1.6rem) * 0.92); text-transform: uppercase; color: var(--marigold); }
 .station p { margin: 0.7rem auto 0; max-width: 30ch; line-height: 1.6; color: rgba(247, 238, 221, 0.82); }
 
 /* ── Range — lotería deck ──────────────────────────────────── */
@@ -480,7 +487,8 @@
 .card:nth-child(1) .cardFront { box-shadow: 10px 12px 0 var(--pink); }
 .card:nth-child(2) .cardFront { box-shadow: 10px 12px 0 var(--teal); }
 .card:nth-child(3) .cardFront { box-shadow: 10px 12px 0 var(--terracotta); }
-.cardTop { display: flex; justify-content: space-between; font-family: var(--slab); font-size: 0.9rem; padding: 0 4px 8px; }
+.cardTop { display: flex; justify-content: space-between; font-family: var(--slab);
+  font-weight: 800; font-size: 0.9rem; padding: 0 4px 8px; }
 .cardArt {
   position: relative;
   flex: 1;
@@ -503,9 +511,10 @@
 .card:nth-child(1) .cardArt img { object-fit: contain; height: 92%; align-self: end; filter: drop-shadow(0 14px 16px rgba(0, 0, 0, 0.3)); }
 .cardName {
   font-family: var(--slab);
+  font-weight: 800;
   text-transform: uppercase;
   text-align: center;
-  font-size: clamp(1.25rem, 2vw, 1.7rem);
+  font-size: calc(clamp(1.25rem, 2vw, 1.7rem) * 0.92);
   padding-top: 10px;
 }
 .cardBack {
@@ -518,7 +527,8 @@
   background-image: repeating-linear-gradient(45deg, rgba(242, 165, 22, 0.06) 0 10px, transparent 10px 20px);
 }
 .cardBack .cardTop { color: var(--marigold); }
-.backName { font-family: var(--slab); font-size: clamp(2rem, 3.4vw, 2.8rem); text-transform: uppercase; color: var(--pink); margin-top: auto; }
+.backName { font-family: var(--slab);
+  font-weight: 800; font-size: calc(clamp(2rem, 3.4vw, 2.8rem) * 0.92); text-transform: uppercase; color: var(--pink); margin-top: auto; }
 .backNote { font-size: 1.05rem; line-height: 1.55; margin-top: 0.8rem; }
 .backSpec {
   margin-top: 1.2rem;
@@ -548,12 +558,12 @@
   box-shadow: inset 0 0 0 2px rgba(0, 0, 0, 0.4), inset 0 0 60px rgba(0, 0, 0, 0.5), 0 30px 60px rgba(42, 23, 18, 0.3);
   padding: clamp(2rem, 5vw, 4rem) clamp(1.5rem, 5vw, 4.5rem);
 }
-.boardHead span { font-family: var(--hand); font-size: clamp(1.5rem, 2.4vw, 2rem); color: var(--marigold); }
+.boardHead span { font-family: var(--hand); font-size: calc(clamp(1.5rem, 2.4vw, 2rem) * 0.72); color: var(--marigold); }
 .boardHead h2 {
   font-family: var(--slab);
-  font-weight: 400;
+  font-weight: 800;
   text-transform: uppercase;
-  font-size: clamp(2rem, 4.4vw, 3.6rem);
+  font-size: calc(clamp(2rem, 4.4vw, 3.6rem) * 0.92);
   line-height: 1;
   margin-top: 0.3rem;
   padding-right: clamp(0px, 10vw, 120px);
@@ -565,7 +575,7 @@
   align-items: baseline;
   gap: 1rem;
 }
-.boardRow dt { font-family: var(--hand); font-size: clamp(1.7rem, 2.6vw, 2.2rem); color: #f9b6c9; }
+.boardRow dt { font-family: var(--hand); font-size: calc(clamp(1.7rem, 2.6vw, 2.2rem) * 0.72); color: #f9b6c9; }
 .leader { border-bottom: 2px dotted rgba(243, 238, 226, 0.35); transform: translateY(-0.35em); min-width: 1.5rem; }
 .boardRow dd { font-size: clamp(1rem, 1.25vw, 1.15rem); line-height: 1.55; color: rgba(243, 238, 226, 0.9); }
 .boardServe {
@@ -576,7 +586,7 @@
   max-width: 70ch;
   color: rgba(243, 238, 226, 0.85);
 }
-.boardServe span { font-family: var(--hand); font-size: 1.5rem; color: var(--marigold); }
+.boardServe span { font-family: var(--hand); font-size: calc(1.5rem * 0.72); color: var(--marigold); }
 .boardBottle {
   position: absolute;
   right: clamp(-10px, -1vw, 0px);
@@ -624,6 +634,7 @@
   align-content: center;
   text-align: center;
   font-family: var(--slab);
+  font-weight: 800;
   font-size: 0.72rem;
   line-height: 1.1;
   text-transform: uppercase;
@@ -631,7 +642,7 @@
 }
 .stamp b { font-weight: 400; font-size: 1.05rem; }
 .serveBody { padding: 1.4rem 1.4rem 1.5rem; }
-.serveBody h3 { font-family: var(--slab); font-weight: 400; text-transform: uppercase; font-size: 1.45rem; line-height: 1.05; }
+.serveBody h3 { font-family: var(--slab); font-weight: 800; text-transform: uppercase; font-size: calc(1.45rem * 0.92); line-height: 1.05; }
 .serveBody p { margin-top: 0.6rem; color: var(--ink-soft); line-height: 1.55; }
 .serveToggle {
   margin-top: 1rem;
@@ -666,9 +677,9 @@
 .cantinaText { position: relative; }
 .cantinaText h2 {
   font-family: var(--slab);
-  font-weight: 400;
+  font-weight: 800;
   text-transform: uppercase;
-  font-size: clamp(2.4rem, 5.4vw, 5rem);
+  font-size: calc(clamp(2.4rem, 5.4vw, 5rem) * 0.92);
   line-height: 0.95;
   text-shadow: 5px 5px 0 var(--pink-deep);
 }
@@ -695,7 +706,8 @@
 .ticket:hover { transform: translateX(8px) rotate(-0.6deg); }
 .ticket span {
   font-family: var(--slab);
-  font-size: 1.6rem;
+  font-weight: 800;
+  font-size: calc(1.6rem * 0.92);
   color: var(--pink);
   padding-right: 1.2rem;
   border-right: 2px dashed rgba(42, 23, 18, 0.25);
@@ -734,12 +746,12 @@
   animation: twinkle 1.4s ease-in-out infinite alternate;
 }
 @keyframes twinkle { from { opacity: 1; } to { opacity: 0.35; box-shadow: none; } }
-.signKicker { font-family: var(--hand); font-size: clamp(1.6rem, 2.6vw, 2.2rem); color: var(--pink-deep); }
+.signKicker { font-family: var(--hand); font-size: calc(clamp(1.6rem, 2.6vw, 2.2rem) * 0.72); color: var(--pink-deep); }
 .signTitle {
   font-family: var(--slab);
-  font-weight: 400;
+  font-weight: 800;
   text-transform: uppercase;
-  font-size: clamp(2.6rem, 7vw, 6rem);
+  font-size: calc(clamp(2.6rem, 7vw, 6rem) * 0.92);
   line-height: 0.95;
   margin-top: 0.4rem;
   color: var(--ink);

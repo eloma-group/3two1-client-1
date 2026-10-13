@@ -21,7 +21,7 @@ export default function ContactPage() {
   const [sent, setSent] = useState(false);
 
   useEffect(() => {
-    document.title = 'Contact — 3two1 drinks';
+    document.title = 'Contact - 3two1 drinks';
   }, []);
 
   const onSubmit = (e: FormEvent) => {
@@ -43,13 +43,13 @@ export default function ContactPage() {
           </Reveal>
           <Reveal y={22} delay={0.08}>
             <h1 className={page.title}>
-              Open a trade account —
+              Open a trade account -
               <span className={`${page.grad} gradient-text`}>or just say hi.</span>
             </h1>
           </Reveal>
           <Reveal y={18} delay={0.16}>
             <p className={page.lede}>
-              Two doors. Apply for a new trade account on the left. Existing customers — orders,
+              Two doors. Apply for a new trade account on the left. Existing customers - orders,
               support and queries on the right.
             </p>
           </Reveal>
@@ -77,7 +77,7 @@ export default function ContactPage() {
                   <span className={styles.check}><Check size={30} /></span>
                   <h3>Application received.</h3>
                   <p>
-                    We'll come back to you — usually inside 24 hours — with the rate card and your
+                    We'll come back to you - usually inside 24 hours - with the rate card and your
                     dedicated rep.
                   </p>
                 </div>
@@ -139,7 +139,7 @@ export default function ContactPage() {
               <p className={styles.kickerLight}>Existing customer</p>
               <h2 className={styles.cardTitle}>Already trading with us.</h2>
               <p className={styles.cardNote}>
-                Orders, stock, credits and anything else — the trade desk picks up on both.
+                Orders, stock, credits and anything else - the trade desk picks up on both.
               </p>
 
               <div className={styles.rows}>
