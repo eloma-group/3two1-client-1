@@ -1,0 +1,208 @@
+/* ── Trade segment pages (bars, bottle shops, cafés) ──────────────────── */
+
+/* Segment switcher — sits under the hero so the three pages read as one set. */
+.switcher {
+  border-bottom: 1px solid rgba(var(--ink-rgb), 0.08);
+  background: var(--surface);
+}
+.switcherInner {
+  display: flex;
+  gap: 0.5rem;
+  padding-block: 1rem;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.switcherInner::-webkit-scrollbar { display: none; }
+.switch {
+  flex-shrink: 0;
+  padding: 0.6rem 1.15rem;
+  border-radius: 100px;
+  border: 1px solid rgba(var(--ink-rgb), 0.14);
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: rgba(var(--ink-rgb), 0.7);
+  transition: color 0.25s, border-color 0.25s, background 0.25s;
+}
+.switch:hover { color: var(--rose-500); border-color: var(--rose-500); }
+.switchOn,
+.switchOn:hover {
+  background: var(--grad-brand-soft);
+  border-color: transparent;
+  color: #fff;
+}
+
+/* ── Three reasons ── */
+.reasons {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(1rem, 2vw, 1.5rem);
+}
+.reasons > div { height: 100%; }
+.reason {
+  height: 100%;
+  padding: clamp(1.5rem, 2.6vw, 2.2rem);
+  border-radius: var(--radius);
+  background: var(--card);
+  border: 1px solid var(--card-border);
+  transition: transform 0.5s var(--ease-out), box-shadow 0.5s var(--ease-out);
+}
+.reason:hover { transform: translateY(-4px); box-shadow: 0 24px 50px -30px rgba(180, 31, 82, 0.45); }
+.reasonTop { display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.6rem; }
+.reasonIcon {
+  display: inline-grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 14px;
+  background: rgba(232, 68, 111, 0.1);
+  color: var(--rose-500);
+}
+.reasonNum {
+  font-size: 2rem;
+  font-weight: 800;
+  letter-spacing: -0.05em;
+  color: rgba(var(--ink-rgb), 0.08);
+}
+.reason h3 {
+  text-transform: capitalize;
+  margin: 0;
+  font-size: clamp(1.15rem, 1.6vw, 1.35rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+.reason p {
+  margin: 0.8rem 0 0;
+  font-size: 0.95rem;
+  line-height: 1.72;
+  color: rgba(var(--ink-rgb), 0.62);
+}
+
+/* ── Recommended products ── */
+.products {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: clamp(1rem, 2vw, 1.5rem);
+}
+.products > div { height: 100%; }
+.product {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 0.8rem 0.8rem 1.4rem;
+  border-radius: var(--radius);
+  background: var(--card);
+  border: 1px solid var(--card-border);
+  transition: transform 0.5s var(--ease-out), box-shadow 0.5s var(--ease-out);
+}
+.product:hover { transform: translateY(-4px); box-shadow: 0 24px 50px -30px rgba(180, 31, 82, 0.45); }
+.productImg {
+  aspect-ratio: 4 / 5;
+  border-radius: calc(var(--radius) - 8px);
+  overflow: hidden;
+  background: var(--surface-2);
+  margin-bottom: 1.1rem;
+}
+.productImg img,
+.productImg > div { width: 100%; height: 100%; object-fit: cover; transition: transform 1s var(--ease-out); }
+.product:hover .productImg img { transform: scale(1.05); }
+.productLabel {
+  padding-inline: 0.5rem;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--rose-500);
+}
+.product h3 {
+  padding-inline: 0.5rem;
+  margin: 0.55rem 0 0;
+  font-size: 1.12rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.25;
+}
+.product p {
+  padding-inline: 0.5rem;
+  margin: 0.6rem 0 0;
+  font-size: 0.9rem;
+  line-height: 1.65;
+  color: rgba(var(--ink-rgb), 0.6);
+}
+
+/* ── Quote ── */
+.quote { margin: 0 auto; max-width: 980px; text-align: center; }
+.quote blockquote {
+  margin: 0;
+  font-size: clamp(1.4rem, 3vw, 2.4rem);
+  font-weight: 600;
+  line-height: 1.3;
+  letter-spacing: -0.03em;
+}
+.quote figcaption {
+  margin-top: 1.6rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  color: rgba(var(--ink-rgb), 0.6);
+}
+.quoteNote {
+  margin: 0.8rem 0 0;
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+  color: rgba(var(--ink-rgb), 0.38);
+}
+
+/* ── Steps ── */
+.steps {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(1rem, 2vw, 1.5rem);
+  counter-reset: step;
+}
+.step {
+  position: relative;
+  height: 100%;
+  padding-top: 1.4rem;
+  border-top: 2px solid rgba(var(--ink-rgb), 0.1);
+}
+.step::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: 0;
+  width: 56px;
+  height: 2px;
+  background: var(--grad-brand-soft);
+}
+.stepNum {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--rose-500);
+}
+.step h3 {
+  text-transform: capitalize;
+  margin: 0.8rem 0 0;
+  font-size: clamp(1.3rem, 2vw, 1.6rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+}
+.step p {
+  margin: 0.7rem 0 0;
+  max-width: 36ch;
+  font-size: 0.95rem;
+  line-height: 1.72;
+  color: rgba(var(--ink-rgb), 0.62);
+}
+
+@media (max-width: 1080px) {
+  .products { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 860px) {
+  .reasons, .steps { grid-template-columns: 1fr; }
+}
+@media (max-width: 520px) {
+  .products { grid-template-columns: 1fr; }
+}

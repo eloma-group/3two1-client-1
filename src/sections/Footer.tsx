@@ -9,13 +9,16 @@ export default function Footer() {
   const navigate = useNavigate();
   const { pathname } = useLocation();
 
-  /* A plain path is its own page; a hash is a section of the home page, so
-     route there first when we are somewhere else. */
+  /* A plain path is its own page; a hash is a section of a page (the home
+     page when no path is given), so route there first when we are somewhere
+     else. Routed pages scroll themselves to the hash once mounted. */
   const go = (to: string) => {
     const hash = to.indexOf('#');
     if (hash === -1) { navigate(to); return; }
     const id = to.slice(hash);
-    if (pathname !== '/') {
+    const path = to.slice(0, hash) || '/';
+    if (path !== '/' && pathname !== path) { navigate(to); return; }
+    if (pathname !== path) {
       navigate('/');
       requestAnimationFrame(() => setTimeout(() => scrollToHash(id), 120));
       return;

@@ -38,15 +38,22 @@ export default function Navbar() {
 
     const delay = open ? 350 : 0; // let the mobile overlay finish closing first
 
-    // A plain path is its own page; anything with a hash is a section of the
-    // home page, so route there first when we are somewhere else.
+    // A plain path is its own page; anything with a hash is a section of a
+    // page (the home page when no path is given), so route there first when
+    // we are somewhere else.
     const hash = to.indexOf('#');
     if (hash === -1) {
       setTimeout(() => navigate(to), delay);
       return;
     }
     const id = to.slice(hash);
-    if (pathname !== '/') {
+    const path = to.slice(0, hash) || '/';
+    if (path !== '/' && pathname !== path) {
+      // Routed pages scroll themselves to the hash once mounted.
+      setTimeout(() => navigate(to), delay);
+      return;
+    }
+    if (pathname !== path) {
       setTimeout(() => {
         navigate('/');
         // The home sections have to mount before they can be scrolled to.

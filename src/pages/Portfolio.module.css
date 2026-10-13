@@ -1,0 +1,97 @@
+/* ── Portfolio ────────────────────────────────────────────────────────── */
+
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-bottom: clamp(1.6rem, 3vw, 2.4rem);
+}
+.filter {
+  position: relative;
+  padding: 0.6rem 1.15rem;
+  border-radius: 100px;
+  border: 1px solid rgba(var(--ink-rgb), 0.14);
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: rgba(var(--ink-rgb), 0.7);
+  transition: color 0.25s, border-color 0.25s;
+}
+.filter:hover { color: var(--rose-500); border-color: var(--rose-500); }
+.filterOn, .filterOn:hover { color: #fff; border-color: transparent; }
+.pill {
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  background: var(--grad-brand-soft);
+}
+.filterLabel { position: relative; }
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(1rem, 2vw, 1.5rem);
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  padding: 0.8rem 0.8rem 1.5rem;
+  border-radius: var(--radius);
+  background: var(--card);
+  border: 1px solid var(--card-border);
+  transition: box-shadow 0.5s var(--ease-out);
+}
+.card:hover { box-shadow: 0 24px 50px -30px rgba(180, 31, 82, 0.45); }
+.cardImg {
+  aspect-ratio: 4 / 3;
+  border-radius: calc(var(--radius) - 8px);
+  overflow: hidden;
+  background: var(--surface-2);
+  margin-bottom: 1.2rem;
+}
+.cardImg img,
+.cardImg > div { width: 100%; height: 100%; transition: transform 1s var(--ease-out); }
+/* Bottle shots: show the whole bottle rather than cropping the label. */
+.cardImg img { object-fit: contain; padding: 1rem; }
+.card:hover .cardImg img { transform: scale(1.05); }
+.cardMeta {
+  padding-inline: 0.6rem;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--rose-500);
+}
+.card h3 {
+  padding-inline: 0.6rem;
+  margin: 0.55rem 0 0;
+  font-size: clamp(1.3rem, 2vw, 1.6rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+}
+.card p {
+  padding-inline: 0.6rem;
+  margin: 0.6rem 0 0;
+  font-size: 0.92rem;
+  line-height: 1.68;
+  color: rgba(var(--ink-rgb), 0.6);
+}
+.cardLink {
+  padding-inline: 0.6rem;
+  margin-top: auto;
+  padding-top: 1.2rem;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgb(var(--ink-rgb));
+  transition: color 0.25s;
+}
+.card:hover .cardLink { color: var(--rose-500); }
+
+@media (max-width: 1000px) {
+  .grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 600px) {
+  .grid { grid-template-columns: 1fr; }
+}
