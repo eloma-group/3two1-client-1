@@ -39,7 +39,7 @@ export default function ProductPage() {
   const copyY = useTransform(scrollYProgress, [0, 1], ['0%', '-24%']);
 
   useEffect(() => {
-    if (found) document.title = `${found.product.fullName} · ${found.house.name} · 3two1 drinks`;
+    if (found) document.title = `${found.product.fullName} · ${found.house.name} · 3Two1 drinks`;
   }, [found?.product.fullName, found?.house.name]);
 
   if (!found) return <Navigate to={`/brands/${params.house ?? ''}`} replace />;
@@ -269,7 +269,7 @@ export default function ProductPage() {
           <Rise delay={0.05}><h2 className={styles.headLight}>Put it on the back bar.</h2></Rise>
           <Rise delay={0.1}>
             <p className={`${styles.body} ${styles.bodyLight}`}>
-              3two1 drinks brings {house.name} to venues across Australia, with wholesale supply,
+              3Two1 drinks brings {house.name} to venues across Australia, with wholesale supply,
               staff training and menu support. Ask us about {isServe ? `the ${p.label}` : p.fullName} and
               the rest of the range.
             </p>

@@ -21,7 +21,7 @@ export default function ContactPage() {
   const [sent, setSent] = useState(false);
 
   useEffect(() => {
-    document.title = 'Contact - 3two1 drinks';
+    document.title = 'Contact - 3Two1 drinks';
   }, []);
 
   const onSubmit = (e: FormEvent) => {

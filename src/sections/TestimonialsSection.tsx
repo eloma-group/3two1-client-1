@@ -58,7 +58,7 @@ const TESTIMONIALS: Testimonial[] = [
   },
   {
     id: 3,
-    quote: 'Giffard is the only liqueur range I trust on my back bar. The fruit is honest, the colour holds in a cocktail, and the 3two1 team always keeps us stocked before we run dry.',
+    quote: 'Giffard is the only liqueur range I trust on my back bar. The fruit is honest, the colour holds in a cocktail, and the 3Two1 team always keeps us stocked before we run dry.',
     author: 'Noah Patel',
     role: 'Head Bartender',
     company: 'Aster Rooftop',
@@ -74,7 +74,7 @@ const TESTIMONIALS: Testimonial[] = [
   },
   {
     id: 5,
-    quote: 'Ordering through 3two1 is effortless. One rep, one portfolio, delivery when they say - so I spend less time chasing stock and more time behind the bar. Exactly what a busy venue needs.',
+    quote: 'Ordering through 3Two1 is effortless. One rep, one portfolio, delivery when they say - so I spend less time chasing stock and more time behind the bar. Exactly what a busy venue needs.',
     author: 'Ethan Ward',
     role: 'Bottle Shop Owner',
     company: 'Torres Cellars',
@@ -106,7 +106,7 @@ const TESTIMONIALS: Testimonial[] = [
   },
   {
     id: 9,
-    quote: 'Nine houses under one portfolio means one order, one invoice, one relationship. 3two1 gets it to us on time every week and the range covers our whole cocktail list.',
+    quote: 'Nine houses under one portfolio means one order, one invoice, one relationship. 3Two1 gets it to us on time every week and the range covers our whole cocktail list.',
     author: 'Jack Sullivan',
     role: 'Café & Bar Owner',
     company: 'Walsh & Daughters',
@@ -282,7 +282,7 @@ Trade Stories
           lineHeight: 1.75, margin: '0 auto',
           maxWidth: '480px',
         }}>
-          Bartenders, venue owners and buyers across the country pour the 3two1 portfolio night after night.
+          Bartenders, venue owners and buyers across the country pour the 3Two1 portfolio night after night.
         </p>
       </motion.div>
 

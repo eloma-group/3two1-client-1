@@ -22,7 +22,7 @@ export default function BrandRoute() {
   const data = brandPage(slug);
 
   useEffect(() => {
-    if (data) document.title = `${data.name} - 3two1 drinks`;
+    if (data) document.title = `${data.name} - 3Two1 drinks`;
   }, [data]);
 
   if (!Page || !data) return <Navigate to="/#brands" replace />;

@@ -338,7 +338,7 @@ export default function Investors({ ready = true }: { ready?: boolean }) {
   const [yearIndex, setYearIndex] = useState(0);
 
   useEffect(() => {
-    document.title = 'Our Story - 3two1 drinks';
+    document.title = 'Our Story - 3Two1 drinks';
   }, []);
 
   /* Hero parallax — the photograph drifts at roughly a third of scroll speed. */
@@ -374,21 +374,21 @@ export default function Investors({ ready = true }: { ready?: boolean }) {
       body: (
         <>
           <p className={styles.body}>
-            3two1 Drinks was founded in 2018 with a single idea - that Australia's best venues and
-            bottle shops deserved a distributor that genuinely cared which bottle ended up where.
+            3Two1 Drinks was founded in 2018 with a single idea - that Australia's best venues and
+            bottle shops deserved a distributor that genuinely cared about the quality of its selection.
           </p>
           <p className={styles.body}>
             Eight years on, we represent nine world-class spirit houses across rum, tequila,
-            whiskey, bourbon, pisco, cachaça and liqueur - working directly with bars, bottle shops and cafés across
+            whiskey, bourbon, pisco, cachaça, liqueur and syrups - working directly with bars, bottle shops and cafés across
             Australia, New Zealand and the Pacific Islands.
           </p>
           <p className={styles.body}>
-            Day to day that means a warehouse in Perth, a delivery run we drive ourselves, and a
-            phone answered by someone who has worked a Friday service. The range gets chosen the
-            way a good back bar gets chosen - by people who have had to stand behind it.
+            Week in, week out, that means warehouses in Sydney, Melbourne, Perth and Auckland, deliveries we
+            run ourselves, and a phone answered by people who have worked behind a bar. The range
+            gets chosen the way a good back bar gets chosen - by people who have had to stand behind it.
           </p>
           <p className={`${styles.pull} gradient-text`}>
-            Independent. Family-held. Intentionally small.
+            Built like a major. Period. Independent.
           </p>
         </>
       ),
@@ -396,7 +396,7 @@ export default function Investors({ ready = true }: { ready?: boolean }) {
     {
       id: 'founders',
       kicker: 'Founders',
-      heading: 'Hospitality people, building for hospitality people.',
+      heading: 'Hospitality people, Serving hospitality people.',
       gradientFrom: 3,
       flip: true,
       img: '/images/about-founders-stir.webp',
@@ -404,8 +404,8 @@ export default function Investors({ ready = true }: { ready?: boolean }) {
       body: (
         <>
           <p className={styles.body}>
-            3two1 was started by ex-bartenders, ex-buyers and ex-rep types who got tired of seeing
-            great bottles end up in the wrong places. Our buying philosophy is simple: distinctive
+            3Two1 was started by ex-bartenders, ex-buyers and ex-reps types who got tired of seeing
+            the lower quality of Australian shelves. Our buying philosophy is simple: distinctive
             houses, thoughtful range, no fluff.
           </p>
           <p className={styles.body}>
@@ -513,7 +513,7 @@ export default function Investors({ ready = true }: { ready?: boolean }) {
 
         <div className={`container ${styles.heroInner}`}>
           <Reveal y={14}>
-            <p className={styles.heroEyebrow}><i aria-hidden="true" /> About 3two1</p>
+            <p className={styles.heroEyebrow}><i aria-hidden="true" /> About 3Two1</p>
           </Reveal>
           <h1 className={styles.heroTitle}>
             <RevealHeading

@@ -1,10 +1,10 @@
 // All business content extracted from the 3Two1 reference site (3two1.pplx.app)
-// Brand identity (name "3two1 drinks", pink-coral palette, "The Taste of Passion")
+// Brand identity (name "3Two1 drinks", pink-coral palette, "The Taste of Passion")
 // comes from the client-supplied logo & splash direction.
 
 export const brand = {
-  name: '3two1',
-  wordmark: '3two1',
+  name: '3Two1',
+  wordmark: '3Two1',
   suffix: 'drinks',
   tagline: 'The Taste of Passion',
   regions: 'Australia - New Zealand - Pacific Islands',
@@ -12,7 +12,7 @@ export const brand = {
   mission: "Australia's premier independent spirits distributor",
   intent: 'Imported with intent - placed where it belongs',
   acknowledgement:
-    '3two1 acknowledges the Whadjuk Noongar people as Traditional Owners of the land on which we work.',
+    '3Two1 acknowledges the Whadjuk Noongar people as Traditional Owners of the land on which we work.',
 } as const;
 
 export interface NavItem {
@@ -302,7 +302,7 @@ export const contact = {
   phone: '0420 222 313',
   licence: '6090012345',
   hours: 'Mon–Fri · 8.30am – 7.00pm AEST',
-  warehouses: 'Sydney, Melbourne, Perth',
+  warehouses: 'Sydney, Melbourne, Perth, Auckland',
   wholesalers: 'ALM, Paramount, Liquid Mix, ILG',
   instagram: 'https://www.instagram.com/3two1_drinks/',
   facebook: 'https://www.facebook.com/share/1CPbHuseCL/',

@@ -83,7 +83,7 @@ export default function Splash({ onDone }: { onDone: () => void }) {
             autoPlay
             muted
             playsInline
-            aria-label="3two1 drinks"
+            aria-label="3Two1 drinks"
           />
         </div>
         {/* Faint ghost line with a solid copy wiping across it, left to right */}
