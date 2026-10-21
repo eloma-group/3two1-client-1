@@ -44,6 +44,7 @@ export const navMenu: MenuEntry[] = [
     to: '/#story',
     children: [
       { label: 'Our Story', to: '/our-story' },
+      { label: 'Investors', to: '/investors' },
       { label: 'Contact', to: '/contact' },
     ],
   },
@@ -331,6 +332,7 @@ export const footerColumns = [
     title: 'Company',
     links: [
       { label: 'Our Story', to: '/our-story' },
+      { label: 'Investors', to: '/investors' },
       { label: 'Contact', to: '/contact' },
     ],
   },

@@ -15,6 +15,7 @@ import ScrollToTop from './components/ScrollToTop';
 const Cocktails = lazy(() => import('./pages/Cocktails'));
 const Events = lazy(() => import('./pages/Events'));
 const Portfolio = lazy(() => import('./pages/Portfolio'));
+const InvestorsPage = lazy(() => import('./pages/InvestorsPage'));
 const TradePage = lazy(() => import('./pages/TradePage'));
 const CubaLibre = lazy(() => import('./pages/brands/CubaLibre'));
 const ProductPage = lazy(() => import('./pages/brands/ProductPage'));
@@ -45,7 +46,7 @@ export default function App() {
           <Route path="/portfolio" element={<Suspense fallback={blank}><Portfolio /></Suspense>} />
           <Route path="/trade" element={<Navigate to="/trade/bars-venues" replace />} />
           <Route path="/trade/:segment" element={<Suspense fallback={blank}><TradePage /></Suspense>} />
-          <Route path="/investors" element={<Navigate to="/our-story" replace />} />
+          <Route path="/investors" element={<Suspense fallback={blank}><InvestorsPage ready={ready} /></Suspense>} />
           <Route path="*" element={<Home ready={ready} />} />
         </Routes>
       </main>

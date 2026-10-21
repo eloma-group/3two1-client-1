@@ -4,7 +4,7 @@ import {
   motion, useInView, useReducedMotion, useScroll, useSpring, useTransform,
 } from 'framer-motion';
 import { Mail, ArrowRight } from 'lucide-react';
-import { contact, team as TEAM, initials } from '../data/content';
+import { contact } from '../data/content';
 import Reveal, { RevealHeading, RevealText } from '../components/Reveal';
 import Marquee from '../components/Marquee';
 import MagneticButton from '../components/MagneticButton';
@@ -603,41 +603,6 @@ export default function Investors({ ready = true }: { ready?: boolean }) {
 
       {/* ══ Figures ══ */}
       <FiguresBand />
-
-      {/* ══ Team ══ */}
-      <section className={styles.section}>
-        <div className="container">
-          <div className={styles.teamHead}>
-            <div>
-              <Reveal y={16}><p className={styles.kicker}>People</p></Reveal>
-              <h2 className={styles.title}>
-                <RevealHeading parts={[{ text: 'The' }, { text: 'team.', accent: true }]} />
-              </h2>
-            </div>
-            <Reveal y={16} delay={0.12}>
-              <p className={styles.teamLede}>
-                Small on purpose. Between them the team has spent the better part of two decades on
-                the other side of the bar - which is more or less the only thing we screen for.
-              </p>
-            </Reveal>
-          </div>
-          <div className={styles.team}>
-            {TEAM.map((m, i) => (
-              <Reveal key={m.name} y={28} delay={0.08 + i * 0.1}>
-                <article className={styles.member}>
-                  <div className={styles.memberTop}>
-                    <span className={styles.memberN}>{String(i + 1).padStart(2, '0')}</span>
-                    <span className={styles.memberRole}>{m.role}</span>
-                  </div>
-                  {/* No portraits yet, so the initials stand in for one. */}
-                  <span className={styles.monogram} aria-hidden="true">{initials(m.name)}</span>
-                  <h3 className={styles.memberName}>{m.name}</h3>
-                </article>
-              </Reveal>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* ══ Closing CTA ══ */}
       <section className={`${styles.section} ${styles.cta}`}>
