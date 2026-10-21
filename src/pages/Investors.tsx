@@ -406,11 +406,11 @@ export default function Investors({ ready = true }: { ready?: boolean }) {
           <p className={styles.body}>
             3Two1 was started by ex-bartenders, ex-buyers and ex-reps types who got tired of seeing
             the lower quality of Australian shelves. Our buying philosophy is simple: distinctive
-            houses, thoughtful range, no fluff.
+            houses, intentional range, no fluff.
           </p>
           <p className={styles.body}>
             That background shows up in the unglamorous parts. Stock that lands when we said it
-            would. Training that is a real shift behind the bar, not a slide deck. Pricing that
+            would. Training that is dedicated to real shift use behind the bar, not a worthy slide deck. Pricing that
             does not move the week after you have printed your list.
           </p>
           <p className={styles.quote}>
@@ -431,8 +431,8 @@ export default function Investors({ ready = true }: { ready?: boolean }) {
         <>
           <p className={styles.body}>
             We're growing - carefully - and we partner with a small group of aligned investors who
-            believe in doing this for the long run. Premium agave, heritage liqueur, and rum done
-            properly is a category that rewards patience, distribution discipline, and good taste.
+            believe in doing this for the long run. Premium portfolio done
+            properly that rewards patience, distribution discipline, and good taste.
           </p>
           <ul className={styles.points}>
             <li>
@@ -444,8 +444,7 @@ export default function Investors({ ready = true }: { ready?: boolean }) {
               decisions made by the people who service the accounts.
             </li>
             <li>
-              <strong>Premium-led categories</strong> - agave, aged rum and heritage liqueur -
-              where value compounds with age, scarcity and placement.
+              <strong>Premium-led categories</strong> where value compounds with representation, footprint and placement.
             </li>
           </ul>
           <p className={styles.quote}>Investor enquiries welcome. We'll send the deck under NDA.</p>
