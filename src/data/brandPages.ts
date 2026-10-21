@@ -55,15 +55,15 @@ export const brandPages: BrandPage[] = [
       heading: 'A rum that tastes like a Havana afternoon.',
       paragraphs: [
         'Black Tears was born in Havana on a single, stubborn idea: that spiced rum could be the opposite of what spiced rum had become. Where the category had drifted toward vanilla and caramel - sweet, soft, easy - the founders wanted something that felt like the city it came from. Something with shadow in it. Something that tasted of coffee at three in the afternoon, of cocoa beans drying on a courtyard table, of the slow heat that hangs in the air after a sudden rain.',
-        'The base is Cuban - aged in the tropical climate where the rum loses around 7% to the angels each year and gains the depth that only that kind of heat can give. Onto that base the team layers locally-sourced cacao nibs and arabica beans, dialed in over years of small batches until the balance reads as one continuous flavour rather than a collage. Nothing artificial. No colouring. No shortcuts.',
-        'We import the full Cuban allocation into Western Australia and place it where it belongs - back-bars where someone is going to pay attention to it. Daiquiris with a chocolate edge. Old fashioneds you can taste in slow motion. The kind of pour that earns a second one.',
+        'The base is Cuban - aged in the tropical climate where the rum loses around 7% to the angels’ share each year and gains the depth that only that kind of heat can give. Onto that base the team layers locally-sourced cacao nibs and Cuban chilli, dialed in over years of small batches until the balance reads as one continuous flavour rather than a collage. Nothing artificial. No colouring. No shortcuts.',
+        'We import our allocation to Australia and place it where it belongs - back-bars where someone is going to pay attention to it. Daiquiris with a chocolate edge. Old fashioneds you can taste in slow motion. The kind of pour that earns a second one.',
       ],
     },
     craft: {
       statement:
-        'Aged Cuban rum, infused with island-grown cocoa, coffee and arabica - a tribute to the café culture that runs through Havana from sunrise to last orders.',
+        'Aged Cuban rum, infused with island-grown cocoa, coffee and Cuban chilli - a tribute to the café culture that runs through Havana from sunrise to last orders.',
       pillars: [
-        { title: 'Native botanicals', body: 'Cocoa nibs, arabica beans and a measured run of spices - all sourced within Cuba.' },
+        { title: 'Native botanicals', body: 'Cocoa nibs, Cuban chilli and a measured run of spices - all sourced within Cuba.' },
         { title: 'Tropical ageing', body: 'Aged in ex-bourbon oak under Havana sun. Faster than Scotch, deeper for it.' },
         { title: 'Single-island origin', body: 'Distilled, infused, bottled and shipped from one island. The provenance is the product.' },
       ],
@@ -89,12 +89,12 @@ export const brandPages: BrandPage[] = [
     serves: [
       { name: 'Black Tears Daiquiri', build: 'Rum, lime, demerara, a whisper of cacao bitters.', method: 'Shake hard, fine strain', glass: 'Coupe', image: bt('serve-tiki') },
       { name: 'Café Cubano Old Fashioned', build: 'Spiced rum, espresso reduction, orange, demerara.', method: 'Stir down, single rock', glass: 'Rocks', image: bt('toast') },
-      { name: 'Havana Highball', build: 'Rum, soda, lime cordial, a long peel of grapefruit.', method: 'Build over cubes', glass: 'Highball', image: bt('highball') },
+      { name: 'Havana Highball', build: 'Rum, soda, lime, a long peel of grapefruit.', method: 'Build over cubes', glass: 'Highball', image: bt('highball') },
     ],
     stock: 'Speak to our trade team about wholesale allocations, staff training, and Cuban-night activations across Australia.',
     facts: [
       { value: '7%', label: 'Lost to the angels each year in Havana heat' },
-      { value: '3', label: 'Cuban botanicals: cacao, arabica, spice' },
+      { value: '3', label: 'Cuban botanicals: cacao, Cuban chilli, spice' },
       { value: '0', label: 'Added colouring or artificial flavour' },
       { value: '1', label: 'Island, start to finish' },
     ],
@@ -475,7 +475,7 @@ export const brandPages: BrandPage[] = [
     slug: 'demonio-de-los-andes',
     name: 'Demonio de los Andes',
     eyebrow: 'Ica, Peru · Pisco',
-    quote: 'Peru, in a single pass.',
+    quote: 'Peru, in a single glass.',
     story: {
       heading: 'A devil of a name, from a very old vineyard.',
       paragraphs: [

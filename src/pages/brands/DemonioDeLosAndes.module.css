@@ -209,7 +209,7 @@
   z-index: 2;
   flex: 1;
   width: min(100%, 760px);
-  min-height: clamp(220px, 40svh, 560px);
+  min-height: clamp(260px, 48svh, 620px);
   margin-top: clamp(0.6rem, 2svh, 1.6rem);
 }
 .trioBottle {
@@ -226,9 +226,6 @@
 }
 @keyframes float { 50% { transform: translateY(-10px); } }
 .trioMain { left: 50%; height: 100%; translate: -50% 0; z-index: 2; }
-.trioLeft { left: 50%; height: 80%; translate: -112% 0; rotate: -5deg; z-index: 1; animation-delay: 3.4s; }
-.trioRight { left: 50%; height: 80%; translate: 12% 0; rotate: 5deg; z-index: 1; animation-delay: 4.1s; }
-.trioLeft img, .trioRight img { filter: drop-shadow(0 30px 30px rgba(23, 17, 13, 0.6)) brightness(0.9); }
 
 .heroFoot {
   position: relative;
@@ -846,7 +843,7 @@
 }
 @media (max-width: 640px) {
   .titleSub { letter-spacing: 0.28em; gap: 0.7rem; }
-  .trio { min-height: 46svh; margin-top: 0.4rem; }
+  .trio { min-height: 50svh; margin-top: 0.4rem; }
   .heroFoot { flex-direction: column; align-items: flex-start; }
   .ghostNote { left: auto; right: 0; top: -1.6rem; font-size: 0.95rem; }
   .routeSvg { height: 120px; }

@@ -101,22 +101,9 @@ export default function DemonioDeLosAndes() {
   const farY = useTransform(hp, [0, 1], reduce ? ['0%', '0%'] : ['0%', '22%']);
   const midY = useTransform(hp, [0, 1], reduce ? ['0%', '0%'] : ['0%', '12%']);
   const ridgeY = [farY, midY, undefined];
-  /* As the hero scrolls away the side bottles fan out and tip, and Acholado
-     steps forward. */
-  const still = (v: number) => (reduce ? [v, v] : null);
-  const sideX = useTransform(hp, [0, 0.7], still(0) ?? [0, 70]);
-  const sideR = useTransform(hp, [0, 0.7], still(0) ?? [0, 14]);
-  const sideY = useTransform(hp, [0, 0.7], still(0) ?? [0, -20]);
-  const leftX = useTransform(sideX, (v) => `${-v}%`);
-  const rightX = useTransform(sideX, (v) => `${v}%`);
-  const leftR = useTransform(sideR, (v) => -v);
-  const mainScale = useTransform(hp, [0, 0.7], still(1) ?? [1, 1.14]);
-  const mainY = useTransform(hp, [0, 0.7], still(0) ?? [0, -30]);
-  const bottleScroll = {
-    quebranta: { x: leftX, rotate: leftR, y: sideY },
-    'italia-plain': { x: rightX, rotate: sideR, y: sideY },
-    acholado: { scale: mainScale, y: mainY },
-  };
+  /* As the hero scrolls away Acholado steps forward. */
+  const mainScale = useTransform(hp, [0, 0.7], reduce ? [1, 1] : [1, 1.14]);
+  const mainY = useTransform(hp, [0, 0.7], reduce ? [0, 0] : [0, -30]);
 
   const passRef = useRef<HTMLElement>(null);
   const { scrollYProgress: pp } = useScroll({ target: passRef, offset: ['start 80%', 'center 45%'] });
@@ -208,29 +195,22 @@ export default function DemonioDeLosAndes() {
           </h1>
         </div>
 
-        {/* Acholado leads; Quebranta and Italia stand behind it, one each side.
-            Each rises in, then idles with a slow float. */}
+        {/* Acholado alone: it rises in, then idles with a slow float. Three
+            layers, so the motions never fight over one transform: the span
+            floats (CSS), the middle layer follows the scroll, and the image
+            itself rises in on load. */}
         <motion.div className={styles.trio} style={{ y: bottleY }}>
-          {[
-            { f: 'quebranta', cls: styles.trioLeft, i: 1, delay: 1.15 },
-            { f: 'italia-plain', cls: styles.trioRight, i: 2, delay: 1.3 },
-            { f: 'acholado', cls: styles.trioMain, i: 0, delay: 0.95 },
-          ].map(({ f, cls, i, delay }) => (
-            /* Three layers, so the motions never fight over one transform:
-               the span floats (CSS), the middle layer follows the scroll, and
-               the image itself rises in on load. */
-            <span key={f} className={`${styles.trioBottle} ${cls}`}>
-              <motion.span className={styles.trioScroll} style={bottleScroll[f as keyof typeof bottleScroll]}>
-                <motion.img
-                  src={img(f)}
-                  alt={`${d.range[i].name} bottle`}
-                  initial={reduce ? false : { opacity: 0, y: 120 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 1.4, delay, ease }}
-                />
-              </motion.span>
-            </span>
-          ))}
+          <span className={`${styles.trioBottle} ${styles.trioMain}`}>
+            <motion.span className={styles.trioScroll} style={{ scale: mainScale, y: mainY }}>
+              <motion.img
+                src={img('acholado')}
+                alt={`${d.range[0].name} bottle`}
+                initial={reduce ? false : { opacity: 0, y: 120 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 1.4, delay: 0.95, ease }}
+              />
+            </motion.span>
+          </span>
         </motion.div>
 
         <motion.div
@@ -245,7 +225,7 @@ export default function DemonioDeLosAndes() {
               Become a stockist <ArrowUpRight size={16} />
             </Link>
             <a href="#range" className={styles.btnLineLight}>
-              Meet the three
+              Meet the Acholado
             </a>
           </div>
         </motion.div>
