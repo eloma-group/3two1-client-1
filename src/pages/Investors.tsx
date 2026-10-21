@@ -4,7 +4,7 @@ import {
   motion, useInView, useReducedMotion, useScroll, useSpring, useTransform,
 } from 'framer-motion';
 import { Mail, ArrowRight } from 'lucide-react';
-import { contact } from '../data/content';
+import { contact, team as TEAM, initials } from '../data/content';
 import Reveal, { RevealHeading, RevealText } from '../components/Reveal';
 import Marquee from '../components/Marquee';
 import MagneticButton from '../components/MagneticButton';
@@ -17,12 +17,12 @@ const ease = [0.16, 1, 0.3, 1] as [number, number, number, number];
    rather than a boast. */
 const FIGURES = [
   {
-    to: 450, suffix: '+', label: 'Active trade accounts',
-    note: 'Bars, bottle shops and cafés - from Perth metro to the east coast.',
+    to: 2700, suffix: '+', label: 'Active trade accounts',
+    note: 'Bars, bottle shops and cafés - across Australia.',
   },
   {
     to: 9, suffix: '', label: 'Brand houses',
-    note: 'Rum, tequila, whiskey, pisco, cachaça and liqueur, every one on exclusive national rights.',
+    note: 'Rum, tequila, whiskey, pisco, cachaça, liqueur and syrups, every one on exclusive national rights.',
   },
   {
     to: 8, suffix: ' yrs', label: 'Independent & family-held',
@@ -59,19 +59,13 @@ const HOUSE_LOGOS = [
   { src: '/images/brandstrip-whiskey-row.webp',    alt: 'Whiskey Row',  to: '/brands/whiskey-row' },
 ];
 
-const TEAM = [
-  { name: 'Sam Mitchell', role: 'Founder & Managing Director' },
-  { name: 'Jess Kearney', role: 'National Sales · On-Trade' },
-  { name: 'Rohan Chen',   role: 'Brand Ambassador · Giffard' },
-];
-
 /* How the business actually runs — the part investors and buyers both ask
    about, and the part the chapters above only gesture at. */
 const PILLARS = [
   {
     n: '01',
     title: 'We buy narrow, not wide',
-    body: 'Nine houses, not ninety. Every listing has to earn its place on the cargo and behind the bar, which is why anyone here can talk through the whole range from memory.',
+    body: 'Nine houses, not ninety. Every listing is complementary on the cargo and behind the bar, which is why anyone here can talk through the whole range from memory and passion.',
   },
   {
     n: '02',
@@ -81,7 +75,7 @@ const PILLARS = [
   {
     n: '03',
     title: 'Placed, not dumped',
-    body: 'We would rather a bottle sat in forty venues that pour it well than four hundred that never open it. Volume follows placement - it does not lead it.',
+    body: 'We would rather a line in forty venues that pour it well than four hundred that never open it. Volume follows placement - it does not lead it.',
   },
   {
     n: '04',
@@ -95,8 +89,6 @@ const NEXT_STEPS = [
   'We send the range, trade pricing and a sample plan.',
   'A rep walks it through with you - in person wherever we can get there.',
 ];
-
-const initials = (name: string) => name.split(' ').map((w) => w[0]).join('');
 
 /** Counts up once, when the figure first scrolls into view. */
 function CountUp({ to, suffix }: { to: number; suffix: string }) {
@@ -160,7 +152,7 @@ function FiguresBand() {
   return (
     <section className={styles.figures} ref={ref}>
       <motion.div className={styles.figuresPhoto} style={reduced ? undefined : { y: photoY }} aria-hidden="true">
-        <img src="/images/about-numbers-pour.webp" alt="" loading="lazy" decoding="async" />
+        <img src="/images/about-numbers-jigger.webp" alt="" loading="lazy" decoding="async" />
       </motion.div>
       <div className={styles.figuresScrim} aria-hidden="true" />
 

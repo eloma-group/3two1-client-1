@@ -335,3 +335,13 @@ export const footerColumns = [
     ],
   },
 ];
+
+/** The people behind the trade desk — shown on Our Story and Contact. */
+export const team = [
+  { name: 'Sam Mitchell', role: 'Founder & Managing Director' },
+  { name: 'Jess Kearney', role: 'National Sales · On-Trade' },
+  { name: 'Rohan Chen',   role: 'Brand Ambassador · Giffard' },
+];
+
+/** No portraits yet, so initials stand in for one. */
+export const initials = (name: string) => name.split(' ').map((w) => w[0]).join('');
