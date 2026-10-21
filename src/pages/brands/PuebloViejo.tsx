@@ -69,42 +69,57 @@ function PapelPicado() {
 
 const ROMAN = ['I', 'II', 'III', 'IV'];
 
+/* Each card's own product page. The Blanco's page is its Tommy's Margarita serve. */
+const PRODUCT_PAGE: Record<string, string> = {
+  Blanco: '/brands/pueblo-viejo/tommys-margarita',
+  Reposado: '/brands/pueblo-viejo/reposado',
+  Añejo: '/brands/pueblo-viejo/anejo',
+};
+
 function LoteriaCard({ n, name, spec, note, image }: { n: number; name: string; spec: string; note: string; image?: string }) {
   const [flipped, setFlipped] = useState(false);
   const short = name.replace('Pueblo Viejo ', '');
+  const to = PRODUCT_PAGE[short];
   return (
-    <motion.button
-      type="button"
-      className={`${styles.card} ${flipped ? styles.cardFlipped : ''}`}
-      onClick={() => setFlipped((f) => !f)}
-      aria-pressed={flipped}
-      aria-label={`${name} - ${flipped ? 'show card' : 'show tasting note'}`}
-      initial={{ opacity: 0, y: 60, rotate: n % 2 ? -4 : 4 }}
-      whileInView={{ opacity: 1, y: 0, rotate: n === 2 ? 0 : n === 1 ? -3 : 3 }}
-      viewport={{ once: true, margin: '-10%' }}
-      transition={{ duration: 1, delay: n * 0.12, ease }}
-    >
-      <span className={styles.cardInner}>
-        <span className={styles.cardFront}>
-          <span className={styles.cardTop}>
-            <span>No. {n}</span>
-            <span>{spec.split(' · ')[0]}</span>
+    <div className={styles.cardSlot}>
+      <motion.button
+        type="button"
+        className={`${styles.card} ${flipped ? styles.cardFlipped : ''}`}
+        onClick={() => setFlipped((f) => !f)}
+        aria-pressed={flipped}
+        aria-label={`${name} - ${flipped ? 'show card' : 'show tasting note'}`}
+        initial={{ opacity: 0, y: 60, rotate: n % 2 ? -4 : 4 }}
+        whileInView={{ opacity: 1, y: 0, rotate: n === 2 ? 0 : n === 1 ? -3 : 3 }}
+        viewport={{ once: true, margin: '-10%' }}
+        transition={{ duration: 1, delay: n * 0.12, ease }}
+      >
+        <span className={styles.cardInner}>
+          <span className={styles.cardFront}>
+            <span className={styles.cardTop}>
+              <span>No. {n}</span>
+              <span>{spec.split(' · ')[0]}</span>
+            </span>
+            <span className={styles.cardArt}>
+              <span className={styles.cardSun} />
+              {image && <img src={image} alt={name} loading="lazy" />}
+            </span>
+            <span className={styles.cardName}>El {short}</span>
           </span>
-          <span className={styles.cardArt}>
-            <span className={styles.cardSun} />
-            {image && <img src={image} alt={name} loading="lazy" />}
+          <span className={styles.cardBack}>
+            <span className={styles.cardTop}><span>No. {n}</span><span>Pueblo Viejo</span></span>
+            <span className={styles.backName}>{short}</span>
+            <span className={styles.backNote}>{note}</span>
+            <span className={styles.backSpec}>{spec}</span>
+            <img className={styles.backHeart} src={img('heart')} alt="" loading="lazy" />
           </span>
-          <span className={styles.cardName}>El {short}</span>
         </span>
-        <span className={styles.cardBack}>
-          <span className={styles.cardTop}><span>No. {n}</span><span>Pueblo Viejo</span></span>
-          <span className={styles.backName}>{short}</span>
-          <span className={styles.backNote}>{note}</span>
-          <span className={styles.backSpec}>{spec}</span>
-          <img className={styles.backHeart} src={img('heart')} alt="" loading="lazy" />
-        </span>
-      </span>
-    </motion.button>
+      </motion.button>
+      {to && (
+        <Link to={to} className={styles.cardLink}>
+          View the {short} <ArrowUpRight size={15} />
+        </Link>
+      )}
+    </div>
   );
 }
 
@@ -295,7 +310,7 @@ export default function PuebloViejo() {
       <section className={styles.tastingWrap}>
         <Reveal className={styles.board}>
           <div className={styles.boardHead}>
-            <span>Hoy servimos</span>
+            <span>Our Notes</span>
             <h2>{d.tasting.of}</h2>
           </div>
           <dl className={styles.boardList}>
@@ -307,8 +322,8 @@ export default function PuebloViejo() {
               </div>
             ))}
           </dl>
-          <p className={styles.boardServe}><span>La casa recomienda - </span> {d.tasting.serve}</p>
-          <img src={img('bottle-roses')} alt="" className={styles.boardBottle} loading="lazy" />
+          <p className={styles.boardServe}><span>La casa recommends - </span> {d.tasting.serve}</p>
+          <img src={img('bottle-blanco')} alt="" className={styles.boardBottle} loading="lazy" />
         </Reveal>
       </section>
 
@@ -348,7 +363,7 @@ export default function PuebloViejo() {
           <span className={styles.bulbs} aria-hidden>
             {Array.from({ length: 22 }).map((_, i) => <i key={i} style={{ animationDelay: `${(i % 4) * 0.35}s` }} />)}
           </span>
-          <p className={styles.signKicker}>¡Abierto para el trade!</p>
+          <p className={styles.signKicker}>Built for the trades</p>
           <h2 className={styles.signTitle}>Stock {d.name}.</h2>
           <p className={styles.signBody}>{d.stock}</p>
           <div className={styles.signCtas}>

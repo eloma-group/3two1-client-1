@@ -83,6 +83,35 @@ function Sun({ className }: { className?: string }) {
   );
 }
 
+/* A gull in two strokes; the wings beat by morphing the path between up and down. */
+function Bird({ className, beat, size }: { className?: string; beat: number; size: number }) {
+  return (
+    <svg className={className} viewBox="0 -4 60 36" width={size} aria-hidden="true">
+      <path d="M2 18 Q16 -2 30 18 Q44 -2 58 18" fill="none" stroke="currentColor" strokeWidth="3.6" strokeLinecap="round" strokeLinejoin="round">
+        <animate
+          attributeName="d"
+          dur={`${beat}s`}
+          repeatCount="indefinite"
+          values="M2 18 Q16 -2 30 18 Q44 -2 58 18;M2 14 Q16 30 30 18 Q44 30 58 14;M2 18 Q16 -2 30 18 Q44 -2 58 18"
+        />
+      </path>
+    </svg>
+  );
+}
+
+/* The flock: height across the sky (%), size (px), crossing time and wingbeat (s),
+   and a head start so the sky is never empty on load. Smaller birds read as
+   further away, so they also sit fainter. */
+const FLOCK = [
+  { top: 12, size: 54, dur: 22, beat: 0.75, delay: -4 },
+  { top: 19, size: 40, dur: 26, beat: 0.65, delay: -7 },
+  { top: 7, size: 30, dur: 30, beat: 0.55, delay: -11 },
+  { top: 28, size: 46, dur: 24, beat: 0.7, delay: -16 },
+  { top: 23, size: 28, dur: 32, beat: 0.5, delay: -21 },
+  { top: 34, size: 36, dur: 27, beat: 0.6, delay: -1 },
+  { top: 15, size: 32, dur: 29, beat: 0.6, delay: -25 },
+]
+
 /* Step icons for the field → press → still journey. */
 function StepIcon({ i }: { i: number }) {
   if (i === 0)
@@ -146,6 +175,21 @@ export default function Thoquino() {
       {/* ── Hero — a Rio poster: the name across the top, then the bottle under
              the sun with cane either side. Each piece keeps its own space. ── */}
       <section className={styles.hero} ref={hero}>
+        {!reduce && (
+          <div className={styles.birds} aria-hidden="true">
+            {FLOCK.map((b, i) => (
+              <span
+                key={i}
+                className={styles.birdPath}
+                style={{ top: `${b.top}%`, animationDuration: `${b.dur}s`, animationDelay: `${b.delay}s` }}
+              >
+                <span className={styles.birdBob} style={{ animationDelay: `${b.delay / 3}s` }}>
+                  <Bird className={`${styles.bird} ${b.size < 34 ? styles.birdFar : ''}`} beat={b.beat} size={b.size} />
+                </span>
+              </span>
+            ))}
+          </div>
+        )}
         <h1 className={styles.title}>
           <span className={styles.titleWord} aria-hidden="true">
             {first.split('').map((ch, i) => (
@@ -253,7 +297,7 @@ export default function Thoquino() {
       <section className={styles.craft}>
         <div className={styles.curveTop} aria-hidden="true" />
         <div className={styles.craftInner}>
-          <motion.p className={`${styles.kicker} ${styles.kickerLight}`} {...rise()}>02 · O ofício</motion.p>
+          <motion.p className={`${styles.kicker} ${styles.kickerLight}`} {...rise()}>02 · Method</motion.p>
           <motion.p className={styles.statement} {...rise(0.08)}>{d.craft.statement}</motion.p>
           <ol className={styles.journey} ref={journeyRef}>
             <svg className={styles.journeyLine} viewBox={`0 0 ${journey.w || 1} ${journey.h || 1}`} aria-hidden="true">
@@ -318,34 +362,14 @@ export default function Thoquino() {
       {/* ── Range ───────────────────────────────────────── */}
       <section className={styles.range}>
         <motion.p className={styles.kicker} {...rise()}>04 · A linha</motion.p>
-        <motion.h2 className={styles.h2} {...rise(0.06)}>Two bottles, one field.</motion.h2>
+        <motion.h2 className={styles.h2} {...rise(0.06)}>One bottle, one field.</motion.h2>
         <div className={styles.panels}>
           {d.range.map((r, i) => (
             <motion.article key={r.name} className={`${styles.panel} ${i === 0 ? styles.panelWhite : styles.panelGold}`} {...rise(0.1 + i * 0.12)}>
               <div className={styles.panelArt}>
-                {r.image ? (
-                  <img src={r.image} alt={r.name} loading="lazy" />
-                ) : (
-                  <svg viewBox="0 0 120 400" className={styles.drawnBottle} aria-label={r.name} role="img">
-                    <defs>
-                      <linearGradient id="thoAged" x1="0" x2="1">
-                        <stop offset="0" stopColor="#a8641c" />
-                        <stop offset="0.5" stopColor="#e2a548" />
-                        <stop offset="1" stopColor="#9a5816" />
-                      </linearGradient>
-                    </defs>
-                    <rect x="48" y="4" width="24" height="40" rx="4" fill="#1d3b2a" />
-                    <path d="M50 44 h20 v40 c0 18 30 26 30 56 v236 c0 10 -8 16 -18 16 h-44 c-10 0 -18 -6 -18 -16 v-236 c0 -30 30 -38 30 -56z" fill="url(#thoAged)" />
-                    <rect x="22" y="200" width="76" height="110" rx="6" fill="#fbf6ea" />
-                    <rect x="22" y="200" width="76" height="22" rx="6" fill="#1f6b3a" />
-                    <text x="60" y="262" textAnchor="middle" fontSize="11" fontWeight="700" fill="#1f6b3a" fontFamily="Inter, sans-serif" textLength="62" lengthAdjust="spacingAndGlyphs">THOQUINO</text>
-                    <text x="60" y="282" textAnchor="middle" fontSize="10" fill="#a8641c" fontFamily="Inter, sans-serif" letterSpacing="2">AGED</text>
-                    <path d="M30 70 c 6 -10 14 -14 20 -16" stroke="rgba(255,255,255,0.5)" strokeWidth="4" fill="none" strokeLinecap="round" />
-                  </svg>
-                )}
+                {r.image && <img src={r.image} alt={r.name} loading="lazy" />}
               </div>
               <div className={styles.panelCopy}>
-                <span className={styles.panelNo}>0{i + 1}</span>
                 <h3>{r.name}</h3>
                 <span className={styles.spec}>{r.spec}</span>
                 <p>{r.note}</p>

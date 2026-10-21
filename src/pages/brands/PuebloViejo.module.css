@@ -452,6 +452,23 @@
   justify-content: center;
   gap: clamp(1.5rem, 3.5vw, 3.5rem);
 }
+.cardSlot { display: flex; flex-direction: column; align-items: center; gap: 1.4rem; }
+.cardLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.6rem 1.1rem;
+  border: 2px solid var(--ink);
+  border-radius: 999px;
+  color: var(--ink);
+  font-weight: 800;
+  font-size: 0.85rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: background 0.3s, color 0.3s;
+}
+.cardLink:hover { background: var(--ink); color: var(--marigold); }
 .card {
   display: block;
   width: 100%;
@@ -591,7 +608,7 @@
   position: absolute;
   right: clamp(-10px, -1vw, 0px);
   top: clamp(-70px, -6vw, -40px);
-  width: clamp(80px, 10vw, 130px);
+  width: clamp(58px, 7vw, 92px);
   transform: rotate(10deg);
   filter: drop-shadow(0 14px 18px rgba(0, 0, 0, 0.45));
 }
@@ -784,7 +801,7 @@
   .serveGrid { grid-template-columns: 1fr; }
   .boardRow { grid-template-columns: 1fr; gap: 0.2rem; }
   .leader { display: none; }
-  .boardBottle { width: 70px; top: -50px; right: -6px; }
+  .boardBottle { width: 50px; top: -50px; right: -6px; }
   .boardHead h2 { padding-right: 50px; }
   .stickerPlant { left: -2%; }
   .stickerMask { right: 0; }

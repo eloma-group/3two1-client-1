@@ -584,16 +584,22 @@ export default function DemonioDeLosAndes() {
               )}
             </div>
           </div>
-          <motion.img
-            src={img('lineup')}
-            alt="The Demonio de los Andes family of piscos"
-            className={styles.ctaImg}
-            loading="lazy"
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: '-10%' }}
-            transition={{ duration: 1, ease }}
-          />
+          {/* The same three bottles as the range, Acholado in front. */}
+          <div className={styles.ctaBottles}>
+            {[1, 0, 2].map((i, k) => (
+              <motion.img
+                key={d.range[i].name}
+                src={d.range[i].image}
+                alt={`${d.range[i].name} bottle`}
+                className={i === 0 ? styles.ctaBottleMain : styles.ctaBottle}
+                loading="lazy"
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: '-10%' }}
+                transition={{ duration: 1, delay: [0.15, 0, 0.3][k], ease }}
+              />
+            ))}
+          </div>
         </div>
       </section>
     </article>

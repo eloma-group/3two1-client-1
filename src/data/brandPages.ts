@@ -143,7 +143,7 @@ export const brandPages: BrandPage[] = [
       serve: "A Tommy's margarita built with the Blanco, fresh lime and a teaspoon of agave nectar over a single rock. The agave does the work; the rest gets out of the way.",
     },
     serves: [
-      { name: "Tommy's Margarita", build: 'Blanco, lime, agave. Three ingredients, done right.', method: 'Shake, single rock', glass: 'Rocks', image: '/images/brand-pueblo-viejo-cocktail.webp' },
+      { name: "Tommy's Margarita", build: 'Blanco, lime, agave. Three ingredients, done right.', method: 'Shake, single rock', glass: 'Rocks', image: '/images/brands/pueblo-viejo/tommys-margarita-sea.webp' },
       { name: 'Paloma', build: 'Reposado, fresh grapefruit, lime, a pinch of salt, soda.', method: 'Build, top with soda', glass: 'Highball', image: pv('paloma') },
       { name: 'Añejo Old Fashioned', build: 'Añejo, agave syrup, mole bitters, orange.', method: 'Stir down', glass: 'Rocks', image: pv('chapala') },
     ],
@@ -152,7 +152,7 @@ export const brandPages: BrandPage[] = [
       { value: '100%', label: 'Blue Weber agave - never mixto' },
       { value: '2×', label: 'Distilled in copper pot stills' },
       { value: '3', label: 'Expressions: Blanco, Reposado, Añejo' },
-      { value: '50', label: 'Margaritas a night, built to keep up' },
+      { value: '11', label: 'Margaritas a night, built to keep up' },
     ],
     trade: [
       'Well tequila that does not compromise the margarita',
@@ -196,8 +196,6 @@ export const brandPages: BrandPage[] = [
     },
     range: [
       { name: 'Single Estate Reserve', spec: '45% ABV · 700ml', note: 'Tropical-aged for over five years - dried banana, oak, allspice.', image: '/images/house-worthy-park.webp' },
-      { name: 'Rum-Bar Gold', spec: '40% ABV · 700ml', note: "The bartender's gold. Lightly aged, vegetal, mixable." },
-      { name: 'Rum-Bar Overproof', spec: '63% ABV · 700ml', note: 'Unaged white funk - for tiki, for floats, for serious drinks.' },
       { name: 'Worthy Park 109', spec: '54.5% ABV · 700ml', note: 'Higher-proof aged blend. Big tropical pot-still, dark oak.' },
     ],
     tasting: {
@@ -208,9 +206,9 @@ export const brandPages: BrandPage[] = [
       serve: 'Neat in a Glencairn, or in a rum old fashioned with demerara and a flamed orange peel.',
     },
     serves: [
-      { name: 'Worthy Park Daiquiri', build: 'Single Estate, lime, demerara - three ingredients, perfectly balanced.', method: 'Shake, fine strain', glass: 'Coupe', image: wp('serve-daiquiri') },
+      { name: 'Worthy Park Daiquiri', build: 'Single Estate, lime, demerara - three ingredients, perfectly balanced.', method: 'Shake, fine strain', glass: 'Coupe', image: wp('serve-daiquiri-coupe') },
       { name: 'Rum Old Fashioned', build: 'Single Estate, demerara, mole bitters, flamed orange.', method: 'Stir down', glass: 'Rocks', image: wp('serve-old-fashioned') },
-      { name: 'Jamaican Mai Tai', build: 'Worthy Park 109, orgeat, lime, dry curaçao.', method: 'Shake, crushed ice', glass: 'Double rocks', image: wp('serve-mai-tai') },
+      { name: 'Jamaican Mai Tai', build: 'Single Estate Reserve, orgeat, lime, dry curaçao.', method: 'Shake, crushed ice', glass: 'Double rocks', image: wp('serve-mai-tai') },
     ],
     stock: "Talk to our trade team about full-range allocations, rum education, and bar training with the estate's heritage in mind.",
     facts: [
@@ -366,7 +364,7 @@ export const brandPages: BrandPage[] = [
   {
     slug: 'burnt-ends',
     name: 'Burnt Ends',
-    eyebrow: 'Scotland × Singapore · Blended Whiskey',
+    eyebrow: 'Scotland × Singapore × Kentucky · Blended Whiskey',
     quote: 'Smoke, oak, conviction.',
     story: {
       heading: 'Built for the fire.',
@@ -558,7 +556,6 @@ export const brandPages: BrandPage[] = [
     },
     range: [
       { name: 'Thoquino Cachaça', spec: '40% ABV · 700ml', note: 'The classic white. Fresh-cut grass, green banana and lime - made for the Caipirinha.', image: '/images/house-thoquino.webp' },
-      { name: 'Thoquino Aged', spec: '40% ABV · 1L', note: 'Rested before bottling for a rounder, softer cane spirit. Sip it, or use it where a white feels too sharp.', image: '/images/brands/thoquino/aged-bottle.webp' },
     ],
     tasting: {
       of: 'Thoquino Cachaça',

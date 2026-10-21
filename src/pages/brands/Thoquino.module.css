@@ -78,8 +78,29 @@
   flex-direction: column;
 }
 
+/* Gulls crossing the sky behind the name and the sun. */
+.birds { position: absolute; inset: 0; z-index: 0; overflow: hidden; pointer-events: none; }
+.birdPath {
+  position: absolute;
+  left: 0;
+  animation: birdFly linear infinite;
+}
+.birdBob { display: block; animation: birdBob 3.2s ease-in-out infinite; }
+.bird { display: block; height: auto; color: var(--deep); opacity: 0.78; }
+.birdFar { opacity: 0.5; }
+@keyframes birdFly {
+  from { transform: translateX(-8vw); }
+  to { transform: translateX(108vw); }
+}
+@keyframes birdBob {
+  0%, 100% { transform: translateY(0) rotate(-3deg); }
+  50% { transform: translateY(-14px) rotate(3deg); }
+}
+
 /* Name and sticker share one row and wrap, never stack on each other. */
 .title {
+  position: relative;
+  z-index: 1;
   margin: 0;
   display: flex;
   flex-wrap: wrap;
@@ -490,7 +511,8 @@
 .panels {
   margin-top: clamp(2.5rem, 5vw, 4rem);
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(auto-fit, minmax(0, 700px));
+  justify-content: center;
   gap: clamp(1.25rem, 3vw, 2.5rem);
 }
 .panel {
@@ -507,9 +529,7 @@
 .panelGold { background: linear-gradient(170deg, #f6c46a, var(--amber) 70%, #a7651e); color: #2a1606; }
 .panelArt { height: 100%; display: flex; align-items: flex-end; justify-content: center; }
 .panelArt img { max-height: 500px; width: auto; filter: drop-shadow(0 24px 30px rgba(0, 0, 0, 0.18)); }
-.drawnBottle { height: 480px; width: auto; filter: drop-shadow(0 24px 30px rgba(60, 30, 0, 0.35)); }
 .panelCopy { padding-bottom: 1rem; }
-.panelNo { font-family: var(--display); font-weight: 900; font-size: 3.4rem; line-height: 1; opacity: 0.18; }
 .panelCopy h3 { font-family: var(--display); font-weight: 800; font-size: clamp(1.35rem, 2vw, 1.8rem); line-height: 1.1; margin: 0.6rem 0; letter-spacing: -0.02em; }
 .spec {
   display: inline-block;
@@ -695,7 +715,6 @@
   .factLabel { font-size: 0.85rem; }
   .panel { grid-template-columns: 1fr; min-height: 0; border-radius: 180px 180px 28px 28px; padding-top: 2.5rem; }
   .panelArt img { max-height: 340px; }
-  .drawnBottle { height: 340px; }
   .split { grid-template-columns: 1fr !important; grid-template-rows: auto auto; min-height: 0; border-radius: 28px; }
   .half { min-height: 220px; }
   .toggle { display: flex; }

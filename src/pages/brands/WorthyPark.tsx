@@ -312,8 +312,8 @@ export default function WorthyPark() {
             viewport={{ once: true }}
             transition={{ duration: 1, ease }}
           >
-            <img src={img('range')} alt="The Worthy Park and Rum-Bar lineup" loading="lazy" />
-            <figcaption>The family of bottles - Worthy Park &amp; Rum-Bar</figcaption>
+            <img src={img('range-two')} alt="Worthy Park Single Estate Reserve and Worthy Park 109 bottles" loading="lazy" />
+            <figcaption>The family of bottles - Single Estate Reserve &amp; 109</figcaption>
           </motion.figure>
           <div className={styles.register} role="table" aria-label="Worthy Park range">
             <div className={`${styles.row} ${styles.rowHead}`} role="row">
