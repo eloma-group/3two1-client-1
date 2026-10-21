@@ -71,7 +71,7 @@ const PILLARS = [
   {
     n: '01',
     title: 'We buy narrow, not wide',
-    body: 'Nine houses, not ninety. Every listing has to earn its place on the truck and behind the bar, which is why anyone here can talk through the whole range from memory.',
+    body: 'Nine houses, not ninety. Every listing has to earn its place on the cargo and behind the bar, which is why anyone here can talk through the whole range from memory.',
   },
   {
     n: '02',
