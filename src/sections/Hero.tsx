@@ -1,7 +1,7 @@
 import { useRef, useEffect } from 'react';
 import { motion, useScroll, useTransform, type Variants } from 'framer-motion';
 import { ArrowDown, Download, ArrowRight, Wine, Martini, Hotel, Coffee } from 'lucide-react';
-import { hero } from '../data/content';
+import { hero, portfolioPdf } from '../data/content';
 
 const channels = [
   { icon: Wine, title: 'Retail', sub: 'Bottle Shops & Chain Retailers' },
@@ -101,7 +101,7 @@ export default function Hero({ ready }: { ready: boolean }) {
           </motion.p>
 
           <motion.div className={styles.actions} variants={fadeUp}>
-            <MagneticButton variant="light" onClick={() => scrollToHash('#brands')}>
+            <MagneticButton variant="light" href={portfolioPdf} cursorLabel="Download">
               {hero.ctaSecondary} <Download size={18} />
             </MagneticButton>
             <MagneticButton variant="solid" cursorLabel="Apply" onClick={() => scrollToHash('#contact')}>

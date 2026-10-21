@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { Menu, X, ChevronDown, Download, ArrowRight } from 'lucide-react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { navMenu, contact, type MenuEntry } from '../data/content';
+import { navMenu, contact, portfolioPdf, type MenuEntry } from '../data/content';
 import { scrollToHash } from '../hooks/useLenis';
 import ThemeToggle from './ThemeToggle';
 import styles from './Navbar.module.css';
@@ -195,9 +195,9 @@ export default function Navbar() {
             </nav>
 
             <div className={styles.menuFoot}>
-              <button className={styles.mCta} onClick={() => go('#brands')}>
+              <a className={styles.mCta} href={portfolioPdf} target="_blank" rel="noopener">
                 <Download size={16} /> Download Portfolio
-              </button>
+              </a>
               <a href={`mailto:${contact.email}`}>{contact.email}</a>
               <a href={`tel:${contact.phone.replace(/\s/g, '')}`}>{contact.phone}</a>
             </div>

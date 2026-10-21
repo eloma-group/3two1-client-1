@@ -1,7 +1,7 @@
-import { useRef, useState } from 'react';
+import { useRef } from 'react';
 import { Link } from 'react-router-dom';
-import { AnimatePresence, motion, useReducedMotion, useScroll, useTransform } from 'framer-motion';
-import { ArrowUpRight, Plus, Minus } from 'lucide-react';
+import { motion, useReducedMotion, useScroll, useTransform } from 'framer-motion';
+import { ArrowUpRight } from 'lucide-react';
 import { brandPage } from '../../data/brandPages';
 import styles from './WorthyPark.module.css';
 
@@ -59,7 +59,6 @@ export default function WorthyPark() {
   const { scrollYProgress: sP } = useScroll({ target: stillRef, offset: ['start end', 'end start'] });
   const stillY = useTransform(sP, [0, 1], reduce ? ['0%', '0%'] : ['-8%', '8%']);
 
-  const [openServe, setOpenServe] = useState<number | null>(null);
 
   return (
     <article className={styles.page}>
@@ -394,7 +393,6 @@ export default function WorthyPark() {
         </div>
         <div className={styles.plates}>
           {b.serves.map((s, i) => {
-            const open = openServe === i;
             return (
               <motion.article
                 key={s.name}
@@ -410,27 +408,9 @@ export default function WorthyPark() {
                 </div>
                 <h3>{s.name}</h3>
                 <p>{s.build}</p>
-                <button
-                  className={styles.recipeBtn}
-                  onClick={() => setOpenServe(open ? null : i)}
-                  aria-expanded={open}
-                >
-                  {open ? <Minus size={14} /> : <Plus size={14} />} View recipe
-                </button>
-                <AnimatePresence initial={false}>
-                  {open && (
-                    <motion.dl
-                      className={styles.recipe}
-                      initial={{ height: 0, opacity: 0 }}
-                      animate={{ height: 'auto', opacity: 1 }}
-                      exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: 0.35, ease }}
-                    >
-                      <div><dt>Method</dt><dd>{s.method}</dd></div>
-                      <div><dt>Glass</dt><dd>{s.glass}</dd></div>
-                    </motion.dl>
-                  )}
-                </AnimatePresence>
+                <Link to="/cocktails#worthy-park" className={styles.recipeBtn}>
+                  View recipe <ArrowUpRight size={14} />
+                </Link>
               </motion.article>
             );
           })}

@@ -1,7 +1,7 @@
 import { useState, type CSSProperties } from 'react';
 import { AnimatePresence, LayoutGroup, motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
-import { brands, contact } from '../data/content';
+import { brands, portfolioPdf } from '../data/content';
 import SmartImage from '../components/SmartImage';
 import Hero from '../components/bento/Hero';
 import Rise from '../components/bento/Rise';
@@ -51,7 +51,6 @@ function layoutFor(n: number) {
   return spans as ('feature' | 'small' | 'wide' | 'half')[];
 }
 
-const PDF_REQUEST = `mailto:${contact.email}?subject=${encodeURIComponent('2026 Portfolio PDF')}`;
 
 export default function Portfolio() {
   const navigate = useNavigate();
@@ -63,15 +62,15 @@ export default function Portfolio() {
   return (
     <div className={b.page}>
       <Hero
-        eyebrow="2026 Portfolio"
+        eyebrow="2027 Portfolio"
         title={<>Every house. <em className="gradient-text">One book.</em></>}
         lede="Tasting notes, RRPs, case configurations and serve specs - everything your team needs to spec a drinks list or curate a shelf."
         image="/images/pages/portfolio-banner.webp"
         alt="A curated row of premium spirits across categories"
-        tag="2026 Edition"
+        tag="2027 Edition"
         actions={
           <>
-            <Pill href={PDF_REQUEST}>Request the PDF</Pill>
+            <Pill href={portfolioPdf}>Download the PDF</Pill>
             <Pill to="/contact" variant="more">Request rate card</Pill>
           </>
         }

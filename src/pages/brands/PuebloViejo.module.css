@@ -813,3 +813,7 @@
   .ticket { padding: 1rem 1.2rem; }
   .serveMeta { grid-template-columns: 1fr; }
 }
+
+/* A serve with its own product page links from its name. */
+.serveLink { color: inherit; text-decoration: none; display: inline-flex; align-items: center; gap: 0.35rem; }
+.serveLink:hover { text-decoration: underline; text-underline-offset: 4px; }

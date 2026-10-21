@@ -1,7 +1,7 @@
 import { useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { AnimatePresence, motion, useReducedMotion, useScroll, useTransform } from 'framer-motion';
-import { ArrowUpRight, Plus, Minus } from 'lucide-react';
+import { motion, useReducedMotion, useScroll, useTransform } from 'framer-motion';
+import { ArrowUpRight } from 'lucide-react';
 import { brandPage } from '../../data/brandPages';
 import { CRAFT_ROAD, CRAFT_ROAD_BOX, useRoadThrough } from '../../hooks/useRoadThrough';
 import styles from './Thoquino.module.css';
@@ -152,7 +152,6 @@ export default function Thoquino() {
 
   const { ref: journeyRef, path: journey } = useRoadThrough<HTMLOListElement>(styles.stepIcon, CRAFT_ROAD, CRAFT_ROAD_BOX);
   const [side, setSide] = useState<'cane' | 'molasses'>('cane');
-  const [open, setOpen] = useState<number | null>(null);
 
   const rise = (delay = 0) => ({
     initial: { opacity: 0, y: reduce ? 0 : 36 },
@@ -413,7 +412,6 @@ export default function Thoquino() {
         <div className={styles.coasters}>
           {d.serves.map((s, i) => {
             const Art = SERVE_ART[i] ?? Lime;
-            const isOpen = open === i;
             return (
               <motion.article key={s.name} className={styles.coaster} {...rise(0.1 + i * 0.1)}>
                 <div className={`${styles.disc} ${styles[`disc${i}`]}`}>
@@ -421,23 +419,9 @@ export default function Thoquino() {
                 </div>
                 <h3>{s.name}</h3>
                 <p>{s.build}</p>
-                <button className={styles.recipeBtn} onClick={() => setOpen(isOpen ? null : i)} aria-expanded={isOpen}>
-                  {isOpen ? <Minus size={14} /> : <Plus size={14} />} {isOpen ? 'Close recipe' : 'View recipe'}
-                </button>
-                <AnimatePresence initial={false}>
-                  {isOpen && (
-                    <motion.dl
-                      className={styles.recipe}
-                      initial={{ height: 0, opacity: 0 }}
-                      animate={{ height: 'auto', opacity: 1 }}
-                      exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: 0.35, ease }}
-                    >
-                      <div><dt>Method</dt><dd>{s.method}</dd></div>
-                      <div><dt>Glass</dt><dd>{s.glass}</dd></div>
-                    </motion.dl>
-                  )}
-                </AnimatePresence>
+                <Link to="/cocktails" className={styles.recipeBtn}>
+                  View recipe <ArrowUpRight size={14} />
+                </Link>
               </motion.article>
             );
           })}

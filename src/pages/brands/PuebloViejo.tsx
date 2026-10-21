@@ -1,7 +1,7 @@
 import { useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { AnimatePresence, motion, useReducedMotion, useScroll, useTransform } from 'framer-motion';
-import { ArrowUpRight, Plus, Minus } from 'lucide-react';
+import { motion, useReducedMotion, useScroll, useTransform } from 'framer-motion';
+import { ArrowUpRight } from 'lucide-react';
 import { brandPage } from '../../data/brandPages';
 import Reveal from '../../components/Reveal';
 import { CRAFT_ROAD, CRAFT_ROAD_BOX, useRoadThrough } from '../../hooks/useRoadThrough';
@@ -123,8 +123,12 @@ function LoteriaCard({ n, name, spec, note, image }: { n: number; name: string; 
   );
 }
 
+/* Serves that have their own product page. */
+const SERVE_PAGE: Record<string, string> = {
+  "Tommy's Margarita": '/brands/pueblo-viejo/tommys-margarita',
+};
+
 function ServeTile({ s, i }: { s: { name: string; build: string; method: string; glass: string; image?: string }; i: number }) {
-  const [open, setOpen] = useState(false);
   return (
     <Reveal delay={i * 0.1}>
       <article className={styles.serve}>
@@ -133,25 +137,11 @@ function ServeTile({ s, i }: { s: { name: string; build: string; method: string;
         <span className={styles.stamp}>Receta<br /><b>Nº {String(i + 1).padStart(2, '0')}</b></span>
       </div>
       <div className={styles.serveBody}>
-        <h3>{s.name}</h3>
+        <h3>{SERVE_PAGE[s.name] ? <Link to={SERVE_PAGE[s.name]} className={styles.serveLink}>{s.name} <ArrowUpRight size={16} /></Link> : s.name}</h3>
         <p>{s.build}</p>
-        <button type="button" className={styles.serveToggle} onClick={() => setOpen((o) => !o)} aria-expanded={open}>
-          {open ? 'Hide recipe' : 'View recipe'} {open ? <Minus size={14} /> : <Plus size={14} />}
-        </button>
-        <AnimatePresence initial={false}>
-          {open && (
-            <motion.dl
-              className={styles.serveMeta}
-              initial={{ height: 0, opacity: 0 }}
-              animate={{ height: 'auto', opacity: 1 }}
-              exit={{ height: 0, opacity: 0 }}
-              transition={{ duration: 0.4, ease }}
-            >
-              <div><dt>Method</dt><dd>{s.method}</dd></div>
-              <div><dt>Glass</dt><dd>{s.glass}</dd></div>
-            </motion.dl>
-          )}
-        </AnimatePresence>
+        <Link to="/cocktails#pueblo-viejo" className={styles.serveToggle}>
+          View recipe <ArrowUpRight size={14} />
+        </Link>
       </div>
       </article>
     </Reveal>

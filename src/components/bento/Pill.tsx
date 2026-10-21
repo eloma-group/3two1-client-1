@@ -26,6 +26,6 @@ export default function Pill({ children, to, href, onClick, variant = 'primary',
     </>
   );
   if (to) return <Link to={to} className={cls} onClick={onClick}>{body}</Link>;
-  if (href) return <a href={href} className={cls} onClick={onClick}>{body}</a>;
+  if (href) return <a href={href} className={cls} onClick={onClick} {...(href.endsWith('.pdf') ? { target: '_blank', rel: 'noopener' } : {})}>{body}</a>;
   return <button type={type} className={cls} onClick={onClick}>{body}</button>;
 }

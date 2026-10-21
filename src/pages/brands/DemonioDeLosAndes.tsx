@@ -1,7 +1,7 @@
-import { useId, useRef, useState } from 'react';
+import { useId, useRef } from 'react';
 import { Link } from 'react-router-dom';
-import { AnimatePresence, motion, useReducedMotion, useScroll, useTransform } from 'framer-motion';
-import { ArrowUpRight, Plus, Minus } from 'lucide-react';
+import { motion, useReducedMotion, useScroll, useTransform } from 'framer-motion';
+import { ArrowUpRight } from 'lucide-react';
 import { brandPage } from '../../data/brandPages';
 import styles from './DemonioDeLosAndes.module.css';
 
@@ -92,7 +92,6 @@ function Label({ n, children }: { n: string; children: string }) {
 export default function DemonioDeLosAndes() {
   const d = brandPage('demonio-de-los-andes')!;
   const reduce = useReducedMotion();
-  const [open, setOpen] = useState<number | null>(null);
 
   const heroRef = useRef<HTMLElement>(null);
   const { scrollYProgress: hp } = useScroll({ target: heroRef, offset: ['start start', 'end start'] });
@@ -468,11 +467,10 @@ export default function DemonioDeLosAndes() {
         </div>
         <ul className={styles.menu}>
           {d.serves.map((s, i) => {
-            const isOpen = open === i;
             return (
               <motion.li
                 key={s.name}
-                className={`${styles.menuRow} ${isOpen ? styles.menuOpen : ''}`}
+                className={styles.menuRow}
                 initial={{ opacity: 0, y: 24 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: '-8%' }}
@@ -490,28 +488,9 @@ export default function DemonioDeLosAndes() {
                     <span className={styles.menuGlass}>{s.glass}</span>
                   </div>
                   <p className={styles.menuBuild}>{s.build}</p>
-                  <button
-                    type="button"
-                    className={styles.recipeBtn}
-                    aria-expanded={isOpen}
-                    onClick={() => setOpen(isOpen ? null : i)}
-                  >
-                    {isOpen ? <Minus size={14} /> : <Plus size={14} />} {isOpen ? 'Hide recipe' : 'View recipe'}
-                  </button>
-                  <AnimatePresence initial={false}>
-                    {isOpen && (
-                      <motion.dl
-                        className={styles.recipe}
-                        initial={{ height: 0, opacity: 0 }}
-                        animate={{ height: 'auto', opacity: 1 }}
-                        exit={{ height: 0, opacity: 0 }}
-                        transition={{ duration: 0.35, ease }}
-                      >
-                        <div><dt>Method</dt><dd>{s.method}</dd></div>
-                        <div><dt>Glass</dt><dd>{s.glass}</dd></div>
-                      </motion.dl>
-                    )}
-                  </AnimatePresence>
+                  <Link to="/cocktails" className={styles.recipeBtn}>
+                    View recipe <ArrowUpRight size={14} />
+                  </Link>
                 </div>
               </motion.li>
             );

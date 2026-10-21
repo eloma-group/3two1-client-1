@@ -48,7 +48,7 @@ export default function MagneticButton({
 
   if (href) {
     return (
-      <a href={href} onClick={onClick} {...shared}>
+      <a href={href} onClick={onClick} {...(href.endsWith('.pdf') ? { target: '_blank', rel: 'noopener' } : {})} {...shared}>
         <span ref={ref} className={styles.magnet}>{inner}</span>
       </a>
     );

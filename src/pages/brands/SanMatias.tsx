@@ -1,10 +1,10 @@
-import { useRef, useState } from 'react';
+import { useRef } from 'react';
 import type { PointerEvent } from 'react';
 import { Link } from 'react-router-dom';
 import {
-  AnimatePresence, motion, useMotionValue, useReducedMotion, useScroll, useSpring, useTransform,
+  motion, useMotionValue, useReducedMotion, useScroll, useSpring, useTransform,
 } from 'framer-motion';
-import { ArrowUpRight, Plus, Minus } from 'lucide-react';
+import { ArrowUpRight } from 'lucide-react';
 import { brandPage } from '../../data/brandPages';
 import Reveal from '../../components/Reveal';
 import styles from './SanMatias.module.css';
@@ -21,6 +21,13 @@ const PHOTO_CREDITS = [
   { what: 'paloma', who: 'Erich Wagner', license: 'CC BY-SA 4.0', href: 'https://commons.wikimedia.org/wiki/File:Paloma_Cocktail2.jpg' },
 ];
 const ROMAN = ['I', 'II', 'III', 'IV', 'V', 'VI'];
+
+/* Rey Sol tasting notes, from the house's own description. */
+const REY_SOL_NOTES = [
+  ['Nose', 'Oak, chocolate, vanilla, hazelnut, roasted almond and dried fruit.'],
+  ['Palate', 'Full-bodied and sweet at the start - caramel, vanilla and brown spice over cooked agave.'],
+  ['Finish', 'Long, with chocolate and almond.'],
+] as const;
 
 export default function SanMatias() {
   const d = brandPage('san-matias')!;
@@ -57,7 +64,6 @@ export default function SanMatias() {
   const { scrollYProgress: tahP } = useScroll({ target: tahona, offset: ['start end', 'end start'] });
   const spin = useTransform(tahP, [0, 1], [0, reduced ? 0 : 220]);
 
-  const [open, setOpen] = useState<number | null>(null);
   const [lead, ...rest] = d.story.paragraphs;
   const [nameA, nameB] = d.name.split(' ');
 
@@ -368,7 +374,7 @@ export default function SanMatias() {
       <section className={styles.range}>
         <div className={styles.rangeHead}>
           <Reveal><p className={styles.label}>La Colección</p></Reveal>
-          <Reveal delay={0.06}><h2 className={styles.h2}>Four niches, one family.</h2></Reveal>
+          <Reveal delay={0.06}><h2 className={styles.h2}>One niche, one family.</h2></Reveal>
         </div>
         <div className={styles.niches}>
           {d.range.map((r, i) => {
@@ -400,6 +406,59 @@ export default function SanMatias() {
               </motion.div>
             );
           })}
+        </div>
+      </section>
+
+      {/* ── Rey Sol: the sun-faced decanter, under its own sun ───── */}
+      <section className={styles.reySol} id="rey-sol">
+        <div className={styles.reySolArt}>
+          <motion.svg
+            className={styles.reySolRays}
+            viewBox="0 0 200 200"
+            aria-hidden="true"
+            animate={reduced ? undefined : { rotate: 360 }}
+            transition={{ duration: 90, repeat: Infinity, ease: 'linear' }}
+          >
+            {Array.from({ length: 24 }).map((_, i) => (
+              <path key={i} d="M100 2 L104 40 L96 40Z" transform={`rotate(${i * 15} 100 100)`} />
+            ))}
+          </motion.svg>
+          <span className={styles.reySolGlow} aria-hidden="true" />
+          <motion.img
+            src={img('rey-sol')}
+            alt="Rey Sol Extra Añejo tequila in its sun-faced decanter"
+            loading="lazy"
+            initial={{ opacity: 0, y: 60, scale: 0.94 }}
+            whileInView={{ opacity: 1, y: 0, scale: 1 }}
+            viewport={{ once: true, margin: '-10%' }}
+            transition={{ duration: 1.2, ease }}
+          />
+        </div>
+        <div className={styles.reySolText}>
+          <Reveal><p className={`${styles.label} ${styles.labelLight}`}>Rey Sol · Extra Añejo</p></Reveal>
+          <Reveal delay={0.06}><h2 className={styles.h2}>The sun king.</h2></Reveal>
+          <Reveal delay={0.12}>
+            <p className={styles.reySolBody}>
+              The house&apos;s prestige pour. One hundred per cent blue Weber agave, rested for six years
+              in French oak until it turns a deep amber with copper lights - then bottled in a decanter
+              designed by the Mexican artist Sergio Bustamante: a smiling sun, moustache, bow tie and all.
+            </p>
+          </Reveal>
+          <Reveal delay={0.18}>
+            <dl className={styles.reySolNotes}>
+              {REY_SOL_NOTES.map(([k, v]) => (
+                <div key={k}>
+                  <dt>{k}</dt>
+                  <dd>{v}</dd>
+                </div>
+              ))}
+            </dl>
+          </Reveal>
+          <Reveal delay={0.24}>
+            <ul className={styles.reySolSpecs}>
+              {['Extra Añejo', '100% blue Weber agave', 'Six years, French oak', '700ml'].map((t) => <li key={t}>{t}</li>)}
+            </ul>
+          </Reveal>
         </div>
       </section>
 
@@ -444,27 +503,9 @@ export default function SanMatias() {
               </div>
               <h3 className={styles.serveName}>{s.name}</h3>
               <p className={styles.serveBuild}>{s.build}</p>
-              <button
-                className={styles.recipeBtn}
-                onClick={() => setOpen(open === i ? null : i)}
-                aria-expanded={open === i}
-              >
-                {open === i ? <Minus size={14} /> : <Plus size={14} />} View recipe
-              </button>
-              <AnimatePresence initial={false}>
-                {open === i && (
-                  <motion.dl
-                    className={styles.recipe}
-                    initial={{ height: 0, opacity: 0 }}
-                    animate={{ height: 'auto', opacity: 1 }}
-                    exit={{ height: 0, opacity: 0 }}
-                    transition={{ duration: 0.4, ease }}
-                  >
-                    <div><dt>Method</dt><dd>{s.method}</dd></div>
-                    <div><dt>Glass</dt><dd>{s.glass}</dd></div>
-                  </motion.dl>
-                )}
-              </AnimatePresence>
+              <Link to="/cocktails#san-matias" className={styles.recipeBtn}>
+                View recipe <ArrowUpRight size={14} />
+              </Link>
             </Reveal>
           ))}
         </div>

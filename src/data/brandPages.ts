@@ -258,10 +258,7 @@ export const brandPages: BrandPage[] = [
       ],
     },
     range: [
-      { name: 'San Matías Tahona Blanco', spec: '40% ABV · 750ml', note: 'Tahona-milled blanco - rich agave, earth, fresh herbs.', image: sm('bottle-tahona') },
-      { name: 'San Matías Tahona Añejo', spec: '40% ABV · 750ml', note: 'Tahona-milled, then aged in oak - a fuller agave character the barrel refines.', image: sm('bottle-tahona-anejo') },
-      { name: 'San Matías Cristal', spec: '40% ABV · 750ml', note: 'Añejo filtered crystal-clear - oak smoothness with a clean, bright agave finish.', image: sm('bottle-cristal') },
-      { name: 'San Matías Gran Reserva', spec: '40% ABV · 700ml', note: 'Extra Añejo - three years in oak. Dried fruit, vanilla, baked sugar.', image: sm('bottle-gran-reserva') },
+      { name: 'San Matías Gran Reserva', spec: '38% ABV · 700ml', note: 'Extra Añejo - three years in oak. Dried fruit, vanilla, baked sugar.', image: sm('bottle-gran-reserva') },
     ],
     tasting: {
       of: 'San Matías Tahona Blanco',
@@ -272,8 +269,8 @@ export const brandPages: BrandPage[] = [
     },
     serves: [
       { name: 'Tahona Margarita', build: 'Tahona Blanco, fresh lime, agave nectar, fine salt rim.', method: 'Shake, salt rim', glass: 'Coupe', image: sm('serve-margarita') },
-      { name: 'San Matías Old Fashioned', build: 'Gran Reserva, agave, mole bitters, orange.', method: 'Stir down', glass: 'Rocks', image: sm('serve-old-fashioned') },
-      { name: 'Highland Paloma', build: 'Tahona, grapefruit, lime, a pinch of sea salt, soda.', method: 'Build, top with soda', glass: 'Highball', image: sm('serve-paloma') },
+      { name: 'San Matías Old Fashioned', build: 'Gran Reserva, agave, mole bitters, orange.', method: 'Stir down', glass: 'Rocks', image: sm('serve-old-fashioned-bar') },
+      { name: 'Highland Paloma', build: 'Tahona, grapefruit, lime, a pinch of sea salt, soda.', method: 'Build, top with soda', glass: 'Highball', image: sm('serve-paloma-bar') },
     ],
     stock: 'Talk to our trade team about allocations, tequila education sessions, and the Casa San Matías story.',
     facts: [
@@ -400,9 +397,9 @@ export const brandPages: BrandPage[] = [
     stock: 'Talk to our trade team about pairings, allocations, and fire-driven kitchen activations across Australia.',
     facts: [
       { value: '4t', label: 'Wood-burning oven behind the idea' },
-      { value: '2', label: 'Countries: blended in Scotland, born in Singapore' },
+      { value: '2', label: 'Countries: blended in wheated whiskey and spicy rye, born in Singapore' },
       { value: '45%', label: 'ABV - built for the highball' },
-      { value: '1', label: 'Job: stand up to smoke' },
+      { value: '1', label: 'Job: stand up to bold, big flavour' },
     ],
     trade: [
       'Fire-driven kitchens and grill restaurants',

@@ -11,6 +11,7 @@ import {
   type LucideIcon,
 } from 'lucide-react';
 import { tradeSegment, tradeSegments, type TradeSegment } from '../data/tradePages';
+import { portfolioPdf } from '../data/content';
 import SmartImage from '../components/SmartImage';
 import Hero from '../components/bento/Hero';
 import Rise from '../components/bento/Rise';
@@ -71,7 +72,7 @@ function Segment({ data }: { data: TradeSegment }) {
         actions={
           <>
             <Pill to="/contact">Open a trade account</Pill>
-            <Pill to="/portfolio" variant="more">Download portfolio</Pill>
+            <Pill href={portfolioPdf} variant="more">Download portfolio</Pill>
           </>
         }
       />

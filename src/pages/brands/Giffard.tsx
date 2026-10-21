@@ -1,7 +1,7 @@
 import { useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { AnimatePresence, motion, useReducedMotion, useScroll, useTransform } from 'framer-motion';
-import { ArrowUpRight, Plus, Minus } from 'lucide-react';
+import { ArrowUpRight } from 'lucide-react';
 import { brandPage } from '../../data/brandPages';
 import { giffardGallery } from '../../data/giffardRange';
 import Reveal from '../../components/Reveal';
@@ -38,7 +38,6 @@ export default function Giffard() {
   const fanLeft = useTransform(scrollYProgress, [0, 1], ['0%', reduce ? '0%' : '-22%']);
   const fanRight = useTransform(scrollYProgress, [0, 1], ['0%', reduce ? '0%' : '22%']);
   const sealRot = useTransform(scrollYProgress, [0, 1], [-8, reduce ? -8 : 40]);
-  const [openServe, setOpenServe] = useState<number | null>(null);
   const [shelfTab, setShelfTab] = useState(0);
   const shelf = giffardGallery[shelfTab];
 
@@ -364,7 +363,6 @@ export default function Giffard() {
         </div>
         <div className={styles.menu}>
           {d.serves.map((s, i) => {
-            const open = openServe === i;
             return (
               <motion.article
                 key={s.name}
@@ -382,33 +380,9 @@ export default function Giffard() {
                   <h3>{s.name}</h3>
                   <Ornament className={styles.menuOrn} />
                   <p>{s.build}</p>
-                  <button
-                    className={styles.recipeBtn}
-                    onClick={() => setOpenServe(open ? null : i)}
-                    aria-expanded={open}
-                  >
-                    {open ? <Minus size={14} /> : <Plus size={14} />} View recipe
-                  </button>
-                  <AnimatePresence initial={false}>
-                    {open && (
-                      <motion.dl
-                        className={styles.recipe}
-                        initial={{ height: 0, opacity: 0 }}
-                        animate={{ height: 'auto', opacity: 1 }}
-                        exit={{ height: 0, opacity: 0 }}
-                        transition={{ duration: 0.35, ease }}
-                      >
-                        <div>
-                          <dt>Méthode</dt>
-                          <dd>{s.method}</dd>
-                        </div>
-                        <div>
-                          <dt>Verre</dt>
-                          <dd>{s.glass}</dd>
-                        </div>
-                      </motion.dl>
-                    )}
-                  </AnimatePresence>
+                  <Link to="/cocktails#giffard" className={styles.recipeBtn}>
+                    View recipe <ArrowUpRight size={14} />
+                  </Link>
                 </div>
               </motion.article>
             );

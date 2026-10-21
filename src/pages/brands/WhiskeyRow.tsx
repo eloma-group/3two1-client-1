@@ -1,7 +1,7 @@
-import { useRef, useState } from 'react';
+import { useRef } from 'react';
 import { Link } from 'react-router-dom';
-import { motion, useReducedMotion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
-import { ArrowUpRight, Plus, Minus } from 'lucide-react';
+import { motion, useReducedMotion, useScroll, useTransform } from 'framer-motion';
+import { ArrowUpRight } from 'lucide-react';
 import { brandPage } from '../../data/brandPages';
 import Reveal from '../../components/Reveal';
 import styles from './WhiskeyRow.module.css';
@@ -16,6 +16,11 @@ const MASH = [
   { label: 'Malted barley', share: 8, tone: 'barley' },
 ];
 
+/* Serves that have their own product page. */
+const SERVE_PAGE: Record<string, string> = {
+  'Old Fashioned': '/brands/whiskey-row/old-fashioned',
+};
+
 export default function WhiskeyRow() {
   const d = brandPage('whiskey-row')!;
   const reduce = useReducedMotion();
@@ -23,7 +28,6 @@ export default function WhiskeyRow() {
   const { scrollYProgress } = useScroll({ target: hero, offset: ['start start', 'end start'] });
   const photoY = useTransform(scrollYProgress, [0, 1], ['0%', reduce ? '0%' : '18%']);
   const lineupY = useTransform(scrollYProgress, [0, 1], ['0%', reduce ? '0%' : '-22%']);
-  const [open, setOpen] = useState<number | null>(null);
   const bottle = d.range[0];
   const words = d.name.split(' ');
 
@@ -336,7 +340,6 @@ export default function WhiskeyRow() {
         </div>
         <div className={styles.tickets}>
           {d.serves.map((s, i) => {
-            const isOpen = open === i;
             return (
               <motion.article
                 key={s.name}
@@ -352,29 +355,11 @@ export default function WhiskeyRow() {
                   <span className={styles.ticketNo}>Admit one · No. {String(i + 1).padStart(3, '0')}</span>
                 </div>
                 <div className={styles.ticketBody}>
-                  <h3>{s.name}</h3>
+                  <h3>{SERVE_PAGE[s.name] ? <Link to={SERVE_PAGE[s.name]} className={styles.serveLink}>{s.name} <ArrowUpRight size={16} /></Link> : s.name}</h3>
                   <p>{s.build}</p>
-                  <button
-                    className={styles.recipeBtn}
-                    onClick={() => setOpen(isOpen ? null : i)}
-                    aria-expanded={isOpen}
-                  >
-                    {isOpen ? <Minus size={14} /> : <Plus size={14} />} View recipe
-                  </button>
-                  <AnimatePresence initial={false}>
-                    {isOpen && (
-                      <motion.dl
-                        className={styles.recipe}
-                        initial={{ height: 0, opacity: 0 }}
-                        animate={{ height: 'auto', opacity: 1 }}
-                        exit={{ height: 0, opacity: 0 }}
-                        transition={{ duration: 0.35, ease }}
-                      >
-                        <div><dt>Method</dt><dd>{s.method}</dd></div>
-                        <div><dt>Glass</dt><dd>{s.glass}</dd></div>
-                      </motion.dl>
-                    )}
-                  </AnimatePresence>
+                  <Link to="/cocktails#whiskey-row" className={styles.recipeBtn}>
+                    View recipe <ArrowUpRight size={14} />
+                  </Link>
                 </div>
               </motion.article>
             );

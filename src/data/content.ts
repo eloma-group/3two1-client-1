@@ -38,6 +38,9 @@ export interface MenuEntry {
   children: MenuChild[];
 }
 
+/** The downloadable portfolio, served from /public. */
+export const portfolioPdf = '/downloads/3Two1-Drinks-Portfolio-2027-Q1.pdf';
+
 export const navMenu: MenuEntry[] = [
   {
     label: 'About',
@@ -322,7 +325,7 @@ export const footerColumns = [
     title: 'Trade',
     links: [
       { label: 'Become a Stockist', to: '/#contact' },
-      { label: 'Download Portfolio', to: '/portfolio' },
+      { label: 'Download Portfolio', to: portfolioPdf },
       { label: 'Events', to: '/events' },
       { label: 'Rate Card', to: '/#trade' },
       { label: 'Cocktail Corner', to: '/cocktails' },

@@ -2,6 +2,8 @@ import { ArrowUpRight } from 'lucide-react';
 import { Facebook, Instagram, Linkedin, Youtube } from '../components/icons';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { brand, footerColumns, contact } from '../data/content';
+
+const isFile = (to: string) => to.endsWith('.pdf');
 import { scrollToHash } from '../hooks/useLenis';
 import styles from './Footer.module.css';
 
@@ -60,7 +62,9 @@ export default function Footer() {
                     <li key={i}>
                       <a
                         href={l.to}
-                        onClick={(e) => { e.preventDefault(); go(l.to); }}
+                        {...(isFile(l.to)
+                          ? { target: '_blank', rel: 'noopener' }
+                          : { onClick: (e: React.MouseEvent) => { e.preventDefault(); go(l.to); } })}
                       >
                         {l.label}
                       </a>

@@ -1,9 +1,9 @@
-import { useEffect, useRef, useState, type ReactNode } from 'react';
+import { useEffect, useRef, type ReactNode } from 'react';
 import { Link } from 'react-router-dom';
 import {
-  AnimatePresence, motion, useReducedMotion, useScroll, useTransform,
+  motion, useReducedMotion, useScroll, useTransform,
 } from 'framer-motion';
-import { ArrowUpRight, Flame, Plus, Minus } from 'lucide-react';
+import { ArrowUpRight, Flame } from 'lucide-react';
 import { brandPage } from '../../data/brandPages';
 import styles from './BurntEnds.module.css';
 
@@ -112,7 +112,6 @@ export default function BurntEnds() {
   const bottleY = useTransform(scrollYProgress, [0, 1], ['0%', reduced ? '0%' : '18%']);
   const titleY = useTransform(scrollYProgress, [0, 1], ['0%', reduced ? '0%' : '-30%']);
   const glow = useTransform(scrollYProgress, [0, 1], [1, 0.3]);
-  const [open, setOpen] = useState<number | null>(null);
 
   const words = d.quote.replace(/\.$/, '').split(/,\s*/);
   const [first, ...rest] = d.name.split(' ');
@@ -340,7 +339,6 @@ export default function BurntEnds() {
         </Sear>
         <div className={styles.serveGrid}>
           {d.serves.map((s, i) => {
-            const isOpen = open === i;
             return (
               <motion.article
                 key={s.name}
@@ -357,27 +355,9 @@ export default function BurntEnds() {
                 <div className={styles.serveBody}>
                   <h3>{s.name}</h3>
                   <p>{s.build}</p>
-                  <button
-                    className={styles.recipeBtn}
-                    onClick={() => setOpen(isOpen ? null : i)}
-                    aria-expanded={isOpen}
-                  >
-                    {isOpen ? <Minus size={14} /> : <Plus size={14} />} View recipe
-                  </button>
-                  <AnimatePresence initial={false}>
-                    {isOpen && (
-                      <motion.dl
-                        className={styles.recipe}
-                        initial={{ height: 0, opacity: 0 }}
-                        animate={{ height: 'auto', opacity: 1 }}
-                        exit={{ height: 0, opacity: 0 }}
-                        transition={{ duration: 0.35, ease }}
-                      >
-                        <div><dt>Method</dt><dd>{s.method}</dd></div>
-                        <div><dt>Glass</dt><dd>{s.glass}</dd></div>
-                      </motion.dl>
-                    )}
-                  </AnimatePresence>
+                  <Link to="/cocktails#burnt-ends" className={styles.recipeBtn}>
+                    View recipe <ArrowUpRight size={14} />
+                  </Link>
                 </div>
               </motion.article>
             );

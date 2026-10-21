@@ -25,6 +25,7 @@
 import { useEffect, useRef } from 'react'
 import { motion } from 'framer-motion'
 import { Download } from 'lucide-react'
+import { portfolioPdf } from '../data/content'
 import gsap from 'gsap'
 import { Link } from 'react-router-dom'
 import MagneticButton from '../components/MagneticButton'
@@ -186,7 +187,7 @@ export function IntroductionSection() {
             transition={{ duration: 0.6, delay: 0.32, ease }}
             style={{ display: 'inline-block' }}
           >
-            <MagneticButton variant="solid" href="#" cursorLabel="Download">
+            <MagneticButton variant="solid" href={portfolioPdf} cursorLabel="Download">
               Download Our Portfolio <Download size={18} />
             </MagneticButton>
           </motion.div>
