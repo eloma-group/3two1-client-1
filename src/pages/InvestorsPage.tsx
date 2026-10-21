@@ -345,7 +345,7 @@ export default function InvestorsPage({ ready = true }: { ready?: boolean }) {
         <div className={styles.heroScrim} aria-hidden="true" />
         <div className={`container ${styles.heroInner}`}>
           <Reveal y={14}>
-            <p className={styles.heroEyebrow}><i aria-hidden="true" /> Investors · Company roadmap 2028</p>
+            <p className={styles.heroEyebrow}><i aria-hidden="true" /> Investors · Company roadmap 2026</p>
           </Reveal>
           <h1 className={styles.heroTitle}>
             <RevealHeading
