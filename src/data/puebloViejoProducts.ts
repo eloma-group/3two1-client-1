@@ -417,7 +417,7 @@ export const puebloViejoProducts: HouseProduct[] = [
       },
       {
         "q": "What's the ABV?",
-        "a": "The brand produces it at 38% or 40% depending on the market. Australian listings show 38% in a 700 ml bottle."
+        "a": "The brand produces it at 38% or 40% depending on the market. Australian listings show 40% in a 750 ml bottle."
       },
       {
         "q": "Is it 100% agave?",
@@ -649,7 +649,7 @@ export const puebloViejoProducts: HouseProduct[] = [
       },
       {
         "q": "What's the ABV?",
-        "a": "The brand produces it at 38% or 40% depending on the market. Dan Murphy's lists it at 38% in a 700 ml bottle."
+        "a": "The brand produces it at 38% or 40% depending on the market. Dan Murphy's lists it at 40% in a 750 ml bottle."
       },
       {
         "q": "Is it 100% agave?",
