@@ -240,6 +240,7 @@
   animation: mapFlow 1.6s linear infinite;
 }
 @keyframes mapFlow { to { stroke-dashoffset: -18; } }
+.mapFlowReverse { animation-direction: reverse; }
 .mapPin { fill: var(--rose-500); stroke: var(--surface); stroke-width: 4; }
 .mapPulse {
   fill: var(--rose-500);
@@ -262,7 +263,6 @@
   stroke-width: 7px;
   stroke-linejoin: round;
 }
-.mapHq { font-size: 15px; letter-spacing: 0.14em; fill: var(--rose-500); }
 @media (prefers-reduced-motion: reduce) {
   .mapPulse { animation: none; opacity: 0; }
 }
@@ -326,7 +326,6 @@
 .place i { width: 6px; height: 6px; border-radius: 50%; background: rgba(var(--ink-rgb), 0.25); }
 .hq { border-color: rgba(232, 68, 111, 0.4); }
 .hq i { background: var(--rose-500); }
-.hqTag { font-size: 0.64rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--rose-500); }
 
 /* ── Dark figures band ────────────────────────────────────────────────── */
 /* Full-bleed photograph with the figures on one frosted panel. */

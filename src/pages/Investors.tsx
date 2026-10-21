@@ -226,8 +226,12 @@ function FootprintMap() {
     const dist = Math.hypot(to.x - hq.x, to.y - hq.y);
     const cx = (hq.x + to.x) / 2;
     const cy = (hq.y + to.y) / 2 - dist * 0.3;
-    return { name: p.name, d: `M${hq.x},${hq.y} Q${cx},${cy} ${to.x},${to.y}` };
+    return { name: p.name, cy, d: `M${hq.x},${hq.y} Q${cx},${cy} ${to.x},${to.y}` };
   });
+  /* Stack the arcs top to bottom and flip every other one, so neighbouring
+     routes flow in opposite directions. */
+  const stacked = [...routes].sort((a, b) => a.cy - b.cy).map((r) => r.name);
+  const reversed = (name: string) => stacked.indexOf(name) % 2 === 1;
 
   return (
     <figure
@@ -270,7 +274,7 @@ function FootprintMap() {
             {!reduced && (
               <motion.path
                 d={r.d}
-                className={styles.mapFlow}
+                className={`${styles.mapFlow} ${reversed(r.name) ? styles.mapFlowReverse : ''}`}
                 initial={{ opacity: 0 }}
                 animate={open ? { opacity: 1 } : undefined}
                 transition={{ duration: 0.6, delay: 1.8 + i * 0.16 }}
@@ -299,14 +303,13 @@ function FootprintMap() {
                 className={styles.mapLabel}
               >
                 {p.name}
-                {p.hq && <tspan className={styles.mapHq} dx={8}>HQ</tspan>}
               </text>
             </motion.g>
           );
         })}
       </svg>
       <figcaption className={styles.mapKey}>
-        <span><i className={styles.mapKeyHq} aria-hidden="true" /> Perth HQ · weekly across WA</span>
+        <span><i className={styles.mapKeyHq} aria-hidden="true" /> Perth · weekly across WA</span>
         <span><i className={styles.mapKeyRoute} aria-hidden="true" /> National freight</span>
       </figcaption>
     </figure>
@@ -476,10 +479,9 @@ export default function Investors({ ready = true }: { ready?: boolean }) {
           </p>
           <div className={styles.places}>
             {PLACES.map((p) => (
-              <span key={p.name} className={`${styles.place} ${p.hq ? styles.hq : ''}`}>
+              <span key={p.name} className={`${styles.place} ${styles.hq}`}>
                 <i aria-hidden="true" />
                 {p.name}
-                {p.hq && <span className={styles.hqTag}>HQ</span>}
               </span>
             ))}
           </div>
