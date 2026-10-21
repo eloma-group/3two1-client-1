@@ -209,8 +209,6 @@ const project = (lat: number, lng: number) => ({
   x: (lng - 112) * MAP_K * MAP_S,
   y: (-lat - 10) * MAP_S,
 });
-/* West of the WA border (129E) is home turf, so those dots carry the brand tint. */
-const WA_BORDER = 129;
 const HQ = PLACES.find((p) => p.hq)!;
 
 /** Dot map of Australia: freight lines run out of Perth to every city we serve. */
@@ -252,7 +250,7 @@ function FootprintMap() {
                 cx={x}
                 cy={y}
                 r={4.6}
-                className={lng < WA_BORDER ? styles.mapDotWa : styles.mapDot}
+                className={styles.mapDotWa}
               />
             );
           })}
@@ -462,19 +460,18 @@ export default function Investors({ ready = true }: { ready?: boolean }) {
     {
       id: 'footprint',
       kicker: 'Distribution footprint',
-      heading: 'From WA - to wherever it pours.',
-      gradientFrom: 1,
+      heading: '4 Warehouses - For Fast Deliveries.',
+      gradientFrom: 0,
       flip: true,
       media: <FootprintMap />,
       body: (
         <>
           <p className={styles.body}>
-            Direct delivery across Perth metro and regional WA, weekly. National freight for SA, NT,
-            VIC, NSW, QLD and ACT. National exclusive distribution rights across the portfolio.
+            Delivery across Australia in general. National freight for QLD, ACT,
+            SA, NT and WA. National exclusive distribution rights across the portfolio.
           </p>
           <p className={styles.body}>
-            Perth metro orders placed before midday go out on the same run. Everywhere else moves
-            on a weekly national cycle, and we hold buffer stock on the core range so a listing
+            Orders placed before midday go out on the following day's run. We hold buffer stock on the core range so a listing
             never goes dark waiting on a container.
           </p>
           <div className={styles.places}>
