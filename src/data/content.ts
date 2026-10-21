@@ -306,6 +306,8 @@ export const contact = {
   wholesalers: 'ALM, Paramount, Liquid Mix, ILG',
   instagram: 'https://www.instagram.com/3two1_drinks/',
   facebook: 'https://www.facebook.com/share/1CPbHuseCL/',
+  youtube: 'https://www.youtube.com/@3two1_drinks',
+  linkedin: 'https://www.linkedin.com/company/3two1-drinks/',
 } as const;
 
 export const footerColumns = [

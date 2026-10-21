@@ -526,10 +526,10 @@ export default function Investors({ ready = true }: { ready?: boolean }) {
           <Reveal y={18} delay={0.25}>
             <div className={styles.heroMeta}>
               <p className={styles.heroLede}>
-                A small Western Australian distributor with a stubborn belief - that the right
-                bottle, in the right hands, makes the night.
+                An Australia-based medium-sized distributor with one obsession that the right
+                bottle belongs in best venues.
               </p>
-              <span className={styles.heroPlace}>Perth · Western Australia</span>
+              <span className={styles.heroPlace}>Australia, New Zealand, Pacific Islands</span>
             </div>
           </Reveal>
         </div>

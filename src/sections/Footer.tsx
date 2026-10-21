@@ -1,5 +1,5 @@
 import { ArrowUpRight } from 'lucide-react';
-import { Facebook, Instagram } from '../components/icons';
+import { Facebook, Instagram, Linkedin, Youtube } from '../components/icons';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { brand, footerColumns, contact } from '../data/content';
 import { scrollToHash } from '../hooks/useLenis';
@@ -36,11 +36,17 @@ export default function Footer() {
             <p className={styles.tagline}>{brand.tagline}.</p>
             <p className={styles.regions}>{brand.regions}</p>
             <div className={styles.socials}>
-              <a href={contact.instagram} target="_blank" rel="noreferrer" className={styles.social} data-cursor="Follow">
-                <Instagram size={18} /> Instagram
+              <a href={contact.instagram} target="_blank" rel="noreferrer" className={styles.social} data-cursor="Follow" aria-label="Instagram" title="Instagram">
+                <Instagram size={18} />
               </a>
-              <a href={contact.facebook} target="_blank" rel="noreferrer" className={styles.social} data-cursor="Follow">
-                <Facebook size={18} /> Facebook
+              <a href={contact.facebook} target="_blank" rel="noreferrer" className={styles.social} data-cursor="Follow" aria-label="Facebook" title="Facebook">
+                <Facebook size={18} />
+              </a>
+              <a href={contact.youtube} target="_blank" rel="noreferrer" className={styles.social} data-cursor="Follow" aria-label="YouTube" title="YouTube">
+                <Youtube size={18} />
+              </a>
+              <a href={contact.linkedin} target="_blank" rel="noreferrer" className={styles.social} data-cursor="Follow" aria-label="LinkedIn" title="LinkedIn">
+                <Linkedin size={18} />
               </a>
             </div>
           </div>
