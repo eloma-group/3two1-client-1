@@ -255,11 +255,11 @@ export const puebloViejoProducts: HouseProduct[] = [
     "lede": "Pueblo Viejo Reposado is 100% blue Weber agave from Casa San Matías, rested for nine months in white American oak. It keeps the cooked-agave and citrus character of the Blanco and adds butter, caramel and a little cinnamon spice.",
     "facts": [
       {
-        "value": "38%",
+        "value": "40%",
         "label": "ABV (Australia)"
       },
       {
-        "value": "700 ml",
+        "value": "750 ml",
         "label": "Bottle"
       },
       {
@@ -491,11 +491,11 @@ export const puebloViejoProducts: HouseProduct[] = [
     "lede": "Pueblo Viejo Añejo spends 18 months in white American oak, half a year longer than the legal minimum for an añejo. It's soft, nutty and chocolatey, with vanilla and dried fruit, and still recognisably agave.",
     "facts": [
       {
-        "value": "38%",
+        "value": "40%",
         "label": "ABV (Australia)"
       },
       {
-        "value": "700 ml",
+        "value": "750 ml",
         "label": "Bottle"
       },
       {

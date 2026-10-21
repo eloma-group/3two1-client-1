@@ -132,8 +132,8 @@ export const brandPages: BrandPage[] = [
     },
     range: [
       { name: 'Pueblo Viejo Blanco', spec: '38% ABV · 700ml', note: 'Bright agave, white pepper, citrus pith. Margaritas all night.', image: '/images/house-pueblo-viejo.webp' },
-      { name: 'Pueblo Viejo Reposado', spec: '38% ABV · 700ml', note: 'Six months in American oak - softer agave, vanilla, dried herbs.', image: '/images/brand-pueblo-viejo-reposado-bottle.webp' },
-      { name: 'Pueblo Viejo Añejo', spec: '38% ABV · 700ml', note: 'A year in oak. Dried fruit, baked apple, gentle cinnamon.', image: '/images/brand-pueblo-viejo-anejo-bottle.webp' },
+      { name: 'Pueblo Viejo Reposado', spec: '40% ABV · 750ml', note: 'Six months in American oak - softer agave, vanilla, dried herbs.', image: '/images/brand-pueblo-viejo-reposado-bottle.webp' },
+      { name: 'Pueblo Viejo Añejo', spec: '40% ABV · 750ml', note: 'A year in oak. Dried fruit, baked apple, gentle cinnamon.', image: '/images/brand-pueblo-viejo-anejo-bottle.webp' },
     ],
     tasting: {
       of: 'Pueblo Viejo Blanco',
@@ -326,7 +326,7 @@ export const brandPages: BrandPage[] = [
       ],
     },
     range: [
-      { name: 'Crème de Cassis Noir de Bourgogne', spec: '20% ABV · 700ml', note: 'Burgundy blackcurrant - deep, plummy, the gold standard for a Kir.', image: gf('cassis') },
+      { name: 'Crème de Cassis Noir de Bourgogne', spec: '16% ABV · 700ml', note: 'Burgundy blackcurrant - deep, plummy, the gold standard for a Kir.', image: gf('cassis') },
       { name: 'Apricot Brandy', spec: '25% ABV · 700ml', note: 'Sun-ripened Roussillon apricot. Stone-fruit core with brandy depth.', image: '/images/giffard-abricot-du-roussillon-apricot-liqueur.webp' },
       { name: 'Banane du Brésil', spec: '25% ABV · 700ml', note: 'Ripe yellow banana - softly tropical, never sweet.' },
       { name: 'Caribbean Pineapple', spec: '20% ABV · 700ml', note: 'Slow-roasted pineapple with a smoky-sweet edge.', image: '/images/giffard-caribbean-pineapple-liqueur.webp' },
@@ -385,7 +385,7 @@ export const brandPages: BrandPage[] = [
       ],
     },
     range: [
-      { name: 'Burnt Ends Blended Whiskey', spec: '40% ABV · 700ml', note: 'Charred oak, soft peat, baked stone fruit and a long, dry finish.', image: '/images/house-burnt-ends.webp' },
+      { name: 'Burnt Ends Blended Whiskey', spec: '45% ABV · 500ml', note: 'Charred oak, soft peat, baked stone fruit and a long, dry finish.', image: '/images/house-burnt-ends.webp' },
     ],
     tasting: {
       of: 'Burnt Ends Blended',
@@ -403,7 +403,7 @@ export const brandPages: BrandPage[] = [
     facts: [
       { value: '4t', label: 'Wood-burning oven behind the idea' },
       { value: '2', label: 'Countries: blended in Scotland, born in Singapore' },
-      { value: '40%', label: 'ABV - built for the highball' },
+      { value: '45%', label: 'ABV - built for the highball' },
       { value: '1', label: 'Job: stand up to smoke' },
     ],
     trade: [
@@ -439,7 +439,7 @@ export const brandPages: BrandPage[] = [
       ],
     },
     range: [
-      { name: 'Whiskey Row Bourbon', spec: '45% ABV · 700ml', note: 'Caramel, baking spice, charred oak - a high-rye bourbon built for cocktails.', image: wr('bottle') },
+      { name: 'Whiskey Row Bourbon', spec: '50% ABV · 750ml', note: 'Caramel, baking spice, charred oak - a high-rye bourbon built for cocktails.', image: wr('bottle') },
     ],
     tasting: {
       of: 'Whiskey Row Bourbon',
@@ -457,7 +457,7 @@ export const brandPages: BrandPage[] = [
     facts: [
       { value: '4', label: 'Blocks of Main Street, Louisville' },
       { value: '#4', label: 'Char on new American oak' },
-      { value: '45%', label: 'ABV - proof that holds in a cocktail' },
+      { value: '50%', label: 'ABV - proof that holds in a cocktail' },
       { value: '1', label: 'Small batch at a time' },
     ],
     trade: [
@@ -558,7 +558,7 @@ export const brandPages: BrandPage[] = [
     },
     range: [
       { name: 'Thoquino Cachaça', spec: '40% ABV · 700ml', note: 'The classic white. Fresh-cut grass, green banana and lime - made for the Caipirinha.', image: '/images/house-thoquino.webp' },
-      { name: 'Thoquino Aged', spec: '40% ABV · 700ml', note: 'Rested before bottling for a rounder, softer cane spirit. Sip it, or use it where a white feels too sharp.', image: '/images/brands/thoquino/aged-bottle.webp' },
+      { name: 'Thoquino Aged', spec: '40% ABV · 1L', note: 'Rested before bottling for a rounder, softer cane spirit. Sip it, or use it where a white feels too sharp.', image: '/images/brands/thoquino/aged-bottle.webp' },
     ],
     tasting: {
       of: 'Thoquino Cachaça',
