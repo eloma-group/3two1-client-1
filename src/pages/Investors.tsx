@@ -309,7 +309,6 @@ function FootprintMap() {
         })}
       </svg>
       <figcaption className={styles.mapKey}>
-        <span><i className={styles.mapKeyHq} aria-hidden="true" /> Perth · weekly across WA</span>
         <span><i className={styles.mapKeyRoute} aria-hidden="true" /> National freight</span>
       </figcaption>
     </figure>
