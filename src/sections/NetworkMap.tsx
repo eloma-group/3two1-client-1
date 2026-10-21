@@ -1,9 +1,10 @@
-import { useEffect, useId, useRef } from 'react';
+import { useEffect, useId, useMemo, useRef } from 'react';
 import createGlobe from 'cobe';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import styles from './NetworkMap.module.css';
 import { AU_LAND_DOTS } from '../data/auLandDots';
+import { POUR_DRIPS, POUR_FILL_LENGTH, POUR_FILL_START, usePourIntoAustralia } from './pourIntoAustralia';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -129,6 +130,19 @@ export default function NetworkMap(
   const canvas = useRef<HTMLCanvasElement>(null);
   const track = useRef<HTMLDivElement>(null);
   const panel = useRef<HTMLDivElement>(null);
+  const svg = useRef<SVGSVGElement>(null);
+  const mapImg = useRef<SVGImageElement>(null);
+  const fillImg = useRef<SVGImageElement>(null);
+  const maskBlob = useRef<SVGPathElement>(null);
+  const maskDrips = useRef<(SVGRectElement | null)[]>([]);
+  const maskId = `pourMask-${useId().replace(/[^a-zA-Z0-9]/g, '')}`;
+
+  /* The flat map fills with a scroll-scrubbed pour instead of fading in. */
+  const pourRefs = useMemo(
+    () => ({ root, svg, map: mapImg, fill: fillImg, maskBlob, maskDrips }),
+    [],
+  );
+  usePourIntoAustralia(variant === 'map', pourRefs);
 
   /* Spin the globe and keep each city's icon row sitting on it. Positions are
      written straight to the DOM every frame - re-rendering 15 pins at 60fps
@@ -334,17 +348,19 @@ export default function NetworkMap(
     const panelEl = panel.current;
     if (!rootEl || !trackEl || !panelEl) return;
 
-    const map = rootEl.querySelector('[data-map]'); // svg image or globe wrapper
+    /* The flat map's own reveal is the pour (see pourIntoAustralia.ts), so GSAP
+       only fades the map in for the globe. */
+    const map = variant === 'globe' ? rootEl.querySelector('[data-map]') : null; // globe wrapper
     const pins = Array.from(rootEl.querySelectorAll('[data-pin]')) as SVGGElement[];
 
     const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (reduced) {
-      gsap.set([map, ...pins], { opacity: 1 });
+      gsap.set([rootEl.querySelector('[data-map]'), ...pins], { opacity: 1 });
       return;
     }
 
     const ctx = gsap.context(() => {
-      gsap.set(map, { opacity: 0, scale: 0.94, transformOrigin: '60% 55%' });
+      if (map) gsap.set(map, { opacity: 0, scale: 0.94, transformOrigin: '60% 55%' });
       gsap.set(pins, { opacity: 0, y: 10 });
 
       const tl = gsap.timeline({
@@ -360,15 +376,32 @@ export default function NetworkMap(
         },
       });
 
-      tl.to(map, { opacity: 0.95, scale: 1, duration: 1.4 }, 0)
-        .to(pins, { opacity: 1, y: 0, stagger: 0.14, duration: 0.6 }, 0.8);
+      const PIN_STAGGER = 0.14, PIN_DUR = 0.6, HOLD = 0.4;
+      if (map) {
+        tl.to(map, { opacity: 0.95, scale: 1, duration: 1.4 }, 0);
+        tl.to(pins, { opacity: 1, y: 0, stagger: PIN_STAGGER, duration: PIN_DUR }, 0.8);
+      } else {
+        /* Flat map: the places only come in once the pour has filled it. The
+           pin run is placed at the point in the scrub where the flood ends (plus
+           a little for the pour's smoothing), with a short hold at the end. */
+        const H = window.innerHeight;
+        const range = Math.max(1, trackEl.offsetHeight - H);
+        const done = Math.min(0.9, ((POUR_FILL_START + POUR_FILL_LENGTH + 0.08) * H) / range);
+        const run = (pins.length - 1) * PIN_STAGGER + PIN_DUR + HOLD;
+        const at = (done * run) / (1 - done);
+        tl.to(pins, { opacity: 1, y: 0, stagger: PIN_STAGGER, duration: PIN_DUR }, at);
+        tl.to({}, { duration: HOLD });
+      }
     }, root);
 
     ScrollTrigger.refresh();
     return () => ctx.revert();
-  }, []);
+  }, [variant]);
 
   return (
+    <>
+    {/* Open space above the flat map, so the pour has a longer fall from the hero. */}
+    {variant === 'map' && <div className={styles.pourGap} aria-hidden="true" />}
     <div
       className={variant === 'globe' ? `${styles.wrap} ${styles.plain}` : styles.wrap}
       id={anchorId}
@@ -437,7 +470,7 @@ export default function NetworkMap(
             </div>
           ) : (
           /* Shared SVG canvas — map + pins (animated on scroll) */
-          <svg className={styles.svg} viewBox={`${-MAP_SHIFT_X} 0 1200 800`} preserveAspectRatio="xMidYMid meet">
+          <svg ref={svg} className={styles.svg} viewBox={`${-MAP_SHIFT_X} 0 1200 800`} preserveAspectRatio="xMidYMid meet">
             <defs>
               {/* The artwork ships in the deep brand pink (#f83860). Retint it to
                   a lighter #ff9999 without flattening the 3D shading: drop to
@@ -454,13 +487,30 @@ export default function NetworkMap(
                 </feComponentTransfer>
                 <feComposite in="tinted" in2="SourceGraphic" operator="in" />
               </filter>
+              {/* The liquid front: a growing blob plus drip tendrils, driven per frame. */}
+              <mask id={maskId} maskUnits="userSpaceOnUse" x="-60" y="-100" width="1300" height="1000">
+                <path ref={maskBlob} fill="#fff" />
+                {POUR_DRIPS.map((_, i) => (
+                  <rect key={i} ref={(r) => { maskDrips.current[i] = r; }} fill="#fff" />
+                ))}
+              </mask>
             </defs>
             <image
+              ref={mapImg}
               data-map
               href="/images/au-nz-glow.webp"
               x="210" y="-90" width="960" height="960"
               preserveAspectRatio="xMidYMid meet"
               style={{ filter: `url(#${tintId})` }}
+            />
+            {/* Masked copy of the map that the pour reveals. */}
+            <image
+              ref={fillImg}
+              href="/images/au-nz-glow.webp"
+              x="210" y="-90" width="960" height="960"
+              preserveAspectRatio="xMidYMid meet"
+              mask={`url(#${maskId})`}
+              style={{ filter: `url(#${tintId})`, opacity: 0.95, display: 'none' }}
             />
             <g>
               {PINS.map((p) => {
@@ -489,10 +539,6 @@ export default function NetworkMap(
           </svg>
           )}
 
-          <div className={styles.scroll} aria-hidden="true">
-            Scroll to explore <span>↓</span>
-          </div>
-
           {/* Legend card — what the map icons mean */}
           <div className={styles.legend}>
             <span><svg className={styles.legIcon} viewBox="0 0 24 24"><CatGlyph cat="bar" /></svg> Bars</span>
@@ -502,5 +548,6 @@ export default function NetworkMap(
         </div>
       </div>
     </div>
+    </>
   );
 }

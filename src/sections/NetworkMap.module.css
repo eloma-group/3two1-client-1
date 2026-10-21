@@ -17,6 +17,13 @@
   height: 300svh;
 }
 
+/* Gap between the hero and the flat map that the pour falls through. */
+.pourGap {
+  height: 60vh;
+  height: 60svh;
+  background: var(--surface);
+}
+
 /* The panel that gets pinned to the viewport by GSAP while the map reveals. */
 .panel {
   position: relative;

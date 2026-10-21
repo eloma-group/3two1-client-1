@@ -125,6 +125,7 @@ export default function Hero({ ready }: { ready: boolean }) {
 
       <motion.div
         className={styles.scroll}
+        data-scroll-cue
         style={{ opacity: fade }}
         initial={{ opacity: 0 }}
         animate={ready ? { opacity: 1 } : {}}
