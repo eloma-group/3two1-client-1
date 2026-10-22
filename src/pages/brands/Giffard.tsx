@@ -11,6 +11,8 @@ const ease = [0.16, 1, 0.3, 1] as [number, number, number, number];
 const img = (f: string) => `/images/brands/giffard/${f}.webp`;
 
 const HERO_BOTTLES = [
+  { src: img('lychee'), alt: 'Giffard Lichi-Li lychee liqueur bottle', slot: 'farLeft', fromX: '80%', tilt: -9, float: 6.6 },
+  { src: img('watermelon'), alt: 'Giffard Watermelon liqueur bottle', slot: 'farRight', fromX: '-80%', tilt: 9, float: 5.9 },
   { src: img('cassis'), alt: 'Giffard Crème de Cassis bottle', slot: 'left', fromX: '40%', tilt: -5, float: 5.6 },
   { src: '/images/house-giffard.webp', alt: 'Giffard Coconut syrup bottle', slot: 'right', fromX: '-40%', tilt: 5, float: 6.2 },
   { src: img('menthe'), alt: 'Giffard Menthe-Pastille bottle', slot: 'centre', fromX: '0%', tilt: 0, float: 5 },
@@ -37,6 +39,9 @@ export default function Giffard() {
   const liftY = useTransform(scrollYProgress, [0, 1], ['0%', reduce ? '0%' : '-8%']);
   const fanLeft = useTransform(scrollYProgress, [0, 1], ['0%', reduce ? '0%' : '-22%']);
   const fanRight = useTransform(scrollYProgress, [0, 1], ['0%', reduce ? '0%' : '22%']);
+  const fanFarLeft = useTransform(scrollYProgress, [0, 1], ['0%', reduce ? '0%' : '-36%']);
+  const fanFarRight = useTransform(scrollYProgress, [0, 1], ['0%', reduce ? '0%' : '36%']);
+  const fanX = { farLeft: fanFarLeft, left: fanLeft, centre: 0, right: fanRight, farRight: fanFarRight };
   const sealRot = useTransform(scrollYProgress, [0, 1], [-8, reduce ? -8 : 40]);
   const [shelfTab, setShelfTab] = useState(0);
   const shelf = giffardGallery[shelfTab];
@@ -86,7 +91,7 @@ export default function Giffard() {
             </div>
           </motion.div>
 
-          {/* Three Giffard bottles in place of a photo: they rise in, fan out,
+          {/* Five Giffard bottles in place of a photo: they rise in, fan out,
               bob gently, and spread further as the page scrolls. */}
           <div className={styles.heroStage}>
             <motion.span
@@ -104,7 +109,7 @@ export default function Giffard() {
                 animate={{ opacity: 1, y: 0, x: 0, rotate: b.tilt }}
                 transition={{ duration: 1.3, delay: 0.35 + i * 0.15, ease }}
               >
-                <motion.div style={{ x: b.slot === 'left' ? fanLeft : b.slot === 'right' ? fanRight : 0, y: b.slot === 'centre' ? liftY : 0 }}>
+                <motion.div style={{ x: fanX[b.slot], y: b.slot === 'centre' ? liftY : 0 }}>
                   <motion.img
                     src={b.src}
                     alt={b.alt}
