@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
-import { Menu, X, ChevronDown, Download, ArrowRight } from 'lucide-react';
+import { Menu, X, ChevronDown, Download } from 'lucide-react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { navMenu, contact, portfolioPdf, type MenuEntry } from '../data/content';
 import { scrollToHash } from '../hooks/useLenis';
@@ -125,10 +125,10 @@ export default function Navbar() {
           {/* Right: toggle + portfolio */}
           <div className={styles.right}>
             <ThemeToggle className={styles.themeDesktop} />
-            <button className={styles.ctaPill} onClick={() => go('#brands')}>
+            <a className={styles.ctaPill} href={portfolioPdf} download>
               <span>Portfolio</span>
-              <ArrowRight size={15} className={styles.ctaArrow} />
-            </button>
+              <Download size={15} className={styles.ctaArrow} />
+            </a>
             <button className={styles.burger} onClick={() => setOpen(true)} aria-label="Open menu">
               <Menu size={24} />
             </button>

@@ -139,7 +139,7 @@
   z-index: 1;
   transition: transform 0.35s var(--ease-out);
 }
-.ctaPill:hover .ctaArrow { transform: translateX(4px); }
+.ctaPill:hover .ctaArrow { transform: translateY(2px); }
 .ctaPill::before {
   content: '';
   position: absolute;
