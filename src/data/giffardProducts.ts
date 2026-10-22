@@ -45,7 +45,7 @@ export const giffardProducts: HouseProduct[] = [
         "The local fruit is easy to spot: an orange skin splashed with bright red, small to medium in size (about 35 to 55 mm across), sweet, low in acidity and very aromatic. The fruit is fragile and picked by hand, and since February 2016 \"Abricots rouges du Roussillon\" has been a Protected Designation of Origin (AOP) covering the Rouge du Roussillon variety and a handful of related ones."
       ],
       "image": {
-        "src": "/images/brands/giffard/products/apricot-liqueur/apricot-tree.webp",
+        "src": "/images/brands/giffard/products/apricot-liqueur/apricots-sunlit-branch.webp",
         "alt": "Ripe apricots with a red blush hanging on a branch against a blue sky",
         "caption": "Ripe apricots with a red blush, the look of the Roussillon type"
       }
@@ -216,12 +216,6 @@ export const giffardProducts: HouseProduct[] = [
         "url": "https://commons.wikimedia.org/wiki/File:Apricots_7841.jpg"
       },
       {
-        "file": "/images/brands/giffard/products/apricot-liqueur/apricot-tree.webp",
-        "author": "Zeynel Cebeci",
-        "licence": "CC BY-SA 4.0",
-        "url": "https://commons.wikimedia.org/wiki/File:Apricot_fruits_on_tree,_Ni%C4%9Fde_2017-08-05_01-2.jpg"
-      },
-      {
         "file": "/images/brands/giffard/products/apricot-liqueur/canigou-massif.webp",
         "author": "Alan Mattingly",
         "licence": "CC0",
@@ -257,7 +251,7 @@ export const giffardProducts: HouseProduct[] = [
         "label": "Bottle"
       },
       {
-        "value": "Caribbean",
+        "value": "Caribbean pineapple",
         "label": "Fruit"
       },
       {
@@ -480,8 +474,8 @@ export const giffardProducts: HouseProduct[] = [
     "image": "/images/giffard-lychee-liqueur.webp",
     "imageAlt": "Giffard Lychee-Li lychee liqueur bottle with fresh lychees and blossom",
     "accent": "#f2a6b8",
-    "tagline": "Perfumed lychee with notes of rose",
-    "lede": "Lichi-Li is Giffard's lychee liqueur, a light pink pour with the floral, rose-scented perfume of fresh lychee. It is the bottle behind a proper Lychee Martini and a gentle, aromatic lift in spritzes and long drinks.",
+    "tagline": "Fragrant lychee with notes of rose",
+    "lede": "Lichi-Li is Giffard's lychee liqueur, a light pink pour with the floral, rose-scented notes of fresh lychee. It is the bottle behind a proper Lychee Martini and a gentle, aromatic lift in spritzes and long drinks.",
     "facts": [
       {
         "value": "18%",
@@ -492,7 +486,7 @@ export const giffardProducts: HouseProduct[] = [
         "label": "Bottle"
       },
       {
-        "value": "Asia (mainly Taiwan)",
+        "value": "Lychee",
         "label": "Fruit"
       },
       {

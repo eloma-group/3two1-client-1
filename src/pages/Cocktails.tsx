@@ -41,7 +41,7 @@ export default function Cocktails() {
       <Hero
         eyebrow="Cocktail Corner"
         title={<>Recipes that <em className="gradient-text">earn</em> the back-bar.</>}
-        lede="Specs, builds and twists from across the 3Two1 portfolio - the signature serves we hand to bar teams when they list our houses."
+        lede="Specs, builds and twists from across the 3Two1 portfolio - the signature serves we hand to bar teams when they list our brands."
         actions={
           <>
             <Pill onClick={() => scrollToHash(`#${recipeHouses[0].id}`)}>Browse the recipes</Pill>
@@ -109,7 +109,7 @@ export default function Cocktails() {
                   {h.id === 'black-tears' && (
                     <Pill to="/brands/black-tears/cuba-libre" variant="more">The Cuba Libre, in full</Pill>
                   )}
-                  <Pill to={`/brands/${h.id}`} variant="more">Meet the house</Pill>
+                  <Pill to={`/brands/${h.id}`} variant="more">About Brand</Pill>
                 </div>
               </div>
             </Rise>

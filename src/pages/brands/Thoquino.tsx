@@ -279,7 +279,7 @@ export default function Thoquino() {
         </div>
         <div className={styles.storyGrid}>
           <motion.figure className={styles.storyFig} {...rise(0.1)}>
-            <img src="/images/thoquino-cachaca-brazil.webp" alt={`${d.name} with a lime and mint cocktail`} loading="lazy" />
+            <img src="/images/thoquino-cachaca-brazil.webp" alt={`${d.name} with a cachaça and lime cocktail over ice`} loading="lazy" />
             <figcaption>Campos · Rio de Janeiro</figcaption>
           </motion.figure>
           <div className={styles.storyText}>

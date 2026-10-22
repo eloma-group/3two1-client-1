@@ -201,7 +201,7 @@ const SERVICES: Service[] = [
       'Cachaca pressed from fresh-cut sugarcane rather than molasses - grassy, bright and faintly wild. The backbone of a Caipirinha worth drinking.',
     shortDescription: 'Cachaça · Brazil',
     imageUrl: '/images/thoquino-cachaca-brazil.webp',
-    imageAlt: 'Thoquino cachaça bottle with a mint and lime cocktail on sunlit stone',
+    imageAlt: 'Thoquino cachaça bottle with a cachaça and lime cocktail over ice on sunlit stone',
     scene: true,
     country: 'Brazil',
     accent: '#59c97c',
