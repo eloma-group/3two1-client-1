@@ -19,6 +19,7 @@ const InvestorsPage = lazy(() => import('./pages/InvestorsPage'));
 const TradePage = lazy(() => import('./pages/TradePage'));
 const CubaLibre = lazy(() => import('./pages/brands/CubaLibre'));
 const ProductPage = lazy(() => import('./pages/brands/ProductPage'));
+const GiffardRange = lazy(() => import('./pages/brands/GiffardRange'));
 const blank = <div style={{ minHeight: '100svh' }} />;
 
 export default function App() {
@@ -39,6 +40,7 @@ export default function App() {
           <Route path="/contact" element={<ContactPage />} />
           <Route path="/our-story" element={<Investors ready={ready} />} />
           <Route path="/brands/black-tears/cuba-libre" element={<Suspense fallback={blank}><CubaLibre /></Suspense>} />
+          <Route path="/brands/giffard/range/:shelf" element={<Suspense fallback={blank}><GiffardRange /></Suspense>} />
           <Route path="/brands/:house/:product" element={<Suspense fallback={blank}><ProductPage /></Suspense>} />
           <Route path="/brands/:slug" element={<BrandRoute />} />
           <Route path="/cocktails" element={<Suspense fallback={blank}><Cocktails /></Suspense>} />

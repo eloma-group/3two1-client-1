@@ -376,3 +376,38 @@
   --text: var(--font-display); --ts: 0.88;
 }
 .whiskeyRow .notes p, .whiskeyRow .tagline { line-height: 1.5; }
+
+/* "See all" link under "From the same shelf" on big shelves */
+.shelfLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-top: clamp(1.6rem, 3vw, 2.4rem);
+  font-family: var(--display);
+  font-size: 1.15rem;
+  color: var(--ink);
+  border-bottom: 1px solid currentColor;
+  padding-bottom: 0.2rem;
+}
+.shelfLink:hover { color: var(--metal); }
+
+/* Serve photo at the top of a recipe card (Giffard range pages) */
+.serveImg {
+  margin: 0 0 1.4rem;
+  height: clamp(220px, 24vw, 320px);
+  background: #000;
+  border-radius: 2px;
+  overflow: hidden;
+}
+.serveImg img { width: 100%; height: 100%; object-fit: contain; }
+
+/* Fewer than four tips: share the row instead of leaving empty cells */
+.tipGrid[data-count="3"] { grid-template-columns: repeat(3, 1fr); }
+.tipGrid[data-count="2"] { grid-template-columns: repeat(2, 1fr); }
+.tipGrid[data-count="1"] { grid-template-columns: 1fr; }
+@media (max-width: 960px) {
+  .tipGrid[data-count="3"] { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 600px) {
+  .tipGrid[data-count] { grid-template-columns: 1fr; }
+}

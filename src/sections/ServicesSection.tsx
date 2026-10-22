@@ -51,6 +51,8 @@ export interface GalleryCategory {
   items: GalleryItem[]
   /** Small note shown under the row, e.g. "35 more liqueurs". */
   note?: string
+  /** Page listing the whole category; the "+ N more" card links here. */
+  moreTo?: string
 }
 
 export interface Service {
@@ -371,13 +373,29 @@ function ServiceRow({
             transition: 'color 0.3s ease',
           }}
         >
-          <div style={{
-            fontSize: 'clamp(17px, 2.2vw, 32px)',
-            fontWeight: 700,
-            letterSpacing: '-0.03em', lineHeight: 1.1,
-          }}>
-            {svc.name}
-          </div>
+          {brandPage(svc.id) ? (
+            <Link
+              to={`/brands/${svc.id}`}
+              data-cursor="Explore"
+              style={{
+                display: 'block', width: 'fit-content',
+                color: 'inherit', textDecoration: 'none', cursor: 'pointer',
+                fontSize: 'clamp(17px, 2.2vw, 32px)',
+                fontWeight: 700,
+                letterSpacing: '-0.03em', lineHeight: 1.1,
+              }}
+            >
+              {svc.name}
+            </Link>
+          ) : (
+            <div style={{
+              fontSize: 'clamp(17px, 2.2vw, 32px)',
+              fontWeight: 700,
+              letterSpacing: '-0.03em', lineHeight: 1.1,
+            }}>
+              {svc.name}
+            </div>
+          )}
           {svc.shortDescription && (
             <h3 style={{
               margin: '8px 0 0',
@@ -512,7 +530,8 @@ function ServiceRow({
                         })}
 
                         {/* "+ N more" sits in the grid as a card of its own, beside the range. */}
-                        {cat.note && (
+                        {cat.note && (() => {
+                          const more = (
                           <motion.div
                             initial={{ opacity: 0, y: 10 }}
                             animate={{ opacity: 1, y: 0 }}
@@ -535,7 +554,18 @@ function ServiceRow({
                               + {cat.note}
                             </span>
                           </motion.div>
-                        )}
+                          )
+                          return cat.moreTo ? (
+                            <Link
+                              to={cat.moreTo}
+                              aria-label={`See all Giffard ${cat.label.toLowerCase()}`}
+                              data-cursor="Explore"
+                              style={{ display: 'grid', textDecoration: 'none', color: 'inherit', cursor: 'pointer' }}
+                            >
+                              {more}
+                            </Link>
+                          ) : more
+                        })()}
                       </div>
                       </>
                     ) : (

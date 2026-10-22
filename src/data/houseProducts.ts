@@ -2,6 +2,7 @@
 // shown in each house's panel on the homepage. One template renders them all;
 // each house brings its own palette (theme) and wording.
 import { giffardProducts } from './giffardProducts';
+import { giffardRangeProducts } from './giffardRangeProducts';
 import { puebloViejoProducts } from './puebloViejoProducts';
 import { whiskeyRowProducts } from './whiskeyRowProducts';
 
@@ -13,6 +14,8 @@ export interface HouseProduct {
   fullName: string;
   /** e.g. Liqueur, Syrup, Tequila, Cocktail. Cocktail pages read as a serve, not a bottle. */
   category: string;
+  /** Sub-shelf on a house's range page, e.g. Classic, Premium, Fruits & Plants. */
+  group?: string;
   /** Scene used on the homepage panel. */
   image: string;
   imageAlt: string;
@@ -35,6 +38,8 @@ export interface HouseProduct {
     method: string[];
     note: string;
     source: string;
+    /** Photo of the serve, shown at the top of its recipe card. */
+    image?: string;
   }[];
   uses: { title: string; body: string }[];
   faq: { q: string; a: string }[];
@@ -70,7 +75,7 @@ export const houses: Record<string, House> = {
     storyLabel: 'The fruit',
     categoryLabel: { Puree: 'Fruit for Mix', 'Non-Alcoholic': 'Alcohol-free' },
     shelfByCategory: true,
-    products: giffardProducts,
+    products: [...giffardProducts, ...giffardRangeProducts],
   },
   'pueblo-viejo': {
     slug: 'pueblo-viejo',

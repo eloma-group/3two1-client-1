@@ -4,7 +4,7 @@ import type { GalleryCategory } from '../sections/ServicesSection';
 export const giffardGallery: GalleryCategory[] = [
   {
     label: 'Liqueurs',
-    note: '35 more liqueurs',
+    note: '32 more liqueurs', moreTo: '/brands/giffard/range/liqueurs',
     items: [
       { imageUrl: '/images/giffard-abricot-du-roussillon-apricot-liqueur.webp', label: 'Apricot Liqueur', imageAlt: 'Giffard Abricot du Roussillon apricot liqueur bottle in a French terroir scene', scene: true, to: '/brands/giffard/apricot-liqueur' },
       { imageUrl: '/images/giffard-caribbean-pineapple-liqueur.webp',           label: 'Caribbean Pineapple', imageAlt: 'Giffard Caribbean Pineapple liqueur bottle with fresh pineapple and palms', scene: true, to: '/brands/giffard/caribbean-pineapple-liqueur' },
@@ -14,7 +14,7 @@ export const giffardGallery: GalleryCategory[] = [
   },
   {
     label: 'Syrups',
-    note: '40 more syrups',
+    note: '38 more syrups', moreTo: '/brands/giffard/range/syrups',
     items: [
       { imageUrl: '/images/giffard-coconut-syrup.webp', label: 'Coconut Syrup', imageAlt: 'Giffard Coconut syrup bottle with fresh coconuts and palm leaves',    scene: true, to: '/brands/giffard/coconut-syrup' },
       { imageUrl: '/images/giffard-grenadine-syrup.webp',     label: 'Grenadine Syrup',     imageAlt: 'Giffard Grenadine syrup bottle with pomegranate, raspberries and a red serve',  scene: true, to: '/brands/giffard/grenadine-syrup' },
@@ -24,7 +24,7 @@ export const giffardGallery: GalleryCategory[] = [
   },
   {
     label: 'Purees',
-    note: '4 more purees',
+    note: '4 more purees', moreTo: '/brands/giffard/range/purees',
     items: [
       { imageUrl: '/images/giffard-kiwi-puree.webp',  label: 'Kiwi Puree',  imageAlt: 'Giffard Kiwi Fruit for Mix puree bottle with fresh kiwi and a crushed-ice serve', scene: true, to: '/brands/giffard/kiwi-puree' },
       { imageUrl: '/images/giffard-mango-puree.webp', label: 'Mango Puree', imageAlt: 'Giffard Mango Fruit for Mix puree bottle with fresh mango and a chilled serve', scene: true, to: '/brands/giffard/mango-puree' },
@@ -34,7 +34,7 @@ export const giffardGallery: GalleryCategory[] = [
   },
   {
     label: 'Non Alcoholic Spirits',
-    note: '4 more Non-Alcoholic Spirits',
+    note: '3 more Non-Alcoholic', moreTo: '/brands/giffard/range/non-alcoholic',
     items: [
       { imageUrl: '/images/giffard-na-smoky-agave.webp',      label: 'Smoky Agave', imageAlt: 'Giffard Smoky Agave non-alcoholic base with agave, lime and a salted serve',       scene: true, to: '/brands/giffard/na-smoky-agave' },
       { imageUrl: '/images/giffard-na-aperitif-bitter.webp',  label: 'Aperitif Bitter', imageAlt: 'Giffard Aperitif Bitter non-alcoholic base with orange and a negroni-style serve', scene: true, to: '/brands/giffard/na-aperitif-bitter' },

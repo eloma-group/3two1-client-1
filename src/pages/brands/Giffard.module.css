@@ -590,3 +590,5 @@
   .stockText { margin: 0 auto; }
   .card { transform: none; }
 }
+.shelfMore { display: inline-flex; align-items: center; gap: 0.4rem; color: inherit; border-bottom: 1px solid rgba(184, 145, 63, 0.7); padding-bottom: 0.25rem; transition: color 0.3s ease; }
+.shelfMore:hover { color: var(--mint-deep); }

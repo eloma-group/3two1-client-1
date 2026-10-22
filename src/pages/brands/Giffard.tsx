@@ -306,7 +306,17 @@ export default function Giffard() {
                 </motion.article>
               ))}
             </div>
-            {shelf.note && <p className={styles.shelfNote}>+ {shelf.note} in the range</p>}
+            {shelf.note && (
+              <p className={styles.shelfNote}>
+                {shelf.moreTo ? (
+                  <Link to={shelf.moreTo} className={styles.shelfMore}>
+                    + {shelf.note} in the range · see them all <ArrowUpRight size={16} />
+                  </Link>
+                ) : (
+                  <>+ {shelf.note} in the range</>
+                )}
+              </p>
+            )}
           </motion.div>
         </AnimatePresence>
       </section>

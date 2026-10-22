@@ -3,6 +3,7 @@ import { Link, Navigate, useParams } from 'react-router-dom';
 import { motion, useReducedMotion, useScroll, useTransform } from 'framer-motion';
 import { ArrowUpRight, Plus } from 'lucide-react';
 import { ALCOHOL_FREE, houseProduct } from '../../data/houseProducts';
+import { productGroup, shelfForCategory } from '../../data/giffardShelves';
 import styles from './ProductPage.module.css';
 
 /* ── Single product ──────────────────────────────────────────────────────
@@ -46,9 +47,17 @@ export default function ProductPage() {
 
   const { house, product: p } = found;
   const isServe = p.category === 'Cocktail';
-  const siblings = house.products.filter(
+  const sameShelf = house.products.filter(
     (o) => o.slug !== p.slug && (!house.shelfByCategory || o.category === p.category),
   );
+  // Big shelves (40-odd Giffard syrups) show a handful, nearest sub-shelf first.
+  const group = productGroup(p);
+  const siblings = [
+    ...sameShelf.filter((o) => productGroup(o) === group),
+    ...sameShelf.filter((o) => productGroup(o) !== group),
+  ].slice(0, 8);
+  const shelf = house.slug === 'giffard' ? shelfForCategory(p.category) : undefined;
+  const hasTasting = Object.values(p.tasting).some(Boolean) || p.profile.length > 0;
   const sections: string[] = [];
   const num = (title: string) => {
     sections.push(title);
@@ -61,7 +70,13 @@ export default function ProductPage() {
       <section className={styles.hero} ref={hero}>
         <div className={styles.heroTop}>
           <Link to="/" className={styles.crumb}>← Home</Link>
-          <span>{house.kicker} · {house.categoryLabel?.[p.category] ?? p.category}</span>
+          {shelf ? (
+            <Link to={`/brands/giffard/range/${shelf.slug}`} className={styles.crumb}>
+              {house.kicker} · {shelf.label}{group ? ` · ${group}` : ''}
+            </Link>
+          ) : (
+            <span>{house.kicker} · {house.categoryLabel?.[p.category] ?? p.category}</span>
+          )}
         </div>
 
         <div className={styles.heroGrid}>
@@ -99,6 +114,7 @@ export default function ProductPage() {
       </section>
 
       {/* ═══ The fruit ═══ */}
+      {p.fruit.paras.length > 0 && (
       <section className={styles.dark}>
         <div className={`${styles.wrap} ${p.fruit.image ? styles.fruitGrid : ''}`}>
           {p.fruit.image && (
@@ -118,19 +134,21 @@ export default function ProductPage() {
           </div>
         </div>
       </section>
+      )}
 
       {/* ═══ Tasting ═══ */}
+      {hasTasting && (
       <section className={styles.paper2}>
         <div className={styles.wrap}>
           <Rise><span className={styles.label}>{num('In the glass')}</span></Rise>
           <Rise delay={0.05}><h2 className={styles.head}>How it tastes.</h2></Rise>
-          <div className={styles.tasteGrid}>
+          <div className={p.profile.length > 0 ? styles.tasteGrid : undefined}>
             <Rise className={styles.notes}>
               {(['appearance', 'nose', 'palate', 'finish'] as const).map((k) => p.tasting[k] && (
                 <div key={k}><span>{k}</span><p>{p.tasting[k]}</p></div>
               ))}
             </Rise>
-            <div className={styles.bars}>
+            {p.profile.length > 0 && <div className={styles.bars}>
               {p.profile.map((row, i) => (
                 <Rise key={row.label} delay={0.05 * i}>
                   <div className={styles.bar}>
@@ -147,10 +165,11 @@ export default function ProductPage() {
                   </div>
                 </Rise>
               ))}
-            </div>
+            </div>}
           </div>
         </div>
       </section>
+      )}
 
       {/* ═══ Serves ═══ */}
       {p.cocktails.length > 0 && (
@@ -161,6 +180,11 @@ export default function ProductPage() {
             <div className={styles.serveGrid}>
               {p.cocktails.map((c, ci) => (
                 <Rise key={c.name} delay={0.06 * ci} className={styles.card}>
+                  {c.image && (
+                    <figure className={styles.serveImg}>
+                      <img src={c.image} alt={`${c.name}, made with ${p.fullName}`} loading="lazy" />
+                    </figure>
+                  )}
                   <div className={styles.cardTop}>
                     <span>No. {String(ci + 1).padStart(2, '0')}</span>
                     <span>{c.glass}</span>
@@ -206,11 +230,12 @@ export default function ProductPage() {
       )}
 
       {/* ═══ Uses ═══ */}
+      {p.uses.length > 0 && (
       <section className={styles.dark}>
         <div className={styles.wrap}>
           <Rise><span className={`${styles.label} ${styles.labelLight}`}>{num('Behind the bar')}</span></Rise>
           <Rise delay={0.05}><h2 className={styles.headLight}>Ways to use it.</h2></Rise>
-          <div className={styles.tipGrid}>
+          <div className={styles.tipGrid} data-count={Math.min(p.uses.length, 4)}>
             {p.uses.map((t, i) => (
               <Rise key={t.title} delay={0.06 * i} className={styles.tip}>
                 <span className={styles.tipNo}>{ROMAN[i]}</span>
@@ -221,8 +246,10 @@ export default function ProductPage() {
           </div>
         </div>
       </section>
+      )}
 
       {/* ═══ FAQ ═══ */}
+      {p.faq.length > 0 && (
       <section className={styles.paper}>
         <div className={`${styles.wrap} ${styles.faqGrid}`}>
           <div>
@@ -242,6 +269,7 @@ export default function ProductPage() {
           </div>
         </div>
       </section>
+      )}
 
       {/* ═══ More from the shelf ═══ */}
       {siblings.length > 0 && (
@@ -258,6 +286,13 @@ export default function ProductPage() {
                 </Rise>
               ))}
             </div>
+            {shelf && (
+              <Rise>
+                <Link to={`/brands/giffard/range/${shelf.slug}`} className={styles.shelfLink}>
+                  See all {sameShelf.length + 1} Giffard {shelf.noun[1]} <ArrowUpRight size={18} />
+                </Link>
+              </Rise>
+            )}
           </div>
         </section>
       )}
@@ -297,6 +332,9 @@ export default function ProductPage() {
               ))}
               {' '} - via Wikimedia Commons. Bottle and serve photography: {house.name}.
             </p>
+          )}
+          {p.credits.length === 0 && p.gallery.length > 0 && (
+            <p>Bottle and cocktail photography: {house.name}.</p>
           )}
           {p.sources.length > 0 && (
             <p>
