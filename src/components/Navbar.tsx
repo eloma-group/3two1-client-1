@@ -195,7 +195,7 @@ export default function Navbar() {
             </nav>
 
             <div className={styles.menuFoot}>
-              <a className={styles.mCta} href={portfolioPdf} target="_blank" rel="noopener">
+              <a className={styles.mCta} href={portfolioPdf} download>
                 <Download size={16} /> Download Portfolio
               </a>
               <a href={`mailto:${contact.email}`}>{contact.email}</a>
