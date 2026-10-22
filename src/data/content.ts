@@ -96,7 +96,6 @@ export const navMenu: MenuEntry[] = [
       { label: 'Giffard West Cup', to: '/events#giffard-west-cup' },
       { label: 'Trade Shows', to: '/events#trade-shows' },
       { label: 'Tastings', to: '/events#calendar' },
-      { label: 'Enquiries', to: '/events#enquiries' },
     ],
   },
 ];
