@@ -47,7 +47,7 @@ export const whiskeyRowProducts: HouseProduct[] = [
       "image": {
         "src": "/images/brands/whiskey-row/products/old-fashioned/pendennis-club.webp",
         "alt": "Red-brick Georgian Revival facade of the Pendennis Club in downtown Louisville",
-        "caption": "The Pendennis Club, Louisville, in its 1928 clubhouse. Legend credits the club with the Old Fashioned. Photo: Nyttend, public domain."
+        "caption": "The Pendennis Club, Louisville, in its 1928 clubhouse. Legend credits the club with the Old Fashioned."
       }
     },
     "tasting": {
@@ -200,12 +200,12 @@ export const whiskeyRowProducts: HouseProduct[] = [
       {
         "src": "/images/brands/whiskey-row/products/old-fashioned/old-fashioned-glass.webp",
         "alt": "Old Fashioned on a clear ice sphere with an orange twist, against a dark background",
-        "caption": "A whiskey Old Fashioned on a single ice ball with an orange twist. Photo: Erich Wagner (eventografie.de), CC BY-SA 4.0."
+        "caption": "A whiskey Old Fashioned on a single ice ball with an orange twist."
       },
       {
         "src": "/images/brands/whiskey-row/products/old-fashioned/whiskey-row-main-street.webp",
         "alt": "Nineteenth-century brick and cast-iron commercial buildings on West Main Street, Louisville",
-        "caption": "Part of Louisville's historic Whiskey Row, 123 to 129 West Main Street, including the Hamilton Brothers Warehouse. Photo: Publichall, CC BY-SA 3.0."
+        "caption": "Part of Louisville's historic Whiskey Row, 123 to 129 West Main Street, including the Hamilton Brothers Warehouse."
       }
     ],
     "credits": [
@@ -279,7 +279,7 @@ export const whiskeyRowProducts: HouseProduct[] = [
       "image": {
         "src": "/images/brands/whiskey-row/products/manhattan/manhattan-club-cafe.webp",
         "alt": "Black-and-white photograph of a panelled club café decorated with American flags, a chandelier and wooden tables",
-        "caption": "The café of the Manhattan Club, about 1901, in Leonard Jerome's former mansion on Madison Square. Photo: Byron Co., via Historic American Buildings Survey, public domain."
+        "caption": "The café of the Manhattan Club, about 1901, in Leonard Jerome's former mansion on Madison Square."
       }
     },
     "tasting": {
@@ -427,12 +427,12 @@ export const whiskeyRowProducts: HouseProduct[] = [
       {
         "src": "/images/brands/whiskey-row/products/manhattan/manhattan-coupe.webp",
         "alt": "Manhattan cocktail with an ice cube in a stemmed glass on a wooden bar",
-        "caption": "A Manhattan in a stemmed cocktail glass. Photo: star5112, CC BY-SA 2.0."
+        "caption": "A Manhattan in a stemmed cocktail glass."
       },
       {
         "src": "/images/brands/whiskey-row/products/manhattan/bourbon-warehouse.webp",
         "alt": "Rows of bourbon barrels on racks along a long wooden warehouse aisle in Kentucky",
-        "caption": "Bourbon barrels resting in a Kentucky distillery warehouse. Photo: U.S. National Archives, public domain."
+        "caption": "Bourbon barrels resting in a Kentucky distillery warehouse."
       }
     ],
     "credits": [

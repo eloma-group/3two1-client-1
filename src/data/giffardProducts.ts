@@ -9,13 +9,13 @@ export const giffardProducts: HouseProduct[] = [
   {
     "slug": "apricot-liqueur",
     "label": "Apricot Liqueur",
-    "fullName": "Giffard Abricot du Roussillon",
+    "fullName": "Giffard Roussillon Apricot Liqueur",
     "category": "Liqueur",
     "image": "/images/giffard-abricot-du-roussillon-apricot-liqueur.webp",
-    "imageAlt": "Giffard Abricot du Roussillon apricot liqueur bottle in a French terroir scene",
+    "imageAlt": "Giffard Roussillon Apricot Liqueur bottle in a French terroir scene",
     "accent": "#f0a04b",
     "tagline": "Roussillon apricots, slowly macerated in the Loire",
-    "lede": "Abricot du Roussillon is Giffard's premium apricot liqueur, made by slowly macerating apricots from the Roussillon in the far south of France. It pours golden with orange glints and tastes like a pot of caramelised apricot compote, which makes it a natural fit for juleps, sours and sparkling serves.",
+    "lede": "Roussillon Apricot Liqueur is Giffard's premium apricot liqueur, made by slowly macerating apricots from the Roussillon in the far south of France. It pours golden with orange glints and tastes like a pot of caramelised apricot compote, which makes it a natural fit for juleps, sours and sparkling serves.",
     "facts": [
       {
         "value": "25%",
@@ -26,7 +26,7 @@ export const giffardProducts: HouseProduct[] = [
         "label": "Bottle"
       },
       {
-        "value": "Roussillon, France",
+        "value": "Apricot",
         "label": "Fruit"
       },
       {
@@ -35,14 +35,14 @@ export const giffardProducts: HouseProduct[] = [
       }
     ],
     "about": [
-      "Giffard is a family-owned liqueur house in Angers, in France's Loire Valley. Abricot du Roussillon sits in its Premium range and is made by a slow maceration of Rouge du Roussillon apricots in neutral alcohol, a gentle method that pulls flavour from the flesh and skin. Giffard chose Roussillon fruit for its firm, sweet and very fragrant flesh.",
+      "Giffard is a family-owned liqueur house in Angers, in France's Loire Valley. Roussillon Apricot Liqueur sits in its Premium range and is made by a slow maceration of Roussillon Red apricots in neutral alcohol, a gentle method that pulls flavour from the flesh and skin. Giffard chose Roussillon fruit for its firm, sweet and very fragrant flesh.",
       "At 25% ABV it carries more fruit and less heat than an apricot brandy, so it reads clearly in a mixed drink without dominating the base spirit. Giffard lists it as lactose free, gluten free, vegan and made without preservatives. It took a silver medal at the Internationaler Spirituosen Wettbewerb (ISW) in Germany in 2008 and was \"Recommended\" by the International Spirits Challenge jury in 2018."
     ],
     "fruit": {
       "heading": "The red apricots of the Roussillon",
       "paras": [
         "The Roussillon is the Catalan corner of France, in the Pyrénées-Orientales between the Mediterranean and the Pyrenees. Its apricot orchards sit in roughly a hundred communes across the lower and middle valleys and first hillsides, running from the coast to the foothills of the Corbières and the Canigou massif.",
-        "The local fruit is easy to spot: an orange skin splashed with bright red, small to medium in size (about 35 to 55 mm across), sweet, low in acidity and very aromatic. The fruit is fragile and picked by hand, and since February 2016 \"Abricots rouges du Roussillon\" has been a Protected Designation of Origin (AOP) covering the Rouge du Roussillon variety and a handful of related ones."
+        "The local fruit is easy to spot: an orange skin splashed with bright red, small to medium in size (about 35 to 55 mm across), sweet, low in acidity and very aromatic. The fruit is fragile and picked by hand, and since February 2016 \"Red Apricots of Roussillon\" has been a Protected Designation of Origin (AOP) covering the Roussillon Red variety and a handful of related ones."
       ],
       "image": {
         "src": "/images/brands/giffard/products/apricot-liqueur/apricots-sunlit-branch.webp",
@@ -98,7 +98,7 @@ export const giffardProducts: HouseProduct[] = [
           {
             "amount": "20",
             "unit": "ml",
-            "what": "Giffard Abricot du Roussillon"
+            "what": "Giffard Roussillon Apricot Liqueur"
           },
           {
             "amount": "8–12",
@@ -109,7 +109,7 @@ export const giffardProducts: HouseProduct[] = [
         "method": [
           "Clap the mint leaves between your hands and drop them into the glass.",
           "Half-fill the glass with crushed ice.",
-          "Add the Cognac and Abricot du Roussillon and stir to combine.",
+          "Add the Cognac and Roussillon Apricot Liqueur and stir to combine.",
           "Top with more crushed ice, garnish and serve."
         ],
         "note": "Created by eight international bartenders at a Giffard workshop led by Fernando Castellon. A short, summery julep where the liqueur does the sweetening.",
@@ -139,7 +139,7 @@ export const giffardProducts: HouseProduct[] = [
           {
             "amount": "10",
             "unit": "ml",
-            "what": "Giffard Abricot du Roussillon"
+            "what": "Giffard Roussillon Apricot Liqueur"
           },
           {
             "amount": "Top",
@@ -149,7 +149,7 @@ export const giffardProducts: HouseProduct[] = [
         ],
         "method": [
           "Soak the sugar cube with the bitters and drop it into the flute.",
-          "Pour in the gin and Abricot du Roussillon; do not stir.",
+          "Pour in the gin and Roussillon Apricot Liqueur; do not stir.",
           "Top with Champagne and garnish with a citrus zest."
         ],
         "note": "A Champagne Cocktail with an apricot accent, from the same Fernando Castellon workshop.",
@@ -167,7 +167,7 @@ export const giffardProducts: HouseProduct[] = [
       },
       {
         "title": "In the pastry section",
-        "body": "Brush it over sponge layers, fold it through crème pâtissière or use it to glaze apricot tarts. A splash in a pan sauce for pork or duck adds fruit and gloss."
+        "body": "Brush it over sponge layers, fold it through pastry cream or use it to glaze apricot tarts. A splash in a pan sauce for pork or duck adds fruit and gloss."
       },
       {
         "title": "Storage",
@@ -176,8 +176,8 @@ export const giffardProducts: HouseProduct[] = [
     ],
     "faq": [
       {
-        "q": "Is Abricot du Roussillon the same as apricot brandy?",
-        "a": "No. It is a liqueur made by macerating apricots in neutral alcohol and is bottled at 25% ABV. Giffard also makes a separate, classic Apricot Liqueur (formerly sold as Apricot Brandy), but Abricot du Roussillon is the premium, single-origin version."
+        "q": "Is Roussillon Apricot Liqueur the same as apricot brandy?",
+        "a": "No. It is a liqueur made by macerating apricots in neutral alcohol and is bottled at 25% ABV. Giffard also makes a separate, classic Apricot Liqueur (formerly sold as Apricot Brandy), but Roussillon Apricot Liqueur is the premium, single-origin version."
       },
       {
         "q": "Where do the apricots come from?",
@@ -369,7 +369,7 @@ export const giffardProducts: HouseProduct[] = [
           {
             "amount": "5",
             "unit": "ml",
-            "what": "Giffard Vanille de Madagascar"
+            "what": "Giffard Madagascar Vanilla Liqueur"
           },
           {
             "amount": "15",
@@ -469,13 +469,13 @@ export const giffardProducts: HouseProduct[] = [
   {
     "slug": "lychee-liqueur",
     "label": "Lychee Liqueur",
-    "fullName": "Giffard Lichi-Li",
+    "fullName": "Giffard Lychee Liqueur",
     "category": "Liqueur",
     "image": "/images/giffard-lychee-liqueur.webp",
     "imageAlt": "Giffard Lychee-Li lychee liqueur bottle with fresh lychees and blossom",
     "accent": "#f2a6b8",
     "tagline": "Fragrant lychee with notes of rose",
-    "lede": "Lichi-Li is Giffard's lychee liqueur, a light pink pour with the floral, rose-scented notes of fresh lychee. It is the bottle behind a proper Lychee Martini and a gentle, aromatic lift in spritzes and long drinks.",
+    "lede": "Giffard's Lychee Liqueur is a light pink pour with the floral, rose-scented notes of fresh lychee. It is the bottle behind a proper Lychee Martini and a gentle, aromatic lift in spritzes and long drinks.",
     "facts": [
       {
         "value": "18%",
@@ -495,14 +495,14 @@ export const giffardProducts: HouseProduct[] = [
       }
     ],
     "about": [
-      "Lichi-Li is made by Giffard in Angers, in the Loire Valley. According to Difford's Guide, it is built on a distillate made by macerating and then redistilling lychees from Asia, mainly Taiwan, and is also flavoured with passion fruit. Distilling the macerate captures the lychee's delicate, floral top notes.",
+      "Lychee Liqueur is made by Giffard in Angers, in the Loire Valley. According to Difford's Guide, it is built on a distillate made by macerating and then redistilling lychees from Asia, mainly Taiwan, and is also flavoured with passion fruit. Distilling the macerate captures the lychee's delicate, floral top notes.",
       "At 18% ABV it is one of the lighter liqueurs in the Giffard range, so it adds aroma and sweetness without much alcohol. The colour is a pale pink, close to the blush of the fruit itself. Giffard lists it as lactose free, gluten free, vegan and made without preservatives."
     ],
     "fruit": {
       "heading": "An ancient fruit of southern China",
       "paras": [
         "The lychee (Litchi chinensis) is a tropical tree in the soapberry family, native to southern China, where it has been cultivated for more than two thousand years. It was prized at the imperial court: Tang dynasty accounts tell of fresh lychees rushed by relay riders to the capital for the consort Yang Guifei.",
-        "Giffard notes that it is now grown in China, India, Madagascar and Thailand, and Taiwan is also a notable producer. Under the bumpy, rose-red shell is translucent white flesh around a glossy brown seed, with a scent often compared to rose. That perfume is what Lichi-Li sets out to capture."
+        "Giffard notes that it is now grown in China, India, Madagascar and Thailand, and Taiwan is also a notable producer. Under the bumpy, rose-red shell is translucent white flesh around a glossy brown seed, with a scent often compared to rose. That perfume is what Lychee Liqueur sets out to capture."
       ],
       "image": {
         "src": "/images/brands/giffard/products/lychee-liqueur/lychees-peeled.webp",
@@ -558,7 +558,7 @@ export const giffardProducts: HouseProduct[] = [
           {
             "amount": "30",
             "unit": "ml",
-            "what": "Giffard Lichi-Li"
+            "what": "Giffard Lychee Liqueur"
           },
           {
             "amount": "15",
@@ -584,12 +584,12 @@ export const giffardProducts: HouseProduct[] = [
           {
             "amount": "15",
             "unit": "ml",
-            "what": "Giffard Lichi-Li"
+            "what": "Giffard Lychee Liqueur"
           },
           {
             "amount": "15",
             "unit": "ml",
-            "what": "Giffard Fleur de Sureau Sauvage (wild elderflower)"
+            "what": "Giffard Wild Elderflower Liqueur"
           },
           {
             "amount": "45",
@@ -631,10 +631,6 @@ export const giffardProducts: HouseProduct[] = [
     ],
     "faq": [
       {
-        "q": "Why is it called Lichi-Li?",
-        "a": "Lichi-Li is Giffard's name for its lychee liqueur. In Australia it is often listed as Giffard Lychee Liqueur (Lichi-Li)."
-      },
-      {
         "q": "What ABV is it, and what bottle size?",
         "a": "18% ABV, in a 700 ml bottle."
       },
@@ -653,8 +649,8 @@ export const giffardProducts: HouseProduct[] = [
     ],
     "gallery": [
       {
-        "src": "/images/brands/giffard/products/lychee-liqueur/lychee-cluster.webp",
-        "alt": "A small group of red lychees on a pale background",
+        "src": "/images/brands/giffard/products/lychee-liqueur/lychees-ripe.webp",
+        "alt": "Clusters of ripe red lychees hanging among glossy green leaves",
         "caption": "Fresh lychees, their red shells a sign of ripeness"
       },
       {
@@ -665,10 +661,10 @@ export const giffardProducts: HouseProduct[] = [
     ],
     "credits": [
       {
-        "file": "/images/brands/giffard/products/lychee-liqueur/lychee-cluster.webp",
-        "author": "rajucreddy",
-        "licence": "CC0",
-        "url": "https://commons.wikimedia.org/wiki/File:Exotic_Lychee_Cluster_By_Raju_C_Reddy.jpg"
+        "file": "/images/brands/giffard/products/lychee-liqueur/lychees-ripe.webp",
+        "author": "Barry Fitzgerald, USDA",
+        "licence": "Public domain",
+        "url": "https://commons.wikimedia.org/wiki/File:Lychee.jpg"
       },
       {
         "file": "/images/brands/giffard/products/lychee-liqueur/lychees-peeled.webp",
@@ -712,7 +708,7 @@ export const giffardProducts: HouseProduct[] = [
         "label": "Bottle"
       },
       {
-        "value": "Spain",
+        "value": "Watermelon",
         "label": "Fruit"
       },
       {
@@ -731,8 +727,8 @@ export const giffardProducts: HouseProduct[] = [
         "Spain is one of Europe's major watermelon growers, with hot, sunny summers that build sugar in the fruit. A ripe watermelon has deep red, crisp flesh, a sweet, grassy scent and a refreshing, almost cucumber-like edge near the rind, all of which come through in Giffard's liqueur."
       ],
       "image": {
-        "src": "/images/brands/giffard/products/watermelon-liqueur/watermelon-slice.webp",
-        "alt": "A wedge of bright red watermelon on a white board",
+        "src": "/images/brands/giffard/products/watermelon-liqueur/watermelon-slices.webp",
+        "alt": "A whole striped watermelon, a cut half and red wedges on a wooden board",
         "caption": "Ripe watermelon: crisp red flesh and a pale green rind"
       }
     },
@@ -883,7 +879,7 @@ export const giffardProducts: HouseProduct[] = [
     "gallery": [
       {
         "src": "/images/brands/giffard/products/watermelon-liqueur/watermelon-halved.webp",
-        "alt": "Close-up of juicy red watermelon flesh with black seeds",
+        "alt": "Juicy red watermelon wedges glistening with water on a wooden board",
         "caption": "Juicy watermelon flesh"
       },
       {
@@ -898,18 +894,6 @@ export const giffardProducts: HouseProduct[] = [
         "author": "Zeynel Cebeci",
         "licence": "CC BY-SA 4.0",
         "url": "https://commons.wikimedia.org/wiki/File:Karpuz_tarlas%C4%B1_-_Watermelon_field_01.jpg"
-      },
-      {
-        "file": "/images/brands/giffard/products/watermelon-liqueur/watermelon-halved.webp",
-        "author": "P.gibellini",
-        "licence": "CC BY-SA 3.0",
-        "url": "https://commons.wikimedia.org/wiki/File:Citrullus_lanatus_01.jpg"
-      },
-      {
-        "file": "/images/brands/giffard/products/watermelon-liqueur/watermelon-slice.webp",
-        "author": "John Phelan",
-        "licence": "CC BY-SA 3.0",
-        "url": "https://commons.wikimedia.org/wiki/File:Slice_of_Watermelon_from_Wilson_Farm,_Lexington_MA.jpg"
       }
     ],
     "sources": [
@@ -949,7 +933,7 @@ export const giffardProducts: HouseProduct[] = [
       }
     ],
     "about": [
-      "Giffard is a family-run house in Angers, in France's Loire Valley, founded in 1885 when pharmacist Émile Giffard created his Menthe-Pastille mint liqueur. Five generations on, the company still makes its liqueurs and syrups there, and its syrup range is built for professional use: concentrated, pump-friendly and sized for a speed rail.",
+      "Giffard is a family-run house in Angers, in France's Loire Valley, founded in 1885 when pharmacist Émile Giffard created his peppermint liqueur. Five generations on, the company still makes its liqueurs and syrups there, and its syrup range is built for professional use: concentrated, pump-friendly and sized for a speed rail.",
       "The Coconut Syrup is a pure sugar syrup made with coconut cream, natural coconut flavouring and a little milk protein, with no preservatives. Giffard points out that the coconut cream is what gives it its intensity and characteristic taste. Because it carries a touch of fat (1.9 g per 100 ml), it adds a rounder, silkier texture to a drink than a clear flavoured syrup would."
     ],
     "fruit": {
@@ -960,8 +944,8 @@ export const giffardProducts: HouseProduct[] = [
       ],
       "image": {
         "src": "/images/brands/giffard/products/coconut-syrup/coconut-halves.webp",
-        "alt": "A coconut split into two halves showing the white flesh",
-        "caption": "Fresh coconut flesh, the source of coconut cream. Photo: Clockery, CC BY 3.0"
+        "alt": "A whole coconut, a cracked half and pieces of white coconut flesh on a wooden board with palm leaves",
+        "caption": "Fresh coconut flesh, the source of coconut cream"
       }
     },
     "tasting": {
@@ -1110,21 +1094,15 @@ export const giffardProducts: HouseProduct[] = [
       {
         "src": "/images/brands/giffard/products/coconut-syrup/coconut-plantation.webp",
         "alt": "Rows of coconut palms over green grass on Koh Mak island, Thailand",
-        "caption": "A coconut palm plantation on Koh Mak, Thailand. Photo: Vyacheslav Argenberg, CC BY 4.0"
+        "caption": "A coconut palm plantation on Koh Mak, Thailand"
       },
       {
         "src": "/images/brands/giffard/products/coconut-syrup/latte-noosa.webp",
         "alt": "A latte with rosetta latte art in a cup on a marble table",
-        "caption": "A latte in Noosa Heads, Queensland, the kind of cup a dash of coconut syrup suits. Photo: Kgbo, CC BY-SA 4.0"
+        "caption": "A latte in Noosa Heads, Queensland, the kind of cup a dash of coconut syrup suits"
       }
     ],
     "credits": [
-      {
-        "file": "/images/brands/giffard/products/coconut-syrup/coconut-halves.webp",
-        "author": "Clockery",
-        "licence": "CC BY 3.0",
-        "url": "https://commons.wikimedia.org/wiki/File:Coconut_halves.JPG"
-      },
       {
         "file": "/images/brands/giffard/products/coconut-syrup/coconut-plantation.webp",
         "author": "Vyacheslav Argenberg",
@@ -1190,7 +1168,7 @@ export const giffardProducts: HouseProduct[] = [
       "image": {
         "src": "/images/brands/giffard/products/grenadine-syrup/redcurrants.webp",
         "alt": "A cluster of glossy redcurrants on a light background",
-        "caption": "Redcurrants, one of the red fruits behind Giffard's grenadine. Photo: Ivar Leidus, CC BY-SA 4.0"
+        "caption": "Redcurrants, one of the red fruits behind Giffard's grenadine"
       }
     },
     "tasting": {
@@ -1338,12 +1316,12 @@ export const giffardProducts: HouseProduct[] = [
       {
         "src": "/images/brands/giffard/products/grenadine-syrup/pomegranate.webp",
         "alt": "An opened pomegranate showing its deep red arils",
-        "caption": "The pomegranate, or grenade in French, gave grenadine its name. Photo: Ivar Leidus, CC BY-SA 4.0"
+        "caption": "The pomegranate, or grenade in French, gave grenadine its name"
       },
       {
         "src": "/images/brands/giffard/products/grenadine-syrup/mary-pickford.webp",
         "alt": "A pink Mary Pickford cocktail in a coupe with three skewered cherries",
-        "caption": "A Mary Pickford, coloured with a dash of grenadine. Photo: Will Shenton, CC BY-SA 3.0"
+        "caption": "A Mary Pickford, coloured with a dash of grenadine"
       }
     ],
     "credits": [
@@ -1416,8 +1394,8 @@ export const giffardProducts: HouseProduct[] = [
       ],
       "image": {
         "src": "/images/brands/giffard/products/mango-syrup/mangoes-halved.webp",
-        "alt": "A whole red-green mango beside a halved mango showing orange flesh",
-        "caption": "Ripe mangoes, whole and halved. Photo: Ivar Leidus, CC BY-SA 4.0"
+        "alt": "Ripe red and yellow mangoes with a cut half and a scored mango cheek on a wooden table",
+        "caption": "Ripe mangoes, whole and halved"
       }
     },
     "tasting": {
@@ -1554,35 +1532,16 @@ export const giffardProducts: HouseProduct[] = [
     "gallery": [
       {
         "src": "/images/brands/giffard/products/mango-syrup/mango-on-tree.webp",
-        "alt": "A single yellow-green mango hanging from a tree",
-        "caption": "Mango ripening on the tree, Praslin, Seychelles. Photo: NorbertNagel, CC BY-SA 4.0"
+        "alt": "Ripe red and yellow mangoes hanging among the leaves of a mango tree",
+        "caption": "Mango ripening on the tree"
       },
       {
         "src": "/images/brands/giffard/products/mango-syrup/mango-lassi.webp",
-        "alt": "A glass of mango lassi topped with chopped nuts",
-        "caption": "Mango lassi, a natural home for a dash of mango syrup. Photo: Nithyasrm, CC BY-SA 4.0"
+        "alt": "Mango syrup being poured over a glass of mango lassi, with fresh mangoes and diced mango on a wooden table",
+        "caption": "Mango lassi, a natural home for a dash of mango syrup"
       }
     ],
-    "credits": [
-      {
-        "file": "/images/brands/giffard/products/mango-syrup/mangoes-halved.webp",
-        "author": "Ivar Leidus",
-        "licence": "CC BY-SA 4.0",
-        "url": "https://commons.wikimedia.org/wiki/File:Mangos_-_single_and_halved.jpg"
-      },
-      {
-        "file": "/images/brands/giffard/products/mango-syrup/mango-on-tree.webp",
-        "author": "NorbertNagel",
-        "licence": "CC BY-SA 4.0",
-        "url": "https://commons.wikimedia.org/wiki/File:Mango_fruit_hanging_on_a_mango_tree_-_Praslin_-_Seychelles.jpg"
-      },
-      {
-        "file": "/images/brands/giffard/products/mango-syrup/mango-lassi.webp",
-        "author": "Nithyasrm",
-        "licence": "CC BY-SA 4.0",
-        "url": "https://commons.wikimedia.org/wiki/File:Tasty_Mango_lassi_picture.JPG"
-      }
-    ],
+    "credits": [],
     "sources": [
       "https://www.giffard.com/en/fruits-and-plants-syrups/455-170-mango-syrup.html",
       "https://www.giffard.com/en/cocktail/6394-mango-iced-green-tea",
@@ -1597,10 +1556,10 @@ export const giffardProducts: HouseProduct[] = [
     "fullName": "Giffard Passion Fruit Syrup",
     "category": "Syrup",
     "image": "/images/giffard-passion-fruit-syrup.webp",
-    "imageAlt": "Giffard Fruit de la Passion syrup bottle with fresh passion fruit and a serve",
+    "imageAlt": "Giffard Passion Fruit syrup bottle with fresh passion fruit and a serve",
     "accent": "#f2b43a",
     "tagline": "Tangy passion fruit with a dry, refreshing finish",
-    "lede": "Giffard's Passion Fruit Syrup (Sirop Fruit de la Passion) is made from concentrated passion fruit juice and natural passion fruit aroma. It's tangy and drier on the finish than most fruit syrups, which makes it a reliable workhorse for Hurricanes, passion fruit sours and alcohol-free coolers.",
+    "lede": "Giffard's Passion Fruit Syrup is made from concentrated passion fruit juice and natural passion fruit aroma. It's tangy and drier on the finish than most fruit syrups, which makes it a reliable workhorse for Hurricanes, passion fruit sours and alcohol-free coolers.",
     "facts": [
       {
         "value": "Alcohol-free",
@@ -1631,8 +1590,8 @@ export const giffardProducts: HouseProduct[] = [
       ],
       "image": {
         "src": "/images/brands/giffard/products/passion-fruit-syrup/passionfruit-cut.webp",
-        "alt": "Purple passion fruits, some halved to show yellow seeded pulp",
-        "caption": "Purple passion fruit, whole and halved. Photo: Nana Pearls, CC0"
+        "alt": "Purple passion fruits on a wooden board, two halved to show golden seeded pulp",
+        "caption": "Purple passion fruit, whole and halved"
       }
     },
     "tasting": {
@@ -1774,8 +1733,8 @@ export const giffardProducts: HouseProduct[] = [
         "a": "It's made with real passion fruit juice and stabilised with acacia gum, so it has a slightly hazy, golden look and a fuller texture than a clear syrup."
       },
       {
-        "q": "Is it the same as Giffard's Crème de Fruits de la Passion?",
-        "a": "No. The Crème de Fruits de la Passion is an alcoholic liqueur, while this is an alcohol-free syrup. Giffard uses both, sometimes in the same drink."
+        "q": "Is it the same as Giffard's Passion Fruit Liqueur?",
+        "a": "No. The Passion Fruit Liqueur is an alcoholic liqueur, while this is an alcohol-free syrup. Giffard uses both, sometimes in the same drink."
       },
       {
         "q": "Does it contain alcohol or preservatives?",
@@ -1786,32 +1745,20 @@ export const giffardProducts: HouseProduct[] = [
       {
         "src": "/images/brands/giffard/products/passion-fruit-syrup/passionfruit-flower.webp",
         "alt": "A white and purple passion fruit flower among green leaves",
-        "caption": "The Passiflora edulis flower that gave the fruit its name. Photo: Pkn19, CC BY-SA 4.0"
+        "caption": "The Passiflora edulis flower that gave the fruit its name"
       },
       {
         "src": "/images/brands/giffard/products/passion-fruit-syrup/passionfruit-vine.webp",
-        "alt": "A passionfruit vine climbing over a timber fence against a blue sky",
-        "caption": "A backyard passionfruit vine in Sydney. Photo: Jeremy from Sydney, Australia, CC BY 2.0"
+        "alt": "Ripe purple passion fruit hanging from a vine over a backyard fence, one cut open to show the pulp",
+        "caption": "A backyard passionfruit vine in Sydney"
       }
     ],
     "credits": [
-      {
-        "file": "/images/brands/giffard/products/passion-fruit-syrup/passionfruit-cut.webp",
-        "author": "Nana Pearls",
-        "licence": "CC0",
-        "url": "https://commons.wikimedia.org/wiki/File:Cut_and_uncut_passion_fruits.jpg"
-      },
       {
         "file": "/images/brands/giffard/products/passion-fruit-syrup/passionfruit-flower.webp",
         "author": "Pkn19",
         "licence": "CC BY-SA 4.0",
         "url": "https://commons.wikimedia.org/wiki/File:Passiflora_edulis_passion_fruit_flower.jpg"
-      },
-      {
-        "file": "/images/brands/giffard/products/passion-fruit-syrup/passionfruit-vine.webp",
-        "author": "Jeremy from Sydney, Australia",
-        "licence": "CC BY 2.0",
-        "url": "https://commons.wikimedia.org/wiki/File:Passionfruit_vine_(25288601394).jpg"
       }
     ],
     "sources": [
@@ -2798,7 +2745,7 @@ export const giffardProducts: HouseProduct[] = [
       "image": {
         "src": "/images/brands/giffard/products/na-smoky-agave/espadin-agave.webp",
         "alt": "Espadín agave plants on a rocky hillside above mountain valleys, in black and white",
-        "caption": "Espadín agave, the most widely used mezcal agave. Photo: Neda Ruscic, CC BY 2.0"
+        "caption": "Espadín agave, the most widely used mezcal agave"
       }
     },
     "tasting": {
@@ -2952,12 +2899,12 @@ export const giffardProducts: HouseProduct[] = [
       {
         "src": "/images/brands/giffard/products/na-smoky-agave/agave-oaxaca.webp",
         "alt": "Agave angustifolia plants growing near Yagul in Oaxaca",
-        "caption": "Agave angustifolia (espadín) near Yagul, Oaxaca. Photo: Thayne Tuason, CC BY 4.0"
+        "caption": "Agave angustifolia (espadín) near Yagul, Oaxaca"
       },
       {
         "src": "/images/brands/giffard/products/na-smoky-agave/paloma.webp",
         "alt": "A Paloma cocktail in a tall glass with grapefruit",
-        "caption": "The Paloma, one of the serves Giffard suggests for Smoky Agave. Photo: Erich Wagner (www.eventografie.de), CC BY-SA 4.0"
+        "caption": "The Paloma, one of the serves Giffard suggests for Smoky Agave"
       }
     ],
     "credits": [
@@ -3029,7 +2976,7 @@ export const giffardProducts: HouseProduct[] = [
       "image": {
         "src": "/images/brands/giffard/products/na-aperitif-bitter/gentian-flower.webp",
         "alt": "Yellow flowers of great yellow gentian in an alpine meadow",
-        "caption": "Great yellow gentian (Gentiana lutea) in flower at Mont-Saxonnex in the French Alps. Photo: Tournasol7, CC BY 4.0"
+        "caption": "Great yellow gentian (Gentiana lutea) in flower at Mont-Saxonnex in the French Alps"
       }
     },
     "tasting": {
@@ -3168,12 +3115,12 @@ export const giffardProducts: HouseProduct[] = [
       {
         "src": "/images/brands/giffard/products/na-aperitif-bitter/gentian-root.webp",
         "alt": "Dried gentian roots",
-        "caption": "Dried roots of Gentiana lutea, a classic bittering agent in European aperitifs. Photo: B.navez, CC BY-SA 3.0"
+        "caption": "Dried roots of Gentiana lutea, a classic bittering agent in European aperitifs"
       },
       {
         "src": "/images/brands/giffard/products/na-aperitif-bitter/blood-orange.webp",
         "alt": "Cut blood oranges showing deep red flesh",
-        "caption": "Blood orange, the zest note on Aperitif Bitter’s palate. Photo: Rillke, CC BY-SA 2.0"
+        "caption": "Blood orange, the zest note on Aperitif Bitter’s palate"
       }
     ],
     "credits": [
@@ -3245,7 +3192,7 @@ export const giffardProducts: HouseProduct[] = [
       "image": {
         "src": "/images/brands/giffard/products/na-herbal-juniper/juniper-berries.webp",
         "alt": "Ripe blue juniper berries on a branch of common juniper",
-        "caption": "Ripe cones of common juniper (Juniperus communis). Photo: Ivar Leidus, CC BY-SA 4.0"
+        "caption": "Ripe cones of common juniper (Juniperus communis)"
       }
     },
     "tasting": {
@@ -3283,7 +3230,7 @@ export const giffardProducts: HouseProduct[] = [
     ],
     "cocktails": [
       {
-        "name": "Pamplemousse Gin and Tonic (alcohol-free)",
+        "name": "Pink Grapefruit Gin and Tonic (alcohol-free)",
         "glass": "Highball",
         "ice": "Long clear ice",
         "garnish": "Lime wedge",
@@ -3348,7 +3295,7 @@ export const giffardProducts: HouseProduct[] = [
     "uses": [
       {
         "title": "The zero-proof G&T",
-        "body": "Use 60 ml over clear ice and top with a good tonic, as in Giffard’s own Pamplemousse G&T."
+        "body": "Use 60 ml over clear ice and top with a good tonic, as in Giffard’s own Pink Grapefruit G&T."
       },
       {
         "title": "Shaken sours",
@@ -3389,12 +3336,12 @@ export const giffardProducts: HouseProduct[] = [
       {
         "src": "/images/brands/giffard/products/na-herbal-juniper/cardamom.webp",
         "alt": "Green cardamom pods",
-        "caption": "Green cardamom, one of Herbal Juniper’s botanicals. Photo: Misterneedlemouse, CC0"
+        "caption": "Green cardamom, one of Herbal Juniper’s botanicals"
       },
       {
         "src": "/images/brands/giffard/products/na-herbal-juniper/coriander-seeds.webp",
         "alt": "A pile of dried coriander seeds",
-        "caption": "Coriander seed, whose essential oil rounds out Herbal Juniper. Photo: Sanjay Acharya, CC BY-SA 4.0"
+        "caption": "Coriander seed, whose essential oil rounds out Herbal Juniper"
       }
     ],
     "credits": [
@@ -3465,7 +3412,7 @@ export const giffardProducts: HouseProduct[] = [
       "image": {
         "src": "/images/brands/giffard/products/na-ruby-grape/red-grapes.webp",
         "alt": "Bunches of dark red wine grapes on the vine",
-        "caption": "Red wine grapes in a vineyard at Cruet, Savoie, France. Photo: Florian Pépellin, CC BY-SA 4.0"
+        "caption": "Red wine grapes in a vineyard at Cruet, Savoie, France"
       }
     },
     "tasting": {
@@ -3605,12 +3552,12 @@ export const giffardProducts: HouseProduct[] = [
       {
         "src": "/images/brands/giffard/products/na-ruby-grape/savoie-vineyard.webp",
         "alt": "Red grape bunches hanging on vines between Montmélian and Arbin",
-        "caption": "Red grapes on the vine between Montmélian and Arbin, Savoie. Photo: Florian Pépellin, CC BY-SA 4.0"
+        "caption": "Red grapes on the vine between Montmélian and Arbin, Savoie"
       },
       {
         "src": "/images/brands/giffard/products/na-ruby-grape/zero-proof-negroni.webp",
         "alt": "A zero-proof Negroni on the rocks with a dried orange wheel",
-        "caption": "A zero-proof Negroni, the kind of serve Ruby Grape is built for. Photo: Paul Lowry, CC BY 2.0"
+        "caption": "A zero-proof Negroni, the kind of serve Ruby Grape is built for"
       }
     ],
     "credits": [

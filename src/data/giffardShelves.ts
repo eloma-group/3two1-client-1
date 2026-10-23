@@ -20,8 +20,8 @@ export const giffardShelves: GiffardShelf[] = [
     label: 'Liqueurs',
     category: 'Liqueur',
     noun: ['liqueur', 'liqueurs'],
-    lede: 'Classic fruit liqueurs and crèmes de fruits, the premium terroir range and the Menthe-Pastille Émile Giffard first made in 1885. All 700 ml, all made in Angers.',
-    groups: ['Classic', 'Premium', 'Menthe-Pastille 1885'],
+    lede: 'Classic fruit liqueurs and fruit creams, the premium terroir range and the Peppermint Liqueur Émile Giffard first made in 1885. All 700 ml, all made in Angers.',
+    groups: ['Classic', 'Premium', 'Peppermint 1885'],
   },
   {
     slug: 'syrups',

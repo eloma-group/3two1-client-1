@@ -11,11 +11,11 @@ const ease = [0.16, 1, 0.3, 1] as [number, number, number, number];
 const img = (f: string) => `/images/brands/giffard/${f}.webp`;
 
 const HERO_BOTTLES = [
-  { src: img('lychee'), alt: 'Giffard Lichi-Li lychee liqueur bottle', slot: 'farLeft', fromX: '80%', tilt: -9, float: 6.6 },
-  { src: img('watermelon'), alt: 'Giffard Watermelon liqueur bottle', slot: 'farRight', fromX: '-80%', tilt: 9, float: 5.9 },
-  { src: img('cassis'), alt: 'Giffard Crème de Cassis bottle', slot: 'left', fromX: '40%', tilt: -5, float: 5.6 },
-  { src: '/images/house-giffard.webp', alt: 'Giffard Coconut syrup bottle', slot: 'right', fromX: '-40%', tilt: 5, float: 6.2 },
-  { src: img('menthe'), alt: 'Giffard Menthe-Pastille bottle', slot: 'centre', fromX: '0%', tilt: 0, float: 5 },
+  { src: img('hero-blue-curacao-liqueur'), alt: 'Giffard Blue Curaçao liqueur bottle', slot: 'farLeft', fromX: '80%', tilt: -9, float: 6.6 },
+  { src: img('hero-na-spritz'), alt: 'Giffard alcohol-free Spritz bottle', slot: 'farRight', fromX: '-80%', tilt: 9, float: 5.9 },
+  { src: img('hero-grenadine-syrup'), alt: 'Giffard Grenadine syrup bottle', slot: 'left', fromX: '40%', tilt: -5, float: 5.6 },
+  { src: img('hero-strawberry-puree'), alt: 'Giffard Strawberry Fruit for Mix purée bottle', slot: 'right', fromX: '-40%', tilt: 5, float: 6.2 },
+  { src: img('menthe'), alt: 'Giffard Peppermint Liqueur bottle', slot: 'centre', fromX: '0%', tilt: 0, float: 5 },
 ] as const;
 
 const ROMAN = ['I', 'II', 'III', 'IV', 'V', 'VI'];
@@ -63,7 +63,7 @@ export default function Giffard() {
             <span className={`${styles.corner} ${styles.tr}`} />
             <span className={`${styles.corner} ${styles.bl}`} />
             <span className={`${styles.corner} ${styles.br}`} />
-            <p className={styles.maison}>Maison fondée en 1885 · Angers</p>
+            <p className={styles.maison}>Founded in 1885 · Angers</p>
             <Ornament />
             <p className={styles.eyebrow}>{d.eyebrow}</p>
             <h1 className={styles.name}>
@@ -155,9 +155,9 @@ export default function Giffard() {
       {/* ── Story: French editorial ─────────────────────────────── */}
       <section className={styles.story}>
         <div className={styles.chapter}>
-          <span>Chapitre I</span>
+          <span>Chapter I</span>
           <i />
-          <span>L’histoire</span>
+          <span>The story</span>
         </div>
         <div className={styles.storyGrid}>
           <div className={styles.storyText}>
@@ -180,15 +180,15 @@ export default function Giffard() {
               <figure className={styles.framed}>
                 <img src={img('family')} alt="The Giffard family beneath the portrait of the founder" loading="lazy" />
                 <figcaption>
-                  <span>Pl. 1</span> La famille, sous le portrait du fondateur
+                  <span>Plate 1</span> The family, beneath the founder’s portrait
                 </figcaption>
               </figure>
             </Reveal>
             <Reveal delay={0.12}>
               <figure className={`${styles.framed} ${styles.small}`}>
-                <img src={img('museum')} alt="Menthe-Pastille posters in the Giffard museum, Angers" loading="lazy" />
+                <img src={img('museum')} alt="Peppermint liqueur posters in the Giffard museum, Angers" loading="lazy" />
                 <figcaption>
-                  <span>Pl. 2</span> Les affiches Menthe-Pastille
+                  <span>Plate 2</span> The original peppermint liqueur posters
                 </figcaption>
               </figure>
             </Reveal>
@@ -199,7 +199,7 @@ export default function Giffard() {
       {/* ── Craft: apothecary drawers ───────────────────────────── */}
       <section className={styles.craft}>
         <div className={styles.craftHead}>
-          <p className={styles.kicker}>Chapitre II · Le savoir-faire</p>
+          <p className={styles.kicker}>Chapter II · The craft</p>
           <Reveal>
             <p className={styles.statement}>{d.craft.statement}</p>
           </Reveal>
@@ -232,7 +232,7 @@ export default function Giffard() {
       {d.values && (
         <section className={styles.values}>
           <div className={styles.valuesPhoto}>
-            <img src={img('maison')} alt="Inside the Maison Giffard, Angers" loading="lazy" />
+            <img src={img('maison')} alt="Inside the Giffard, Angers" loading="lazy" />
           </div>
           <div className={styles.valuesText}>
             <p className={styles.kickerLight}>{d.values.label}</p>
@@ -251,10 +251,10 @@ export default function Giffard() {
       {/* ── Range: the apothecary shelf ─────────────────────────── */}
       <section className={styles.range}>
         <div className={styles.rangeHead}>
-          <p className={styles.kicker}>Chapitre III · L’étagère</p>
+          <p className={styles.kicker}>Chapter III · The shelf</p>
           <Reveal>
             <h2 className={styles.h2}>
-              Four shelves, <em>one house.</em>
+              Four shelves, <em>one brand.</em>
             </h2>
           </Reveal>
           <p className={styles.rangeLede}>
@@ -326,38 +326,38 @@ export default function Giffard() {
         <Reveal className={styles.rx}>
           <div className={styles.rxHead}>
             <div>
-              <p className={styles.rxHouse}>E. Giffard · Pharmacien</p>
+              <p className={styles.rxHouse}>E. Giffard · Pharmacist</p>
               <p className={styles.rxAddr}>Place du Ralliement · Angers</p>
             </div>
             <span className={styles.rxSymbol}>℞</span>
           </div>
           <p className={styles.rxFor}>
-            Ordonnance - <em>{d.tasting.of}</em>
+            Prescription - <em>{d.tasting.of}</em>
           </p>
           <dl className={styles.rxList}>
             <div>
-              <dt>Nez</dt>
+              <dt>Nose</dt>
               <dd>{d.tasting.nose}</dd>
             </div>
             <div>
-              <dt>Bouche</dt>
+              <dt>Palate</dt>
               <dd>{d.tasting.palate}</dd>
             </div>
             <div>
-              <dt>Finale</dt>
+              <dt>Finish</dt>
               <dd>{d.tasting.finish}</dd>
             </div>
           </dl>
           <p className={styles.rxDose}>
-            <span>Posologie</span>
+            <span>Dosage</span>
             {d.tasting.serve}
           </p>
           <p className={styles.rxSign}> - E.G.</p>
         </Reveal>
         <motion.img
           className={styles.rxBottle}
-          src={img('cassis')}
-          alt="Giffard Crème de Cassis"
+          src={img('lychee')}
+          alt="Giffard Lychee Liqueur bottle"
           loading="lazy"
           initial={{ opacity: 0, rotate: 6, y: 40 }}
           whileInView={{ opacity: 1, rotate: -4, y: 0 }}
@@ -369,7 +369,7 @@ export default function Giffard() {
       {/* ── Serves: menu cards ──────────────────────────────────── */}
       <section className={styles.serves}>
         <div className={styles.rangeHead}>
-          <p className={styles.kicker}>Chapitre IV · La carte</p>
+          <p className={styles.kicker}>Chapter IV · The menu</p>
           <Reveal>
             <h2 className={styles.h2}>
               How to <em>pour.</em>
@@ -412,7 +412,7 @@ export default function Giffard() {
         </div>
         <div className={styles.inviteGrid}>
           <Reveal className={styles.card}>
-            <p className={styles.cardTop}>Vous êtes cordialement invités</p>
+            <p className={styles.cardTop}>You are cordially invited</p>
             <Ornament />
             <h2 className={styles.cardH}>{d.extra.heading}</h2>
             <p className={styles.cardBody}>{d.extra.body}</p>
@@ -438,9 +438,9 @@ export default function Giffard() {
       {/* ── Stock CTA ───────────────────────────────────────────── */}
       <section className={styles.stock}>
         <div className={styles.stockInner}>
-          <img className={styles.stockBottle} src={img('menthe')} alt="Giffard Menthe-Pastille" loading="lazy" />
+          <img className={styles.stockBottle} src={img('menthe')} alt="Giffard Peppermint Liqueur" loading="lazy" />
           <div>
-            <p className={styles.kicker}>Chapitre V · La commande</p>
+            <p className={styles.kicker}>Chapter V · The order</p>
             <Reveal>
               <h2 className={styles.stockH}>
                 Stock <em>{d.name}.</em>

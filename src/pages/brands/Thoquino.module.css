@@ -488,18 +488,6 @@
 .caneHalf::after { background: linear-gradient(180deg, rgba(182, 214, 54, 0) 35%, rgba(182, 214, 54, 0.85) 68%, #b6d636 100%); }
 .molHalf::after { background: linear-gradient(180deg, rgba(31, 16, 6, 0.1) 30%, rgba(31, 16, 6, 0.85) 66%, #1f1006 100%); }
 .half > :not(.halfPhoto) { z-index: 1; }
-.halfCredit {
-  position: absolute;
-  top: 0.9rem;
-  right: 1rem;
-  z-index: 1;
-  font-size: 0.62rem;
-  letter-spacing: 0.04em;
-  padding: 0.2rem 0.5rem;
-  border-radius: 999px;
-  background: rgba(0, 0, 0, 0.45);
-  color: #fff;
-}
 .split[data-side='molasses'] .caneHalf, .split[data-side='cane'] .molHalf { filter: saturate(0.6); }
 
 /* ── Range ─────────────────────────────────────────────────── */

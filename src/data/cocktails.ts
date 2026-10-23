@@ -49,10 +49,10 @@ export const recipeHouses: RecipeHouse[] = [
       },
       {
         tag: 'Twist',
-        name: 'Crème de Pêche Bellini',
-        lede: 'A grown-up bellini using Giffard Crème de Pêche de Vigne for stone-fruit depth no purée can match.',
+        name: 'Peach Liqueur Bellini',
+        lede: 'A grown-up bellini using Giffard Vineyard Peach Liqueur for stone-fruit depth no purée can match.',
         ingredients: [
-          ['Giffard Crème de Pêche', '15 ml'],
+          ['Giffard Peach Liqueur', '15 ml'],
           ['White peach purée', '20 ml'],
           ['Prosecco', '100 ml'],
         ],
@@ -60,10 +60,10 @@ export const recipeHouses: RecipeHouse[] = [
       },
       {
         tag: 'Café',
-        name: 'Vanille de Madagascar Latte',
+        name: 'Madagascar Vanilla Liqueur Latte',
         lede: 'For cafés running a "spiked drinks" hour. Giffard syrup, no spirit - same brand, two channels.',
         ingredients: [
-          ['Giffard Vanille de Madagascar syrup', '15 ml'],
+          ['Giffard Madagascar Vanilla Liqueur', '15 ml'],
           ['Double espresso', '60 ml'],
           ['Steamed milk', '180 ml'],
         ],

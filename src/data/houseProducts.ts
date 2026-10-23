@@ -51,7 +51,7 @@ export interface HouseProduct {
 export interface House {
   slug: string;
   name: string;
-  /** Hero eyebrow, e.g. "Maison Giffard". */
+  /** Hero eyebrow, e.g. "Giffard". */
   kicker: string;
   theme: 'giffard' | 'puebloViejo' | 'whiskeyRow';
   /** Section label for the `fruit` block on bottle pages. */
@@ -70,7 +70,7 @@ export const houses: Record<string, House> = {
   giffard: {
     slug: 'giffard',
     name: 'Giffard',
-    kicker: 'Maison Giffard',
+    kicker: 'Giffard',
     theme: 'giffard',
     storyLabel: 'The fruit',
     categoryLabel: { Puree: 'Fruit for Mix', 'Non-Alcoholic': 'Alcohol-free' },

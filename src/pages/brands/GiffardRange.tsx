@@ -49,10 +49,10 @@ function Shelf({ slug }: { slug: string | undefined }) {
       <section className={styles.hero}>
         <div className={styles.wrap}>
           <div className={styles.crumbs}>
-            <Link to="/brands/giffard">← Maison Giffard</Link>
+            <Link to="/brands/giffard">← Giffard</Link>
             <span>The range</span>
           </div>
-          <p className={styles.kicker}>Maison Giffard · Angers · 1885</p>
+          <p className={styles.kicker}>Giffard · Angers · 1885</p>
           <h1 className={styles.title}>
             {shelf.label}
             <span className={styles.count}>{count(products.length)}</span>

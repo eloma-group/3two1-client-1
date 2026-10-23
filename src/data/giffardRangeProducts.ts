@@ -270,14 +270,14 @@ export const giffardRangeProducts: HouseProduct[] = [
   },
   {
     "slug": "blackberry-liqueur",
-    "label": "Crème de Mûre (Blackberry)",
-    "fullName": "Giffard Crème de Mûre (Blackberry)",
+    "label": "Blackberry Liqueur",
+    "fullName": "Giffard Blackberry Liqueur",
     "category": "Liqueur",
     "group": "Classic",
     "image": "/images/brands/giffard/range/blackberry-liqueur.webp",
-    "imageAlt": "Giffard Crème de Mûre (Blackberry) bottle",
+    "imageAlt": "Giffard Blackberry Liqueur bottle",
     "accent": "#9e202e",
-    "tagline": "Liqueur (crème de fruits) made from concentrated blackberry juice",
+    "tagline": "Fruit liqueur made from concentrated blackberry juice",
     "lede": "The blackberry, an edible fruit from the common bramble, grows spontaneously throughout Europe and many regions of the world, but Mexico is the world's leading producer. Used in naturopathy and sometimes as a tincture, the blackberry is widely used in food, jam, jelly or dessert. Its use in the manufacture of drinks, liqueurs or syrups is mentioned in the London Pharmacopoeia as early as 1696.",
     "facts": [
       {
@@ -337,7 +337,7 @@ export const giffardRangeProducts: HouseProduct[] = [
           {
             "amount": "20",
             "unit": "ml",
-            "what": "Crème de Mûre (Blackberry)"
+            "what": "Blackberry Liqueur"
           }
         ],
         "method": [
@@ -361,7 +361,7 @@ export const giffardRangeProducts: HouseProduct[] = [
           {
             "amount": "10",
             "unit": "ml",
-            "what": "Crème de Mûre (Blackberry)"
+            "what": "Blackberry Liqueur"
           },
           {
             "amount": "5",
@@ -421,14 +421,14 @@ export const giffardRangeProducts: HouseProduct[] = [
   },
   {
     "slug": "blackcurrant-liqueur",
-    "label": "Crème de Cassis d'Anjou (Blackcurrant)",
-    "fullName": "Giffard Crème de Cassis d'Anjou (Blackcurrant)",
+    "label": "Blackcurrant Liqueur",
+    "fullName": "Giffard Blackcurrant Liqueur",
     "category": "Liqueur",
     "group": "Classic",
     "image": "/images/brands/giffard/range/blackcurrant-liqueur.webp",
-    "imageAlt": "Giffard Crème de Cassis d'Anjou (Blackcurrant) bottle",
+    "imageAlt": "Giffard Blackcurrant Liqueur bottle",
     "accent": "#9e2536",
-    "tagline": "Liqueur (crème de fruits) made from the infusion of blackcurrants",
+    "tagline": "Fruit liqueur made from the infusion of blackcurrants",
     "lede": "This guarantees high-quality fruits at tasting, nutritional and health levels.",
     "facts": [
       {
@@ -449,8 +449,8 @@ export const giffardRangeProducts: HouseProduct[] = [
       }
     ],
     "about": [
-      "Liqueur (crème de fruits) made from the infusion of blackcurrants, harvested in the Loire Valley through sustainable farming. This guarantees high-quality fruits at tasting, nutritional and health levels.",
-      "A black-coloured berry, blackcurrant is the fruit of the Cassissier which grows wild in the mountainous and cold regions of the Palearctic zone corresponding to Europe and certain countries in North Africa, the Middle East and Asia. These smooth-skinned berries are very aromatic and are therefore often used in liqueurs and creams. Once used as a medicinal preparation, crème de cassis as it is known today was created in Burgundy in the 19th century. Crème de cassis has the specificity of containing a minimum of 15 degrees of alcohol as well as a minimum of 400 grams of sugar per litre."
+      "Fruit liqueur made from the infusion of blackcurrants, harvested in the Loire Valley through sustainable farming. This guarantees high-quality fruits at tasting, nutritional and health levels.",
+      "A black-coloured berry, blackcurrant is the fruit of the blackcurrant bush which grows wild in the mountainous and cold regions of the Palearctic zone corresponding to Europe and certain countries in North Africa, the Middle East and Asia. These smooth-skinned berries are very aromatic and are therefore often used in liqueurs and creams. Once used as a medicinal preparation, blackcurrant liqueur as it is known today was created in Burgundy in the 19th century. Crème de cassis has the specificity of containing a minimum of 15 degrees of alcohol as well as a minimum of 400 grams of sugar per litre."
     ],
     "fruit": {
       "heading": "",
@@ -479,7 +479,7 @@ export const giffardRangeProducts: HouseProduct[] = [
           {
             "amount": "15",
             "unit": "ml",
-            "what": "Crème de Cassis d'Anjou (Blackcurrant)"
+            "what": "Blackcurrant Liqueur"
           },
           {
             "amount": "20",
@@ -511,7 +511,7 @@ export const giffardRangeProducts: HouseProduct[] = [
           {
             "amount": "10",
             "unit": "ml",
-            "what": "Crème de Cassis d'Anjou (Blackcurrant)"
+            "what": "Blackcurrant Liqueur"
           },
           {
             "amount": "10",
@@ -892,12 +892,12 @@ export const giffardRangeProducts: HouseProduct[] = [
   },
   {
     "slug": "dark-chocolate-liqueur",
-    "label": "Crème de Cacao (Dark Chocolate)",
-    "fullName": "Giffard Crème de Cacao (Dark Chocolate)",
+    "label": "Dark Chocolate Liqueur",
+    "fullName": "Giffard Dark Chocolate Liqueur",
     "category": "Liqueur",
     "group": "Classic",
     "image": "/images/brands/giffard/range/dark-chocolate-liqueur.webp",
-    "imageAlt": "Giffard Crème de Cacao (Dark Chocolate) bottle",
+    "imageAlt": "Giffard Dark Chocolate Liqueur bottle",
     "accent": "#b16c46",
     "tagline": "Liqueur made from cocoa extract",
     "lede": "Liqueur made from cocoa extract. A strong chocolate taste. Intense and smooth flavour reminiscent of roasted cocoa beans.",
@@ -949,7 +949,7 @@ export const giffardRangeProducts: HouseProduct[] = [
           {
             "amount": "20",
             "unit": "ml",
-            "what": "Crème de Cacao (white)"
+            "what": "White Chocolate Liqueur"
           },
           {
             "amount": "20",
@@ -969,7 +969,7 @@ export const giffardRangeProducts: HouseProduct[] = [
         "image": "/images/brands/giffard/range/cocktails/alexander-3.webp"
       },
       {
-        "name": "Forêt Noire",
+        "name": "Black Forest",
         "glass": "Cocktail",
         "ice": "",
         "garnish": "Cherry",
@@ -982,12 +982,12 @@ export const giffardRangeProducts: HouseProduct[] = [
           {
             "amount": "20",
             "unit": "ml",
-            "what": "Menthe-Pastille"
+            "what": "Peppermint Liqueur"
           },
           {
             "amount": "20",
             "unit": "ml",
-            "what": "Crème de Cacao (brown)"
+            "what": "Dark Chocolate Liqueur"
           },
           {
             "amount": "10",
@@ -1015,7 +1015,7 @@ export const giffardRangeProducts: HouseProduct[] = [
     "uses": [
       {
         "title": "In the glass",
-        "body": "Try it in the Alexander or the Forêt Noire - the full specs are above."
+        "body": "Try it in the Alexander or the Black Forest - the full specs are above."
       },
       {
         "title": "Storage",
@@ -1046,12 +1046,12 @@ export const giffardRangeProducts: HouseProduct[] = [
   },
   {
     "slug": "white-chocolate-liqueur",
-    "label": "Crème de Cacao (White Chocolate)",
-    "fullName": "Giffard Crème de Cacao (White Chocolate)",
+    "label": "White Chocolate Liqueur",
+    "fullName": "Giffard White Chocolate Liqueur",
     "category": "Liqueur",
     "group": "Classic",
     "image": "/images/brands/giffard/range/white-chocolate-liqueur.webp",
-    "imageAlt": "Giffard Crème de Cacao (White Chocolate) bottle",
+    "imageAlt": "Giffard White Chocolate Liqueur bottle",
     "accent": "#b36d46",
     "tagline": "Liqueur made from natural cocoa flavouring",
     "lede": "Liqueur made from natural cocoa flavouring. Very soft and sweet taste at first, then powerful aromas of dark chocolate and coffee with a very buttery finish.",
@@ -1103,12 +1103,12 @@ export const giffardRangeProducts: HouseProduct[] = [
           {
             "amount": "20",
             "unit": "ml",
-            "what": "Peppermint Pastille"
+            "what": "Peppermint Liqueur"
           },
           {
             "amount": "20",
             "unit": "ml",
-            "what": "Crème de Cacao (white)"
+            "what": "White Chocolate Liqueur"
           }
         ],
         "method": [
@@ -1130,12 +1130,12 @@ export const giffardRangeProducts: HouseProduct[] = [
           {
             "amount": "30",
             "unit": "ml",
-            "what": "Peppermint Pastille"
+            "what": "Peppermint Liqueur"
           },
           {
             "amount": "30",
             "unit": "ml",
-            "what": "Crème de Cacao (white)"
+            "what": "White Chocolate Liqueur"
           },
           {
             "amount": "60",
@@ -1168,17 +1168,17 @@ export const giffardRangeProducts: HouseProduct[] = [
           {
             "amount": "30",
             "unit": "ml",
-            "what": "Crème de Cacao (white)"
+            "what": "White Chocolate Liqueur"
           },
           {
             "amount": "30",
             "unit": "ml",
-            "what": "Crème de Fraise des bois (Wild strawberry)"
+            "what": "Wild Strawberry Liqueur"
           },
           {
             "amount": "10",
             "unit": "ml",
-            "what": "Menthe-Pastille"
+            "what": "Peppermint Liqueur"
           },
           {
             "amount": "30",
@@ -1521,7 +1521,7 @@ export const giffardRangeProducts: HouseProduct[] = [
           {
             "amount": "20",
             "unit": "ml",
-            "what": "Menthe-Pastille"
+            "what": "Peppermint Liqueur"
           }
         ],
         "method": [
@@ -1897,7 +1897,7 @@ export const giffardRangeProducts: HouseProduct[] = [
           {
             "amount": "15",
             "unit": "ml",
-            "what": "Crème de Framboise (Raspberry)"
+            "what": "Raspberry Liqueur"
           },
           {
             "amount": "50",
@@ -1992,12 +1992,12 @@ export const giffardRangeProducts: HouseProduct[] = [
   },
   {
     "slug": "mandarine-liqueur",
-    "label": "Mandarine Liqueur",
-    "fullName": "Giffard Mandarine Liqueur",
+    "label": "Mandarin Liqueur",
+    "fullName": "Giffard Mandarin Liqueur",
     "category": "Liqueur",
     "group": "Classic",
     "image": "/images/brands/giffard/range/mandarine-liqueur.webp",
-    "imageAlt": "Giffard Mandarine Liqueur bottle",
+    "imageAlt": "Giffard Mandarin Liqueur bottle",
     "accent": "#dd9731",
     "tagline": "Fine liqueur made from tangerine aromas",
     "lede": "Fine liqueur made from tangerine aromas. Very aromatic taste, true to olfactory notes. Very fruity and smooth flavour.",
@@ -2044,7 +2044,7 @@ export const giffardRangeProducts: HouseProduct[] = [
           {
             "amount": "10",
             "unit": "ml",
-            "what": "Mandarine Liqueur"
+            "what": "Mandarin Liqueur"
           },
           {
             "amount": "5",
@@ -2166,7 +2166,7 @@ export const giffardRangeProducts: HouseProduct[] = [
           {
             "amount": "10",
             "unit": "ml",
-            "what": "Crème de Violette (Violet)"
+            "what": "Violet Liqueur"
           },
           {
             "amount": "15",
@@ -2219,15 +2219,15 @@ export const giffardRangeProducts: HouseProduct[] = [
   },
   {
     "slug": "green-mint-liqueur",
-    "label": "Crème de Menthe (Green Mint)",
-    "fullName": "Giffard Crème de Menthe (Green Mint)",
+    "label": "Green Mint Liqueur",
+    "fullName": "Giffard Green Mint Liqueur",
     "category": "Liqueur",
     "group": "Classic",
     "image": "/images/brands/giffard/range/green-mint-liqueur.webp",
-    "imageAlt": "Giffard Crème de Menthe (Green Mint) bottle",
+    "imageAlt": "Giffard Green Mint Liqueur bottle",
     "accent": "#259e31",
     "tagline": "Liqueur made from mint natural flavouring",
-    "lede": "Peppermint (Mentha piperita) is particularly rich in menthol, which is responsible for the refreshing sensation it provides. It is a plant widely used in herbal medicine for its numerous health benefits, including pain relief, digestive properties, and antioxidant effects. Giffard Crème de Menthe (green) brings the characteristic freshness and colour of peppermint to your creations.",
+    "lede": "Peppermint (Mentha piperita) is particularly rich in menthol, which is responsible for the refreshing sensation it provides. It is a plant widely used in herbal medicine for its numerous health benefits, including pain relief, digestive properties, and antioxidant effects. Giffard Green Mint Liqueur brings the characteristic freshness and colour of peppermint to your creations.",
     "facts": [
       {
         "value": "21%",
@@ -2276,7 +2276,7 @@ export const giffardRangeProducts: HouseProduct[] = [
           {
             "amount": "15",
             "unit": "ml",
-            "what": "Crème de Menthe (green)"
+            "what": "Green Mint Liqueur"
           },
           {
             "amount": "15",
@@ -2319,7 +2319,7 @@ export const giffardRangeProducts: HouseProduct[] = [
           {
             "amount": "30",
             "unit": "ml",
-            "what": "Crème de Menthe (green)"
+            "what": "Green Mint Liqueur"
           }
         ],
         "method": [
@@ -2439,15 +2439,15 @@ export const giffardRangeProducts: HouseProduct[] = [
   },
   {
     "slug": "passion-fruit-liqueur",
-    "label": "Crème de Fruits de la Passion (Passion Fruit)",
-    "fullName": "Giffard Crème de Fruits de la Passion (Passion Fruit)",
+    "label": "Passion Fruit Liqueur",
+    "fullName": "Giffard Passion Fruit Liqueur",
     "category": "Liqueur",
     "group": "Classic",
     "image": "/images/brands/giffard/range/passion-fruit-liqueur.webp",
-    "imageAlt": "Giffard Crème de Fruits de la Passion (Passion Fruit) bottle",
+    "imageAlt": "Giffard Passion Fruit Liqueur bottle",
     "accent": "#c27d11",
-    "tagline": "Liqueur (crème de fruits) made from concentrated passion fruit juice",
-    "lede": "Passion fruit is a climbing plant of the Passifloraceae family, native to Latin America. Also called granadilla, this fruit is a small tropical berry with fragrant flesh that differs from other fruits by its small black seeds. Giffard Crème de Fruit de la Passion brings the flavour of this fruit to cocktails with exotic accents.",
+    "tagline": "Fruit liqueur made from concentrated passion fruit juice",
+    "lede": "Passion fruit is a climbing plant of the Passifloraceae family, native to Latin America. Also called granadilla, this fruit is a small tropical berry with fragrant flesh that differs from other fruits by its small black seeds. Giffard Passion Fruit Liqueur brings the flavour of this fruit to cocktails with exotic accents.",
     "facts": [
       {
         "value": "16%",
@@ -2496,7 +2496,7 @@ export const giffardRangeProducts: HouseProduct[] = [
           {
             "amount": "25",
             "unit": "ml",
-            "what": "Crème de Fruits de la Passion (Passion Fruit)"
+            "what": "Passion Fruit Liqueur"
           },
           {
             "amount": "5",
@@ -2558,15 +2558,15 @@ export const giffardRangeProducts: HouseProduct[] = [
   },
   {
     "slug": "peach-liqueur",
-    "label": "Crème de Pêche (Peach)",
-    "fullName": "Giffard Crème de Pêche (Peach)",
+    "label": "Peach Liqueur",
+    "fullName": "Giffard Peach Liqueur",
     "category": "Liqueur",
     "group": "Classic",
     "image": "/images/brands/giffard/range/peach-liqueur.webp",
-    "imageAlt": "Giffard Crème de Pêche (Peach) bottle",
+    "imageAlt": "Giffard Peach Liqueur bottle",
     "accent": "#bd9c43",
-    "tagline": "Liqueur (crème de fruits) made from the infusion of peaches",
-    "lede": "Liqueur (crème de fruits) made from the infusion of peaches. Bright and fruity notes. Aromatic intensity marked by stewed notes of fresh fruit. The stone of the fruit is very noticeable on the finish.",
+    "tagline": "Fruit liqueur made from the infusion of peaches",
+    "lede": "Fruit liqueur made from the infusion of peaches. Bright and fruity notes. Aromatic intensity marked by stewed notes of fresh fruit. The stone of the fruit is very noticeable on the finish.",
     "facts": [
       {
         "value": "16%",
@@ -2615,12 +2615,12 @@ export const giffardRangeProducts: HouseProduct[] = [
           {
             "amount": "10",
             "unit": "ml",
-            "what": "Crème de Pêche (Peach)"
+            "what": "Peach Liqueur"
           },
           {
             "amount": "10",
             "unit": "ml",
-            "what": "Lichi-Li"
+            "what": "Lychee Liqueur"
           },
           {
             "amount": "30",
@@ -2672,15 +2672,15 @@ export const giffardRangeProducts: HouseProduct[] = [
   },
   {
     "slug": "pink-grapefruit-liqueur",
-    "label": "Crème de Pamplemousse Rose (Pink Grapefruit)",
-    "fullName": "Giffard Crème de Pamplemousse Rose (Pink Grapefruit)",
+    "label": "Pink Grapefruit Liqueur",
+    "fullName": "Giffard Pink Grapefruit Liqueur",
     "category": "Liqueur",
     "group": "Classic",
     "image": "/images/brands/giffard/range/pink-grapefruit-liqueur.webp",
-    "imageAlt": "Giffard Crème de Pamplemousse Rose (Pink Grapefruit) bottle",
+    "imageAlt": "Giffard Pink Grapefruit Liqueur bottle",
     "accent": "#c56f4d",
-    "tagline": "Liqueur (crème de fruits) made from the infusion of pink grapefruit zests",
-    "lede": "Liqueur (crème de fruits) made from the infusion of pink grapefruit zests. Very aromatic taste, good balance between bitterness, acidity and fruitiness, with a zesty note at the end.",
+    "tagline": "Fruit liqueur made from the infusion of pink grapefruit zests",
+    "lede": "Fruit liqueur made from the infusion of pink grapefruit zests. Very aromatic taste, good balance between bitterness, acidity and fruitiness, with a zesty note at the end.",
     "facts": [
       {
         "value": "16%",
@@ -2730,7 +2730,7 @@ export const giffardRangeProducts: HouseProduct[] = [
           {
             "amount": "20",
             "unit": "ml",
-            "what": "Crème de Pamplemousse rose (Pink Grapefruit)"
+            "what": "Pink Grapefruit Liqueur"
           },
           {
             "amount": "5",
@@ -2764,7 +2764,7 @@ export const giffardRangeProducts: HouseProduct[] = [
           {
             "amount": "10",
             "unit": "ml",
-            "what": "Crème de Pamplemousse rose (Pink Grapefruit)"
+            "what": "Pink Grapefruit Liqueur"
           },
           {
             "amount": "5",
@@ -2828,15 +2828,15 @@ export const giffardRangeProducts: HouseProduct[] = [
   },
   {
     "slug": "raspberry-liqueur",
-    "label": "Crème de Framboise (Raspberry)",
-    "fullName": "Giffard Crème de Framboise (Raspberry)",
+    "label": "Raspberry Liqueur",
+    "fullName": "Giffard Raspberry Liqueur",
     "category": "Liqueur",
     "group": "Classic",
     "image": "/images/brands/giffard/range/raspberry-liqueur.webp",
-    "imageAlt": "Giffard Crème de Framboise (Raspberry) bottle",
+    "imageAlt": "Giffard Raspberry Liqueur bottle",
     "accent": "#9e2b3a",
-    "tagline": "Liqueur (crème de fruits) made from raspberries infusion",
-    "lede": "Liqueur (crème de fruits) made from raspberries infusion. Vibrant and lively. Slight and very pleasant peppery side. Very fruity with blackberries, blackcurrants and other small acidulous red fruit notes. Long and aromatic finish, much like the aromas of the berry.",
+    "tagline": "Fruit liqueur made from raspberries infusion",
+    "lede": "Fruit liqueur made from raspberries infusion. Vibrant and lively. Slight and very pleasant peppery side. Very fruity with blackberries, blackcurrants and other small acidulous red fruit notes. Long and aromatic finish, much like the aromas of the berry.",
     "facts": [
       {
         "value": "16%",
@@ -2885,7 +2885,7 @@ export const giffardRangeProducts: HouseProduct[] = [
           {
             "amount": "15",
             "unit": "ml",
-            "what": "Crème de Framboise (Raspberry)"
+            "what": "Raspberry Liqueur"
           },
           {
             "amount": "8-12",
@@ -2924,7 +2924,7 @@ export const giffardRangeProducts: HouseProduct[] = [
           {
             "amount": "10",
             "unit": "ml",
-            "what": "Crème de Framboise (Raspberry)"
+            "what": "Raspberry Liqueur"
           },
           {
             "amount": "5",
@@ -2984,15 +2984,15 @@ export const giffardRangeProducts: HouseProduct[] = [
   },
   {
     "slug": "rose-liqueur",
-    "label": "Crème de Rose (Rose)",
-    "fullName": "Giffard Crème de Rose (Rose)",
+    "label": "Rose Liqueur",
+    "fullName": "Giffard Rose Liqueur",
     "category": "Liqueur",
     "group": "Classic",
     "image": "/images/brands/giffard/range/rose-liqueur.webp",
-    "imageAlt": "Giffard Crème de Rose (Rose) bottle",
+    "imageAlt": "Giffard Rose Liqueur bottle",
     "accent": "#c72710",
-    "tagline": "Liqueur (crème de fruits) made from rosebud infusion",
-    "lede": "Liqueur (crème de fruits) made from rosebud infusion. Very balanced flavour, round, elegant and silky with notes of sweet spices at the end.",
+    "tagline": "Fruit liqueur made from rosebud infusion",
+    "lede": "Fruit liqueur made from rosebud infusion. Very balanced flavour, round, elegant and silky with notes of sweet spices at the end.",
     "facts": [
       {
         "value": "16%",
@@ -3041,12 +3041,12 @@ export const giffardRangeProducts: HouseProduct[] = [
           {
             "amount": "20",
             "unit": "ml",
-            "what": "Crème de Pamplemousse rose (Pink Grapefruit)"
+            "what": "Pink Grapefruit Liqueur"
           },
           {
             "amount": "20",
             "unit": "ml",
-            "what": "Crème de Rose (Rose)"
+            "what": "Rose Liqueur"
           },
           {
             "amount": "10",
@@ -3079,7 +3079,7 @@ export const giffardRangeProducts: HouseProduct[] = [
           {
             "amount": "20",
             "unit": "ml",
-            "what": "Crème de Rose (Rose)"
+            "what": "Rose Liqueur"
           },
           {
             "amount": "10",
@@ -3292,15 +3292,15 @@ export const giffardRangeProducts: HouseProduct[] = [
   },
   {
     "slug": "strawberry-liqueur",
-    "label": "Crème de Fraise des Bois (Strawberry)",
-    "fullName": "Giffard Crème de Fraise des Bois (Strawberry)",
+    "label": "Wild Strawberry Liqueur",
+    "fullName": "Giffard Wild Strawberry Liqueur",
     "category": "Liqueur",
     "group": "Classic",
     "image": "/images/brands/giffard/range/strawberry-liqueur.webp",
-    "imageAlt": "Giffard Crème de Fraise des Bois (Strawberry) bottle",
+    "imageAlt": "Giffard Wild Strawberry Liqueur bottle",
     "accent": "#9e4750",
-    "tagline": "Liqueur (crème de fruits) made from strawberries and wild strawberries infusion",
-    "lede": "The strawberry first grew in the wild in America, Asia and the mountainous areas of Western Europe during the Neolithic period. The French word for strawberry, 'fraise', comes from the Latin \"Fragaria\" (fragrance). It is used by the Romans for aesthetic purposes, for its pleasant smell and for its therapeutic qualities. The wild strawberry is a variety of strawberry, smaller than the common strawberry and with a more powerful fragrance. Giffard Crème de fraise des bois et fraise brings the liveliness and acidity of the fruit to your cocktails.",
+    "tagline": "Fruit liqueur made from strawberries and wild strawberries infusion",
+    "lede": "The strawberry first grew in the wild in America, Asia and the mountainous areas of Western Europe during the Neolithic period. The French word for strawberry, 'fraise', comes from the Latin \"Fragaria\" (fragrance). It is used by the Romans for aesthetic purposes, for its pleasant smell and for its therapeutic qualities. The wild strawberry is a variety of strawberry, smaller than the common strawberry and with a more powerful fragrance. Giffard Wild Strawberry Liqueur brings the liveliness and acidity of the fruit to your cocktails.",
     "facts": [
       {
         "value": "16%",
@@ -3349,17 +3349,17 @@ export const giffardRangeProducts: HouseProduct[] = [
           {
             "amount": "30",
             "unit": "ml",
-            "what": "Crème de Cacao (white)"
+            "what": "White Chocolate Liqueur"
           },
           {
             "amount": "30",
             "unit": "ml",
-            "what": "Crème de Fraise des bois (Wild strawberry)"
+            "what": "Wild Strawberry Liqueur"
           },
           {
             "amount": "10",
             "unit": "ml",
-            "what": "Menthe-Pastille"
+            "what": "Peppermint Liqueur"
           },
           {
             "amount": "30",
@@ -3392,7 +3392,7 @@ export const giffardRangeProducts: HouseProduct[] = [
           {
             "amount": "20",
             "unit": "ml",
-            "what": "Crème de Fraise des bois (Wild strawberry)"
+            "what": "Wild Strawberry Liqueur"
           },
           {
             "amount": "1",
@@ -3561,15 +3561,15 @@ export const giffardRangeProducts: HouseProduct[] = [
   },
   {
     "slug": "violet-liqueur",
-    "label": "Crème de Violette (Violet)",
-    "fullName": "Giffard Crème de Violette (Violet)",
+    "label": "Violet Liqueur",
+    "fullName": "Giffard Violet Liqueur",
     "category": "Liqueur",
     "group": "Classic",
     "image": "/images/brands/giffard/range/violet-liqueur.webp",
-    "imageAlt": "Giffard Crème de Violette (Violet) bottle",
+    "imageAlt": "Giffard Violet Liqueur bottle",
     "accent": "#b33e9a",
-    "tagline": "Liqueur (crème de fruits) made from natural aromas of violet",
-    "lede": "The violet (Viola odorata) is a species of flowering plant with purple or white flowers, native to Europe, Asia and North Africa, which belongs to the Violaceae family. It is known for its medicinal properties and many benefits, including expectorant and anti-inflammatory. In the language of flowers, the violet symbolizes shy and secret love. The violet is often used in confectionery, and sometimes in pastry, for syrups, liqueurs and in perfumery. Created in the 19th century, crème de violette peaked at the end of the century. Today, popular cocktails made with crème de violette include Aviation and Blue Moon.",
+    "tagline": "Fruit liqueur made from natural aromas of violet",
+    "lede": "The violet (Viola odorata) is a species of flowering plant with purple or white flowers, native to Europe, Asia and North Africa, which belongs to the Violaceae family. It is known for its medicinal properties and many benefits, including expectorant and anti-inflammatory. In the language of flowers, the violet symbolizes shy and secret love. The violet is often used in confectionery, and sometimes in pastry, for syrups, liqueurs and in perfumery. Created in the 19th century, violet liqueur peaked at the end of the century. Today, popular cocktails made with violet liqueur include Aviation and Blue Moon.",
     "facts": [
       {
         "value": "16%",
@@ -3618,7 +3618,7 @@ export const giffardRangeProducts: HouseProduct[] = [
           {
             "amount": "30",
             "unit": "ml",
-            "what": "Crème de Violette (Violet)"
+            "what": "Violet Liqueur"
           },
           {
             "amount": "10",
@@ -3674,12 +3674,12 @@ export const giffardRangeProducts: HouseProduct[] = [
   },
   {
     "slug": "banane-du-bresil",
-    "label": "Banane du Brésil",
-    "fullName": "Giffard Banane du Brésil",
+    "label": "Brazilian Banana Liqueur",
+    "fullName": "Giffard Brazilian Banana Liqueur",
     "category": "Liqueur",
     "group": "Premium",
     "image": "/images/brands/giffard/range/banane-du-bresil.webp",
-    "imageAlt": "Giffard Banane du Brésil bottle",
+    "imageAlt": "Giffard Brazilian Banana Liqueur bottle",
     "accent": "#d89928",
     "tagline": "Liqueur made from the slow maceration of bananas mostly from Brazil",
     "lede": "Banana cultivation dates back 12,000 years and is an important part of history. The banana tree is indeed considered to be the first plant cultivated by man for food purposes. The banana originates from Asia and has spread to Africa and all tropical areas of the world. It was already consumed by the Indians before the arrival, in 1500, of the Portuguese in Brazil. There are more than 1000 varieties of bananas produced locally in the world, it is one of the most consumed fruits in the world. Giffard selects bananas from Brazil and the Caribbean for its premium liqueur.",
@@ -3732,7 +3732,7 @@ export const giffardRangeProducts: HouseProduct[] = [
           {
             "amount": "20",
             "unit": "ml",
-            "what": "Banane du Brésil"
+            "what": "Brazilian Banana Liqueur"
           },
           {
             "amount": "15",
@@ -3770,7 +3770,7 @@ export const giffardRangeProducts: HouseProduct[] = [
           {
             "amount": "20",
             "unit": "ml",
-            "what": "Banane du Brésil"
+            "what": "Brazilian Banana Liqueur"
           },
           {
             "amount": "100",
@@ -3802,12 +3802,12 @@ export const giffardRangeProducts: HouseProduct[] = [
           {
             "amount": "15",
             "unit": "ml",
-            "what": "Piment d'Espelette (Chile Liqueur)"
+            "what": "Espelette Chilli Liqueur"
           },
           {
             "amount": "20",
             "unit": "ml",
-            "what": "Banane du Brésil"
+            "what": "Brazilian Banana Liqueur"
           },
           {
             "amount": "10",
@@ -3886,14 +3886,14 @@ export const giffardRangeProducts: HouseProduct[] = [
   },
   {
     "slug": "cassis-noir-de-bourgogne",
-    "label": "Cassis Noir de Bourgogne",
-    "fullName": "Giffard Cassis Noir de Bourgogne",
+    "label": "Burgundy Blackcurrant Liqueur",
+    "fullName": "Giffard Burgundy Blackcurrant Liqueur",
     "category": "Liqueur",
     "group": "Premium",
     "image": "/images/brands/giffard/range/cassis-noir-de-bourgogne.webp",
-    "imageAlt": "Giffard Cassis Noir de Bourgogne bottle",
+    "imageAlt": "Giffard Burgundy Blackcurrant Liqueur bottle",
     "accent": "#9e4754",
-    "tagline": "The slow maceration of \"Cassis Noir de Bourgogne\", harvested in the Loire Valley",
+    "tagline": "The slow maceration of black Burgundy blackcurrants, harvested in the Loire Valley",
     "lede": "Blackcurrant from Burgundy is an old variety of blackcurrant and essential in France. Appreciated for its firm fruits with a great aromatic richness, the Burgundy blackcurrant is one of the best varieties known for its taste and good vitamin C content.",
     "facts": [
       {
@@ -3914,7 +3914,7 @@ export const giffardRangeProducts: HouseProduct[] = [
       }
     ],
     "about": [
-      "The slow maceration of \"Cassis Noir de Bourgogne\", harvested in the Loire Valley, gives this liqueur all its powerful aromas.",
+      "The slow maceration of black Burgundy blackcurrants, harvested in the Loire Valley, gives this liqueur all its powerful aromas.",
       "Awards: Gold Medal - San Francisco World Spirits Competition 2014; Gold Medal (95/100) - International Review of Spirits Competition 2007 organised by Beverage Testing Institute (USA)."
     ],
     "fruit": {
@@ -3944,7 +3944,7 @@ export const giffardRangeProducts: HouseProduct[] = [
           {
             "amount": "10",
             "unit": "ml",
-            "what": "Cassis Noir de Bourgogne"
+            "what": "Burgundy Blackcurrant Liqueur"
           },
           {
             "amount": "15",
@@ -3977,7 +3977,7 @@ export const giffardRangeProducts: HouseProduct[] = [
           {
             "amount": "15",
             "unit": "ml",
-            "what": "Cassis Noir de Bourgogne"
+            "what": "Burgundy Blackcurrant Liqueur"
           },
           {
             "amount": "",
@@ -4006,7 +4006,7 @@ export const giffardRangeProducts: HouseProduct[] = [
           {
             "amount": "25",
             "unit": "ml",
-            "what": "Cassis Noir de Bourgogne"
+            "what": "Burgundy Blackcurrant Liqueur"
           },
           {
             "amount": "30",
@@ -4065,12 +4065,12 @@ export const giffardRangeProducts: HouseProduct[] = [
   },
   {
     "slug": "fleur-de-sureau-sauvage",
-    "label": "Fleur de Sureau Sauvage",
-    "fullName": "Giffard Fleur de Sureau Sauvage",
+    "label": "Wild Elderflower Liqueur",
+    "fullName": "Giffard Wild Elderflower Liqueur",
     "category": "Liqueur",
     "group": "Premium",
     "image": "/images/brands/giffard/range/fleur-de-sureau-sauvage.webp",
-    "imageAlt": "Giffard Fleur de Sureau Sauvage bottle",
+    "imageAlt": "Giffard Wild Elderflower Liqueur bottle",
     "accent": "#d5a33b",
     "tagline": "Liqueur made from the infusion of wild elderflowers, harvested by hand",
     "lede": "The black elderberry, also called the Judas tree, is a 3 to 5 meter shrub that grows in temperate zones such as Europe, West Asia and in certain regions of Africa. At the end of spring, the elderberry is adorned with small creamy white flowers with a characteristic intoxicating fragrance. Used since ancient times for its therapeutic properties, elderberry is widely recognized as a medicinal plant and is still widely used around the world today. All parts of the elderberry have a distinct use: from the berry, to the bark, to the flower. The small cream-coloured wild elderflowers are harvested by hand in the spring, naturally dried and then macerated in alcohol.",
@@ -4118,7 +4118,7 @@ export const giffardRangeProducts: HouseProduct[] = [
           {
             "amount": "25",
             "unit": "ml",
-            "what": "Fleur de Sureau sauvage"
+            "what": "Wild Elderflower Liqueur"
           },
           {
             "amount": "60",
@@ -4155,7 +4155,7 @@ export const giffardRangeProducts: HouseProduct[] = [
           {
             "amount": "20",
             "unit": "ml",
-            "what": "Fleur de Sureau sauvage"
+            "what": "Wild Elderflower Liqueur"
           },
           {
             "amount": "",
@@ -4193,7 +4193,7 @@ export const giffardRangeProducts: HouseProduct[] = [
           {
             "amount": "10",
             "unit": "ml",
-            "what": "Fleur de Sureau sauvage"
+            "what": "Wild Elderflower Liqueur"
           },
           {
             "amount": "20",
@@ -4380,12 +4380,12 @@ export const giffardRangeProducts: HouseProduct[] = [
   },
   {
     "slug": "vanille-de-madagascar",
-    "label": "Vanille de Madagascar",
-    "fullName": "Giffard Vanille de Madagascar",
+    "label": "Madagascar Vanilla Liqueur",
+    "fullName": "Giffard Madagascar Vanilla Liqueur",
     "category": "Liqueur",
     "group": "Premium",
     "image": "/images/brands/giffard/range/vanille-de-madagascar.webp",
-    "imageAlt": "Giffard Vanille de Madagascar bottle",
+    "imageAlt": "Giffard Madagascar Vanilla Liqueur bottle",
     "accent": "#e08e12",
     "tagline": "Fine liqueur made from the natural aromas of Madagascan vanilla",
     "lede": "Vanilla is a spice consisting of the fruit of certain tropical creeper orchids of Mesoamerican origin. The plants cultivated for the production of vanilla are the only orchids cultivated for human consumption. To obtain a richly aromatic spice, the cultivation and processing of vanilla requires long and attentive care from farmers. This makes it, by weight, one of the highest value agricultural food products in the world. It was the planters from Réunion who introduced, around 1880, the cultivation of vanilla to Madagascar. Today, Madagascar produces 60 to 80% of the vanilla in the world.",
@@ -4433,7 +4433,7 @@ export const giffardRangeProducts: HouseProduct[] = [
           {
             "amount": "40",
             "unit": "ml",
-            "what": "Vanille de Madagascar"
+            "what": "Madagascar Vanilla Liqueur"
           },
           {
             "amount": "20",
@@ -4497,14 +4497,14 @@ export const giffardRangeProducts: HouseProduct[] = [
   },
   {
     "slug": "piment-d-espelette",
-    "label": "Piment d'Espelette",
-    "fullName": "Giffard Piment d'Espelette",
+    "label": "Espelette Chilli Liqueur",
+    "fullName": "Giffard Espelette Chilli Liqueur",
     "category": "Liqueur",
     "group": "Premium",
     "image": "/images/brands/giffard/range/piment-d-espelette.webp",
-    "imageAlt": "Giffard Piment d'Espelette bottle",
+    "imageAlt": "Giffard Espelette Chilli Liqueur bottle",
     "accent": "#c79d4f",
-    "tagline": "Chile liqueur made from the maceration of fresh whole Espelette peppers with a hint of Rhum agricole from Martinique",
+    "tagline": "Chilli liqueur made from the maceration of fresh whole Espelette peppers with a hint of agricole rum from Martinique",
     "lede": "This results in a strong aromatic intensity with warm and spicy notes.",
     "facts": [
       {
@@ -4525,7 +4525,7 @@ export const giffardRangeProducts: HouseProduct[] = [
       }
     ],
     "about": [
-      "Chile liqueur made from the maceration of fresh whole Espelette peppers with a hint of Rhum agricole from Martinique. This results in a strong aromatic intensity with warm and spicy notes.",
+      "Chilli liqueur made from the maceration of fresh whole Espelette peppers with a hint of agricole rum from Martinique. This results in a strong aromatic intensity with warm and spicy notes.",
       "Originally from Central America, Espelette pepper is a variety of Capsicum annuum traditionally grown in the Basque Country. It is appreciated for its red fruits with a slender profile measuring 7 to 14 cm long. Used to enhance dishes with its hot flavour of force 4 on the Scoville scale, Espelette pepper is dried beforehand for long storage. A non-hardy plant, its cultivation is very similar to that of the tomato. Similar to peppers, Espelette peppers are grown outdoors, the crop is annual, all the plants are replanted every year. In the Basque Country, the cultivation of Espelette peppers has developed in an exceptional natural environment that has been protected since the 17th century."
     ],
     "fruit": {
@@ -4550,7 +4550,7 @@ export const giffardRangeProducts: HouseProduct[] = [
           {
             "amount": "50",
             "unit": "ml",
-            "what": "Piment d'Espelette (Chile Liqueur)"
+            "what": "Espelette Chilli Liqueur"
           },
           {
             "amount": "10",
@@ -4600,7 +4600,7 @@ export const giffardRangeProducts: HouseProduct[] = [
           {
             "amount": "20",
             "unit": "ml",
-            "what": "Piment d'Espelette (Chile Liqueur)"
+            "what": "Espelette Chilli Liqueur"
           },
           {
             "amount": "25",
@@ -4639,7 +4639,7 @@ export const giffardRangeProducts: HouseProduct[] = [
           {
             "amount": "20",
             "unit": "ml",
-            "what": "Piment d'Espelette (Chile Liqueur)"
+            "what": "Espelette Chilli Liqueur"
           },
           {
             "amount": "30",
@@ -4700,15 +4700,15 @@ export const giffardRangeProducts: HouseProduct[] = [
   },
   {
     "slug": "menthe-pastille",
-    "label": "Menthe-Pastille",
-    "fullName": "Giffard Menthe-Pastille",
+    "label": "Peppermint Liqueur",
+    "fullName": "Giffard Peppermint Liqueur",
     "category": "Liqueur",
-    "group": "Menthe-Pastille 1885",
+    "group": "Peppermint 1885",
     "image": "/images/brands/giffard/range/menthe-pastille.webp",
-    "imageAlt": "Giffard Menthe-Pastille bottle",
+    "imageAlt": "Giffard Peppermint Liqueur bottle",
     "accent": "#399e59",
     "tagline": "Liqueur of spearmint with the typical taste of peppermint, created by Emile Giffard in 1888",
-    "lede": "Created by Emile Giffard in 1888, Peppermint Pastille is made from peppermint (Mentha Piperita) particularly rich in menthol, responsible for the sensation of freshness it provides. Mentha Piperita is a plant widely used in herbal medicine for its many health benefits (painkiller, digestive qualities, antioxidant, etc.)",
+    "lede": "Created by Émile Giffard in 1885, Giffard Peppermint Liqueur is made from peppermint (Mentha Piperita) particularly rich in menthol, responsible for the sensation of freshness it provides. Mentha Piperita is a plant widely used in herbal medicine for its many health benefits (painkiller, digestive qualities, antioxidant, etc.)",
     "facts": [
       {
         "value": "21%",
@@ -4719,7 +4719,7 @@ export const giffardRangeProducts: HouseProduct[] = [
         "label": "Bottle"
       },
       {
-        "value": "Menthe-Pastille 1885",
+        "value": "Peppermint 1885",
         "label": "Range"
       },
       {
@@ -4752,12 +4752,12 @@ export const giffardRangeProducts: HouseProduct[] = [
           {
             "amount": "30",
             "unit": "ml",
-            "what": "Peppermint Pastille"
+            "what": "Peppermint Liqueur"
           },
           {
             "amount": "30",
             "unit": "ml",
-            "what": "Crème de Cacao (white)"
+            "what": "White Chocolate Liqueur"
           },
           {
             "amount": "60",
@@ -4785,7 +4785,7 @@ export const giffardRangeProducts: HouseProduct[] = [
           {
             "amount": "40",
             "unit": "ml",
-            "what": "Peppermint Pastille"
+            "what": "Peppermint Liqueur"
           },
           {
             "amount": "",
@@ -6437,7 +6437,7 @@ export const giffardRangeProducts: HouseProduct[] = [
           {
             "amount": "20",
             "unit": "ml",
-            "what": "Fleur de Sureau sauvage"
+            "what": "Wild Elderflower Liqueur"
           },
           {
             "amount": "",
@@ -6518,7 +6518,7 @@ export const giffardRangeProducts: HouseProduct[] = [
           {
             "amount": "10",
             "unit": "ml",
-            "what": "Lichi-Li"
+            "what": "Lychee Liqueur"
           },
           {
             "amount": "15",
@@ -7759,7 +7759,7 @@ export const giffardRangeProducts: HouseProduct[] = [
           {
             "amount": "15",
             "unit": "ml",
-            "what": "Crème de Fruits de la Passion (Passion Fruit)"
+            "what": "Passion Fruit Liqueur"
           },
           {
             "amount": "30",
@@ -8508,7 +8508,7 @@ export const giffardRangeProducts: HouseProduct[] = [
           {
             "amount": "40",
             "unit": "ml",
-            "what": "Lichi-Li"
+            "what": "Lychee Liqueur"
           },
           {
             "amount": "120",
@@ -8909,7 +8909,7 @@ export const giffardRangeProducts: HouseProduct[] = [
           {
             "amount": "15",
             "unit": "ml",
-            "what": "Crème de Framboise (Raspberry)"
+            "what": "Raspberry Liqueur"
           },
           {
             "amount": "8-12",
@@ -9030,7 +9030,7 @@ export const giffardRangeProducts: HouseProduct[] = [
           {
             "amount": "10",
             "unit": "ml",
-            "what": "Crème de Châtaigne (Chestnut)"
+            "what": "Chestnut Liqueur"
           },
           {
             "amount": "5",
@@ -9355,7 +9355,7 @@ export const giffardRangeProducts: HouseProduct[] = [
           {
             "amount": "20",
             "unit": "ml",
-            "what": "Crème de Pamplemousse rose (Pink Grapefruit)"
+            "what": "Pink Grapefruit Liqueur"
           },
           {
             "amount": "5",
@@ -9856,7 +9856,7 @@ export const giffardRangeProducts: HouseProduct[] = [
           {
             "amount": "15",
             "unit": "ml",
-            "what": "Crème de Pêche de vigne (Vineyard Peach)"
+            "what": "Vineyard Peach Liqueur"
           },
           {
             "amount": "15",
@@ -10239,12 +10239,12 @@ export const giffardRangeProducts: HouseProduct[] = [
           {
             "amount": "15",
             "unit": "ml",
-            "what": "Piment d'Espelette (Chile Liqueur)"
+            "what": "Espelette Chilli Liqueur"
           },
           {
             "amount": "20",
             "unit": "ml",
-            "what": "Banane du Brésil"
+            "what": "Brazilian Banana Liqueur"
           },
           {
             "amount": "10",

@@ -139,7 +139,7 @@ export const brands: Brand[] = [
   {
     id: 'giffard',
     name: 'Giffard',
-    category: 'Liqueurs & Eaux-de-vie',
+    category: 'Liqueurs & Fruit Brandies',
     country: 'Angers, France',
     since: '1885',
     tagline: 'Fruit, not fashion',
@@ -292,7 +292,7 @@ export interface Cocktail {
 }
 
 export const cocktails: Cocktail[] = [
-  { name: 'Garden Spritz', brand: 'Giffard', ingredients: 'Giffard Crème de Pêche, Prosecco, soda', desc: 'Bright, low-ABV and built for daytime. Peach liqueur, prosecco and a splash of soda - built in the glass in under 30 seconds.' },
+  { name: 'Garden Spritz', brand: 'Giffard', ingredients: 'Giffard Peach Liqueur, Prosecco, soda', desc: 'Bright, low-ABV and built for daytime. Peach liqueur, prosecco and a splash of soda - built in the glass in under 30 seconds.' },
   { name: 'Coffee Cuba Libre', brand: 'Black Tears', ingredients: 'Black Tears Spiced, cola, lime', desc: 'A Havana classic, rebuilt around a coffee-and-cacao rum. Tall over ice with a fat squeeze of lime - house cola does the rest.' },
   { name: "Tommy's Margarita", brand: 'Pueblo Viejo', ingredients: 'Pueblo Viejo Blanco, agave, lime', desc: 'No triple sec, no shortcuts. Blanco tequila, fresh lime and agave - the margarita, purist style.' },
   { name: 'Estate Daiquiri', brand: 'Worthy Park', ingredients: 'Worthy Park Single Estate Rum, lime, sugar', desc: 'Three ingredients, Jamaican funk. Fresh lime, a hard shake on ice - the daiquiri the way the estate drinks it.' },

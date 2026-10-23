@@ -343,14 +343,12 @@ export default function Thoquino() {
         <div className={styles.split} data-side={side}>
           <div className={styles.half + ' ' + styles.caneHalf}>
             <img className={styles.halfPhoto} src="/images/brands/thoquino/cane-juice.webp" alt="A glass of fresh-pressed sugarcane juice" loading="lazy" />
-            <small className={styles.halfCredit}>Photo: Fgnievinski · CC BY-SA 4.0</small>
             <span className={styles.halfTag}>Cachaça</span>
             <strong>Fresh-pressed cane juice</strong>
             <em>Green · bright · wild</em>
           </div>
           <div className={styles.half + ' ' + styles.molHalf}>
             <img className={styles.halfPhoto} src="/images/brands/thoquino/molasses.webp" alt="Thick, dark molasses pouring from a spoon" loading="lazy" />
-            <small className={styles.halfCredit}>Photo: Badagnani · CC BY 3.0</small>
             <span className={styles.halfTag}>Most rum</span>
             <strong>Molasses, after sugar is made</strong>
             <em>Dark · round · sweet</em>
