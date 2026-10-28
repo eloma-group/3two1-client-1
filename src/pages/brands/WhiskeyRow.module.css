@@ -147,12 +147,16 @@
   margin-bottom: 0.6rem;
 }
 
+/* Set like the original Main Street label: heavy wood-type slab capitals.
+   Holtwood One SC is the closest open face; it is very wide and has one
+   weight, so it runs smaller than the old sans and is never faux-bolded. */
 .title {
-  font-family: var(--display);
-  font-weight: 800;
-  font-size: calc(clamp(3.6rem, min(11vw, 17svh), 10.5rem) * 0.9);
-  line-height: 0.88;
-  letter-spacing: -0.02em;
+  font-family: 'Holtwood One SC', var(--display);
+  font-weight: 400;
+  text-transform: uppercase;
+  font-size: calc(clamp(2.4rem, min(7vw, 11svh), 6.6rem) * 0.9);
+  line-height: 1.02;
+  letter-spacing: 0;
   color: var(--green);
   margin-bottom: 1.4rem;
 }
@@ -202,13 +206,21 @@
   position: absolute;
   left: -14%;
   bottom: 0;
-  width: 68%;
+  width: 38%;
   padding: 8px;
   background: var(--cream);
   box-shadow: 0 0 0 1px var(--amber), 0 30px 60px -25px rgba(14, 31, 27, 0.7);
   transform: rotate(-3deg);
 }
-.lineupCard img { aspect-ratio: 16 / 10; object-fit: cover; }
+/* A single bottle: a tall card, the bottle shown whole on a warm ground. */
+.lineupCard img {
+  aspect-ratio: 3 / 4;
+  width: 100%;
+  object-fit: contain;
+  padding: 3% 0 2%;
+  background: radial-gradient(70% 60% at 50% 45%, #f6e7c8 0%, #e9d3a8 100%);
+  filter: drop-shadow(0 14px 14px rgba(14, 31, 27, 0.35));
+}
 .lineupTag {
   position: absolute;
   top: -14px;
@@ -701,7 +713,8 @@
 }
 .ticket::before { left: -11px; }
 .ticket::after { right: -11px; }
-.ticketImg { position: relative; height: 16.6rem; overflow: hidden; }
+/* 3:2, the shape of the serve photos, so they show whole rather than cropped. */
+.ticketImg { position: relative; aspect-ratio: 3 / 2; overflow: hidden; }
 .ticketImg img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
 .ticket:hover .ticketImg img { transform: scale(1.06); }
 .ticketNo {
@@ -749,48 +762,6 @@
 .recipe > div:first-child { margin-top: 0.8rem; }
 .recipe dt { color: #6c6150; }
 .recipe dd { margin: 0; text-align: right; }
-
-/* ── trade ──────────────────────────────────────────── */
-.trade {
-  display: grid;
-  grid-template-columns: 1.2fr 0.8fr;
-  gap: clamp(2rem, 5vw, 4rem);
-  align-items: center;
-  padding: clamp(5rem, 10vw, 8rem) var(--page-x);
-  background: var(--sage);
-}
-.board {
-  padding: clamp(1.8rem, 3.5vw, 3rem);
-  background: #1d2420;
-  color: var(--cream);
-  border: 10px solid #5b3a20;
-  box-shadow: inset 0 0 60px rgba(0, 0, 0, 0.6), 0 30px 60px -30px rgba(14, 31, 27, 0.8);
-}
-.boardTitle {
-  font-family: var(--display);
-  font-weight: 800;
-  font-size: calc(clamp(1.5rem, 2.6vw, 2.3rem) * 0.9);
-  color: var(--caramel);
-  margin-bottom: 1.6rem;
-}
-.board ul { display: flex; flex-direction: column; }
-.board li {
-  display: flex;
-  gap: 1.2rem;
-  align-items: baseline;
-  padding: 1rem 0;
-  border-bottom: 1px dashed rgba(244, 236, 220, 0.2);
-}
-.board li:last-child { border-bottom: 0; }
-.boardNo { font-family: var(--mono); color: var(--sage); }
-.boardText { font-size: clamp(1rem, 1.4vw, 1.2rem); letter-spacing: 0.04em; line-height: 1.45; }
-.tradeImg {
-  background: #fff;
-  padding: 0.6rem;
-  transform: rotate(2.5deg);
-  box-shadow: 0 30px 60px -30px rgba(14, 31, 27, 0.6);
-}
-.tradeImg img { aspect-ratio: 1; object-fit: cover; }
 
 /* ── stock enamel sign ──────────────────────────────── */
 .stock {
@@ -872,11 +843,10 @@
   .block, .block:nth-child(n) { min-height: 12rem; }
   .craftGrid { grid-template-columns: 1fr; }
   .panel { min-height: auto; }
-  .rangeFrame, .tasting, .trade { grid-template-columns: 1fr; }
+  .rangeFrame, .tasting { grid-template-columns: 1fr; }
   .rangeImg { max-width: 26rem; }
   .tastingImg { display: none; }
   .tickets { grid-template-columns: 1fr; max-width: 28rem; }
-  .tradeImg { max-width: 22rem; justify-self: center; }
 }
 
 @media (max-width: 480px) {
@@ -885,7 +855,7 @@
   .facts { grid-template-columns: 1fr; }
   .fact { border-right: 0 !important; border-bottom: 1px solid rgba(244, 236, 220, 0.2); }
   .fact:last-child { border-bottom: 0; }
-  .lineupCard { width: 78%; left: 0; }
+  .lineupCard { width: 46%; left: 0; }
   .receipt { padding: 2rem 1.2rem 2.4rem; }
   .enamelBolt { display: none; }
   .btnPrimary, .btnGhost, .btnGhostLight { padding: 0.85rem 1.1rem; font-size: 0.78rem; }

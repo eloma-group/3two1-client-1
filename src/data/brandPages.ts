@@ -265,11 +265,10 @@ export const brandPages: BrandPage[] = [
       nose: 'Pure citrus, white flowers and intense cooked agave.',
       palate: 'Sweet and mineral - citrus pith, cooked agave, no bitterness.',
       finish: 'Citrus blossom with a hint of pink pepper.',
-      serve: 'A Tahona margarita with fresh lime and a half-bar-spoon of agave nectar over a single rock - or simply neat with a slice of grapefruit alongside.',
+      serve: 'Neat with a slice of grapefruit alongside, or long in a Highland Paloma.',
     },
     serves: [
-      { name: 'Tahona Margarita', build: 'Tahona Blanco, fresh lime, agave nectar, fine salt rim.', method: 'Shake, salt rim', glass: 'Coupe', image: sm('serve-margarita') },
-      { name: 'San Matías Old Fashioned', build: 'Gran Reserva, agave, mole bitters, orange.', method: 'Stir down', glass: 'Rocks', image: sm('serve-old-fashioned-bar') },
+      { name: 'San Matías Old Fashioned', build: 'Gran Reserva, agave, mole bitters, orange.', method: 'Stir down', glass: 'Rocks', image: sm('serve-old-fashioned-gran-reserva') },
       { name: 'Highland Paloma', build: 'Tahona, grapefruit, lime, a pinch of sea salt, soda.', method: 'Build, top with soda', glass: 'Highball', image: sm('serve-paloma-bar') },
     ],
     stock: 'Talk to our trade team about allocations, tequila education sessions, and the Casa San Matías story.',
@@ -434,7 +433,7 @@ export const brandPages: BrandPage[] = [
       ],
     },
     range: [
-      { name: 'Whiskey Row Bourbon', spec: '50% ABV · 750ml', note: 'Caramel, baking spice, charred oak - a high-rye bourbon built for cocktails.', image: wr('bottle') },
+      { name: 'Whiskey Row Bourbon', spec: '40% ABV · 750ml', note: 'Caramel, baking spice, charred oak - a high-rye bourbon built for cocktails.', image: wr('bottle') },
     ],
     tasting: {
       of: 'Whiskey Row Bourbon',
@@ -445,14 +444,14 @@ export const brandPages: BrandPage[] = [
     },
     serves: [
       { name: 'Old Fashioned', build: 'Bourbon, demerara, Angostura, a flamed orange peel.', method: 'Stir down, big rock', glass: 'Rocks', image: '/images/brand-whiskey-row-cocktail.webp' },
-      { name: 'Whiskey Sour', build: 'Bourbon, lemon, demerara, egg white, three drops of bitters.', method: 'Dry shake, then wet', glass: 'Rocks', image: wr('bib-serve') },
-      { name: 'Boulevardier', build: 'Bourbon, sweet vermouth, Campari, a long orange twist.', method: 'Stir, strain', glass: 'Coupe', image: '/images/brand-whiskey-row-manhattan.webp' },
+      { name: 'Whiskey Sour', build: 'Bourbon, lemon, demerara, egg white, three drops of bitters.', method: 'Dry shake, then wet', glass: 'Rocks', image: wr('whiskey-sour') },
+      { name: 'Boulevardier', build: 'Bourbon, sweet vermouth, Campari, a long orange twist.', method: 'Stir, strain', glass: 'Coupe', image: wr('boulevardier') },
     ],
     stock: 'Talk to our trade team about allocations, bourbon nights and back-bar education across Australia.',
     facts: [
       { value: '4', label: 'Blocks of Main Street, Louisville' },
       { value: '#4', label: 'Char on new American oak' },
-      { value: '50%', label: 'ABV - proof that holds in a cocktail' },
+      { value: '40%', label: 'ABV - proof that holds in a cocktail' },
       { value: '1', label: 'Small batch at a time' },
     ],
     trade: [

@@ -117,7 +117,7 @@ export const recipeHouses: RecipeHouse[] = [
     id: 'pueblo-viejo',
     name: 'Pueblo Viejo',
     meta: 'Los Altos, Jalisco · 100% Agave Tequila',
-    image: '/images/brands/pueblo-viejo/paloma.webp',
+    image: '/images/brands/san-matias/serve-paloma-bar.webp',
     recipes: [
       {
         tag: 'Signature',
@@ -212,7 +212,7 @@ export const recipeHouses: RecipeHouse[] = [
     id: 'whiskey-row',
     name: 'Whiskey Row',
     meta: 'Kentucky · Bourbon & Rye',
-    image: '/images/brands/whiskey-row/cask-serve.webp',
+    image: '/images/brand-whiskey-row-cocktail.webp',
     recipes: [
       {
         tag: 'Stirred',
@@ -244,18 +244,8 @@ export const recipeHouses: RecipeHouse[] = [
     id: 'san-matias',
     name: 'San Matías',
     meta: 'Tequila, Jalisco · Since 1886',
-    image: '/images/brands/san-matias/serve-old-fashioned.webp',
+    image: '/images/brands/san-matias/serve-old-fashioned-gran-reserva.webp',
     recipes: [
-      {
-        tag: 'Sipping',
-        name: 'Reposado, Neat',
-        lede: 'The house we ask sipping bars to try first. A short pour, a small glass.',
-        ingredients: [
-          ['San Matías Reposado', '30 ml'],
-          ['Orange wedge', '1'],
-        ],
-        method: 'Pour at room temperature into a copita. Serve with a wedge of orange on the side - Mexican style.',
-      },
       {
         tag: 'Signature',
         name: 'Añejo Old Fashioned',

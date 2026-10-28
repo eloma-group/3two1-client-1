@@ -85,9 +85,6 @@ export default function Giffard() {
               <Link to="/contact" className={styles.btnPrimary}>
                 Become a stockist <ArrowUpRight size={16} />
               </Link>
-              <a href={d.site} target="_blank" rel="noreferrer" className={styles.btnGhost}>
-                giffard.com <ArrowUpRight size={14} />
-              </a>
             </div>
           </motion.div>
 
@@ -254,7 +251,7 @@ export default function Giffard() {
           <p className={styles.kicker}>Chapter III · The shelf</p>
           <Reveal>
             <h2 className={styles.h2}>
-              Four shelves, <em>one brand.</em>
+              Four Categories, <em>one brand.</em>
             </h2>
           </Reveal>
           <p className={styles.rangeLede}>
@@ -454,6 +451,11 @@ export default function Giffard() {
               <Link to="/contact" className={styles.btnGhost}>
                 Contact us
               </Link>
+              {d.site && (
+                <a href={d.site} target="_blank" rel="noreferrer" className={styles.btnGhost}>
+                  giffard.com <ArrowUpRight size={14} />
+                </a>
+              )}
             </div>
           </div>
         </div>

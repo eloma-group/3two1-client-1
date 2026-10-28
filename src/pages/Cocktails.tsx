@@ -120,7 +120,7 @@ export default function Cocktails() {
               <div className={b.tileImg} aria-hidden="true">
                 <img src={h.image} alt="" loading="lazy" />
               </div>
-              <p className={b.tileLabel}>{h.recipes.length} recipes</p>
+              <p className={b.tileLabel}>{h.recipes.length} {h.recipes.length === 1 ? 'recipe' : 'recipes'}</p>
               <p className={b.tileTitle}>{h.name}, poured right.</p>
             </div>
             {h.recipes.map((c) => (

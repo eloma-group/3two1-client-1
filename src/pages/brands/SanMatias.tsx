@@ -29,6 +29,11 @@ const REY_SOL_NOTES = [
   ['Finish', 'Long, with chocolate and almond.'],
 ] as const;
 
+/* El Oficio (craft) and La Tahona are off the page for now, on every device.
+   They stay mounted, only hidden, because their refs drive scroll animations.
+   Set to false to bring them back. */
+const HIDE_CRAFT = true;
+
 export default function SanMatias() {
   const d = brandPage('san-matias')!;
   const reduced = useReducedMotion();
@@ -252,7 +257,7 @@ export default function SanMatias() {
 
       {/* ── Craft: the Tahona bottle beside the statement. A text ring turns
              with the scroll, oven steam drifts up, and the bottle floats. ── */}
-      <section className={styles.craft} ref={craft}>
+      <section className={styles.craft} ref={craft} style={HIDE_CRAFT ? { display: 'none' } : undefined}>
         <div className={styles.craftMedia}>
           <span className={styles.craftGlow} aria-hidden="true" />
           <motion.svg className={styles.craftRing} viewBox="0 0 200 200" style={{ rotate: craftSpin }} aria-hidden="true">
@@ -316,7 +321,7 @@ export default function SanMatias() {
       </section>
 
       {/* ── Tahona: rotating stone for the extra block ───────────── */}
-      <section className={styles.tahona} ref={tahona}>
+      <section className={styles.tahona} ref={tahona} style={HIDE_CRAFT ? { display: 'none' } : undefined}>
         <div className={styles.stoneWrap}>
           <motion.div className={styles.stone} style={{ rotate: spin }} aria-hidden>
             <svg viewBox="0 0 200 200">
@@ -425,7 +430,7 @@ export default function SanMatias() {
           </motion.svg>
           <span className={styles.reySolGlow} aria-hidden="true" />
           <motion.img
-            src={img('rey-sol')}
+            src="/images/house-san-matias.webp"
             alt="Rey Sol Extra Añejo tequila in its sun-faced decanter"
             loading="lazy"
             initial={{ opacity: 0, y: 60, scale: 0.94 }}
@@ -493,7 +498,7 @@ export default function SanMatias() {
       <section className={styles.serves}>
         <div className={styles.rangeHead}>
           <Reveal><p className={styles.label}>Cómo servir</p></Reveal>
-          <Reveal delay={0.06}><h2 className={styles.h2}>Three pours from the courtyard.</h2></Reveal>
+          <Reveal delay={0.06}><h2 className={styles.h2}>Two pours from the courtyard.</h2></Reveal>
         </div>
         <div className={styles.serveRow}>
           {d.serves.map((s, i) => (

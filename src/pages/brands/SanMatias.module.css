@@ -163,21 +163,26 @@
   z-index: 3;
 }
 
-.giant {
+/* Set like the Gran Reserva label: tall, condensed capitals with fine flared
+   serifs. Stint Ultra Condensed is the closest open face; it ships upright in
+   one weight, so neither line is italic or bolded. `.page .giant` beats the
+   shared `.page h1` font. */
+.page .giant {
   position: absolute;
   left: 0; right: 0;
   top: calc(var(--nav-clear) + clamp(2rem, 7svh, 5rem));
-  font-family: var(--serif);
-  font-weight: 300;
-  font-size: calc(clamp(5rem, min(17vw, 30svh), 17rem) * 0.74);
-  line-height: 0.8;
-  letter-spacing: -0.02em;
+  font-family: 'Stint Ultra Condensed', var(--serif);
+  font-weight: 400;
+  text-transform: uppercase;
+  font-size: calc(clamp(5rem, min(17vw, 30svh), 17rem) * 0.86);
+  line-height: 0.86;
+  letter-spacing: 0.01em;
   z-index: 1;
   pointer-events: none;
 }
 .giantLine { display: flex; white-space: nowrap; }
 .giantA { justify-content: flex-start; padding-left: var(--page-x); }
-.giantB { justify-content: flex-end; padding-right: var(--page-x); font-style: italic; }
+.giantB { justify-content: flex-end; padding-right: var(--page-x); }
 /* The mask and the gradient-clipped glyph both get room above (accents),
    below and to the right (italic overhang), taken back with negative margins
    so letter spacing is unchanged. Without it the í loses its accent and the
@@ -621,13 +626,19 @@
 
 /* ── Serves ──────────────────────────────────────────────────────── */
 .serves { padding: clamp(5rem, 11vw, 10rem) var(--page-x); background: var(--lime); }
+/* Columns follow the number of serves, capped so two arches stay arch-sized. */
 .serveRow {
-  display: grid; grid-template-columns: repeat(3, 1fr);
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(0, 360px));
+  justify-content: center;
   gap: clamp(1.5rem, 3vw, 3rem);
   margin-top: clamp(3rem, 6vw, 5rem);
-  align-items: start;
+  align-items: stretch;
 }
-.serve:nth-child(2) { margin-top: clamp(0px, 5vw, 5rem); }
+/* Each card is a column with the recipe link pinned to the foot, so the links
+   line up even when one name runs to two lines. */
+.serve { display: flex; flex-direction: column; }
+.serve .serveBuild { margin-bottom: 1.2rem; }
+.serve .recipeBtn { margin-top: auto; align-self: flex-start; }
 .serveArch {
   aspect-ratio: 3 / 4;
   border-radius: 999px 999px 0 0;
@@ -680,7 +691,7 @@
   .hero { display: flex; flex-direction: column; padding: calc(var(--nav-clear) + 0.5rem) 0 3.5rem; }
   .heroMeta, .giant, .heroStage, .heroFoot { position: relative; top: auto; bottom: auto; left: auto; right: auto; }
   .heroMeta { flex-direction: column; gap: 0.3rem; padding: 0 var(--page-x); font-size: 0.66rem; }
-  .giant { margin-top: 1.2rem; font-size: clamp(4.2rem, 25vw, 9rem); }
+  .page .giant { margin-top: 1.2rem; font-size: clamp(4.6rem, 30vw, 10rem); }
   .heroStage { height: 50svh; margin: 1.5rem auto 0; translate: none; }
   .heroFoot { margin: 4.5rem var(--page-x) 0; flex-direction: column; align-items: stretch; gap: 2.4rem; }
   .spec { width: 100%; }

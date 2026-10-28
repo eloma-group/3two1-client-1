@@ -108,7 +108,7 @@ export default function WhiskeyRow() {
             <span className={styles.archRays} aria-hidden />
           </div>
           <motion.div className={styles.lineupCard} style={{ y: lineupY }}>
-            <img src={IMG('lineup')} alt="Whiskey Row bourbon lineup against a brick wall" />
+            <img src="/images/house-whiskey-row.webp" alt="Whiskey Row straight bourbon bottle, original Main Street label" />
             <span className={styles.lineupTag}>Est. on Main Street</span>
           </motion.div>
         </div>
@@ -365,24 +365,6 @@ export default function WhiskeyRow() {
             );
           })}
         </div>
-      </section>
-
-      {/* ── Trade menu board ─────────────────────────────── */}
-      <section className={styles.trade}>
-        <Reveal className={styles.board}>
-          <p className={styles.boardTitle}>On the menu at your venue</p>
-          <ul>
-            {d.trade.map((t, i) => (
-              <li key={t}>
-                <span className={styles.boardNo}>{String(i + 1).padStart(2, '0')}</span>
-                <span className={styles.boardText}>{t}</span>
-              </li>
-            ))}
-          </ul>
-        </Reveal>
-        <Reveal className={styles.tradeImg} delay={0.1}>
-          <img src={IMG('triple-serve')} alt="Whiskey Row bourbon bottle with a glass" loading="lazy" />
-        </Reveal>
       </section>
 
       {/* ── Stock CTA enamel sign ────────────────────────── */}

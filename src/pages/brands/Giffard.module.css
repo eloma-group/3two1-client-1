@@ -411,7 +411,8 @@
 /* ── Tasting: prescription ────────────────────────────────────── */
 .tastingWrap {
   padding: clamp(3rem, 7vw, 6rem) var(--page-x);
-  background: var(--mint-pale);
+  /* Lychee: pale flesh at the top deepening to the rose of the skin. */
+  background: linear-gradient(160deg, #fff6f4 0%, #fbe1e3 45%, #f4c4cc 100%);
   display: grid;
   grid-template-columns: minmax(0, 720px) auto;
   justify-content: center;
@@ -419,25 +420,27 @@
   gap: clamp(1rem, 4vw, 4rem);
 }
 .rx {
+  --lychee-ink: #9c3a52;   /* deep lychee-skin rose for the card's labels and rules */
   position: relative;
   background: #fffdf6;
   padding: clamp(1.8rem, 4vw, 3.2rem);
-  box-shadow: 0 2px 0 #e9e0cc, 0 4px 0 #fffdf6, 0 6px 0 #e3d9c3, 0 40px 70px -30px rgba(31, 92, 77, 0.45);
-  background-image: repeating-linear-gradient(180deg, transparent 0 2.1rem, rgba(63, 158, 134, 0.14) 2.1rem calc(2.1rem + 1px));
+  box-shadow: 0 2px 0 #e9e0cc, 0 4px 0 #fffdf6, 0 6px 0 #e3d9c3, 0 40px 70px -30px rgba(140, 50, 70, 0.4);
+  background-image: repeating-linear-gradient(180deg, transparent 0 2.1rem, rgba(156, 58, 82, 0.1) 2.1rem calc(2.1rem + 1px));
   transform: rotate(-1deg);
 }
-.rxHead { display: flex; justify-content: space-between; align-items: flex-start; border-bottom: 2px solid var(--mint-deep); padding-bottom: 1rem; margin-bottom: 1.4rem; }
-.rxHouse { font-family: var(--sc); font-variant-caps: small-caps; letter-spacing: 0.22em; font-size: 1.05rem; color: var(--mint-deep); }
+.rxHead { display: flex; justify-content: space-between; align-items: flex-start; border-bottom: 2px solid var(--lychee-ink); padding-bottom: 1rem; margin-bottom: 1.4rem; }
+.rxHouse { font-family: var(--sc); font-variant-caps: small-caps; letter-spacing: 0.22em; font-size: 1.05rem; color: var(--lychee-ink); }
 .rxAddr { font-style: italic; color: var(--muted); font-size: 0.95rem; }
 .rxSymbol { font-family: var(--serif); font-size: calc(clamp(3rem, 6vw, 4.5rem) * 0.9); line-height: 0.8; color: var(--cassis); }
 .rxFor { font-family: var(--serif); font-size: calc(clamp(1.3rem, 2.2vw, 1.8rem) * 0.9); margin-bottom: 1.4rem; }
 .rxFor em { color: var(--cassis); }
 .rxList { display: grid; gap: 1rem; margin-bottom: 1.6rem; }
 .rxList > div { display: grid; grid-template-columns: 7rem 1fr; gap: 1rem; align-items: baseline; }
-.rxList dt { font-family: var(--sc); font-variant-caps: small-caps; letter-spacing: 0.2em; color: var(--mint-deep); }
+.rxList dt { font-family: var(--sc); font-variant-caps: small-caps; letter-spacing: 0.2em; color: var(--lychee-ink); }
 .rxList dd { font-style: italic; font-size: 1.15em; }
-.rxDose { padding: 1rem 1.2rem; background: rgba(63, 158, 134, 0.1); border-left: 3px solid var(--mint); }
-.rxDose span { display: block; font-family: var(--sc); font-variant-caps: small-caps; letter-spacing: 0.22em; color: var(--mint-deep); margin-bottom: 0.3rem; }
+/* Lychee, to match the section around the card. */
+.rxDose { padding: 1rem 1.2rem; background: linear-gradient(110deg, #fdecee 0%, #f9dbe0 100%); border-left: 3px solid #d98a99; }
+.rxDose span { display: block; font-family: var(--sc); font-variant-caps: small-caps; letter-spacing: 0.22em; color: var(--lychee-ink); margin-bottom: 0.3rem; }
 .rxSign { text-align: right; font-family: var(--serif); font-style: italic; font-size: calc(1.6rem * 0.9); color: var(--cassis); margin-top: 0.8rem; }
 .rxBottle { height: clamp(320px, 42vw, 560px); width: auto; mix-blend-mode: multiply; filter: drop-shadow(0 30px 30px rgba(58, 16, 48, 0.25)); }
 
