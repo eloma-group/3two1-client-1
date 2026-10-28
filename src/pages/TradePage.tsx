@@ -107,9 +107,9 @@ function Segment({ data }: { data: TradeSegment }) {
             </Rise>
             <Rise className={b.span2} delay={0.08}>
               <article className={`${b.tile} ${b.tileBrand} ${styles.fill}`}>
-                <p className={b.tileLabel}>Premium brands</p>
-                <span className={b.big}>7</span>
-                <p className={b.tileText}>Under one PO, on one delivery day.</p>
+                <p className={b.tileLabel}>{data.stat?.label ?? 'Premium brands'}</p>
+                <span className={b.big}>{data.stat?.big ?? '7'}</span>
+                <p className={b.tileText}>{data.stat?.text ?? 'Under one PO, on one delivery day.'}</p>
               </article>
             </Rise>
             <Rise className={b.span2}>
@@ -122,22 +122,27 @@ function Segment({ data }: { data: TradeSegment }) {
             <Rise className={b.span4} delay={0.08}>
               <article className={`${b.tile} ${b.tileOnImg} ${styles.fill}`}>
                 <div className={b.tileImg} aria-hidden="true">
-                  <img src="/images/about-founders-stir.webp" alt="" loading="lazy" />
+                  <img src={r2.image ?? "/images/about-founders-stir.webp"} alt="" loading="lazy" style={r2.imagePos ? { objectPosition: r2.imagePos } : undefined} />
                 </div>
                 <p className={b.tileLabel}>{r2.title}</p>
                 <p className={`${b.tileTitle} ${styles.wide}`}>{r2.body}</p>
               </article>
             </Rise>
-            <Rise className={b.span3}>
-              <ReasonTile v={r3} className={styles.fill} />
-            </Rise>
-            <Rise className={b.span3} delay={0.08}>
-              <article className={`${b.tile} ${styles.fill}`}>
-                <p className={b.tileLabel}>Delivery</p>
-                <span className={b.big}>Weekly</span>
-                <p className={b.tileText}>{data.steps[2].body}</p>
-              </article>
-            </Rise>
+            {/* A segment with only two reasons drops this last row (third reason + delivery). */}
+            {r3 && (
+              <>
+                <Rise className={b.span3}>
+                  <ReasonTile v={r3} className={styles.fill} />
+                </Rise>
+                <Rise className={b.span3} delay={0.08}>
+                  <article className={`${b.tile} ${styles.fill}`}>
+                    <p className={b.tileLabel}>Delivery</p>
+                    <span className={b.big}>Weekly</span>
+                    <p className={b.tileText}>{data.steps[2].body}</p>
+                  </article>
+                </Rise>
+              </>
+            )}
           </div>
         </div>
       </section>
@@ -176,6 +181,7 @@ function Segment({ data }: { data: TradeSegment }) {
       </section>
 
       {/* ── Trade voice ── */}
+      {!data.hideQuote && (
       <section className={b.section}>
         <div className="container">
           <Rise>
@@ -188,6 +194,7 @@ function Segment({ data }: { data: TradeSegment }) {
           </Rise>
         </div>
       </section>
+      )}
 
       {/* ── How to order ── */}
       <section className={`${b.section} ${b.sectionTint}`}>

@@ -8,20 +8,26 @@ export interface TradeSegment {
   lede: string;
   image: string;
   reasonsTitle: { before: string; accent: string; after: string };
-  reasons: { icon: 'range' | 'people' | 'margin' | 'shelf' | 'pos' | 'growth' | 'skus' | 'coffee' | 'waste'; title: string; body: string }[];
+  /** Optional override for the brand-coloured stat tile beside the first reason. */
+  stat?: { label: string; big: string; text: string };
+  reasons: { icon: 'range' | 'people' | 'margin' | 'shelf' | 'pos' | 'growth' | 'skus' | 'coffee' | 'waste'; title: string; body: string; image?: string; imagePos?: string }[];
   products: { brand: string; kind: string; name: string; body: string; image: string; to: string }[];
   quote: { text: string; cite: string };
+  /** Leave the Trade voice quote off this page. */
+  hideQuote?: boolean;
   steps: { title: string; body: string }[];
   cta: { title: { before: string; accent: string; after: string }; body: string; placeholder: string };
 }
 
 const IMG = {
   giffard: '/images/brand-giffard-cocktail.webp',
+  giffardPamplemousse: '/images/giffard-pamplemousse-rose-scene.webp',
   worthyPark: '/images/worthy-park-single-estate-jamaica-rum.webp',
   sanMatias: '/images/brands/san-matias/bottle-tahona.webp',
   sanMatiasAnejo: '/images/brands/san-matias/bottle-tahona-anejo.webp',
   sanMatiasBlanco: '/images/brands/san-matias/bottle-cristal.webp',
   blackTears: '/images/black-tears-dry-spiced-rum-cuba.webp',
+  puebloViejo: '/images/pueblo-viejo-blanco-tequila-jalisco-mexico.webp',
 };
 
 export const tradeSegments: TradeSegment[] = [
@@ -30,7 +36,7 @@ export const tradeSegments: TradeSegment[] = [
     label: 'For Bars & Venues',
     title: { before: 'Built for the', accent: 'back-bar.' },
     lede:
-      'From Northbridge cocktail rooms to neighbourhood pubs - seven premium brands, weekly drops, and a rep who actually picks up the phone.',
+      'From Fitzroy cocktail rooms to neighbourhood pubs - seven premium brands, weekly drops, and a rep who actually picks up the phone.',
     image: '/images/pages/trade-bars-venues.webp',
     reasonsTitle: { before: 'Three reasons your', accent: 'cocktail menu', after: 'grows.' },
     reasons: [
@@ -51,19 +57,19 @@ export const tradeSegments: TradeSegment[] = [
       },
     ],
     products: [
-      { brand: 'Giffard', kind: 'Liqueur', name: 'Crème de Pamplemousse Rosé', body: 'Pink grapefruit, palomas, low-ABV serves. The bottle that lifts a tropical menu.', image: IMG.giffard, to: '/brands/giffard' },
+      { brand: 'Giffard', kind: 'Liqueur', name: 'Crème de Pamplemousse Rosé', body: 'Pink grapefruit, palomas, low-ABV serves. The bottle that lifts a tropical menu.', image: IMG.giffardPamplemousse, to: '/brands/giffard' },
       { brand: 'Worthy Park', kind: 'Rum', name: 'Single Estate Reserve', body: 'Jamaican pot-still funk. Daiquiris with bite, old-fashioneds with weight.', image: IMG.worthyPark, to: '/brands/worthy-park' },
-      { brand: 'San Matías', kind: 'Tequila', name: 'Reposado · Highland Agave', body: "Mexico's second-oldest tequila house. Margaritas with a soul, Old-Fashioned riffs with bite.", image: IMG.sanMatias, to: '/brands/san-matias' },
+      { brand: 'Pueblo Viejo', kind: 'Tequila', name: 'Blanco · 100% Agave', body: "Bright, peppery highland blanco built for the well. The Tommy's Margarita and Paloma pour that holds its price.", image: IMG.puebloViejo, to: '/brands/pueblo-viejo' },
       { brand: 'Black Tears', kind: 'Spiced Rum', name: 'Cuban Spiced Rum', body: 'Coffee, cocoa and cinnamon over Cuban rum. The new Daiquiri pour, the better Espresso Martini.', image: IMG.blackTears, to: '/brands/black-tears' },
     ],
     quote: {
-      text: 'One distributor, one delivery day, seven brands worth pouring. We rebuilt our spirit list around the 3Two1 Drinks portfolio in a weekend - and our cocktail margin moved 6 points.',
-      cite: 'Bar Manager · A neighbourhood bar in Perth',
+      text: 'We rebuilt our spirit list around the 3Two1 Drinks portfolio in a weekend - and our cocktail GP moved 6 points.',
+      cite: 'Bar Manager · A neighbourhood bar in Brisbane',
     },
     steps: [
       { title: 'Apply', body: "Two-minute form. Send your liquor licence and a contact for accounts. We'll come back within a business day." },
       { title: 'Approved', body: "Trade pricing, credit terms and your dedicated rep - locked in. We'll arrange a tasting with your bar team." },
-      { title: 'Order via portal', body: 'One PO, seven brands, weekly delivery to Perth metro. Regional and national freight on schedule.' },
+      { title: 'Order via Email', body: 'One PO, seven brands, weekly delivery to all metro areas. Regional and national freight on schedule.' },
     ],
     cta: {
       title: { before: 'Pour', accent: 'better', after: 'next quarter.' },
@@ -73,17 +79,17 @@ export const tradeSegments: TradeSegment[] = [
   },
   {
     slug: 'bottle-shops',
-    label: 'For Bottle Shops',
+    label: 'Bottle Shops',
     title: { before: 'Built for the', accent: 'shelf.' },
     lede:
-      'Seven world-class brands your customers ask for by name. Shelf-ready packaging, point-of-sale that earns its space, and category data when the merchant asks.',
-    image: '/images/pages/trade-bottle-shops.webp',
+      'Nine world-class brands your customers ask for by name. Shelf-ready packaging, point-of-sale that earns its space, and category data when the merchant asks.',
+    image: '/images/pages/trade-bottle-shops-store.webp',
     reasonsTitle: { before: 'Three reasons your', accent: 'top shelf', after: 'moves.' },
     reasons: [
       {
         icon: 'shelf',
         title: 'A curated premium tier',
-        body: 'Black Tears, Worthy Park, Pueblo Viejo, San Matías - seven brands chosen to lift the top shelf without bloating it.',
+        body: 'Black Tears, Worthy Park, Pueblo Viejo, San Matías - nine brands chosen to lift the top shelf without bloating it.',
       },
       {
         icon: 'pos',
@@ -97,19 +103,19 @@ export const tradeSegments: TradeSegment[] = [
       },
     ],
     products: [
-      { brand: 'Giffard', kind: 'Liqueur', name: 'Crème de Pamplemousse Rosé', body: 'The bottle that gets noticed in the liqueur set. Visual hook, real shelf-mover.', image: IMG.giffard, to: '/brands/giffard' },
+      { brand: 'Giffard', kind: 'Liqueur', name: 'Crème de Pamplemousse Rosé', body: 'Pink grapefruit, palomas, low-ABV serves. The bottle that lifts a tropical menu.', image: IMG.giffardPamplemousse, to: '/brands/giffard' },
       { brand: 'Worthy Park', kind: 'Rum', name: 'Single Estate Reserve', body: 'The rum your educated customer wants - and the educated customer is the one buying.', image: IMG.worthyPark, to: '/brands/worthy-park' },
-      { brand: 'San Matías', kind: 'Tequila', name: 'Añejo · 18mo oak', body: 'The bottle that converts whisky drinkers - dried fruit, leather, caramel. Premium gift-pack ready.', image: IMG.sanMatiasAnejo, to: '/brands/san-matias' },
+      { brand: 'Pueblo Viejo', kind: 'Tequila', name: 'Blanco · 100% Agave', body: "Bright, peppery highland blanco built for the well. The Tommy's Margarita and Paloma pour that holds its price.", image: IMG.puebloViejo, to: '/brands/pueblo-viejo' },
       { brand: 'Black Tears', kind: 'Spiced Rum', name: 'Cuban Spiced', body: 'Coffee-and-cocoa-led Cuban spiced rum. Self-merchandising on the dark-rum shelf, sells before staff need to talk.', image: IMG.blackTears, to: '/brands/black-tears' },
     ],
     quote: {
-      text: "Premium category was static for two years. We brought 3Two1 Drinks' seven brands in over a quarter - premium spirits did 18% more revenue against the same shelf footprint.",
+      text: "Premium category was static for two years. We brought 3Two1 Drinks' nine brands in over a quarter - premium spirits did 18% more revenue against the same shelf footprint.",
       cite: 'Owner · An independent bottle shop in WA',
     },
     steps: [
       { title: 'Apply', body: "Two-minute form. Send your packaged-liquor licence and a contact for accounts. We'll come back within a business day." },
       { title: 'Approved', body: "Trade pricing, credit terms and your dedicated rep - locked in. We'll arrange a tasting with your floor team." },
-      { title: 'Order via portal', body: 'One PO, seven brands, weekly drops with case-pack pricing. Direct national freight for multi-store groups.' },
+      { title: 'Order via Email', body: 'One PO, nine brands, weekly drops with case-pack pricing. Direct national freight for multi-store groups.' },
     ],
     cta: {
       title: { before: 'Premiumise the', accent: 'shelf.', after: '' },
@@ -120,11 +126,13 @@ export const tradeSegments: TradeSegment[] = [
   {
     slug: 'cafes',
     label: 'For Cafés',
-    title: { before: 'Built for', accent: 'espresso to evening.' },
+    title: { before: 'Built for', accent: 'Smoothies & Shakes.' },
     lede:
-      'A handful of bottles that earn their counter space - espresso martinis after lunch, Irish coffees through winter, dessert pairings every weekend service.',
-    image: '/images/pages/trade-cafes.webp',
-    reasonsTitle: { before: 'Three reasons your', accent: 'after-lunch trade', after: 'grows.' },
+      'Giffard syrups for every latte, fruit purées for smoothies and iced drinks, and coffee liqueurs for the espresso martini - one supplier for the whole coffee bar.',
+    image: '/images/pages/trade-cafes-counter.webp',
+    hideQuote: true,
+    stat: { label: 'Syrup pumps', big: 'Free', text: 'With your opening Giffard syrup order - a measured shot in every latte.' },
+    reasonsTitle: { before: 'Three reasons your', accent: 'customer comes back', after: 'with profit for proper taste.' },
     reasons: [
       {
         icon: 'skus',
@@ -133,20 +141,17 @@ export const tradeSegments: TradeSegment[] = [
       },
       {
         icon: 'coffee',
-        title: 'Espresso martini, perfected',
-        body: 'Coffee-liqueur training, recipe cards for your baristas, and the cocktail-coffee pairing kit. The drink that turns a Wednesday lunch into a Friday-night ticket.',
-      },
-      {
-        icon: 'waste',
-        title: 'Fast-moving, low waste',
-        body: 'Liqueurs that turn over weekly, half-bottles where they make sense, no slow-moving tail. Counter space stays tight, margin stays sharp.',
+        title: 'Smoothies, sorted',
+        body: 'Giffard fruit purées, ready to blend. Same colour and flavour in every glass - no fruit to prep, nothing to waste.',
+        image: '/images/pages/trade-cafes-berry-smoothies.webp',
+        imagePos: '50% 45%',
       },
     ],
     products: [
-      { brand: 'Giffard', kind: 'Liqueur', name: 'Crème de Pamplemousse Rosé', body: 'The pretty bottle behind the espresso machine. A signature spritz with one twist of the wrist.', image: IMG.giffard, to: '/brands/giffard' },
-      { brand: 'Worthy Park', kind: 'Rum', name: 'Single Estate Reserve', body: 'For the Irish coffee that customers travel for. Pot-still depth in every cup.', image: IMG.worthyPark, to: '/brands/worthy-park' },
-      { brand: 'San Matías', kind: 'Tequila', name: 'Blanco · Highland Agave', body: 'The Tequila Sunset and Paloma upgrade. Bright, herbaceous, friendly to a single-source citrus pairing.', image: IMG.sanMatiasBlanco, to: '/brands/san-matias' },
-      { brand: 'Black Tears', kind: 'Spiced Rum', name: 'Cuban Spiced', body: "Cuban spiced rum with coffee, cocoa and cinnamon. The Espresso Martini upgrade you don't have to explain.", image: IMG.blackTears, to: '/brands/black-tears' },
+      { brand: 'Giffard', kind: 'Syrup', name: 'Coconut Syrup', body: 'Real coconut cream for iced lattes, chai and tropical shakes. One pump, no tin to open.', image: '/images/giffard-coconut-syrup.webp', to: '/brands/giffard/coconut-syrup' },
+      { brand: 'Giffard', kind: 'Syrup', name: 'Mango Syrup', body: 'Ripe mango with a floral lift - the easy upgrade for iced teas, sodas and mango lassis.', image: '/images/giffard-mango-syrup.webp', to: '/brands/giffard/mango-syrup' },
+      { brand: 'Giffard', kind: 'Purée', name: 'Fruit for Mix Mango', body: 'Thick, ripe mango pulp ready to blend. Same smoothie every time, no fruit to cut or waste.', image: '/images/giffard-mango-puree.webp', to: '/brands/giffard/mango-puree' },
+      { brand: 'Giffard', kind: 'Purée', name: 'Fruit for Mix Passion Fruit', body: 'Tangy passion fruit with real seeds. Brightens smoothies, frappés and yoghurt bowls.', image: '/images/giffard-passion-fruit-puree.webp', to: '/brands/giffard/passion-fruit-puree' },
     ],
     quote: {
       text: 'We added five spirits and a coffee liqueur. Espresso martini sales tripled inside two months - and we kept our counter footprint the same.',
@@ -155,10 +160,10 @@ export const tradeSegments: TradeSegment[] = [
     steps: [
       { title: 'Apply', body: "Two-minute form. Send your on-premise licence and a contact for accounts. We'll come back within a business day." },
       { title: 'Approved', body: "Trade pricing, credit terms and your dedicated rep - locked in. We'll arrange a tasting and an espresso-martini training session with your barista team." },
-      { title: 'Order via portal', body: "Small-case pricing, weekly delivery to Perth metro. No minimum that doesn't suit a single-counter venue." },
+      { title: 'Order via Email', body: "Small-case pricing, weekly delivery to all metro areas. No minimum that doesn't suit a single-counter venue." },
     ],
     cta: {
-      title: { before: 'From', accent: 'espresso', after: 'to evening.' },
+      title: { before: 'From', accent: 'Buffet', after: 'to Smoothies.' },
       body: "Drop your café details - we'll send the small-footprint range, the espresso martini training kit, and a starter pack on the next run.",
       placeholder: 'cafe@email.com',
     },
