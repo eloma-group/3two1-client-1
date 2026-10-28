@@ -371,13 +371,13 @@ export default function Investors({ ready = true }: { ready?: boolean }) {
           </p>
           <p className={styles.body}>
             Eight years on, we represent nine world-class spirit brands across rum, tequila,
-            whiskey, bourbon, pisco, cachaça, liqueur and syrups - working directly with bars, bottle shops and cafés across
+            whiskey, bourbon, pisco, cachaça, liqueurs and syrups - working directly with bars, bottle shops and cafés across
             Australia, New Zealand and the Pacific Islands.
           </p>
           <p className={styles.body}>
             Week in, week out, that means warehouses in Sydney, Melbourne, Perth and Auckland, deliveries we
             run ourselves, and a phone answered by people who have worked behind a bar. The range
-            gets chosen the way a good back bar gets chosen - by people who have had to stand behind it.
+            gets chosen the way a good back bar gets chosen - by people who have had to stand in front of it.
           </p>
           <p className={`${styles.pull} gradient-text`}>
             Built like a major. Period. Independent.
@@ -515,8 +515,8 @@ export default function Investors({ ready = true }: { ready?: boolean }) {
           <Reveal y={18} delay={0.25}>
             <div className={styles.heroMeta}>
               <p className={styles.heroLede}>
-                An Australia-based medium-sized distributor with one obsession that the right
-                bottle belongs in best venues.
+                An Australia-based medium-sized distributor with one obsession, that the right
+                bottle belongs in the best venues.
               </p>
               <span className={styles.heroPlace}>Australia, New Zealand, Pacific Islands</span>
             </div>
