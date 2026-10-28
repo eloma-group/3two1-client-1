@@ -36,14 +36,14 @@ export const tradeSegments: TradeSegment[] = [
     label: 'For Bars & Venues',
     title: { before: 'Built for the', accent: 'back-bar.' },
     lede:
-      'From Fitzroy cocktail rooms to neighbourhood pubs - seven premium brands, weekly drops, and a rep who actually picks up the phone.',
+      'From Fitzroy cocktail rooms to neighbourhood pubs - nine premium brands, weekly drops, and a rep who actually picks up the phone.',
     image: '/images/pages/trade-bars-venues.webp',
     reasonsTitle: { before: 'Three reasons your', accent: 'cocktail menu', after: 'grows.' },
     reasons: [
       {
         icon: 'range',
         title: 'Range that pulls weight',
-        body: 'From back-bar workhorses to one-bottle headliners - Giffard, Worthy Park, Pueblo Viejo and the rest of the seven, all under one PO.',
+        body: 'From back-bar workhorses to one-bottle headliners - Giffard, Worthy Park, Pueblo Viejo and the rest of the nine, all under one PO.',
       },
       {
         icon: 'people',
@@ -69,7 +69,7 @@ export const tradeSegments: TradeSegment[] = [
     steps: [
       { title: 'Apply', body: "Two-minute form. Send your liquor licence and a contact for accounts. We'll come back within a business day." },
       { title: 'Approved', body: "Trade pricing, credit terms and your dedicated rep - locked in. We'll arrange a tasting with your bar team." },
-      { title: 'Order via Email', body: 'One PO, seven brands, weekly delivery to all metro areas. Regional and national freight on schedule.' },
+      { title: 'Order via Email', body: 'One PO, nine brands, weekly delivery to all metro areas. Regional and national freight on schedule.' },
     ],
     cta: {
       title: { before: 'Pour', accent: 'better', after: 'next quarter.' },

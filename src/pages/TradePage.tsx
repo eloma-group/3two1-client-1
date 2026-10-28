@@ -108,7 +108,7 @@ function Segment({ data }: { data: TradeSegment }) {
             <Rise className={b.span2} delay={0.08}>
               <article className={`${b.tile} ${b.tileBrand} ${styles.fill}`}>
                 <p className={b.tileLabel}>{data.stat?.label ?? 'Premium brands'}</p>
-                <span className={b.big}>{data.stat?.big ?? '7'}</span>
+                <span className={b.big}>{data.stat?.big ?? '9'}</span>
                 <p className={b.tileText}>{data.stat?.text ?? 'Under one PO, on one delivery day.'}</p>
               </article>
             </Rise>

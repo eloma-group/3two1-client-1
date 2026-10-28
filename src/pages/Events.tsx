@@ -23,34 +23,6 @@ function useNow() {
   return now;
 }
 
-function Countdown({ now }: { now: number }) {
-  const left = new Date(westCup.startsAt).getTime() - now;
-  if (left <= 0) {
-    return (
-      <p className={styles.countDone}>
-        {left > -6 * 3600 * 1000 ? 'The final is on now.' : 'That’s a wrap for 2026.'}
-      </p>
-    );
-  }
-  const s = Math.floor(left / 1000);
-  const parts: [string, number][] = [
-    ['days', Math.floor(s / 86400)],
-    ['hrs', Math.floor((s % 86400) / 3600)],
-    ['min', Math.floor((s % 3600) / 60)],
-    ['sec', s % 60],
-  ];
-  return (
-    <div className={styles.count} role="timer" aria-label="Time until the national final">
-      {parts.map(([label, v]) => (
-        <div key={label}>
-          <span className={styles.countNum}>{String(v).padStart(2, '0')}</span>
-          <span className={styles.countLabel}>{label}</span>
-        </div>
-      ))}
-    </div>
-  );
-}
-
 export default function Events() {
   usePageSetup('Events');
   const now = useNow();
@@ -61,8 +33,8 @@ export default function Events() {
         eyebrow="2026 Trade calendar"
         title={<>Tasted, <em className="gradient-text">not</em> told.</>}
         lede="Competitions, portfolio walk-throughs, distillery dinners and trade tastings. The fastest way to know our brands is to drink them, with us, in the room."
-        image="/images/pages/events-hero.webp"
-        alt="A bartender pouring an orange-garnished cocktail at a Giffard West Cup heat"
+        image="/images/pages/events-giffard-west-cup-2024.webp"
+        alt="The 2024 Giffard West Cup finalists at the bar under the West Cup sign"
         tag="Giffard West Cup · est. 2018"
         actions={
           <>
@@ -78,7 +50,7 @@ export default function Events() {
           <Rise>
             <div className={b.head}>
               <p className={b.kicker}>Flagship competition</p>
-              <h2 className={b.title}>The Giffard <em className="gradient-text">West Cup</em>, 2026.</h2>
+              <h2 className={b.title}>The Giffard <em className="gradient-text">West Cup</em>, 2028.</h2>
               <p className={b.sub}>{westCup.when}</p>
             </div>
           </Rise>
@@ -95,9 +67,9 @@ export default function Events() {
             </Rise>
             <Rise className={b.span2} delay={0.08}>
               <article className={`${b.tile} ${b.tileDark} ${styles.fill} ${styles.countTile}`}>
-                <p className={b.tileLabel}>National final starts in</p>
-                <Countdown now={now} />
-                <p className={b.tileText}>14 October · 6pm · Perth</p>
+                <p className={b.tileLabel}>Giffard West Cup International</p>
+                <p className={styles.countDone}>That’s a wrap for 2026.</p>
+                <p className={b.tileText}>16th September in Angers, France</p>
               </article>
             </Rise>
             <Rise className={b.span2}>
@@ -112,11 +84,11 @@ export default function Events() {
             <Rise className={b.span4} delay={0.08}>
               <article className={`${b.tile} ${b.tileBrand} ${styles.fill} ${styles.split}`}>
                 <div>
-                  <p className={b.tileLabel}>Returning to Perth for the</p>
+                  <p className={b.tileLabel}>Returning to Australia for the</p>
                   <span className={`${b.big} ${styles.bigger}`}>8th year</span>
                 </div>
                 <p className={b.tileText}>
-                  State heats from August. Winners head to Angers, France for the Giffard West Cup International.
+                  State heats in June. The winner heads to Angers, France in September for the Giffard West Cup International.
                 </p>
               </article>
             </Rise>
@@ -148,12 +120,12 @@ export default function Events() {
                     {/* A calendar-app date badge */}
                     <div className={styles.badge} aria-label={d.toDateString()}>
                       <span className={styles.badgeMon}>{d.toLocaleString('en-AU', { month: 'short' })}</span>
-                      <span className={styles.badgeDay}>{d.getDate()}</span>
+                      <span className={styles.badgeDay}>{e.dayTbc ? 'TBC' : d.getDate()}</span>
                     </div>
                     <div className={styles.meta}>
                       <h3>{e.title}</h3>
                       <p className={styles.where}>{e.city} · {d.getFullYear()}</p>
-                      <p className={styles.body}>{e.body}</p>
+                      {e.body && <p className={styles.body}>{e.body}</p>}
                     </div>
                     {past ? (
                       <span className={styles.wrapped}>Wrapped</span>
@@ -172,21 +144,12 @@ export default function Events() {
       <section className={b.section} id="trade-shows">
         <div className="container">
           <div className={b.grid}>
-            <Rise className={b.span3}>
-              <article className={`${b.tile} ${b.tileOnImg} ${styles.fill}`}>
-                <div className={b.tileImg} aria-hidden="true">
-                  <img src="/images/pages/events-trade-shows.webp" alt="" loading="lazy" />
-                </div>
-                <p className={b.tileLabel}>On the floor</p>
-                <p className={b.tileTitle}>Seven brands. One room.</p>
-              </article>
-            </Rise>
-            <Rise className={b.span3} delay={0.08}>
+            <Rise className={b.span6}>
               <article className={`${b.tile} ${styles.fill} ${styles.showCopy}`}>
                 <p className={b.kicker}>Trade shows</p>
                 <h2 className={`${b.title} ${styles.showTitle}`}>Find us at the <em className="gradient-text">trade shows</em>.</h2>
                 <p className={b.tileText}>
-                  We bring the full portfolio to the calendar's key industry shows - a fast way to taste seven brands
+                  We bring the full portfolio to the calendar's key industry shows - a fast way to taste nine brands
                   in one room and talk listings with our team. Stand details and pour lists go out to the trade list
                   ahead of each event.
                 </p>
@@ -204,7 +167,7 @@ export default function Events() {
       <section className={b.section} id="enquiries" style={{ paddingTop: 0 }}>
         <div className="container">
           <Cta
-            title="Run a tasting. Throw a dinner."
+            title="Run a Tasting. Throw a Dinner."
             text="Want a brand activation, take-over, or paired dinner at your venue? Our team will build it with you, end to end."
             actions={
               <>
