@@ -361,8 +361,8 @@ export default function Investors({ ready = true }: { ready?: boolean }) {
       kicker: 'Our story',
       heading: 'Built in Australia, poured everywhere.',
       gradientFrom: 2,
-      img: '/images/about-story-toast.webp',
-      alt: 'Friends raising whisky over a barrel table as the sun sets behind the city',
+      img: '/images/about-story-harbour-toast.webp',
+      alt: 'Friends toasting with cocktails on a rooftop bar at sunset, Sydney Harbour and the Opera House behind',
       body: (
         <>
           <p className={styles.body}>
