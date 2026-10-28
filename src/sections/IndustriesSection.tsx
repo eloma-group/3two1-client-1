@@ -19,7 +19,7 @@
 
 import { useState, useEffect } from 'react'
 import {
-  Wine, Martini, Beer, Coffee, GlassWater, Grape,
+  Wine, Martini, Coffee, GlassWater, Grape,
   Store, Building2, Hotel, UtensilsCrossed, ChefHat, CupSoda,
   Music, PartyPopper, Users, Truck, Ship, Globe, MapPin,
   Award, Star, Sparkles, Gift, Percent, Snowflake, Leaf,
@@ -47,7 +47,7 @@ const INDUSTRIES: Industry[] = [
   { name: 'Cafés' },
   { name: 'Retail Chain' },
   { name: 'Events & Catering' },
-  { name: 'Distributors' },
+  { name: 'Wholesalers' },
 ]
 
 /* ── Card face data (colour + icon + tags per industry) ─────────── */
@@ -66,7 +66,7 @@ const FACE_META: Record<string, FaceMeta> = {
   'Cafés':             { bg: '#fdf6ec', accent: '#92400e', Icon: Coffee,          tags: ['Coffee Liqueur',   'All-Day']       },
   'Retail Chain':      { bg: '#fdf2f8', accent: '#db2777', Icon: Store,           tags: ['High Volume',      'Nationwide']    },
   'Events & Catering': { bg: '#fff1f4', accent: '#e8446f', Icon: PartyPopper,     tags: ['Functions',        'Bulk Orders']   },
-  'Distributors':      { bg: '#fffaf0', accent: '#b45309', Icon: Truck,           tags: ['Wholesale',        'Nationwide']    },
+  'Wholesalers':       { bg: '#fffaf0', accent: '#b45309', Icon: Truck,           tags: ['Wholesale',        'Nationwide']    },
 }
 
 /* ── Card face ──────────────────────────────────────────────────── */
@@ -229,11 +229,28 @@ function FlipCard({ pairIdx, flipped, onFlip, innerRadius }: {
   )
 }
 
+/* Lucide has no slushie, so this one is drawn in its style (24 grid, round
+   caps, currentColor stroke): a domed cup of slush with a straw. */
+function Slushie({ size = 24, color = 'currentColor', strokeWidth = 2, style }: {
+  size?: number; color?: string; strokeWidth?: number; style?: React.CSSProperties
+}) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color}
+      strokeWidth={strokeWidth} strokeLinecap="round" strokeLinejoin="round" style={style} aria-hidden="true">
+      <path d="M5 11c0-3 3-5 7-5s7 2 7 5" />
+      <path d="M4.5 11h15" />
+      <path d="M6 11l1.3 9.1a2 2 0 0 0 2 1.9h5.4a2 2 0 0 0 2-1.9L18 11" />
+      <path d="M13 6l2.5-4H18" />
+      <path d="M9.5 15.5h.01M14.5 15.5h.01M12 18.5h.01" />
+    </svg>
+  )
+}
+
 /* ── Surrounding small cells (decorative capability tags) ───────── */
 const ITEMS = [
   { icon: Wine,            label: 'Wine'            },
   { icon: Martini,         label: 'Cocktails'       },
-  { icon: Beer,            label: 'Beer & Cider'    },
+  { icon: Slushie,         label: 'Slushies'        },
   { icon: Coffee,          label: 'Coffee Liqueur'  },
   { icon: GlassWater,      label: 'Spirits'         },
   { icon: Grape,           label: 'Agave'           },

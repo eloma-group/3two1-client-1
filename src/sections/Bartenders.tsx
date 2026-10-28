@@ -8,11 +8,18 @@ import styles from './Bartenders.module.css';
 /** Real cocktail photo per house. */
 const MEDIA: Record<string, string> = {
   'Giffard':      '/images/brand-giffard-cocktail.webp',
-  'Black Tears':  '/images/brand-black-tears-cocktail.webp',
+  'Black Tears':  '/images/brand-black-tears-coffee-cuba-libre.webp',
   'Pueblo Viejo': '/images/brand-pueblo-viejo-cocktail.webp',
   'Worthy Park':  '/images/brand-worthy-park-cocktail.webp',
-  'Burnt Ends':   '/images/brand-burnt-ends-cocktail.webp',
-  'San Matías':   '/images/brand-san-matias-cocktail.webp',
+  'Burnt Ends':   '/images/brands/burnt-ends/serve-manhattan.webp',
+  'San Matías':   '/images/brands/san-matias/serve-paloma-bar.webp',
+};
+
+/* The panel is 4:3 and crops with object-fit: cover. The San Matías paloma is a
+   tall shot with the glass below centre, so its crop is pulled down to keep the
+   whole highball in frame. */
+const MEDIA_POS: Record<string, string> = {
+  'San Matías': 'center 62%',
 };
 
 const EASE = [0.16, 1, 0.3, 1] as const;
@@ -65,6 +72,7 @@ export default function Bartenders() {
                   src={MEDIA[c.brand]}
                   alt={c.name}
                   className={styles.panelImg}
+                  style={{ objectPosition: MEDIA_POS[c.brand] }}
                   initial={{ opacity: 0, scale: 1.06 }}
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0 }}

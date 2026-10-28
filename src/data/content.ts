@@ -295,7 +295,7 @@ export const cocktails: Cocktail[] = [
   { name: 'Garden Spritz', brand: 'Giffard', ingredients: 'Giffard Peach Liqueur, Prosecco, soda', desc: 'Bright, low-ABV and built for daytime. Peach liqueur, prosecco and a splash of soda - built in the glass in under 30 seconds.' },
   { name: 'Coffee Cuba Libre', brand: 'Black Tears', ingredients: 'Black Tears Spiced, cola, lime', desc: 'A Havana classic, rebuilt around a coffee-and-cacao rum. Tall over ice with a fat squeeze of lime - house cola does the rest.' },
   { name: "Tommy's Margarita", brand: 'Pueblo Viejo', ingredients: 'Pueblo Viejo Blanco, agave, lime', desc: 'No triple sec, no shortcuts. Blanco tequila, fresh lime and agave - the margarita, purist style.' },
-  { name: 'Estate Daiquiri', brand: 'Worthy Park', ingredients: 'Worthy Park Single Estate Rum, lime, sugar', desc: 'Three ingredients, Jamaican funk. Fresh lime, a hard shake on ice - the daiquiri the way the estate drinks it.' },
+  { name: 'Nuclear Daiquiri', brand: 'Worthy Park', ingredients: 'Rhumba Overproof Rum, lime, sugar', desc: 'Overproof Jamaican rum, fresh lime and sugar, shaken hard and served up. Loud, bright and not for the faint-hearted.' },
   { name: 'Smoked Manhattan', brand: 'Burnt Ends', ingredients: 'Burnt Ends American Whiskey, vermouth, bitters', desc: 'Charred-oak whiskey stirred down with sweet vermouth and a whisper of orange bitters. Served over a single inch with a branded cherry.' },
   { name: 'Paloma Brava', brand: 'San Matías', ingredients: 'San Matías Gran Reserva, pink grapefruit, salt', desc: 'Aged tequila stretched long over pink grapefruit soda and a generous pinch of sea salt. The Mexican highball, done properly.' },
 ];
