@@ -1,6 +1,6 @@
-import { useId, useRef } from 'react';
+import { useEffect, useId, useRef } from 'react';
 import { Link } from 'react-router-dom';
-import { motion, useReducedMotion, useScroll, useTransform } from 'framer-motion';
+import { motion, useAnimate, useInView, useReducedMotion, useScroll, useTransform } from 'framer-motion';
 import { ArrowUpRight } from 'lucide-react';
 import { brandPage } from '../../data/brandPages';
 import styles from './DemonioDeLosAndes.module.css';
@@ -86,6 +86,82 @@ function Label({ n, children }: { n: string; children: string }) {
       <span className={styles.labelN}>{n}</span>
       <span>{children}</span>
     </p>
+  );
+}
+
+/* Acholado pours itself a glass, on a loop, once the stock CTA scrolls into
+   view: the cork lifts off, the bottle tips over the glass, a thin stream runs
+   while the glass fills, the bottle stands back up and the cork goes back on;
+   then the glass empties and it starts again.
+
+   The cork is the same photo clipped to its top 10.4% (where the cork meets the
+   neck), so it can come away from the body without a second asset.
+
+   Everything is placed in % of a square stage, so the neck and the glass line
+   up at any size: bottle box 50% x 80% at (37%, 4%), centre (62%, 44%); the
+   open neck sits 0.396 of the box height above centre. Tipped to -112deg,
+   moved 8% left and 17.5% up (of the box), the neck lands at about
+   (28.6%, 42%) - straight above the glass. */
+const CORK = 10.4; // % of the photo's height
+function PourBottle({ src, alt }: { src: string; alt: string }) {
+  const reduce = useReducedMotion();
+  const [scope, animate] = useAnimate<HTMLDivElement>();
+  const inView = useInView(scope, { once: true, amount: 0.5 });
+
+  useEffect(() => {
+    if (!inView || reduce) return;
+    let alive = true;
+    const wait = (ms: number) => new Promise((r) => setTimeout(r, ms));
+    const tilt = [0.65, 0, 0.35, 1] as const;
+    const corkOff = { x: '18%', y: '-12%', rotate: 28, opacity: 0 };
+
+    const run = async () => {
+      animate('[data-glass]', { opacity: [0, 1], y: [16, 0] }, { duration: 0.7, delay: 0.5, ease });
+      await animate('[data-bottle], [data-cork]', { opacity: [0, 1], y: ['20%', '0%'] }, { duration: 1, ease });
+      while (alive) {
+        await wait(400);
+        await animate('[data-cork]', corkOff, { duration: 0.8, ease });
+        await animate('[data-bottle]', { rotate: -112, x: '-8%', y: '-17.5%' }, { duration: 1.2, ease: tilt });
+        await animate('[data-stream]', { clipPath: ['inset(0 0 100% 0)', 'inset(0 0 0% 0)'] }, { duration: 0.35, ease: 'easeIn' });
+        await animate('[data-liquid]', { clipPath: ['inset(100% 0 0 0)', 'inset(0% 0 0 0)'] }, { duration: 2.2, ease: 'easeOut' });
+        await animate('[data-stream]', { clipPath: 'inset(100% 0 0 0)' }, { duration: 0.3, ease: 'easeIn' });
+        await animate('[data-bottle]', { rotate: 0, x: '0%', y: '0%' }, { duration: 1.2, ease: tilt });
+        await animate('[data-cork]', { x: '0%', y: '0%', rotate: 0, opacity: 1 }, { duration: 0.8, ease });
+        await wait(1200);
+        // Empty the glass and reset the stream for the next pour.
+        await animate('[data-liquid]', { opacity: 0 }, { duration: 0.6 });
+        await animate('[data-liquid]', { clipPath: 'inset(100% 0 0 0)', opacity: 1 }, { duration: 0 });
+        await animate('[data-stream]', { clipPath: 'inset(0 0 100% 0)' }, { duration: 0 });
+      }
+    };
+    run();
+    return () => { alive = false; };
+  }, [inView, reduce, animate]);
+
+  const hidden = reduce ? undefined : { opacity: 0 };
+  return (
+    <div ref={scope} className={styles.pour}>
+      <span data-stream className={styles.pourStream} style={{ clipPath: 'inset(0 0 100% 0)' }} aria-hidden="true" />
+      <svg data-glass className={styles.pourGlass} viewBox="0 0 100 110" aria-hidden="true" style={{ opacity: 0 }}>
+        <defs>
+          <linearGradient id="pisco" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stopColor="#f6e6b8" stopOpacity="0.85" />
+            <stop offset="1" stopColor="#e2c27a" stopOpacity="0.9" />
+          </linearGradient>
+        </defs>
+        <path data-liquid d="M14 44 H86 L81 97 H19 Z" fill="url(#pisco)"
+          style={{ clipPath: 'inset(100% 0 0 0)' }} />
+        <path d="M8 4 L18 100 Q19 106 26 106 H74 Q81 106 82 100 L92 4" fill="rgba(245,237,224,0.06)"
+          stroke="rgba(245,237,224,0.7)" strokeWidth="2.5" strokeLinejoin="round" />
+        <path d="M17.5 95 H82.5" stroke="rgba(245,237,224,0.35)" strokeWidth="2" />
+      </svg>
+      <div data-bottle className={styles.pourBottle} style={hidden}>
+        <img src={src} alt={alt} loading="lazy" style={{ clipPath: `inset(${CORK}% 0 0 0)` }} />
+      </div>
+      <div data-cork className={styles.pourBottle} style={hidden} aria-hidden="true">
+        <img src={src} alt="" loading="lazy" style={{ clipPath: `inset(0 0 ${100 - CORK}% 0)` }} />
+      </div>
+    </div>
   );
 }
 
@@ -403,7 +479,7 @@ export default function DemonioDeLosAndes() {
       <section className={styles.range} id="range">
         <div className={styles.rangeHead}>
           <Label n="IV">The range</Label>
-          <h2 className={styles.h2}>Three bottles. One pass each.</h2>
+          <h2 className={styles.h2}>Meet the Acholado.</h2>
         </div>
         <div className={styles.cards}>
           {d.range.map((r, i) => (
@@ -563,22 +639,7 @@ export default function DemonioDeLosAndes() {
               )}
             </div>
           </div>
-          {/* The same three bottles as the range, Acholado in front. */}
-          <div className={styles.ctaBottles}>
-            {[1, 0, 2].map((i, k) => (
-              <motion.img
-                key={d.range[i].name}
-                src={d.range[i].image}
-                alt={`${d.range[i].name} bottle`}
-                className={i === 0 ? styles.ctaBottleMain : styles.ctaBottle}
-                loading="lazy"
-                initial={{ opacity: 0, y: 50 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: '-10%' }}
-                transition={{ duration: 1, delay: [0.15, 0, 0.3][k], ease }}
-              />
-            ))}
-          </div>
+          {d.range[0].image && <PourBottle src={d.range[0].image} alt={`${d.range[0].name} bottle`} />}
         </div>
       </section>
     </article>

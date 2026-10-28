@@ -72,18 +72,6 @@ function Orange({ className }: { className?: string }) {
   );
 }
 
-function Sun({ className }: { className?: string }) {
-  return (
-    <svg className={className} viewBox="0 0 200 200" aria-hidden="true">
-      {Array.from({ length: 16 }).map((_, i) => (
-        <rect key={i} x="97" y="0" width="6" height="34" rx="3" fill="currentColor" transform={`rotate(${i * 22.5} 100 100)`} />
-      ))}
-      <circle cx="100" cy="100" r="58" fill="currentColor" />
-    </svg>
-  );
-}
-
-/* A gull in two strokes; the wings beat by morphing the path between up and down. */
 function Bird({ className, beat, size }: { className?: string; beat: number; size: number }) {
   return (
     <svg className={className} viewBox="0 -4 60 36" width={size} aria-hidden="true">
@@ -102,6 +90,12 @@ function Bird({ className, beat, size }: { className?: string; beat: number; siz
 /* The flock: height across the sky (%), size (px), crossing time and wingbeat (s),
    and a head start so the sky is never empty on load. Smaller birds read as
    further away, so they also sit fainter. */
+/* Stars for when the sun has gone: fixed positions, so they don't jump. */
+const STARS = Array.from({ length: 48 }, (_, i) => {
+  const r = (k: number) => { const v = Math.sin(i * 127.1 + k * 311.7) * 43758.5453; return v - Math.floor(v); };
+  return { x: r(1) * 100, y: r(2) * 48, s: 1 + r(3) * 2, d: r(4) * 4 };
+});
+
 const FLOCK = [
   { top: 12, size: 54, dur: 22, beat: 0.75, delay: -4 },
   { top: 19, size: 40, dur: 26, beat: 0.65, delay: -7 },
@@ -148,7 +142,10 @@ export default function Thoquino() {
   const reduce = useReducedMotion();
   const hero = useRef<HTMLElement>(null);
   const { scrollYProgress } = useScroll({ target: hero, offset: ['start start', 'end start'] });
-  const sunR = useTransform(scrollYProgress, [0, 1], [0, reduce ? 0 : 90]);
+  // Scrolling the hero away carries the sunset on into night.
+  const night = useTransform(scrollYProgress, [0.05, 0.42], [0, reduce ? 0 : 0.85]);
+  const photoY = useTransform(scrollYProgress, [0, 1], ['0%', reduce ? '0%' : '14%']);
+  const bottleLift = useTransform(scrollYProgress, [0, 1], [0, reduce ? 0 : -70]);
 
   const { ref: journeyRef, path: journey } = useRoadThrough<HTMLOListElement>(styles.stepIcon, CRAFT_ROAD, CRAFT_ROAD_BOX);
   const [side, setSide] = useState<'cane' | 'molasses'>('cane');
@@ -171,24 +168,47 @@ export default function Thoquino() {
 
   return (
     <div className={styles.page}>
-      {/* ── Hero — a Rio poster: the name across the top, then the bottle under
-             the sun with cane either side. Each piece keeps its own space. ── */}
-      <section className={styles.hero} ref={hero}>
-        {!reduce && (
-          <div className={styles.birds} aria-hidden="true">
-            {FLOCK.map((b, i) => (
-              <span
-                key={i}
-                className={styles.birdPath}
-                style={{ top: `${b.top}%`, animationDuration: `${b.dur}s`, animationDelay: `${b.delay}s` }}
-              >
-                <span className={styles.birdBob} style={{ animationDelay: `${b.delay / 3}s` }}>
-                  <Bird className={`${styles.bird} ${b.size < 34 ? styles.birdFar : ''}`} beat={b.beat} size={b.size} />
-                </span>
-              </span>
+      {/* ── Hero — Rio de Janeiro at sunset, from Sugarloaf over Botafogo Bay.
+             The photo drifts in slowly, the light on the horizon breathes, gulls
+             cross, and scrolling on takes the city into night. Photo: Unsplash
+             (vaamC7IjlXc), Unsplash License. ── */}
+      <motion.section className={styles.hero} ref={hero} style={{ ['--night' as string]: night }}>
+        <div className={styles.scene} aria-hidden="true">
+          <motion.div className={styles.photoWrap} style={{ y: photoY }}>
+            <motion.div
+              className={styles.photoIn}
+              initial={{ scale: reduce ? 1 : 1.14, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              transition={{ duration: 3.2, ease: [0.22, 1, 0.36, 1] }}
+            >
+              <img className={styles.photo} src="/images/brands/thoquino/rio-sunset.webp" alt="" />
+            </motion.div>
+          </motion.div>
+          <div className={styles.sunGlow} />
+          <div className={styles.stars}>
+            {STARS.map((st, i) => (
+              <i key={i} style={{ left: `${st.x}%`, top: `${st.y}%`, width: st.s, height: st.s, animationDelay: `${st.d}s` }} />
             ))}
           </div>
-        )}
+          {!reduce && (
+            <div className={styles.birds}>
+              {FLOCK.map((b, i) => (
+                <span
+                  key={i}
+                  className={styles.birdPath}
+                  style={{ top: `${b.top}%`, animationDuration: `${b.dur}s`, animationDelay: `${b.delay}s` }}
+                >
+                  <span className={styles.birdBob} style={{ animationDelay: `${b.delay / 3}s` }}>
+                    <Bird className={`${styles.bird} ${b.size < 34 ? styles.birdFar : ''}`} beat={b.beat} size={b.size} />
+                  </span>
+                </span>
+              ))}
+            </div>
+          )}
+          <div className={styles.grade} />
+          <div className={styles.nightShade} />
+        </div>
+
         <h1 className={styles.title}>
           <span className={styles.titleWord} aria-hidden="true">
             {first.split('').map((ch, i) => (
@@ -214,26 +234,25 @@ export default function Thoquino() {
           <span className={styles.srOnly}>{d.name}</span>
         </h1>
 
-        <div className={styles.heroStage}>
-          <motion.div className={styles.sunWrap} style={{ rotate: sunR }}>
-            <Sun className={styles.sun} />
+        {/* The bottle stands on the rule above the copy. */}
+        <div className={styles.heroSpacer}>
+          <motion.div className={styles.bottleWrap} style={{ y: bottleLift }}>
+            <motion.span
+              className={styles.bottlePool}
+              initial={{ opacity: 0, scale: 0.6 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 1.6, delay: 1, ease }}
+            />
+            <motion.img
+              src="/images/house-thoquino.webp"
+              alt={`${d.name} bottle`}
+              className={styles.heroBottle}
+              initial={{ opacity: 0, y: reduce ? 0 : 90 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 1.4, delay: 0.6, ease }}
+            />
           </motion.div>
-          <div className={styles.canesLeft} aria-hidden="true">
-            {[300, 420, 360, 480].map((h, i) => <Cane key={i} height={h} className={styles.cane} />)}
-          </div>
-          <div className={styles.canesRight} aria-hidden="true">
-            {[460, 340, 400, 300].map((h, i) => <Cane key={i} height={h} className={styles.cane} />)}
-          </div>
-          <Coconut className={styles.heroCoconut} />
-          <motion.img
-            src="/images/house-thoquino.webp"
-            alt={`${d.name} bottle`}
-            className={styles.heroBottle}
-            initial={{ opacity: 0, y: reduce ? 0 : 80 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1.2, delay: 0.35, ease }}
-          />
-          <Lime className={styles.heroLime} />
+
         </div>
 
         <div className={styles.heroFoot}>
@@ -242,10 +261,10 @@ export default function Thoquino() {
               “{d.quote}”
             </motion.p>
             <motion.div className={styles.ctas} {...enter(0.6)}>
-              <Link to="/contact" className={styles.btnSolid}>
+              <Link to="/contact" className={styles.btnSun}>
                 Become a stockist <ArrowUpRight size={18} />
               </Link>
-              <a href="#cachaca-not-rum" className={styles.btnLine}>
+              <a href="#cachaca-not-rum" className={styles.btnLineLight}>
                 Cane vs molasses
               </a>
             </motion.div>
@@ -259,7 +278,7 @@ export default function Thoquino() {
           </motion.ul>
         </div>
         <div className={styles.waveBand} aria-hidden="true" />
-      </section>
+      </motion.section>
 
       {/* ── Facts ───────────────────────────────────────── */}
       <section className={styles.facts}>

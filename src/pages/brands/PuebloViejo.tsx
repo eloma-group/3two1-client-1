@@ -10,63 +10,6 @@ import styles from './PuebloViejo.module.css';
 const img = (f: string) => `/images/brands/pueblo-viejo/${f}.webp`;
 const ease = [0.16, 1, 0.3, 1] as [number, number, number, number];
 
-/* Papel picado — each flag is a cut-paper sheet. The cut-outs are a mask, so
-   the paper really is pierced and the hero shows through the holes. */
-const FLAG_COLOURS = ['#e2356f', '#f2a516', '#1f8a87', '#c8522d', '#7a3fa0', '#e2356f', '#f2a516', '#1f8a87', '#c8522d', '#7a3fa0', '#e2356f', '#f2a516'];
-
-function Flag({ colour, variant, i }: { colour: string; variant: number; i: number }) {
-  const id = `pv-flag-${i}`;
-  return (
-    <svg className={styles.flag} viewBox="0 0 100 124" style={{ animationDelay: `${(i % 5) * -0.7}s` }} aria-hidden>
-      <defs>
-        <mask id={id}>
-          <rect width="100" height="124" fill="#fff" />
-          {variant === 0 && (
-            <g fill="#000">
-              <circle cx="50" cy="50" r="15" />
-              <circle cx="50" cy="50" r="22" fill="none" stroke="#000" strokeWidth="3" strokeDasharray="4 4" />
-              {[0, 1, 2, 3].map((k) => <rect key={k} x={14 + k * 22} y="88" width="8" height="8" transform={`rotate(45 ${18 + k * 22} 92)`} />)}
-              <path d="M50 18 l4 8 h-8z M50 82 l4 -8 h-8z M18 50 l8 4 v-8z M82 50 l-8 4 v-8z" />
-            </g>
-          )}
-          {variant === 1 && (
-            <g fill="#000">
-              <path d="M50 30 C 40 18, 22 26, 30 44 L50 66 L70 44 C 78 26, 60 18, 50 30Z" />
-              {[0, 1, 2, 3, 4].map((k) => <circle key={k} cx={14 + k * 18} cy="88" r="4" />)}
-              {[0, 1, 2, 3, 4, 5].map((k) => <circle key={k} cx={10 + k * 16} cy="14" r="2.5" />)}
-            </g>
-          )}
-          {variant === 2 && (
-            <g fill="#000">
-              {[0, 1, 2, 3, 4, 5, 6, 7].map((k) => (
-                <ellipse key={k} cx="50" cy="32" rx="5" ry="13" transform={`rotate(${k * 45} 50 50)`} />
-              ))}
-              <circle cx="50" cy="50" r="5" />
-              <path d="M12 86 h76 v4 h-76z M20 96 h60 v3 h-60z" />
-            </g>
-          )}
-        </mask>
-      </defs>
-      <path
-        d="M0 0 H100 V108 l-8.33 12 l-8.33 -12 l-8.33 12 l-8.33 -12 l-8.33 12 l-8.33 -12 l-8.33 12 l-8.33 -12 l-8.33 12 l-8.33 -12 l-8.33 12 l-8.37 -12 Z"
-        fill={colour}
-        mask={`url(#${id})`}
-      />
-    </svg>
-  );
-}
-
-function PapelPicado() {
-  return (
-    <div className={styles.picado} aria-hidden>
-      <span className={styles.string} />
-      <div className={styles.flags}>
-        {FLAG_COLOURS.map((c, i) => <Flag key={i} colour={c} variant={i % 3} i={i} />)}
-      </div>
-    </div>
-  );
-}
-
 const ROMAN = ['I', 'II', 'III', 'IV'];
 
 /* Each card's own product page. The Blanco's page is its Tommy's Margarita serve. */
@@ -154,8 +97,6 @@ export default function PuebloViejo() {
   const hero = useRef<HTMLElement>(null);
   const { scrollYProgress } = useScroll({ target: hero, offset: ['start start', 'end start'] });
   const yCard = useTransform(scrollYProgress, [0, 1], [0, reduce ? 0 : 120]);
-  const yMask = useTransform(scrollYProgress, [0, 1], [0, reduce ? 0 : -160]);
-  const yPlant = useTransform(scrollYProgress, [0, 1], [0, reduce ? 0 : -90]);
   const rCard = useTransform(scrollYProgress, [0, 1], [4, reduce ? 4 : 10]);
   const { ref: roadRef, path: road } = useRoadThrough<HTMLDivElement>(styles.stationDisc, CRAFT_ROAD, CRAFT_ROAD_BOX);
 
@@ -166,7 +107,6 @@ export default function PuebloViejo() {
     <div className={styles.page}>
       {/* ── Hero ─────────────────────────────────────────── */}
       <section className={styles.hero} ref={hero}>
-        <PapelPicado />
         <div className={styles.heroGrid}>
           <div className={styles.heroCopy}>
             <motion.p className={styles.eyebrow} initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.2, ease }}>
@@ -203,9 +143,6 @@ export default function PuebloViejo() {
               </div>
               <div className={styles.heroCardName}>El Pueblo</div>
             </motion.div>
-            <motion.img src={img('mask')} alt="" className={styles.stickerMask} style={{ y: yMask }} />
-            <motion.img src={img('plant')} alt="" className={styles.stickerPlant} style={{ y: yPlant }} />
-            <img src={img('heart')} alt="" className={styles.stickerHeart} />
           </div>
         </div>
 
@@ -244,7 +181,7 @@ export default function PuebloViejo() {
           {d.story.paragraphs.map((p, i) => (
             <Reveal key={i} delay={i * 0.06}><p className={i === 0 ? styles.dropCap : undefined}>{p}</p></Reveal>
           ))}
-          <img src={img('bottle-roses')} alt="" className={styles.storyRoses} loading="lazy" />
+          <img src={img('bottle-blanco')} alt="Pueblo Viejo Blanco tequila bottle" className={styles.storyBottle} loading="lazy" />
         </div>
       </section>
 

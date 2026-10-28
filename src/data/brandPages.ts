@@ -93,7 +93,7 @@ export const brandPages: BrandPage[] = [
     ],
     stock: 'Speak to our trade team about wholesale allocations, staff training, and Cuban-night activations across Australia.',
     facts: [
-      { value: '7%', label: 'Lost to the angels each year in Havana heat' },
+      { value: '7%', label: 'Lost to the angel’s share each year in Havana heat' },
       { value: '3', label: 'Cuban botanicals: cacao, Cuban chilli, spice' },
       { value: '0', label: 'Added colouring or artificial flavour' },
       { value: '1', label: 'Island, start to finish' },
@@ -196,7 +196,7 @@ export const brandPages: BrandPage[] = [
     },
     range: [
       { name: 'Single Estate Reserve', spec: '45% ABV · 700ml', note: 'Tropical-aged for over five years - dried banana, oak, allspice.', image: '/images/house-worthy-park.webp' },
-      { name: 'Worthy Park 109', spec: '54.5% ABV · 700ml', note: 'Higher-proof aged blend. Big tropical pot-still, dark oak.' },
+      { name: 'Rum-Bar White Overproof', spec: '63% ABV · 700ml', note: 'Unaged pot-still overproof. Ripe banana, tropical fruit and grassy Jamaican funk.' },
     ],
     tasting: {
       of: 'Single Estate Reserve',

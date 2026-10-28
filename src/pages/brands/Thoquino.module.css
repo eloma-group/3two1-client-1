@@ -66,28 +66,80 @@
 .btnLineLight { border: 2px solid rgba(251, 247, 236, 0.6); color: var(--white); }
 .btnLineLight:hover { background: var(--white); color: var(--deep); }
 
-/* ── Hero ─────────────────────────────────────────────────────── */
+/* ── Hero — Rio de Janeiro at sunset ─────────────────────────────
+   A photograph behind the copy. The bottle stands on the rule above the copy.
+   --night (0 → 0.85) is set from the scroll in
+   Thoquino.tsx and takes the city on from sunset into night. */
 .hero {
+  --bottle-h: clamp(240px, 40svh, 480px);
+  --night: 0;
   position: relative;
   min-height: 100svh;
-  padding: calc(var(--nav-clear) + clamp(1.5rem, 5svh, 3.5rem)) var(--page-x) 0;
-  background:
-    radial-gradient(70% 60% at 85% 30%, rgba(255, 201, 60, 0.32), transparent 70%),
-    linear-gradient(180deg, #fff9e6 0%, var(--white) 70%);
+  padding: calc(var(--nav-clear) + clamp(1rem, 4svh, 3rem)) var(--page-x) 0;
   display: flex;
   flex-direction: column;
+  overflow: hidden;
+  isolation: isolate;
+  background: #171a33;
+  color: var(--white);
 }
 
-/* Gulls crossing the sky behind the name and the sun. */
-.birds { position: absolute; inset: 0; z-index: 0; overflow: hidden; pointer-events: none; }
+.scene { position: absolute; inset: 0; z-index: 0; pointer-events: none; }
+
+/* The photo: fades and settles in on load (Thoquino.tsx), then drifts with a
+   slow Ken Burns push that never quite stops. */
+.photoWrap { position: absolute; inset: -8% 0 0 0; }
+.photoIn { position: absolute; inset: 0; }
+.photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 42%;
+  display: block;
+  filter: saturate(1.25) contrast(1.06) brightness(1.05);
+  animation: kenburns 38s ease-in-out infinite alternate;
+  will-change: transform;
+}
+@keyframes kenburns {
+  from { transform: scale(1) translate3d(0, 0, 0); }
+  to { transform: scale(1.07) translate3d(-1.2%, -1%, 0); }
+}
+
+/* The last of the sun on the horizon, breathing. Placed over the gap in the
+   ridges where the photo is brightest. */
+.sunGlow {
+  position: absolute;
+  left: 30%;
+  top: 30%;
+  width: 60vw;
+  height: 34vh;
+  translate: -50% -50%;
+  background: radial-gradient(closest-side, rgba(255, 168, 92, 0.55), rgba(255, 120, 80, 0.18) 55%, transparent);
+  mix-blend-mode: screen;
+  opacity: calc(1 - var(--night) * 1.1);
+  animation: glow 7s ease-in-out infinite;
+}
+@keyframes glow { 0%, 100% { transform: scale(1); filter: brightness(0.85); } 50% { transform: scale(1.08); filter: brightness(1.15); } }
+
+.stars { position: absolute; inset: 0 0 55% 0; opacity: calc(var(--night) * 1.2); }
+.stars i {
+  position: absolute;
+  border-radius: 50%;
+  background: #fff6dc;
+  animation: twinkle 3.4s ease-in-out infinite;
+}
+@keyframes twinkle { 0%, 100% { opacity: 0.35; } 50% { opacity: 1; } }
+
+/* Gulls crossing the sky, dark against the glow. */
+.birds { position: absolute; inset: 0 0 45% 0; overflow: hidden; }
 .birdPath {
   position: absolute;
   left: 0;
   animation: birdFly linear infinite;
 }
 .birdBob { display: block; animation: birdBob 3.2s ease-in-out infinite; }
-.bird { display: block; height: auto; color: var(--deep); opacity: 0.78; }
-.birdFar { opacity: 0.5; }
+.bird { display: block; height: auto; color: #1d1530; opacity: 0.7; }
+.birdFar { opacity: 0.45; }
 @keyframes birdFly {
   from { transform: translateX(-8vw); }
   to { transform: translateX(108vw); }
@@ -97,10 +149,55 @@
   50% { transform: translateY(-14px) rotate(3deg); }
 }
 
+/* Grade: deepens the sky under the name and the city under the copy, so the
+   type reads without flattening the sunset in between. */
+.grade {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg, rgba(20, 16, 44, 0.55) 0%, rgba(20, 16, 44, 0.12) 30%, transparent 46%),
+    linear-gradient(0deg, rgba(14, 14, 34, 0.92) 0%, rgba(14, 14, 34, 0.6) 26%, transparent 52%);
+}
+
+/* Night comes down from the top as the hero scrolls away. */
+.nightShade {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(8, 10, 34, 0.9) 0%, rgba(12, 14, 40, 0.55) 55%, rgba(8, 10, 34, 0.7) 100%);
+  opacity: var(--night);
+}
+
+/* The bottle stands in front of the city, lit warm from behind by the sunset,
+   its base on the rule above the copy (the spacer's bottom edge). */
+.bottleWrap { position: absolute; inset: 0; pointer-events: none; }
+/* A pool of warm light the bottle stands in, so it sits in the scene. */
+.bottlePool {
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: calc(var(--bottle-h) * 0.95);
+  height: calc(var(--bottle-h) * 0.16);
+  translate: -50% 50%;
+  border-radius: 50%;
+  background: radial-gradient(closest-side, rgba(255, 196, 120, 0.55), rgba(255, 150, 90, 0.18) 60%, transparent);
+  filter: blur(4px);
+}
+.heroBottle {
+  position: absolute;
+  left: 50%;
+  /* The photo has ~2% of clear space under the glass; pull it down by that
+     so the base itself touches the rule. */
+  bottom: calc(var(--bottle-h) * -0.02);
+  height: var(--bottle-h);
+  width: auto;
+  translate: -50% 0;
+  filter: drop-shadow(0 0 28px rgba(255, 170, 100, 0.45)) drop-shadow(0 26px 22px rgba(6, 6, 20, 0.6));
+}
+
 /* Name and sticker share one row and wrap, never stack on each other. */
 .title {
   position: relative;
-  z-index: 1;
+  z-index: 2;
   margin: 0;
   display: flex;
   flex-wrap: wrap;
@@ -112,11 +209,13 @@
   line-height: 0.8;
   letter-spacing: -0.06em;
   text-transform: uppercase;
-  color: var(--deep);
+  color: #fff1d6;
+  text-shadow: 0 6px 30px rgba(36, 26, 77, 0.45);
 }
 .titleWord {
   display: inline-flex;
   overflow: hidden;
+  pointer-events: none;
   padding: 0.04em 0.06em 0.02em;
   font-size: clamp(2.4rem, 9.4vw, 10rem);
 }
@@ -132,6 +231,7 @@
   font-size: clamp(1rem, 2.4vw, 2.2rem);
   letter-spacing: -0.02em;
   line-height: 1;
+  text-shadow: none;
 }
 .srOnly {
   position: absolute;
@@ -142,83 +242,12 @@
   white-space: nowrap;
 }
 
-/* The stage. Everything is sized off its height so the gaps hold: the bottle
-   is 0.29 x its height wide, the sun ends above the cane line, and the cane
-   and fruit start outside the bottle's edge. */
-.heroStage {
-  --stage-h: clamp(280px, 44svh, 520px);
-  --bottle-half: calc(var(--stage-h) * 0.95 * 0.2916 / 2);
-  --fruit: calc(var(--stage-h) * 0.17);
-  position: relative;
-  height: var(--stage-h);
-  margin: clamp(1rem, 3svh, 2rem) auto 0;
-  max-width: 1440px;
-  width: 100%;
-}
-.sunWrap {
-  position: absolute;
-  z-index: 0;
-  left: 50%;
-  top: 0;
-  width: calc(var(--stage-h) * 0.56);
-  aspect-ratio: 1;
-  translate: -50% 0;
-}
-.sun { width: 100%; height: 100%; color: var(--sun); }
-.canesLeft, .canesRight {
-  position: absolute;
-  z-index: 1;
-  bottom: 0;
-  width: min(calc(var(--stage-h) * 0.6), calc(50% - var(--bottle-half) - var(--fruit) - 1.2rem));
-  height: 44%;
-  display: flex;
-  align-items: flex-end;
-  pointer-events: none;
-}
-.canesLeft { right: calc(50% + var(--bottle-half) + var(--fruit) + 1.2rem); }
-.canesRight { left: calc(50% + var(--bottle-half) + var(--fruit) + 1.2rem); }
-.cane {
-  flex: 1 1 0;
-  min-width: 0;
-  max-height: 100%;
-  height: auto;
-  color: var(--cane);
-  transform-origin: 50% 100%;
-  animation: sway 6s ease-in-out infinite;
-}
-.cane:nth-child(3n + 1) { color: #2c8a4c; animation-delay: -1.2s; }
-.cane:nth-child(3n + 2) { color: var(--deep); animation-delay: -3.4s; animation-duration: 7s; }
-.cane:nth-child(3n) { color: #5b9e2a; animation-delay: -2.1s; animation-duration: 5.4s; }
-.cane:nth-child(even) { opacity: 0.9; }
-@keyframes sway {
-  0%, 100% { transform: rotate(-2.5deg); }
-  50% { transform: rotate(2.5deg); }
-}
-.heroBottle {
-  position: absolute;
-  z-index: 2;
-  left: 50%;
-  bottom: 0;
-  height: 95%;
-  width: auto;
-  translate: -50% 0;
-  object-fit: contain;
-  filter: drop-shadow(0 16px 18px rgba(12, 58, 33, 0.3));
-}
-.heroLime, .heroCoconut {
-  position: absolute;
-  z-index: 2;
-  bottom: 0;
-  width: var(--fruit);
-  filter: drop-shadow(0 8px 12px rgba(0, 0, 0, 0.18));
-}
-.heroLime { left: calc(50% + var(--bottle-half) + 0.6rem); transform: rotate(-18deg); }
-.heroCoconut { right: calc(50% + var(--bottle-half) + 0.6rem); transform: rotate(12deg); }
+/* Room for the bottle between the name and the copy. */
+.heroSpacer { position: relative; z-index: 1; flex: 1 1 auto; min-height: calc(var(--bottle-h) + 1.5rem); }
 
-/* Copy sits under the stage, split either side. */
 .heroFoot {
   position: relative;
-  z-index: 5;
+  z-index: 2;
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
@@ -227,15 +256,16 @@
   width: 100%;
   margin: 0 auto;
   padding: 1.4rem 0 2.4rem;
-  border-top: 2px solid var(--deep);
+  border-top: 1px solid rgba(255, 241, 214, 0.28);
 }
 .quote {
   font-family: var(--display);
   font-weight: 600;
   font-size: clamp(1.1rem, 1.8vw, 1.6rem);
   letter-spacing: -0.02em;
-  color: var(--cane);
+  color: #fff1d6;
   max-width: 24ch;
+  margin: 0;
 }
 .heroCopy .ctas { margin-top: 1.2rem; }
 .heroMeta {
@@ -249,11 +279,12 @@
   font-size: 0.78rem;
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: var(--deep);
+  color: rgba(255, 241, 214, 0.9);
 }
 .heroMeta li { display: inline-flex; align-items: center; gap: 0.6rem; }
-.dot { width: 8px; height: 8px; border-radius: 50%; background: var(--cane); flex-shrink: 0; }
+.dot { width: 8px; height: 8px; border-radius: 50%; background: var(--lime); flex-shrink: 0; }
 
+/* Copacabana's wave pavement closes the hero. */
 .waveBand, .waveBandBlue {
   position: relative;
   height: 64px;
@@ -263,6 +294,10 @@
   border-top: 6px solid var(--ink);
   margin: 0 calc(var(--page-x) * -1);
   z-index: 2;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .photo, .sunGlow, .stars i { animation: none; }
 }
 
 /* ── Facts ─────────────────────────────────────────────────── */
@@ -695,8 +730,9 @@
 
 @media (max-width: 560px) {
   .titleWord { font-size: 13.2vw; }
-  .canesLeft, .canesRight { display: none; }
-  .heroStage { --stage-h: clamp(260px, 46svh, 380px); }
+  .hero { --bottle-h: clamp(210px, 30svh, 300px); }
+  .photo { object-position: 38% 40%; }
+  .sunGlow { left: 40%; width: 120vw; }
   .heroFoot { flex-direction: column; align-items: stretch; gap: 1.6rem; }
   .facts { grid-template-columns: 1fr 1fr; }
   .factValue { font-size: 2.3rem; }

@@ -58,51 +58,12 @@
 .hero {
   position: relative;
   min-height: 100svh;
-  padding-top: calc(var(--nav-clear) + clamp(3rem, 7vw, 5.5rem));
+  padding-top: calc(var(--nav-clear) + clamp(1.5rem, 3.5vw, 3rem));
   display: flex;
   flex-direction: column;
   background:
     radial-gradient(60% 70% at 78% 48%, rgba(242, 165, 22, 0.28), transparent 70%),
     radial-gradient(40% 50% at 8% 90%, rgba(226, 53, 111, 0.14), transparent 70%);
-}
-
-.picado {
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: calc(var(--nav-clear) - 1.25rem);
-  height: 120px;
-  pointer-events: none;
-  z-index: 1;
-}
-.string {
-  position: absolute;
-  left: -2%;
-  right: -2%;
-  top: 6px;
-  height: 2px;
-  background: rgba(42, 23, 18, 0.5);
-  border-radius: 2px;
-}
-.flags {
-  display: flex;
-  justify-content: space-between;
-  padding-inline: 1vw;
-  gap: 0.6vw;
-}
-.flag {
-  flex: 1 1 0;
-  max-width: 96px;
-  min-width: 0;
-  height: auto;
-  transform-origin: 50% 6px;
-  animation: sway 4.6s ease-in-out infinite;
-  filter: drop-shadow(0 6px 6px rgba(42, 23, 18, 0.18));
-}
-.flag:nth-child(even) { animation-duration: 5.4s; margin-top: 3px; }
-@keyframes sway {
-  0%, 100% { transform: rotate(-3.5deg) skewX(-2deg); }
-  50% { transform: rotate(3.5deg) skewX(2deg); }
 }
 
 .heroGrid {
@@ -215,16 +176,6 @@
   padding-top: 10px;
   color: var(--pink);
 }
-
-.stickerMask, .stickerPlant, .stickerHeart {
-  position: absolute;
-  filter: drop-shadow(0 10px 12px rgba(42, 23, 18, 0.25));
-  pointer-events: none;
-}
-.stickerMask { width: clamp(84px, 9vw, 130px); top: 2%; right: -2%; transform: rotate(12deg); }
-.stickerPlant { width: clamp(110px, 12vw, 170px); bottom: -4%; left: -8%; }
-.stickerHeart { width: 34px; top: 46%; right: 2%; animation: beat 1.6s ease-in-out infinite; }
-@keyframes beat { 0%, 100% { transform: scale(1); } 15% { transform: scale(1.18); } 30% { transform: scale(1); } }
 
 /* Ribbon marquee */
 .ribbon {
@@ -352,8 +303,8 @@
   color: var(--pink);
   text-shadow: 4px 4px 0 var(--marigold);
 }
-.storyRoses {
-  width: 110px;
+.storyBottle {
+  width: 90px;   /* the Blanco photo is slimmer than the old rose-wrapped one */
   margin: 1rem 0 0 auto;
   display: block;
   transform: rotate(8deg);
@@ -792,8 +743,6 @@
 }
 
 @media (max-width: 760px) {
-  .picado { height: 80px; top: calc(var(--nav-clear) - 0.75rem); }
-  .flag:nth-child(n + 9) { display: none; }
   .path { grid-template-columns: 1fr; gap: 3rem; }
   .pathLine { display: none; }
   .station:nth-child(3) { margin-top: 0; }
@@ -803,8 +752,6 @@
   .leader { display: none; }
   .boardBottle { width: 50px; top: -50px; right: -6px; }
   .boardHead h2 { padding-right: 50px; }
-  .stickerPlant { left: -2%; }
-  .stickerMask { right: 0; }
 }
 
 @media (max-width: 420px) {

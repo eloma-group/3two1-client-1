@@ -14,6 +14,9 @@
   --display: var(--font-display);
   --serif: var(--font-display);
   --mono: var(--font-display);
+  /* The hero wordmark echoes the bottle label: tall, condensed caps with small
+     flared serifs. Stint Ultra Condensed is the closest open font to it. */
+  --label: 'Stint Ultra Condensed', var(--font-display);
 
   position: relative;
   background: var(--ink);
@@ -90,11 +93,11 @@
 .wordBack,
 .wordFront {
   position: absolute;
-  font-family: var(--display);
-  font-weight: 800;
-  font-size: calc(clamp(5.5rem, min(26vw, 34svh), 24rem) * 0.6);
+  font-family: var(--label);
+  font-weight: 400;   /* Stint ships one weight; anything heavier is faux-bold */
+  font-size: calc(clamp(5.5rem, min(26vw, 34svh), 24rem) * 0.82);
   line-height: 0.82;
-  letter-spacing: -0.01em;
+  letter-spacing: 0.03em;
   white-space: nowrap;
   width: max-content;
   user-select: none;
