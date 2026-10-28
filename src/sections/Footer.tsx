@@ -34,7 +34,7 @@ export default function Footer() {
       <div className={`container ${styles.inner}`}>
         <div className={styles.top}>
           <div className={styles.brandCol}>
-            <img src="/images/logo.png" alt="3Two1 drinks" className={styles.logo} />
+            <img src="/images/logo.png" alt="3Two1 Drinks" className={styles.logo} />
             <p className={styles.tagline}>{brand.tagline}.</p>
             <p className={styles.regions}>{brand.regions}</p>
             <div className={styles.socials}>
@@ -89,9 +89,9 @@ export default function Footer() {
         <p className={styles.ack}>{brand.acknowledgement}</p>
 
         <div className={styles.bottom}>
-          <span>© {new Date().getFullYear()} {brand.name} drinks. {brand.slogan}.</span>
+          <span>© {new Date().getFullYear()} {brand.name} Drinks. {brand.slogan}.</span>
           <span className={styles.legal}>Liquor Licence {contact.licence}</span>
-          <span className={styles.legal}>Enjoy 3Two1 responsibly. Not for anyone under 18.</span>
+          <span className={styles.legal}>Enjoy 3Two1 Drinks responsibly. Not for anyone under 18.</span>
         </div>
       </div>
     </footer>
