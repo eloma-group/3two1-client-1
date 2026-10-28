@@ -368,7 +368,7 @@ export const brandPages: BrandPage[] = [
       paragraphs: [
         "Burnt Ends is the whiskey project that came out of one of Asia's most celebrated kitchens - Burnt Ends in Singapore, a four-tonne wood-burning restaurant where almost everything that hits a plate has spent time near flame. The team there had a problem familiar to anyone who cooks with smoke: most whiskies disappear next to charred food. They wanted one that would hold its own.",
         'The blend was developed in Scotland, in collaboration with master blenders who understood the brief - a whiskey designed to pair with smoke, not retreat from it. Heavier oak. More peat than a balanced dram would normally take. A backbone built for sharing the plate with ember-cooked beef, blackened bone marrow, or a glass of something cold at the end of a long service.',
-        'It is, in other words, a back-bar whiskey for restaurants that actually feed people. Australian fire-driven kitchens have taken to it for the obvious reason: it pours well with the food they cook. 3Two1 distributes the bottle nationally and we love it in any bar that takes its highball seriously.',
+        'It is, in other words, a back-bar whiskey for restaurants that actually feed people. Australian fire-driven kitchens have taken to it for the obvious reason: it pours well with the food they cook. 3Two1 Drinks distributes the bottle nationally and we love it in any bar that takes its highball seriously.',
       ],
     },
     craft: {

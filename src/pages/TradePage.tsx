@@ -93,7 +93,7 @@ function Segment({ data }: { data: TradeSegment }) {
         <div className="container">
           <Rise>
             <div className={b.head}>
-              <p className={b.kicker}>Why 3Two1</p>
+              <p className={b.kicker}>Why 3Two1 Drinks</p>
               <h2 className={b.title}>
                 {data.reasonsTitle.before} <em className="gradient-text">{data.reasonsTitle.accent}</em>{' '}
                 {data.reasonsTitle.after}

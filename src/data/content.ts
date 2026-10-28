@@ -12,7 +12,7 @@ export const brand = {
   mission: "Australia's premier independent spirits distributor",
   intent: 'Imported with intent - placed where it belongs',
   acknowledgement:
-    '3Two1 acknowledges the Whadjuk Noongar people as Traditional Owners of the land on which we work.',
+    '3Two1 Drinks acknowledges the Whadjuk Noongar people as Traditional Owners of the land on which we work.',
 } as const;
 
 export interface NavItem {
@@ -342,9 +342,9 @@ export const footerColumns = [
 
 /** The people behind the trade desk — shown on Our Story and Contact. */
 export const team = [
-  { name: 'Sam Mitchell', role: 'Founder & Managing Director' },
-  { name: 'Jess Kearney', role: 'National Sales · On-Trade' },
-  { name: 'Rohan Chen',   role: 'Brand Ambassador · Giffard' },
+  { name: 'Charles Docus',   role: 'Founder & Managing Director' },
+  { name: 'Liah Pettigrew',  role: 'National Sales · On-Trade' },
+  { name: 'Yannick Douzals', role: 'Brand Ambassador · Educator' },
 ];
 
 /** No portraits yet, so initials stand in for one. */

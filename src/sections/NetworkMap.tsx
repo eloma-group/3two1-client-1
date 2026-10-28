@@ -428,7 +428,7 @@ export default function NetworkMap(
           {/* Left text — static, visible for the whole scroll.
               Styling/format mirrors the NetworkEditorial left copy. */}
           <div className={styles.text}>
-            <p className={styles.eyebrow}>The 3Two1 Network</p>
+            <p className={styles.eyebrow}>The 3Two1 Drinks Network</p>
             <h2 className={styles.heading}>
               <span className={styles.lineClip}><span className={styles.lineNavy}>In every great</span></span>
               <span className={styles.lineClip}><span className={styles.lineCoral}>Bar, Bottle</span></span>

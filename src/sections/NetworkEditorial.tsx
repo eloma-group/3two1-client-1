@@ -76,7 +76,7 @@ export default function NetworkEditorial() {
           viewport={{ once: true, margin: '-60px' }}
           variants={{ show: { transition: { staggerChildren: 0.09 } } }}
         >
-          <motion.p className={styles.eyebrow} variants={rise}>The 3Two1 Network</motion.p>
+          <motion.p className={styles.eyebrow} variants={rise}>The 3Two1 Drinks Network</motion.p>
           <h2 className={styles.heading}>
             <span className={styles.lineClip}><motion.span className={styles.lineNavy} variants={lineReveal}>In every great</motion.span></span>
             <span className={styles.lineClip}><motion.span className={styles.lineCoral} variants={lineReveal}>Bar, Bottle</motion.span></span>

@@ -188,6 +188,16 @@ function SectionHead({ kicker, lead, accent, children, light }: {
   );
 }
 
+/* Sections taken off the page for now. Flip one to true to bring it back. */
+const SHOW = {
+  sales: false,   // Sales 2018 - projections 2029
+  market: false,  // Spirits sales in the Australian market
+  route: false,   // Route to market
+  future: false,  // Future
+  funds: false,   // Investment allocation (the Exit card stays)
+  ground: false,  // Our team on the ground
+};
+
 /** Sales history and projection: bars rise in sequence as the chart enters. */
 function SalesChart() {
   const reduced = useReducedMotion();
@@ -371,7 +381,7 @@ export default function InvestorsPage({ ready = true }: { ready?: boolean }) {
       {/* ══ 3 · 2 · 1 ══ */}
       <section className={styles.section}>
         <div className="container">
-          <SectionHead kicker="Why 3Two1? · Our philosophy" lead="Everything good needs" accent="balance.">
+          <SectionHead kicker="Why 3Two1 Drinks? · Our philosophy" lead="Everything good needs" accent="balance.">
             Three parts spirit, two parts sour, one part sweet. The name is the recipe - and the way
             we build the portfolio.
           </SectionHead>
@@ -432,15 +442,17 @@ export default function InvestorsPage({ ready = true }: { ready?: boolean }) {
       </section>
 
       {/* ══ Sales ══ */}
+      {SHOW.sales && (
       <section className={styles.section}>
         <div className="container">
           <SectionHead kicker="Sales 2018 - projections 2029" lead="A model that" accent="works.">
-            We have grown significantly since 2018. Through careful planning and efficiency, 3Two1 has
+            We have grown significantly since 2018. Through careful planning and efficiency, 3Two1 Drinks has
             proven its model and welcomed and nurtured a wide variety of industry-leading brands.
           </SectionHead>
           <SalesChart />
         </div>
       </section>
+      )}
 
       {/* ══ Roadmap ══ */}
       <section className={`${styles.section} ${styles.tint}`}>
@@ -470,7 +482,7 @@ export default function InvestorsPage({ ready = true }: { ready?: boolean }) {
       {/* ══ Footprint ══ */}
       <section className={styles.section}>
         <div className="container">
-          <SectionHead kicker="National footprint" lead="Today, and" accent="by 2028.">
+          <SectionHead kicker="National footprint" lead="Today, and" accent="by 2030.">
             A presence in each major state is essential to the growth of the company and its brands -
             it lets us sell in every state and run campaigns nationally, true to each brand’s ethos.
           </SectionHead>
@@ -491,7 +503,7 @@ export default function InvestorsPage({ ready = true }: { ready?: boolean }) {
             </div>
             <Reveal y={26} delay={0.15}>
               <div className={styles.fpNext}>
-                <p className={styles.fpTag}>By end of December 2028 · AUS / NZ</p>
+                <p className={styles.fpTag}>By end of December 2030 · AUS / NZ</p>
                 <div className={styles.fpRow}>
                   <span className={styles.fpN}><CountUp to={20} /></span>
                   <div>
@@ -523,6 +535,7 @@ export default function InvestorsPage({ ready = true }: { ready?: boolean }) {
       </section>
 
       {/* ══ Market ══ */}
+      {SHOW.market && (
       <section className={`${styles.section} ${styles.tint}`}>
         <div className="container">
           <div className={styles.marketHead}>
@@ -531,7 +544,7 @@ export default function InvestorsPage({ ready = true }: { ready?: boolean }) {
             </SectionHead>
             <Reveal y={22} delay={0.15}>
               <div className={styles.potential}>
-                <p className={styles.potTag}>3Two1’s potential</p>
+                <p className={styles.potTag}>3Two1 Drinks’ potential</p>
                 <p className={styles.potBig}><CountUp to={40} prefix="$" suffix="M" /></p>
                 <p className={styles.potNote}>turnover by becoming 1% of the independent, spirits-focused suppliers.</p>
               </div>
@@ -540,8 +553,10 @@ export default function InvestorsPage({ ready = true }: { ready?: boolean }) {
           <MarketBar />
         </div>
       </section>
+      )}
 
       {/* ══ Route to market ══ */}
+      {SHOW.route && (
       <section className={styles.section}>
         <div className="container">
           <SectionHead kicker="Route to market" lead="On, off" accent="and offshore.">
@@ -601,6 +616,7 @@ export default function InvestorsPage({ ready = true }: { ready?: boolean }) {
           </div>
         </div>
       </section>
+      )}
 
       {/* ══ Strategy ══ */}
       <section className={styles.strategy}>
@@ -609,7 +625,7 @@ export default function InvestorsPage({ ready = true }: { ready?: boolean }) {
         </div>
         <div className="container">
           <SectionHead kicker="Strategy" lead="Independent," accent="and focused.">
-            3Two1 is proudly independent and voluntarily dedicated to a limited portfolio. That gives
+            3Two1 Drinks is proudly independent and voluntarily dedicated to a limited portfolio. That gives
             every brand complete focus - and attracts our competitors’ brands.
           </SectionHead>
           <div className={styles.stratGrid}>
@@ -627,10 +643,11 @@ export default function InvestorsPage({ ready = true }: { ready?: boolean }) {
       </section>
 
       {/* ══ Future ══ */}
+      {SHOW.future && (
       <section className={styles.section}>
         <div className="container">
           <SectionHead kicker="Future" lead="International brands are" accent="approaching us.">
-            Premium international brands with established sales are coming to 3Two1 - and two are
+            Premium international brands with established sales are coming to 3Two1 Drinks - and two are
             already confirmed.
           </SectionHead>
           <div className={styles.brandsNew}>
@@ -660,15 +677,19 @@ export default function InvestorsPage({ ready = true }: { ready?: boolean }) {
           </div>
         </div>
       </section>
+      )}
 
       {/* ══ Use of funds + exit ══ */}
       <section className={`${styles.section} ${styles.tint}`}>
-        <div className={`container ${styles.split}`}>
+        <div className={SHOW.funds ? `container ${styles.split}` : 'container'}>
+          {SHOW.funds && (
           <div>
             <SectionHead kicker="Investment allocation" lead="How the new capital" accent="is spent." />
             <FundsDonut />
           </div>
-          <div>
+          )}
+          {/* On its own the Exit card would stretch the full container; keep it card-sized. */}
+          <div style={SHOW.funds ? undefined : { maxWidth: 720 }}>
             <SectionHead kicker="Exit" lead="A clear" accent="way out." />
             <Reveal y={22} delay={0.1}>
               <div className={styles.exit}>
@@ -709,6 +730,7 @@ export default function InvestorsPage({ ready = true }: { ready?: boolean }) {
               </Reveal>
             ))}
           </div>
+          {SHOW.ground && (
           <Reveal y={18} delay={0.1}>
             <div className={styles.ground}>
               <p className={styles.groundHead}>Our team on the ground · <span>specialists, spirit-focused and creative</span></p>
@@ -717,6 +739,7 @@ export default function InvestorsPage({ ready = true }: { ready?: boolean }) {
               </ul>
             </div>
           </Reveal>
+          )}
         </div>
       </section>
 

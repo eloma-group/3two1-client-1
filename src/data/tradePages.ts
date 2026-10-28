@@ -57,7 +57,7 @@ export const tradeSegments: TradeSegment[] = [
       { brand: 'Black Tears', kind: 'Spiced Rum', name: 'Cuban Spiced Rum', body: 'Coffee, cocoa and cinnamon over Cuban rum. The new Daiquiri pour, the better Espresso Martini.', image: IMG.blackTears, to: '/brands/black-tears' },
     ],
     quote: {
-      text: 'One distributor, one delivery day, seven brands worth pouring. We rebuilt our spirit list around the 3Two1 portfolio in a weekend - and our cocktail margin moved 6 points.',
+      text: 'One distributor, one delivery day, seven brands worth pouring. We rebuilt our spirit list around the 3Two1 Drinks portfolio in a weekend - and our cocktail margin moved 6 points.',
       cite: 'Bar Manager · A neighbourhood bar in Perth',
     },
     steps: [
@@ -103,7 +103,7 @@ export const tradeSegments: TradeSegment[] = [
       { brand: 'Black Tears', kind: 'Spiced Rum', name: 'Cuban Spiced', body: 'Coffee-and-cocoa-led Cuban spiced rum. Self-merchandising on the dark-rum shelf, sells before staff need to talk.', image: IMG.blackTears, to: '/brands/black-tears' },
     ],
     quote: {
-      text: "Premium category was static for two years. We brought 3Two1's seven brands in over a quarter - premium spirits did 18% more revenue against the same shelf footprint.",
+      text: "Premium category was static for two years. We brought 3Two1 Drinks' seven brands in over a quarter - premium spirits did 18% more revenue against the same shelf footprint.",
       cite: 'Owner · An independent bottle shop in WA',
     },
     steps: [

@@ -175,7 +175,7 @@ export function IntroductionSection() {
             }}
           >
             Curated imports. Trade-first service. A tight portfolio built for bartenders.
-            3Two1 brings nine of the world's most respected drinks brands under one roof -
+            3Two1 Drinks brings nine of the world's most respected drinks brands under one roof -
             from blue-agave tequila to coffee-spiced rum - delivered to the best bars,
             bottle shops and cafés, coast to coast.
           </motion.p>

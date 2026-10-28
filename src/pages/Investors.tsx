@@ -65,7 +65,7 @@ const PILLARS = [
   {
     n: '01',
     title: 'We buy narrow, not wide',
-    body: 'Nine brands, not ninety. Every listing is complementary on the cargo and behind the bar, which is why anyone here can talk through the whole range from memory and passion.',
+    body: 'Nine brands, not ninety. Every listing is complementary in the portfolio and behind the bar, which is why anyone here can talk through the whole range from memory and passion.',
   },
   {
     n: '02',
@@ -80,7 +80,7 @@ const PILLARS = [
   {
     n: '04',
     title: 'Built for the long pour',
-    body: 'Exclusive national rights and direct producer relationships. The brands we take on are ones we intend to still be carrying in a decade.',
+    body: 'Exclusive national rights and direct producer relationships. The brands we take on are ones we intend to still be carrying in a decade, we nurture what we believe in.',
   },
 ];
 
@@ -152,7 +152,7 @@ function FiguresBand() {
   return (
     <section className={styles.figures} ref={ref}>
       <motion.div className={styles.figuresPhoto} style={reduced ? undefined : { y: photoY }} aria-hidden="true">
-        <img src="/images/about-numbers-jigger.webp" alt="" loading="lazy" decoding="async" />
+        <img src="/images/about-numbers-neon-pour.webp" alt="" loading="lazy" decoding="async" />
       </motion.div>
       <div className={styles.figuresScrim} aria-hidden="true" />
 
@@ -380,7 +380,7 @@ export default function Investors({ ready = true }: { ready?: boolean }) {
             gets chosen the way a good back bar gets chosen - by people who have had to stand in front of it.
           </p>
           <p className={`${styles.pull} gradient-text`}>
-            Built like a major. Period. Independent.
+            Built like a major. Independent. Period.
           </p>
         </>
       ),
@@ -396,7 +396,7 @@ export default function Investors({ ready = true }: { ready?: boolean }) {
       body: (
         <>
           <p className={styles.body}>
-            3Two1 was started by ex-bartenders, ex-buyers and ex-reps types who got tired of seeing
+            3Two1 Drinks was started by ex-bartenders, ex-buyers and ex-reps types who got tired of seeing
             the lower quality of Australian shelves. Our buying philosophy is simple: distinctive
             brands, intentional range, no fluff.
           </p>
@@ -502,7 +502,7 @@ export default function Investors({ ready = true }: { ready?: boolean }) {
 
         <div className={`container ${styles.heroInner}`}>
           <Reveal y={14}>
-            <p className={styles.heroEyebrow}><i aria-hidden="true" /> About 3Two1</p>
+            <p className={styles.heroEyebrow}><i aria-hidden="true" /> About 3Two1 Drinks</p>
           </Reveal>
           <h1 className={styles.heroTitle}>
             <RevealHeading
