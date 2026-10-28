@@ -20,13 +20,13 @@ export default function Contact() {
           <Reveal><p className="eyebrow" style={{ color: 'var(--rose-300)' }}>Become a Stockist</p></Reveal>
           <Reveal delay={0.08}>
             <h2 className={`display-lg ${styles.title}`}>
-              Put the portfolio <br /><span className="gradient-text">in your venue.</span>
+              Pour our brands <br /><span className="gradient-text">in your venue.</span>
             </h2>
           </Reveal>
           <Reveal delay={0.15}>
             <p className={styles.lede}>
               Join {contact.phone ? '2,700+' : ''} venues across Australia, New Zealand and the Pacific.
-              Tell us about your venue and we'll build the range around you.
+              Tell us about your venue and we'll spread the love.
             </p>
           </Reveal>
 
