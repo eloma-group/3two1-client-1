@@ -288,7 +288,7 @@ export default function PuebloViejo() {
       <section className={styles.range} id="pv-range">
         <div className={styles.rangeHead}>
           <Reveal><p className={styles.chapter}>Capítulo III · La Baraja</p></Reveal>
-          <Reveal delay={0.08}><h2 className={styles.h2}>Three cards. One house.</h2></Reveal>
+          <Reveal delay={0.08}><h2 className={styles.h2}>Three cards. One brand.</h2></Reveal>
           <Reveal delay={0.14}><p className={styles.hint}>Tap a card to turn it over.</p></Reveal>
         </div>
         <div className={styles.deck}>

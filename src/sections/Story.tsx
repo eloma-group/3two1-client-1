@@ -26,7 +26,7 @@ export default function Story() {
           </Reveal>
 
           <Reveal delay={0.1} className={styles.lede}>
-            <p>{brand.mission}. Since 2018 we have curated nine of the world's most respected drinks houses into a single, tightly-run portfolio.</p>
+            <p>{brand.mission}. Since 2018 we have curated nine of the world's most respected drinks brands into a single, tightly-run portfolio.</p>
           </Reveal>
 
           <Reveal delay={0.2} className={styles.intent}>
@@ -36,7 +36,7 @@ export default function Story() {
 
           <div className={styles.pillars}>
             {[
-              { t: 'Imported with intent', d: 'Every house earns its place. No filler, no fashion - only bottles that make the drink better.' },
+              { t: 'Imported with intent', d: 'Every brand earns its place. No filler, no fashion - only bottles that make the drink better.' },
               { t: 'Placed where it belongs', d: 'From cocktail bars to bottle shops and cafés, we match each brand to the room it was built for.' },
             ].map((p, i) => (
               <Reveal key={p.t} delay={0.15 + i * 0.1} className={styles.pillar}>

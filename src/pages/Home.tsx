@@ -11,7 +11,7 @@ import Contact from '../sections/Contact';
 
 export default function Home({ ready }: { ready: boolean }) {
   useEffect(() => {
-    document.title = '3Two1 drinks - The Taste of Passion';
+    document.title = '3Two1 Drinks - The Taste of Passion';
   }, []);
 
   return (

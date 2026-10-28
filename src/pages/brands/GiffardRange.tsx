@@ -25,7 +25,7 @@ function Shelf({ slug }: { slug: string | undefined }) {
   const [query, setQuery] = useState('');
 
   useEffect(() => {
-    if (shelf) document.title = `Giffard ${shelf.label} · 3Two1 drinks`;
+    if (shelf) document.title = `Giffard ${shelf.label} · 3Two1 Drinks`;
   }, [shelf]);
 
   const products = useMemo(() => (shelf ? shelfProducts(shelf) : []), [shelf]);

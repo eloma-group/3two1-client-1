@@ -10,6 +10,7 @@ const channels = [
   { icon: Coffee, title: 'Coffee Shop & Cafe Wholesale', sub: 'Daytime & Zero-Proof' },
 ];
 import { scrollToHash } from '../hooks/useLenis';
+import { useMediaQuery } from '../hooks/useMediaQuery';
 import MagneticButton from '../components/MagneticButton';
 import styles from './Hero.module.css';
 
@@ -37,6 +38,10 @@ export default function Hero({ ready }: { ready: boolean }) {
   const fade = useTransform(scrollYProgress, [0, 0.75], [1, 0]);
   const videoScale = useTransform(scrollYProgress, [0, 1], [1, 1.18]);
   const overlayOpacity = useTransform(scrollYProgress, [0, 1], [1, 1.15]);
+  /* On a phone the hero stack fills the screen, so lifting and fading it out
+     leaves a tall blank band under it that the network map's pour then has to
+     fall through. Phones keep the copy still and let it scroll away. */
+  const narrow = useMediaQuery('(max-width: 860px)');
 
   const EASE = [0.16, 1, 0.3, 1] as const;
   const container: Variants = {
@@ -71,7 +76,7 @@ export default function Hero({ ready }: { ready: boolean }) {
       <div className={styles.grain} />
 
       {/* Copy */}
-      <motion.div className={`container ${styles.content}`} style={{ y: textY, opacity: fade }}>
+      <motion.div className={`container ${styles.content}`} style={narrow ? undefined : { y: textY, opacity: fade }}>
         <motion.div
           className={styles.inner}
           variants={container}

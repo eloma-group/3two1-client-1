@@ -107,7 +107,7 @@ function Segment({ data }: { data: TradeSegment }) {
             </Rise>
             <Rise className={b.span2} delay={0.08}>
               <article className={`${b.tile} ${b.tileBrand} ${styles.fill}`}>
-                <p className={b.tileLabel}>Premium houses</p>
+                <p className={b.tileLabel}>Premium brands</p>
                 <span className={b.big}>7</span>
                 <p className={b.tileText}>Under one PO, on one delivery day.</p>
               </article>
@@ -169,7 +169,7 @@ function Segment({ data }: { data: TradeSegment }) {
                 <SmartImage src={p.image} alt={`${p.brand} ${p.name}`} />
               </div>
               <p className={b.tileText}>{p.body}</p>
-              <span className={`${b.btn} ${b.more} ${styles.productMore}`}>Meet the house ›</span>
+              <span className={`${b.btn} ${b.more} ${styles.productMore}`}>Meet the brand ›</span>
             </a>
           ))}
         </Carousel>

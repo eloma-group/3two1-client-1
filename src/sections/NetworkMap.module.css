@@ -19,8 +19,8 @@
 
 /* Gap between the hero and the flat map that the pour falls through. */
 .pourGap {
-  height: 60vh;
-  height: 60svh;
+  height: 15vh;
+  height: 15svh;
   background: var(--surface);
 }
 
@@ -59,10 +59,11 @@
   pointer-events: none;
 }
 
-/* The 3D map is retinted to a lighter #ff9999 by an SVG filter defined in
-   NetworkMap.tsx <defs>. It is applied there as an inline style rather than
-   from here: the id is unique per instance, and an inline style also wins over
-   a CSS filter, which would otherwise override the SVG filter attribute. */
+/* The 3D map ships in the deep brand pink (#f83860); au-nz-tinted.webp is the
+   same artwork pre-tinted to a lighter #ff9999 (luminance mapped onto the
+   target hue, so the extruded walls stay a darker shade). It used to be an SVG
+   filter, but the pour changes the mask every frame and phones had to re-run
+   the filter over the whole image each time. */
 
 .pinIcons { fill: rgb(var(--ink-rgb)); }
 .pinLabel {
@@ -191,6 +192,62 @@
 
 @media (max-width: 860px) {
   .text { width: 100%; }
+
+  /* Phone, flat map: stacked instead of overlaid - the map (and the pour
+     landing on it) takes the top of the pinned panel, the legend sits under it
+     as a strip, and the copy follows. Flex order does the restacking so the
+     DOM order (copy first) stays the same for screen readers. */
+  .wrap:not(.plain) .panel {
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: flex-start;
+    /* Clears the fixed navbar. The stack is bottom-weighted (see the map's
+       auto top margin) so the spare height goes above the map, where the
+       pour falls, rather than as a dead band under the copy. */
+    padding-top: 76px;
+    padding-bottom: clamp(28px, 6svh, 56px);
+  }
+  /* The map follows the hero directly here; the pour already crosses the
+     navbar clearance and the centring space above the map. */
+  .pourGap { height: 0; }
+  .wrap:not(.plain) .svg {
+    position: relative;
+    inset: auto;
+    order: 1;
+    /* An auto margin, not justify-content: flex-end - if a short phone ever
+       runs out of room, this collapses to 0 and the overflow goes off the
+       bottom instead of pushing the map up under the navbar. */
+    margin-top: auto;
+    flex: none;
+    height: auto;
+    aspect-ratio: 1030 / 550;   /* MOBILE_VIEWBOX in NetworkMap.tsx */
+  }
+  /* The map is drawn at ~a third of desktop scale here, so the labels and
+     icons are scaled back up to stay readable. */
+  .wrap:not(.plain) .pinLabel { font-size: 21px; letter-spacing: 0.06em; }
+  .wrap:not(.plain) .legend {
+    position: relative;
+    right: auto;
+    bottom: auto;
+    order: 2;
+    align-self: center;
+    flex-direction: row;
+    gap: 14px;
+    margin-top: 6px;
+    padding: 8px 14px;
+    border-radius: 12px;
+    box-shadow: 0 8px 22px -12px rgba(28, 36, 64, 0.35);
+  }
+  .wrap:not(.plain) .legend span { font-size: 10px; gap: 7px; letter-spacing: 0.06em; white-space: nowrap; }
+  .wrap:not(.plain) .legIcon { width: 15px; height: 15px; }
+  .wrap:not(.plain) .text { order: 3; margin-top: clamp(14px, 3svh, 28px); }
+  .wrap:not(.plain) .heading { margin-top: 0.8rem; }
+  .wrap:not(.plain) .heading .lineClip > span { font-size: clamp(1.8rem, min(8vw, 5svh), 2.6rem); }
+  .wrap:not(.plain) .divider { margin: 1rem 0 0.9rem; }
+  .wrap:not(.plain) .para { max-width: none; font-size: 15px; line-height: 1.6; }
+  /* No room under the map for the flourish line; the contact lines stay. */
+  .wrap:not(.plain) .good { display: none; }
+  .wrap:not(.plain) .contact { margin-top: 1.2rem; gap: 1.6rem; }
 }
 
 /* Short viewports - laptops at 1440x790, and any phone or tablet turned

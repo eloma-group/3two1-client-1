@@ -110,7 +110,7 @@ export default function CubaLibre() {
   const wordY = useTransform(scrollYProgress, [0, 1], ['0%', '-30%']);
 
   useEffect(() => {
-    document.title = 'The Cuba Libre - Black Tears · 3Two1 drinks';
+    document.title = 'The Cuba Libre - Black Tears · 3Two1 Drinks';
   }, []);
 
   return (

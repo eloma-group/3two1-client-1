@@ -22,6 +22,7 @@ import { Link } from 'react-router-dom'
 import { brandPage } from '../data/brandPages'
 import { giffardGallery } from '../data/giffardRange'
 import { ArrowUpRight } from 'lucide-react'
+import { useMediaQuery } from '../hooks/useMediaQuery'
 
 /* ── Theme ──────────────────────────────────────────────────────── */
 const NAVY  = 'rgb(var(--ink-rgb))'
@@ -254,10 +255,13 @@ const SERVICES: Service[] = [
 
 /* ── Single service row ─────────────────────────────────────────── */
 function ServiceRow({
-  svc, index, isHovered, isSelected, onEnter, onLeave, onSubEnter, onSubLeave,
+  svc, index, isHovered, isSelected, onEnter, onLeave, onSubEnter, onSubLeave, narrow,
 }: {
   svc: Service
   index: number
+  /** Below the two-column breakpoint there is no sticky image panel, so each
+      row carries its own photo and keeps its range open. */
+  narrow: boolean
   isHovered: boolean
   isSelected: boolean
   onEnter: () => void
@@ -266,6 +270,8 @@ function ServiceRow({
   onSubLeave: () => void
 }) {
   const active = isHovered || isSelected
+  // Phones have no hover to light a row up, so every row reads as active there.
+  const lit = active || narrow
 
   // Keep the viewport visually anchored while the submenu expands/collapses.
   // When the changing block sits above the viewport top, its height delta would
@@ -323,6 +329,31 @@ function ServiceRow({
         pointerEvents: 'none',
       }} />
 
+      {/* Phone: the brand's photo leads the row, in place of the sticky panel. */}
+      {narrow && (() => {
+        const photo = (
+          <img
+            src={svc.imageUrl}
+            alt={svc.imageAlt}
+            loading="lazy"
+            style={{
+              display: 'block', width: '100%', aspectRatio: '1 / 1',
+              objectFit: 'cover', borderRadius: '14px',
+              background: svc.bg,
+            }}
+          />
+        )
+        return (
+          <div style={{ position: 'relative', zIndex: 1, padding: '24px 24px 0' }}>
+            {brandPage(svc.id) ? (
+              <Link to={`/brands/${svc.id}`} aria-label={`Explore ${svc.name}`} style={{ display: 'block' }}>
+                {photo}
+              </Link>
+            ) : photo}
+          </div>
+        )
+      })()}
+
       {/* Row content */}
       <div style={{
         position: 'relative', zIndex: 1,
@@ -334,7 +365,7 @@ function ServiceRow({
         <div style={{
           fontSize: 'clamp(10px, 0.9vw, 12px)',
           fontWeight: 700, letterSpacing: '0.6px',
-          color: active ? GREEN : 'rgba(var(--ink-rgb),0.22)',
+          color: lit ? GREEN : 'rgba(var(--ink-rgb),0.22)',
           fontVariantNumeric: 'tabular-nums',
           flexShrink: 0, width: '26px',
           transition: 'color 0.3s ease',
@@ -369,7 +400,7 @@ function ServiceRow({
           transition={{ duration: 0.38, ease }}
           style={{
             flex: 1,
-            color: active ? NAVY : 'rgba(var(--ink-rgb),0.6)',
+            color: lit ? NAVY : 'rgba(var(--ink-rgb),0.6)',
             transition: 'color 0.3s ease',
           }}
         >
@@ -414,7 +445,7 @@ function ServiceRow({
         <motion.div
           animate={{
             rotate: isHovered ? -45 : 0,
-            opacity: active ? 1 : 0.2,
+            opacity: lit ? 1 : 0.2,
           }}
           transition={{ duration: 0.28, ease }}
           style={{ flexShrink: 0, color: GREEN }}
@@ -437,7 +468,7 @@ function ServiceRow({
       {/* Expandable submenu (e.g. Giffard range) — opens on hover */}
       {svc.gallery && (
         <AnimatePresence initial={false}>
-          {active && (
+          {(active || narrow) && (
             <motion.div
               key="submenu"
               ref={anchorScroll}
@@ -453,7 +484,9 @@ function ServiceRow({
               <div style={{
                 display: 'flex', flexDirection: 'column',
                 gap: 'clamp(18px, 2.2vw, 28px)',
-                padding: '0 clamp(24px, 4vw, 64px) clamp(20px, 2.6vw, 30px) clamp(58px, 8vw, 160px)',
+                padding: narrow
+                  ? '0 24px 24px'
+                  : '0 clamp(24px, 4vw, 64px) clamp(20px, 2.6vw, 30px) clamp(58px, 8vw, 160px)',
               }}>
                 {svc.gallery.map((cat, ci) => (
                   <motion.div
@@ -790,6 +823,8 @@ export function ServicesSection() {
   const [hovered,  setHovered]  = useState<number | null>(null)
   const [selected, setSelected] = useState<number | null>(null)
   const [subItem,  setSubItem]  = useState<GalleryItem | null>(null)
+  // Matches the 900px breakpoint where the sticky image panel appears.
+  const narrow = useMediaQuery('(max-width: 899px)')
   const active = hovered ?? selected ?? 0
 
   // Preload every panel + gallery image on mount so switching on hover is
@@ -849,7 +884,7 @@ export function ServicesSection() {
 
           {/* Display headline */}
           <div>
-            {(['Nine Houses.', 'One Portfolio.'] as const).map((line, i) => (
+            {(['Nine Brands.', 'One Portfolio.'] as const).map((line, i) => (
               <motion.div
                 key={line}
                 className={i === 0 ? undefined : 'gradient-text'}
@@ -921,6 +956,7 @@ export function ServicesSection() {
               onLeave={() => { setHovered(null); setSelected(i); setSubItem(null) }}
               onSubEnter={(item) => setSubItem(item)}
               onSubLeave={() => setSubItem(null)}
+              narrow={narrow}
             />
           ))}
         </div>

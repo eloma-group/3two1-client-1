@@ -45,10 +45,10 @@ export default function Brands() {
     <section className={styles.brands} id="brands" ref={section}>
       <div className={styles.head}>
         <div className="container">
-          <Reveal><p className="eyebrow" style={{ color: 'var(--rose-700)' }}>The Nine Houses</p></Reveal>
+          <Reveal><p className="eyebrow" style={{ color: 'var(--rose-700)' }}>The Nine Brands</p></Reveal>
           <Reveal delay={0.08}>
             <h2 className={`display-lg ${styles.title}`}>
-              Nine houses. <span className="gradient-text">One portfolio.</span>
+              Nine brands. <span className="gradient-text">One portfolio.</span>
             </h2>
           </Reveal>
           <Reveal delay={0.15}>

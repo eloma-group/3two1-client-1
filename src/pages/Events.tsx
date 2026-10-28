@@ -60,7 +60,7 @@ export default function Events() {
       <Hero
         eyebrow="2026 Trade calendar"
         title={<>Tasted, <em className="gradient-text">not</em> told.</>}
-        lede="Competitions, portfolio walk-throughs, distillery dinners and trade tastings. The fastest way to know our houses is to drink them, with us, in the room."
+        lede="Competitions, portfolio walk-throughs, distillery dinners and trade tastings. The fastest way to know our brands is to drink them, with us, in the room."
         image="/images/pages/events-hero.webp"
         alt="A bartender pouring an orange-garnished cocktail at a Giffard West Cup heat"
         tag="Giffard West Cup · est. 2018"
@@ -178,7 +178,7 @@ export default function Events() {
                   <img src="/images/pages/events-trade-shows.webp" alt="" loading="lazy" />
                 </div>
                 <p className={b.tileLabel}>On the floor</p>
-                <p className={b.tileTitle}>Seven houses. One room.</p>
+                <p className={b.tileTitle}>Seven brands. One room.</p>
               </article>
             </Rise>
             <Rise className={b.span3} delay={0.08}>
@@ -186,7 +186,7 @@ export default function Events() {
                 <p className={b.kicker}>Trade shows</p>
                 <h2 className={`${b.title} ${styles.showTitle}`}>Find us at the <em className="gradient-text">trade shows</em>.</h2>
                 <p className={b.tileText}>
-                  We bring the full portfolio to the calendar's key industry shows - a fast way to taste seven houses
+                  We bring the full portfolio to the calendar's key industry shows - a fast way to taste seven brands
                   in one room and talk listings with our team. Stand details and pour lists go out to the trade list
                   ahead of each event.
                 </p>

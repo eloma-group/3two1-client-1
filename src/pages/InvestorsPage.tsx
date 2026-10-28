@@ -325,7 +325,7 @@ export default function InvestorsPage({ ready = true }: { ready?: boolean }) {
   const roadmap = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    document.title = 'Investors - 3Two1 drinks';
+    document.title = 'Investors - 3Two1 Drinks';
   }, []);
 
   const { scrollYProgress: heroP } = useScroll({ target: hero, offset: ['start start', 'end start'] });

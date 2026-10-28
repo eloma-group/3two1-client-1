@@ -32,7 +32,7 @@ export const tradeEvents: TradeEvent[] = [
     date: '2026-03-12',
     city: 'Perth',
     title: 'Q1 portfolio walk-through · Online',
-    body: 'Seven houses, four hours, the full 2026 range tasted side by side. Bar teams welcome.',
+    body: 'Seven brands, four hours, the full 2026 range tasted side by side. Bar teams welcome.',
     action: 'RSVP',
     subject: 'Q1 Walkthrough',
     image: '/images/about-numbers-pour.webp',

@@ -1,4 +1,4 @@
-import { useEffect, useId, useMemo, useRef } from 'react';
+import { useEffect, useId, useMemo, useRef, useState } from 'react';
 import createGlobe from 'cobe';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -117,15 +117,17 @@ const GAP = 3;
    window moves them together — a transform on the artwork alone would leave the
    pins behind, and GSAP owns that transform for the scroll reveal anyway. */
 const MAP_SHIFT_X = 60;
+/* On a phone the copy moves below the map instead of sitting beside it, so the
+   empty left column is cropped away and the window hugs the land and the pin
+   labels (Perth's label reaches ~175, Fiji's ~1140; Darwin/Vanuatu ~150 to
+   Hobart ~640). The pour reads the SVG's CTM every frame, so it follows. */
+const MOBILE_VIEWBOX = '160 110 1030 550';
+const MOBILE_QUERY = '(max-width: 860px)';
 
 export default function NetworkMap(
   { anchorId = 'network-map', variant = 'map' }:
   { anchorId?: string; variant?: 'map' | 'globe' } = {},
 ) {
-  /* The section can be rendered more than once, so the anchor and the SVG
-     filter id must be unique per instance - two elements sharing an id would
-     make every copy resolve url(#...) to the first one. */
-  const tintId = `mapTint-${useId().replace(/[^a-zA-Z0-9]/g, '')}`;
   const root = useRef<HTMLDivElement>(null);
   const canvas = useRef<HTMLCanvasElement>(null);
   const track = useRef<HTMLDivElement>(null);
@@ -135,7 +137,19 @@ export default function NetworkMap(
   const fillImg = useRef<SVGImageElement>(null);
   const maskBlob = useRef<SVGPathElement>(null);
   const maskDrips = useRef<(SVGRectElement | null)[]>([]);
+  /* The section can be rendered more than once, so the SVG mask id must be
+     unique per instance - two elements sharing an id would make every copy
+     resolve url(#...) to the first one. */
   const maskId = `pourMask-${useId().replace(/[^a-zA-Z0-9]/g, '')}`;
+  const [narrow, setNarrow] = useState(
+    () => typeof window !== 'undefined' && window.matchMedia(MOBILE_QUERY).matches,
+  );
+  useEffect(() => {
+    const mq = window.matchMedia(MOBILE_QUERY);
+    const onChange = () => { setNarrow(mq.matches); ScrollTrigger.refresh(); };
+    mq.addEventListener('change', onChange);
+    return () => mq.removeEventListener('change', onChange);
+  }, []);
 
   /* The flat map fills with a scroll-scrubbed pour instead of fading in. */
   const pourRefs = useMemo(
@@ -418,7 +432,7 @@ export default function NetworkMap(
             <h2 className={styles.heading}>
               <span className={styles.lineClip}><span className={styles.lineNavy}>In every great</span></span>
               <span className={styles.lineClip}><span className={styles.lineCoral}>Bar, Bottle</span></span>
-              <span className={styles.lineClip}><span className={styles.lineCoral}>shop and café.</span></span>
+              <span className={styles.lineClip}><span className={styles.lineCoral}>Shop and Café.</span></span>
             </h2>
             <span className={styles.divider} />
             <p className={styles.para}>
@@ -470,23 +484,8 @@ export default function NetworkMap(
             </div>
           ) : (
           /* Shared SVG canvas — map + pins (animated on scroll) */
-          <svg ref={svg} className={styles.svg} viewBox={`${-MAP_SHIFT_X} 0 1200 800`} preserveAspectRatio="xMidYMid meet">
+          <svg ref={svg} className={styles.svg} viewBox={narrow ? MOBILE_VIEWBOX : `${-MAP_SHIFT_X} 0 1200 800`} preserveAspectRatio="xMidYMid meet">
             <defs>
-              {/* The artwork ships in the deep brand pink (#f83860). Retint it to
-                  a lighter #ff9999 without flattening the 3D shading: drop to
-                  luminance, then map that luminance onto the target colour, so
-                  the extruded side walls stay a darker shade of the same hue.
-                  feComposite clips back to the source alpha so the transparent
-                  surround doesn't pick up the intercept as a halo. */}
-              <filter id={tintId} colorInterpolationFilters="sRGB">
-                <feColorMatrix type="saturate" values="0" result="grey" />
-                <feComponentTransfer in="grey" result="tinted">
-                  <feFuncR type="linear" slope="0.789" intercept="0.684" />
-                  <feFuncG type="linear" slope="0.789" intercept="0.284" />
-                  <feFuncB type="linear" slope="0.789" intercept="0.284" />
-                </feComponentTransfer>
-                <feComposite in="tinted" in2="SourceGraphic" operator="in" />
-              </filter>
               {/* The liquid front: a growing blob plus drip tendrils, driven per frame. */}
               <mask id={maskId} maskUnits="userSpaceOnUse" x="-60" y="-100" width="1300" height="1000">
                 <path ref={maskBlob} fill="#fff" />
@@ -498,19 +497,18 @@ export default function NetworkMap(
             <image
               ref={mapImg}
               data-map
-              href="/images/au-nz-glow.webp"
+              href="/images/au-nz-tinted.webp"
               x="210" y="-90" width="960" height="960"
               preserveAspectRatio="xMidYMid meet"
-              style={{ filter: `url(#${tintId})` }}
             />
             {/* Masked copy of the map that the pour reveals. */}
             <image
               ref={fillImg}
-              href="/images/au-nz-glow.webp"
+              href="/images/au-nz-tinted.webp"
               x="210" y="-90" width="960" height="960"
               preserveAspectRatio="xMidYMid meet"
               mask={`url(#${maskId})`}
-              style={{ filter: `url(#${tintId})`, opacity: 0.95, display: 'none' }}
+              style={{ opacity: 0.95, display: 'none' }}
             />
             <g>
               {PINS.map((p) => {

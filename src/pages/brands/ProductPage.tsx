@@ -40,7 +40,7 @@ export default function ProductPage() {
   const copyY = useTransform(scrollYProgress, [0, 1], ['0%', '-24%']);
 
   useEffect(() => {
-    if (found) document.title = `${found.product.fullName} · ${found.house.name} · 3Two1 drinks`;
+    if (found) document.title = `${found.product.fullName} · ${found.house.name} · 3Two1 Drinks`;
   }, [found?.product.fullName, found?.house.name]);
 
   if (!found) return <Navigate to={`/brands/${params.house ?? ''}`} replace />;

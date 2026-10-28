@@ -63,7 +63,7 @@ export default function Portfolio() {
     <div className={b.page}>
       <Hero
         eyebrow="2027 Portfolio"
-        title={<>Every house. <em className="gradient-text">One book.</em></>}
+        title={<>Every brand. <em className="gradient-text">One book.</em></>}
         lede="Tasting notes, RRPs, case configurations and serve specs - everything your team needs to spec a drinks list or curate a shelf."
         image="/images/pages/portfolio-banner.webp"
         alt="A curated row of premium spirits across categories"
@@ -80,10 +80,10 @@ export default function Portfolio() {
         <div className="container">
           <Rise>
             <div className={b.head}>
-              <p className={b.kicker}>The houses</p>
+              <p className={b.kicker}>The brands</p>
               <h2 className={b.title}>Which will you <em className="gradient-text">pour</em>?</h2>
               <p className={b.sub}>
-                {shown.length} {shown.length === 1 ? 'house' : 'houses'} · tap one to step inside.
+                {shown.length} {shown.length === 1 ? 'brand' : 'brands'} · tap one to step inside.
               </p>
               <div className={styles.filters}>
                 <Segmented id="portfolio" label="Filter portfolio by category" options={FILTERS} value={filter} onChange={setFilter} />

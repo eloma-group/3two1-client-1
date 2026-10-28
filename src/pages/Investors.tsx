@@ -21,7 +21,7 @@ const FIGURES = [
     note: 'Bars, bottle shops and cafés - across Australia.',
   },
   {
-    to: 9, suffix: '', label: 'Brand houses',
+    to: 9, suffix: '', label: 'Brands',
     note: 'Rum, tequila, whiskey, pisco, cachaça, liqueur and syrups, every one on exclusive national rights.',
   },
   {
@@ -65,7 +65,7 @@ const PILLARS = [
   {
     n: '01',
     title: 'We buy narrow, not wide',
-    body: 'Nine houses, not ninety. Every listing is complementary on the cargo and behind the bar, which is why anyone here can talk through the whole range from memory and passion.',
+    body: 'Nine brands, not ninety. Every listing is complementary on the cargo and behind the bar, which is why anyone here can talk through the whole range from memory and passion.',
   },
   {
     n: '02',
@@ -80,7 +80,7 @@ const PILLARS = [
   {
     n: '04',
     title: 'Built for the long pour',
-    body: 'Exclusive national rights and direct producer relationships. The houses we take on are ones we intend to still be carrying in a decade.',
+    body: 'Exclusive national rights and direct producer relationships. The brands we take on are ones we intend to still be carrying in a decade.',
   },
 ];
 
@@ -164,7 +164,7 @@ function FiguresBand() {
           </h2>
           <Reveal y={16} delay={0.12}>
             <p className={styles.figuresLede}>
-              Every figure below was earned behind a bar like this one - a venue, a house and a
+              Every figure below was earned behind a bar like this one - a venue, a brand and a
               year at a time.
             </p>
           </Reveal>
@@ -330,7 +330,7 @@ export default function Investors({ ready = true }: { ready?: boolean }) {
   const [yearIndex, setYearIndex] = useState(0);
 
   useEffect(() => {
-    document.title = 'Our Story - 3Two1 drinks';
+    document.title = 'Our Story - 3Two1 Drinks';
   }, []);
 
   /* Hero parallax — the photograph drifts at roughly a third of scroll speed. */
@@ -370,7 +370,7 @@ export default function Investors({ ready = true }: { ready?: boolean }) {
             bottle shops deserved a distributor that genuinely cared about the quality of its selection.
           </p>
           <p className={styles.body}>
-            Eight years on, we represent nine world-class spirit houses across rum, tequila,
+            Eight years on, we represent nine world-class spirit brands across rum, tequila,
             whiskey, bourbon, pisco, cachaça, liqueur and syrups - working directly with bars, bottle shops and cafés across
             Australia, New Zealand and the Pacific Islands.
           </p>
@@ -398,7 +398,7 @@ export default function Investors({ ready = true }: { ready?: boolean }) {
           <p className={styles.body}>
             3Two1 was started by ex-bartenders, ex-buyers and ex-reps types who got tired of seeing
             the lower quality of Australian shelves. Our buying philosophy is simple: distinctive
-            houses, intentional range, no fluff.
+            brands, intentional range, no fluff.
           </p>
           <p className={styles.body}>
             That background shows up in the unglamorous parts. Stock that lands when we said it
@@ -428,7 +428,7 @@ export default function Investors({ ready = true }: { ready?: boolean }) {
           </p>
           <ul className={styles.points}>
             <li>
-              <strong>Exclusive national rights</strong> across every house we carry - an owned
+              <strong>Exclusive national rights</strong> across every brand we carry - an owned
               book, not a shared agency shelf.
             </li>
             <li>

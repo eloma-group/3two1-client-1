@@ -8,7 +8,7 @@ export function usePageSetup(title: string) {
   const { hash } = useLocation();
 
   useEffect(() => {
-    document.title = `${title} - 3Two1 drinks`;
+    document.title = `${title} - 3Two1 Drinks`;
   }, [title]);
 
   useEffect(() => {

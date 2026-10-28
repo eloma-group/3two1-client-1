@@ -132,7 +132,7 @@ export function IntroductionSection() {
             margin: 0,
           }}>
             {([
-              { text: 'Nine Houses,',   color: 'rgb(var(--ink-rgb))',  weight: 800, italic: false, gradient: false },
+              { text: 'Nine Brands,',   color: 'rgb(var(--ink-rgb))',  weight: 800, italic: false, gradient: false },
               { text: 'One Portfolio,',  color: undefined,            weight: 700, italic: true,  gradient: true  },
               { text: 'Built for Trade.', color: undefined,            weight: 800, italic: false, gradient: true  },
             ] as const).map((line, i) => (
@@ -175,7 +175,7 @@ export function IntroductionSection() {
             }}
           >
             Curated imports. Trade-first service. A tight portfolio built for bartenders.
-            3Two1 brings nine of the world's most respected drinks houses under one roof -
+            3Two1 brings nine of the world's most respected drinks brands under one roof -
             from blue-agave tequila to coffee-spiced rum - delivered to the best bars,
             bottle shops and cafés, coast to coast.
           </motion.p>

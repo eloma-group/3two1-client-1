@@ -83,7 +83,7 @@ export const tradeSegments: TradeSegment[] = [
       {
         icon: 'shelf',
         title: 'A curated premium tier',
-        body: 'Black Tears, Worthy Park, Pueblo Viejo, San Matías - seven houses chosen to lift the top shelf without bloating it.',
+        body: 'Black Tears, Worthy Park, Pueblo Viejo, San Matías - seven brands chosen to lift the top shelf without bloating it.',
       },
       {
         icon: 'pos',

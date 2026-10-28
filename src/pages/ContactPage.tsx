@@ -29,7 +29,7 @@ export default function ContactPage() {
   const [stepIndex, setStepIndex] = useState(0);
 
   useEffect(() => {
-    document.title = 'Contact - 3Two1 drinks';
+    document.title = 'Contact - 3Two1 Drinks';
   }, []);
 
   /* Same spine as Our Story: the fill tracks scroll through the sections and

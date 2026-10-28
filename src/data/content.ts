@@ -244,7 +244,7 @@ export interface Stat {
 
 export const stats: Stat[] = [
   { value: '2018', label: 'Established' },
-  { value: '9', label: 'Houses in portfolio' },
+  { value: '9', label: 'Brands in portfolio' },
   { value: '13', label: 'Cities served' },
   { value: '2,700', label: 'Venues and counting' },
 ];
