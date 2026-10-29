@@ -337,7 +337,7 @@ export const brandPages: BrandPage[] = [
     serves: [
       { name: 'Kir Royale', build: 'Sparkling wine, a measure of Blackcurrant Liqueur, a long lemon twist.', method: 'Build in glass', glass: 'Flute', image: '/images/brand-giffard-cocktail.webp' },
       { name: 'Aviation', build: 'Gin, lemon, maraschino, a whisper of Violet Liqueur.', method: 'Shake, fine strain', glass: 'Coupe', image: gf('aviation') },
-      { name: 'Giffard Spritz', build: 'Apricot Brandy, prosecco, soda, fresh thyme.', method: 'Build over ice', glass: 'Wine glass', image: gf('garnish') },
+      { name: 'Giffard Spritz', build: 'Apricot Brandy, prosecco, soda, fresh thyme.', method: 'Build over ice', glass: 'Wine glass', image: gf('serve-spritz') },
     ],
     stock: 'Talk to us about the full Giffard portfolio for Australia - wholesale, bar training, and entry to the annual Giffard West Cup competition.',
     facts: [
