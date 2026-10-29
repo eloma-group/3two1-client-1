@@ -7,7 +7,7 @@ import styles from './Bartenders.module.css';
 
 /** Real cocktail photo per house. */
 const MEDIA: Record<string, string> = {
-  'Giffard':      '/images/brand-giffard-cocktail.webp',
+  'Giffard':      '/images/home-garden-spritz.webp',
   'Black Tears':  '/images/brand-black-tears-coffee-cuba-libre.webp',
   'Pueblo Viejo': '/images/brand-pueblo-viejo-cocktail.webp',
   'Worthy Park':  '/images/brand-worthy-park-cocktail.webp',
