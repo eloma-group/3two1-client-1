@@ -1,4 +1,4 @@
-import { useRef, useEffect } from 'react';
+import { useRef, useEffect, useState } from 'react';
 import { motion, useScroll, useTransform, type Variants } from 'framer-motion';
 import { ArrowDown, Download, ArrowRight, Wine, Martini, Hotel, Coffee } from 'lucide-react';
 import { hero, portfolioPdf } from '../data/content';
@@ -14,13 +14,25 @@ import { useMediaQuery } from '../hooks/useMediaQuery';
 import MagneticButton from '../components/MagneticButton';
 import styles from './Hero.module.css';
 
+const HERO_HD = '/videos/hero-sydney-harbour.mp4';
+const HERO_SD = '/videos/hero-sydney-harbour-720.mp4';
+
+/** Low-memory devices and data-saver mode start on the 720p file. */
+function pickHeroVideo() {
+  if (typeof navigator === 'undefined') return HERO_HD;
+  const nav = navigator as Navigator & { deviceMemory?: number; connection?: { saveData?: boolean } };
+  return (nav.deviceMemory !== undefined && nav.deviceMemory <= 4) || nav.connection?.saveData ? HERO_SD : HERO_HD;
+}
+
 export default function Hero({ ready }: { ready: boolean }) {
   const ref = useRef<HTMLElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
+  const [heroSrc] = useState(pickHeroVideo);
   const { scrollYProgress } = useScroll({ target: ref, offset: ['start start', 'end start'] });
 
-  // Hold the loop paused behind the splash, then start it from the first frame
-  // once the loading screen is done.
+  // Hold the loop on its poster until the splash is done AND the whole clip has
+  // buffered. Starting on 'canplay' let it run into the end of the downloaded
+  // data and freeze for seconds at a time on a slow connection.
   useEffect(() => {
     const v = videoRef.current;
     if (!v || !ready) return;
@@ -29,15 +41,49 @@ export default function Hero({ ready }: { ready: boolean }) {
       const p = v.play();
       if (p) p.catch(() => {});
     };
-    if (v.readyState >= 2) start();
-    else v.addEventListener('canplay', start, { once: true });
-    return () => v.removeEventListener('canplay', start);
+    if (v.readyState >= 4) start();
+    else v.addEventListener('canplaythrough', start, { once: true });
+    return () => v.removeEventListener('canplaythrough', start);
+  }, [ready]);
+
+  // 1080p60 plays smoothly on most machines, but on a low-memory laptop the
+  // browser can drop it to software decoding at a loop restart and it crawls
+  // at ~8fps. Watch the frames actually painted; after two slow seconds in a
+  // row, swap to the 720p60 file at the same moment in the clip. Once only.
+  useEffect(() => {
+    const v = videoRef.current;
+    if (!v || !ready || !('requestVideoFrameCallback' in v) || v.currentSrc.endsWith(HERO_SD)) return;
+    let frames = 0;
+    let slow = 0;
+    let handle = 0;
+    let stopped = false;
+    const onFrame = () => { frames++; if (!stopped) handle = v.requestVideoFrameCallback(onFrame); };
+    handle = v.requestVideoFrameCallback(onFrame);
+    const timer = window.setInterval(() => {
+      if (v.paused || document.visibilityState !== 'visible') { frames = 0; return; }
+      slow = frames < 40 ? slow + 1 : 0;
+      frames = 0;
+      if (slow < 2) return;
+      stop();
+      const at = v.currentTime;
+      v.src = HERO_SD;
+      v.addEventListener('loadedmetadata', () => {
+        try { v.currentTime = at; } catch { /* keep from the start */ }
+        const p = v.play();
+        if (p) p.catch(() => {});
+      }, { once: true });
+    }, 1000);
+    function stop() {
+      stopped = true;
+      window.clearInterval(timer);
+      v!.cancelVideoFrameCallback(handle);
+    }
+    return stop;
   }, [ready]);
 
   const textY = useTransform(scrollYProgress, [0, 1], ['0%', '-45%']);
   const fade = useTransform(scrollYProgress, [0, 0.75], [1, 0]);
   const photoScale = useTransform(scrollYProgress, [0, 1], [1, 1.18]);
-  const overlayOpacity = useTransform(scrollYProgress, [0, 1], [1, 1.15]);
   /* On a phone the hero stack fills the screen, so lifting and fading it out
      leaves a tall blank band under it that the network map's pour then has to
      fall through. Phones keep the copy still and let it scroll away. */
@@ -59,26 +105,31 @@ export default function Hero({ ready }: { ready: boolean }) {
 
   return (
     <section className={styles.hero} ref={ref} id="top">
-      {/* Sydney Harbour at sunset, looping straight back to the start. Its
-          first frame is the poster, so the frame is never empty while the clip
-          loads. */}
+      {/* Sydney Harbour at sunset, 1080p at 60fps. The tail of the clip
+          dissolves into its head, so the loop has no jump. Its first frame is
+          the poster, so the frame is never empty while the clip loads. */}
       <motion.div className={styles.videoWrap} style={{ scale: photoScale }}>
-        <motion.video
+        {/* No entrance animation on the video itself: fading or scaling it
+            while playback starts let the browser settle on a slow compositing
+            path that held the clip near 8fps. The poster covers the start. */}
+        <video
           ref={videoRef}
           className={styles.video}
-          src="/videos/hero-sydney-harbour.mp4"
           poster="/images/home-hero-sydney-harbour-poster.webp"
           muted
           loop
           playsInline
           preload="auto"
           aria-hidden="true"
-          initial={{ scale: 1.08, opacity: 0 }}
-          animate={ready ? { scale: 1, opacity: 1 } : undefined}
-          transition={{ duration: 1.8, ease: [0.16, 1, 0.3, 1] }}
+          /* H.264 only: every device decodes it in hardware. AV1 saved under
+             a tenth of the size and falls back to the CPU on most laptops. */
+          src={heroSrc}
         />
       </motion.div>
-      <motion.div className={styles.overlay} style={{ opacity: overlayOpacity }} />
+      {/* Static on purpose: animating this layer's opacity on scroll (it ran
+          1 → 1.15, which renders the same as 1) made the browser re-blend it
+          over every video frame and the clip fell to ~8fps after a few loops. */}
+      <div className={styles.overlay} />
       <div className={styles.grain} />
 
       {/* Copy */}
