@@ -126,7 +126,7 @@ export const tradeSegments: TradeSegment[] = [
   {
     slug: 'cafes',
     label: 'For Cafés',
-    title: { before: 'Built for', accent: 'Smoothies & Shakes.' },
+    title: { before: 'Built for', accent: 'Coffee, Smoothies & Shakes.' },
     lede:
       'Giffard syrups for every latte, fruit purées for smoothies and iced drinks, and coffee liqueurs for the espresso martini - one supplier for the whole coffee bar.',
     image: '/images/pages/trade-cafes-counter.webp',
@@ -163,7 +163,7 @@ export const tradeSegments: TradeSegment[] = [
       { title: 'Order via Email', body: "Small-case pricing, weekly delivery to all metro areas. No minimum that doesn't suit a single-counter venue." },
     ],
     cta: {
-      title: { before: 'From', accent: 'Buffet', after: 'to Smoothies.' },
+      title: { before: 'From', accent: 'Coffee', after: 'to Smoothies.' },
       body: "Drop your café details - we'll send the small-footprint range, the espresso martini training kit, and a starter pack on the next run.",
       placeholder: 'cafe@email.com',
     },

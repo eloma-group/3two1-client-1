@@ -2243,7 +2243,7 @@ export const giffardProducts: HouseProduct[] = [
     "fullName": "Giffard Fruit for Mix Passion Fruit",
     "category": "Puree",
     "image": "/images/giffard-passion-fruit-puree.webp",
-    "imageAlt": "Giffard Passion Fruit puree bottle with tropical island backdrop",
+    "imageAlt": "Giffard Fruit for Mix Passion Fruit puree bottle with fresh passion fruit, a passion flower and a passion fruit serve on stone",
     "accent": "#e8a33d",
     "tagline": "Sour, musky passion fruit with real pulp",
     "lede": "Giffard's Fruit for Mix Passion Fruit is made with 54% passion fruit juice and pulp, and it tastes like the fruit: sharp, musky and juicy. It is the quickest way to get a consistent passion fruit hit into a Mojito, a sour or a tropical alcohol-free serve.",

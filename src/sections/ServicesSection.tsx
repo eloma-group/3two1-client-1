@@ -250,6 +250,14 @@ const SERVICES: Service[] = [
     country: 'Jamaica',
     accent: '#f2c94c',
     bg: 'radial-gradient(120% 100% at 55% 20%, #2f5721 0%, #163310 50%, #05100a 100%)',
+    gallery: [
+      {
+        label: 'Signature Serve',
+        items: [
+          { imageUrl: '/images/brand-worthy-park-rumbar-overproof.webp', label: 'Rumbar Overproof', imageAlt: 'Worthy Park Rum-Bar White Overproof bottle with sugar cane, limes, a rum barrel and the Jamaican flag', scene: true, to: '/brands/worthy-park' },
+        ],
+      },
+    ],
   },
 ]
 

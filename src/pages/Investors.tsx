@@ -152,7 +152,7 @@ function FiguresBand() {
   return (
     <section className={styles.figures} ref={ref}>
       <motion.div className={styles.figuresPhoto} style={reduced ? undefined : { y: photoY }} aria-hidden="true">
-        <img src="/images/about-numbers-neon-pour.webp" alt="" loading="lazy" decoding="async" />
+        <img src="/images/about-numbers-bar-pour.webp" alt="" loading="lazy" decoding="async" />
       </motion.div>
       <div className={styles.figuresScrim} aria-hidden="true" />
 
@@ -370,8 +370,8 @@ export default function Investors({ ready = true }: { ready?: boolean }) {
       kicker: 'Our story',
       heading: 'Built in Australia, poured everywhere.',
       gradientFrom: 2,
-      img: '/images/about-story-harbour-toast.webp',
-      alt: 'Friends toasting with cocktails on a rooftop bar at sunset, Sydney Harbour and the Opera House behind',
+      img: '/images/about-story-harbour-cocktails.webp',
+      alt: 'Four cocktails on a barrel top at sunset, the Sydney Opera House and Harbour Bridge across the water',
       body: (
         <>
           <p className={styles.body}>
