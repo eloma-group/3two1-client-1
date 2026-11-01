@@ -19,8 +19,8 @@ export default function Hero({ ready }: { ready: boolean }) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const { scrollYProgress } = useScroll({ target: ref, offset: ['start start', 'end start'] });
 
-  // Hold the video buffered but paused during the splash, then play it from the
-  // very first frame once the loading screen is done — no mid-clip jump, no lag.
+  // Hold the loop paused behind the splash, then start it from the first frame
+  // once the loading screen is done.
   useEffect(() => {
     const v = videoRef.current;
     if (!v || !ready) return;
@@ -36,7 +36,7 @@ export default function Hero({ ready }: { ready: boolean }) {
 
   const textY = useTransform(scrollYProgress, [0, 1], ['0%', '-45%']);
   const fade = useTransform(scrollYProgress, [0, 0.75], [1, 0]);
-  const videoScale = useTransform(scrollYProgress, [0, 1], [1, 1.18]);
+  const photoScale = useTransform(scrollYProgress, [0, 1], [1, 1.18]);
   const overlayOpacity = useTransform(scrollYProgress, [0, 1], [1, 1.15]);
   /* On a phone the hero stack fills the screen, so lifting and fading it out
      leaves a tall blank band under it that the network map's pour then has to
@@ -59,17 +59,23 @@ export default function Hero({ ready }: { ready: boolean }) {
 
   return (
     <section className={styles.hero} ref={ref} id="top">
-      {/* Video background */}
-      <motion.div className={styles.videoWrap} style={{ scale: videoScale }}>
-        <video
+      {/* Sydney Harbour at sunset, looping straight back to the start. Its
+          first frame is the poster, so the frame is never empty while the clip
+          loads. */}
+      <motion.div className={styles.videoWrap} style={{ scale: photoScale }}>
+        <motion.video
           ref={videoRef}
           className={styles.video}
-          src="/videos/hero-bg.mp4"
+          src="/videos/hero-sydney-harbour.mp4"
+          poster="/images/home-hero-sydney-harbour-poster.webp"
           muted
           loop
           playsInline
           preload="auto"
-          poster="/images/logo.png"
+          aria-hidden="true"
+          initial={{ scale: 1.08, opacity: 0 }}
+          animate={ready ? { scale: 1, opacity: 1 } : undefined}
+          transition={{ duration: 1.8, ease: [0.16, 1, 0.3, 1] }}
         />
       </motion.div>
       <motion.div className={styles.overlay} style={{ opacity: overlayOpacity }} />
