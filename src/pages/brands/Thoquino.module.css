@@ -346,6 +346,7 @@
   width: 100%;
   aspect-ratio: 4 / 5;
   object-fit: cover;
+  object-position: 70% 50%; /* nudged left so the glass on the right shows */
   border-radius: 0 0 0 55% / 0 0 0 38%;
   border-top-right-radius: 200px;
   box-shadow: 18px 18px 0 var(--lime);

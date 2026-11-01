@@ -486,7 +486,20 @@
   background: radial-gradient(70% 60% at 50% 55%, rgba(242, 194, 48, 0.18), transparent 70%);
   border: 1px solid rgba(201, 164, 92, 0.3);
 }
-.rangeFigure img { width: 100%; filter: drop-shadow(0 30px 40px rgba(0, 0, 0, 0.45)); }
+.rangeBottles {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  gap: clamp(1rem, 3vw, 2.2rem);
+  height: clamp(340px, 38vw, 520px);
+}
+.rangeBottles img {
+  height: 100%;
+  width: auto;
+  max-width: 48%;
+  object-fit: contain;
+  filter: drop-shadow(0 30px 40px rgba(0, 0, 0, 0.45));
+}
 .rangeFigure figcaption {
   margin-top: 1rem;
   font-family: var(--sc); font-variant-caps: small-caps;

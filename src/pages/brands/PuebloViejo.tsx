@@ -98,6 +98,7 @@ export default function PuebloViejo() {
   const { scrollYProgress } = useScroll({ target: hero, offset: ['start start', 'end start'] });
   const yCard = useTransform(scrollYProgress, [0, 1], [0, reduce ? 0 : 120]);
   const rCard = useTransform(scrollYProgress, [0, 1], [4, reduce ? 4 : 10]);
+  const yPhoto = useTransform(scrollYProgress, [0, 1], ['0%', reduce ? '0%' : '16%']);
   const { ref: roadRef, path: road } = useRoadThrough<HTMLDivElement>(styles.stationDisc, CRAFT_ROAD, CRAFT_ROAD_BOX);
 
   const [firstWord, ...rest] = d.name.split(' ');
@@ -107,6 +108,21 @@ export default function PuebloViejo() {
     <div className={styles.page}>
       {/* ── Hero ─────────────────────────────────────────── */}
       <section className={styles.hero} ref={hero}>
+        {/* Sunset over the agave fields: it settles in on load and drifts slower
+            than the page as the hero scrolls away. */}
+        <div className={styles.heroBg} aria-hidden="true">
+          <motion.div className={styles.heroPhotoWrap} style={{ y: yPhoto }}>
+            <motion.img
+              className={styles.heroPhoto}
+              src="/images/brands/pueblo-viejo/agave-sunset.webp"
+              alt=""
+              initial={reduce ? false : { scale: 1.1, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              transition={{ duration: 2, ease }}
+            />
+          </motion.div>
+          <div className={styles.heroShade} />
+        </div>
         <div className={styles.heroGrid}>
           <div className={styles.heroCopy}>
             <motion.p className={styles.eyebrow} initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.2, ease }}>

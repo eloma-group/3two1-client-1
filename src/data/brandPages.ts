@@ -145,7 +145,7 @@ export const brandPages: BrandPage[] = [
     serves: [
       { name: "Tommy's Margarita", build: 'Blanco, lime, agave. Three ingredients, done right.', method: 'Shake, single rock', glass: 'Rocks', image: '/images/brands/pueblo-viejo/tommys-margarita-sea.webp' },
       { name: 'Paloma', build: 'Reposado, fresh grapefruit, lime, a pinch of salt, soda.', method: 'Build, top with soda', glass: 'Highball', image: pv('paloma') },
-      { name: 'Añejo Old Fashioned', build: 'Añejo, agave syrup, mole bitters, orange.', method: 'Stir down', glass: 'Rocks', image: pv('chapala') },
+      { name: 'Añejo Old Fashioned', build: 'Añejo, agave syrup, mole bitters, orange.', method: 'Stir down', glass: 'Rocks', image: pv('anejo-old-fashioned') },
     ],
     stock: 'Talk to us about full-range allocations, agave education sessions, and back-bar placement across Australia.',
     facts: [
@@ -206,7 +206,7 @@ export const brandPages: BrandPage[] = [
       serve: 'Neat in a Glencairn, or in a rum old fashioned with demerara and a flamed orange peel.',
     },
     serves: [
-      { name: 'Worthy Park Daiquiri', build: 'Single Estate, lime, demerara - three ingredients, perfectly balanced.', method: 'Shake, fine strain', glass: 'Coupe', image: wp('serve-daiquiri-coupe') },
+      { name: 'Nuclear Daiquiri', build: 'Single Estate, lime, demerara - three ingredients, perfectly balanced.', method: 'Shake, fine strain', glass: 'Coupe', image: wp('serve-daiquiri-coupe') },
       { name: 'Rum Old Fashioned', build: 'Single Estate, demerara, mole bitters, flamed orange.', method: 'Stir down', glass: 'Rocks', image: wp('serve-old-fashioned') },
       { name: 'Jamaican Mai Tai', build: 'Single Estate Reserve, orgeat, lime, dry curaçao.', method: 'Shake, crushed ice', glass: 'Double rocks', image: wp('serve-mai-tai') },
     ],
@@ -360,12 +360,12 @@ export const brandPages: BrandPage[] = [
   {
     slug: 'burnt-ends',
     name: 'Burnt Ends',
-    eyebrow: 'Scotland × Singapore × Kentucky · Blended Whiskey',
+    eyebrow: 'Scotland × Kentucky · Blended Whiskey',
     quote: 'Smoke, oak, conviction.',
     story: {
       heading: 'Built for the fire.',
       paragraphs: [
-        "Burnt Ends is the whiskey project that came out of one of Asia's most celebrated kitchens - Burnt Ends in Singapore, a four-tonne wood-burning restaurant where almost everything that hits a plate has spent time near flame. The team there had a problem familiar to anyone who cooks with smoke: most whiskies disappear next to charred food. They wanted one that would hold its own.",
+        "Burnt Ends is the whiskey project that came out of one of Asia's most celebrated kitchens - Burnt Ends, a four-tonne wood-burning restaurant where almost everything that hits a plate has spent time near flame. The team there had a problem familiar to anyone who cooks with smoke: most whiskies disappear next to charred food. They wanted one that would hold its own.",
         'The blend was developed in Scotland, in collaboration with master blenders who understood the brief - a whiskey designed to pair with smoke, not retreat from it. Heavier oak. More peat than a balanced dram would normally take. A backbone built for sharing the plate with ember-cooked beef, blackened bone marrow, or a glass of something cold at the end of a long service.',
         'It is, in other words, a back-bar whiskey for restaurants that actually feed people. Australian fire-driven kitchens have taken to it for the obvious reason: it pours well with the food they cook. 3Two1 Drinks distributes the bottle nationally and we love it in any bar that takes its highball seriously.',
       ],
@@ -396,7 +396,7 @@ export const brandPages: BrandPage[] = [
     stock: 'Talk to our trade team about pairings, allocations, and fire-driven kitchen activations across Australia.',
     facts: [
       { value: '4t', label: 'Wood-burning oven behind the idea' },
-      { value: '2', label: 'Countries: blended in wheated whiskey and spicy rye, born in Singapore' },
+      { value: '2', label: 'Countries: blended in wheated whiskey and spicy rye' },
       { value: '45%', label: 'ABV - built for the highball' },
       { value: '1', label: 'Job: stand up to bold, big flavour' },
     ],

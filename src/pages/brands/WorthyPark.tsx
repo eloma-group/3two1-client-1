@@ -311,7 +311,11 @@ export default function WorthyPark() {
             viewport={{ once: true }}
             transition={{ duration: 1, ease }}
           >
-            <img src={img('range-rum-bar')} alt="Worthy Park Single Estate Reserve and Rum-Bar White Overproof bottles" loading="lazy" />
+            {/* The two bottles side by side, standing on the same line. */}
+            <div className={styles.rangeBottles}>
+              <img src={img('range-single-estate')} alt="Worthy Park Single Estate Reserve bottle" loading="lazy" />
+              <img src={img('range-rum-bar-overproof')} alt="Worthy Park Rum-Bar White Overproof bottle" loading="lazy" />
+            </div>
             <figcaption>The family of bottles - Single Estate Reserve &amp; Rum-Bar White Overproof</figcaption>
           </motion.figure>
           <div className={styles.register} role="table" aria-label="Worthy Park range">
