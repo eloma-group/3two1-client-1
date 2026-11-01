@@ -180,11 +180,11 @@ export const recipeHouses: RecipeHouse[] = [
     id: 'worthy-park',
     name: 'Worthy Park',
     meta: 'St. Catherine, Jamaica · Estate Rum & Rumbar Overproof',
-    image: '/images/brands/worthy-park/serve-daiquiri.webp',
+    image: '/images/brands/worthy-park/serve-daiquiri-coupe.webp',
     recipes: [
       {
         tag: 'Signature',
-        name: 'Worthy Park Daiquiri',
+        name: 'Nuclear Daiquiri',
         lede: 'The benchmark daiquiri. Estate-funky pot-still Jamaican rum, lime, sugar.',
         ingredients: [
           ['Worthy Park Estate Rum', '60 ml'],

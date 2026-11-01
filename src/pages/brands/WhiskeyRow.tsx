@@ -254,7 +254,7 @@ export default function WhiskeyRow() {
         <div className={styles.rangeFrame}>
           <Reveal className={styles.rangeImg}>
             <span className={styles.decoCorner} aria-hidden />
-            <img src={bottle.image ?? IMG('bottle')} alt={bottle.name} loading="lazy" />
+            <img src="/images/house-whiskey-row.webp" alt={`${bottle.name} bottle, original Main Street label`} loading="lazy" />
           </Reveal>
           <div className={styles.rangeInfo}>
             <Reveal>
@@ -289,7 +289,7 @@ export default function WhiskeyRow() {
             <h2 className={styles.h2}>The pour.</h2>
           </Reveal>
           <Reveal delay={0.12}>
-            <img className={styles.tastingImg} src={IMG('cask-serve')} alt="Whiskey Row bourbon with a glass on the rocks" loading="lazy" />
+            <img className={styles.tastingImg} src="/images/house-whiskey-row.webp" alt="Whiskey Row straight bourbon bottle, original Main Street label" loading="lazy" />
           </Reveal>
         </div>
 
