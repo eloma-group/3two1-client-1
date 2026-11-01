@@ -343,7 +343,7 @@ export const footerColumns = [
 /** The people behind the trade desk — shown on Our Story and Contact. */
 export const team = [
   { name: 'Charles Docus',   role: 'Founder & Managing Director' },
-  { name: 'Liah Pettigrew',  role: 'National Sales · On-Trade' },
+  { name: 'Leah Pettigrew',  role: 'National Accounts' },
   { name: 'Yannick Douzals', role: 'Brand Ambassador · Educator' },
 ];
 

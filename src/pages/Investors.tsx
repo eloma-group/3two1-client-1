@@ -203,23 +203,32 @@ const project = (lat: number, lng: number) => ({
 });
 const HQ = PLACES.find((p) => p.hq)!;
 
-/** Dot map of Australia: freight lines run out of Perth to every city we serve. */
+/** Dot map of Australia: freight lines link every city we serve to every other. */
 function FootprintMap() {
   const reduced = useReducedMotion();
   const ref = useRef<HTMLElement>(null);
   const inView = useInView(ref, { once: true, margin: '-12% 0px' });
   const open = reduced || inView;
 
-  const hq = project(HQ.lat, HQ.lng);
-  const routes = PLACES.filter((p) => !p.hq).map((p) => {
-    const to = project(p.lat, p.lng);
-    /* Bow each line north by a share of its length so the routes fan out over
-       the continent instead of stacking along the south coast. */
-    const dist = Math.hypot(to.x - hq.x, to.y - hq.y);
-    const cx = (hq.x + to.x) / 2;
-    const cy = (hq.y + to.y) / 2 - dist * 0.3;
-    return { name: p.name, cy, d: `M${hq.x},${hq.y} Q${cx},${cy} ${to.x},${to.y}` };
-  });
+  /* Every city links to every other, Perth's lines first so they draw in
+     ahead of the city-to-city mesh. */
+  const centre = project(-25, 134);
+  const ordered = [HQ, ...PLACES.filter((p) => !p.hq)];
+  const routes = ordered.flatMap((a, i) => ordered.slice(i + 1).map((b) => {
+    const from = project(a.lat, a.lng);
+    const to = project(b.lat, b.lng);
+    /* Bow each line inland by a share of its length so the routes fan out over
+       the continent instead of stacking along the coast. */
+    const dist = Math.hypot(to.x - from.x, to.y - from.y);
+    const mx = (from.x + to.x) / 2;
+    const my = (from.y + to.y) / 2;
+    let nx = (to.y - from.y) / dist;
+    let ny = -(to.x - from.x) / dist;
+    if (nx * (centre.x - mx) + ny * (centre.y - my) < 0) { nx = -nx; ny = -ny; }
+    const cx = mx + nx * dist * 0.3;
+    const cy = my + ny * dist * 0.3;
+    return { name: `${a.name}-${b.name}`, cy, d: `M${from.x},${from.y} Q${cx},${cy} ${to.x},${to.y}` };
+  }));
   /* Stack the arcs top to bottom and flip every other one, so neighbouring
      routes flow in opposite directions. */
   const stacked = [...routes].sort((a, b) => a.cy - b.cy).map((r) => r.name);
@@ -230,7 +239,7 @@ function FootprintMap() {
       className={styles.mapFigure}
       ref={ref}
       role="img"
-      aria-label={`Map of Australia with delivery routes from Perth to ${routes.map((r) => r.name).join(', ')}`}
+      aria-label={`Map of Australia with delivery routes linking ${PLACES.map((p) => p.name).join(', ')}`}
     >
       <svg viewBox="-30 0 900 700" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
         <motion.g
@@ -259,7 +268,7 @@ function FootprintMap() {
               className={styles.mapRoute}
               initial={reduced ? false : { pathLength: 0 }}
               animate={open ? { pathLength: 1 } : undefined}
-              transition={{ duration: 1.3, delay: 0.5 + i * 0.16, ease }}
+              transition={{ duration: 1.3, delay: 0.5 + i * 0.1, ease }}
             />
             {/* Stock on the move: a dashed overlay that crawls along the route
                 once it has drawn. */}
@@ -269,7 +278,7 @@ function FootprintMap() {
                 className={`${styles.mapFlow} ${reversed(r.name) ? styles.mapFlowReverse : ''}`}
                 initial={{ opacity: 0 }}
                 animate={open ? { opacity: 1 } : undefined}
-                transition={{ duration: 0.6, delay: 1.8 + i * 0.16 }}
+                transition={{ duration: 0.6, delay: 1.8 + i * 0.1 }}
               />
             )}
           </g>

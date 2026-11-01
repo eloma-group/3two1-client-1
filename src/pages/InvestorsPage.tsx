@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState, type ReactNode } from 'react';
 import { motion, useInView, useReducedMotion, useScroll, useTransform } from 'framer-motion';
-import { Mail, ArrowRight } from 'lucide-react';
+import { Mail, ArrowRight, ArrowUpRight } from 'lucide-react';
 import { contact } from '../data/content';
 import Reveal, { RevealHeading } from '../components/Reveal';
 import MagneticButton from '../components/MagneticButton';
@@ -35,9 +35,9 @@ const BALANCE = [
 
 const JOURNEY = [
   { year: '2017', customers: 10, units: '1,800 units · 3 pallets', note: 'Started alone - hand selling the quality of the product and delivering by the unit.' },
-  { year: '2019', customers: 150, units: '7,894 units · 11 pallets', note: 'Hired Yannick, well known in WA hospitality, who extended our contract base. Jimmy Houston later brought in Dan Murphy’s.' },
+  { year: '2019', customers: 150, units: '7,894 units · 11 pallets' },
   { year: '2022', customers: 1000, units: '45,200 units · 68 pallets', note: 'Ranged in all major wholesalers across the country, with recurring orders - and more products in a better blend.' },
-  { year: '2024', customers: 2300, units: '68,645 units · 105 pallets', note: 'Welcomed The London Essence Co. and scaled it to 8,000 cases a year.' },
+  { year: '2024', customers: 2300, units: '68,645 units · 105 pallets' },
 ];
 
 const JOURNEY_POINTS = [
@@ -122,13 +122,6 @@ const FUNDS = [
   { label: 'Staff', pct: 25.6, color: 'var(--rose-500)' },
   { label: 'Working capital', pct: 17.9, color: 'var(--coral)' },
   { label: 'Marketing', pct: 5.1, color: 'var(--peach)' },
-];
-
-const EXIT_ROUTES = [
-  'Share buyback by current shareholders, or a share sale',
-  'A competing beer portfolio',
-  'A brand - several we speak to are known to buy out their distributors',
-  'U.S. venture capital trusts investing in their own distribution',
 ];
 
 const LEADERS = [
@@ -428,7 +421,7 @@ export default function InvestorsPage({ ready = true }: { ready?: boolean }) {
                   <p className={styles.mBig}><CountUp to={m.customers} suffix={i === JOURNEY.length - 1 ? '+' : ''} /></p>
                   <p className={styles.mLabel}>Customers</p>
                   <p className={styles.mUnits}>{m.units}</p>
-                  <p className={styles.mNote}>{m.note}</p>
+                  {'note' in m && <p className={styles.mNote}>{m.note}</p>}
                 </article>
               </Reveal>
             ))}
@@ -688,24 +681,24 @@ export default function InvestorsPage({ ready = true }: { ready?: boolean }) {
             <FundsDonut />
           </div>
           )}
-          {/* On its own the Exit card would stretch the full container; keep it card-sized. */}
-          <div style={SHOW.funds ? undefined : { maxWidth: 720 }}>
-            <SectionHead kicker="Exit" lead="A clear" accent="way out." />
-            <Reveal y={22} delay={0.1}>
-              <div className={styles.exit}>
-                <div className={styles.exitTop}>
-                  <div><p className={styles.exitBig}>4-7</p><p className={styles.exitLabel}>years to exit</p></div>
-                  <div><p className={styles.exitBig}>4x</p><p className={styles.exitLabel}>est. EBITDA</p></div>
-                </div>
-                <ul className={styles.exitList}>
-                  {EXIT_ROUTES.map((r) => <li key={r}>{r}</li>)}
-                </ul>
-                <p className={styles.fine}>
-                  Market precedents: Island to Island (now Proximo), Vanguard Brands (Lion) and Amber
-                  Spirits (formerly Think Spirits).
-                </p>
-              </div>
-            </Reveal>
+          <div className={styles.exitPanel}>
+            <div className={styles.exitIntro}>
+              <SectionHead kicker="Exit" lead="A clear" accent="way out." light />
+            </div>
+            <div className={styles.exitStats}>
+              {[
+                { big: '4-7', label: 'years to exit' },
+                { big: '4x', label: 'est. EBITDA' },
+              ].map((x, i) => (
+                <Reveal key={x.label} y={22} delay={0.1 + i * 0.12}>
+                  <div className={styles.exitStat}>
+                    <ArrowUpRight className={styles.exitIcon} size={20} aria-hidden="true" />
+                    <p className={styles.exitBig}>{x.big}</p>
+                    <p className={styles.exitLabel}>{x.label}</p>
+                  </div>
+                </Reveal>
+              ))}
+            </div>
           </div>
         </div>
       </section>

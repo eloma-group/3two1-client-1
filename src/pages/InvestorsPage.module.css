@@ -419,28 +419,83 @@
 .fundList li { display: flex; align-items: center; gap: 0.7rem; padding-bottom: 0.7rem; border-bottom: 1px solid rgba(var(--ink-rgb), 0.08); font-size: 0.95rem; }
 .fundList i { width: 12px; height: 12px; border-radius: 4px; flex-shrink: 0; }
 .fundList strong { margin-left: auto; font-size: 1.1rem; font-weight: 800; }
-.exit {
-  padding: clamp(1.4rem, 2.6vw, 2rem);
-  border-radius: var(--radius);
-  background: var(--card);
-  border: 1px solid var(--card-border);
+/* Exit: a dark panel with the heading on one side and the two figures on the
+   other. Fixed dark colours so it reads the same in both themes. */
+.exitPanel {
+  position: relative;
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr);
+  align-items: center;
+  gap: clamp(1.6rem, 4vw, 3.5rem);
+  padding: clamp(1.6rem, 4.5vw, 3.6rem);
+  border-radius: calc(var(--radius) * 1.4);
+  background:
+    radial-gradient(90% 120% at 0% 0%, rgba(232, 68, 111, 0.38), transparent 60%),
+    radial-gradient(70% 110% at 100% 100%, rgba(255, 125, 132, 0.26), transparent 60%),
+    #1d1015;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  isolation: isolate;
 }
-.exitTop { display: flex; gap: 2.4rem; }
+/* A faint dot grid under the figures, like the footprint map. */
+.exitPanel::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background-image: radial-gradient(rgba(255, 255, 255, 0.09) 1.2px, transparent 1.4px);
+  background-size: 18px 18px;
+  mask-image: linear-gradient(90deg, transparent 30%, #000 85%);
+  -webkit-mask-image: linear-gradient(90deg, transparent 30%, #000 85%);
+}
+.exitIntro .head { margin-bottom: 0; }
+.exitStats { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(0.8rem, 1.8vw, 1.2rem); }
+.exitStat {
+  position: relative;
+  height: 100%;
+  padding: clamp(1.3rem, 2.4vw, 1.9rem);
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(10px);
+  transition: transform 0.4s ease, border-color 0.4s ease, background 0.4s ease;
+}
+.exitStat:hover { transform: translateY(-4px); border-color: rgba(247, 154, 167, 0.5); background: rgba(255, 255, 255, 0.08); }
+.exitIcon {
+  position: absolute;
+  top: clamp(1rem, 2vw, 1.4rem);
+  right: clamp(1rem, 2vw, 1.4rem);
+  color: var(--rose-300);
+  transition: transform 0.4s ease;
+}
+.exitStat:hover .exitIcon { transform: translate(3px, -3px); }
 .exitBig {
-  margin: 0;
-  font-size: clamp(2.6rem, 5vw, 3.8rem);
+  margin: clamp(1.6rem, 3vw, 2.4rem) 0 0;
+  font-size: clamp(3rem, 6.4vw, 5rem);
   font-weight: 800;
-  letter-spacing: -0.05em;
+  letter-spacing: -0.06em;
   line-height: 1;
-  background: var(--grad-brand);
+  background: linear-gradient(120deg, var(--rose-300), var(--coral) 55%, var(--peach));
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
 }
-.exitLabel { margin: 0.3rem 0 0; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(var(--ink-rgb), 0.6); }
-.exitList { margin: 1.4rem 0 0; padding: 0; list-style: none; display: grid; gap: 0.55rem; }
-.exitList li { position: relative; padding-left: 1.3rem; font-size: 0.92rem; line-height: 1.6; color: rgba(var(--ink-rgb), 0.66); }
-.exitList li::before { content: ''; position: absolute; left: 0; top: 0.6em; width: 7px; height: 7px; border-radius: 50%; background: var(--rose-500); }
+.exitLabel {
+  margin: 0.9rem 0 0;
+  padding-top: 0.9rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.7);
+}
+@media (max-width: 820px) {
+  .exitPanel { grid-template-columns: 1fr; }
+}
+@media (max-width: 420px) {
+  .exitStats { grid-template-columns: 1fr; }
+}
 
 /* ── Team ─────────────────────────────────────────────────────────────── */
 .leaders { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: clamp(0.8rem, 1.8vw, 1.3rem); }
