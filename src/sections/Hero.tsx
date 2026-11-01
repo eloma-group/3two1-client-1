@@ -17,17 +17,28 @@ import styles from './Hero.module.css';
 const HERO_HD = '/videos/hero-sydney-harbour.mp4';
 const HERO_SD = '/videos/hero-sydney-harbour-720.mp4';
 
-/** Low-memory devices and data-saver mode start on the 720p file. */
+/** Phones, low-memory devices and data-saver mode start on the 720p file —
+ *  on a phone-sized screen it looks the same and is 40% lighter. */
 function pickHeroVideo() {
   if (typeof navigator === 'undefined') return HERO_HD;
   const nav = navigator as Navigator & { deviceMemory?: number; connection?: { saveData?: boolean } };
-  return (nav.deviceMemory !== undefined && nav.deviceMemory <= 4) || nav.connection?.saveData ? HERO_SD : HERO_HD;
+  const phone = window.matchMedia('(max-width: 860px)').matches;
+  return phone || (nav.deviceMemory !== undefined && nav.deviceMemory <= 4) || nav.connection?.saveData ? HERO_SD : HERO_HD;
 }
 
 export default function Hero({ ready }: { ready: boolean }) {
   const ref = useRef<HTMLElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
   const [heroSrc] = useState(pickHeroVideo);
+  // Only fetch the clip once the page itself has loaded, so its megabytes do
+  // not compete with the scripts, fonts and poster the first paint needs.
+  const [fetchVideo, setFetchVideo] = useState(false);
+  useEffect(() => {
+    if (document.readyState === 'complete') { setFetchVideo(true); return; }
+    const go = () => setFetchVideo(true);
+    window.addEventListener('load', go, { once: true });
+    return () => window.removeEventListener('load', go);
+  }, []);
   const { scrollYProgress } = useScroll({ target: ref, offset: ['start start', 'end start'] });
 
   // Hold the loop on its poster until the splash is done AND the whole clip has
@@ -119,7 +130,7 @@ export default function Hero({ ready }: { ready: boolean }) {
           muted
           loop
           playsInline
-          preload="auto"
+          preload={fetchVideo ? 'auto' : 'metadata'}
           aria-hidden="true"
           /* H.264 only: every device decodes it in hardware. AV1 saved under
              a tenth of the size and falls back to the CPU on most laptops. */

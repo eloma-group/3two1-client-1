@@ -16,7 +16,7 @@
  * All styling is inline (no external CSS file needed).
  */
 
-import { useState, useEffect, useCallback } from 'react'
+import { useState, useEffect, useCallback, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Link } from 'react-router-dom'
 import { brandPage } from '../data/brandPages'
@@ -541,7 +541,8 @@ function ServiceRow({
                             <img
                               src={item.imageUrl}
                               alt={item.imageAlt}
-                              loading="eager"
+                              loading="lazy"
+                              decoding="async"
                               style={{
                                 height: 'clamp(46px, 5vw, 68px)', width: 'auto',
                                 objectFit: 'contain',
@@ -734,7 +735,8 @@ function ImagePanel({ index, override }: { index: number; override?: GalleryItem
             <img
               src={imgUrl}
               alt={imgAlt}
-              loading="eager"
+              loading="lazy"
+              decoding="async"
               onError={(e) => { e.currentTarget.style.visibility = 'hidden' }}
               style={{
                 width: '100%', height: '100%',
@@ -745,7 +747,8 @@ function ImagePanel({ index, override }: { index: number; override?: GalleryItem
             <img
               src={imgUrl}
               alt={imgAlt}
-              loading="eager"
+              loading="lazy"
+              decoding="async"
               onError={(e) => { e.currentTarget.style.visibility = 'hidden' }}
               style={{
                 maxWidth: '100%', maxHeight: '100%',
@@ -835,19 +838,31 @@ export function ServicesSection() {
   const narrow = useMediaQuery('(max-width: 899px)')
   const active = hovered ?? selected ?? 0
 
-  // Preload every panel + gallery image on mount so switching on hover is
-  // instant — no blank background while the new image is fetched.
+  // Preload every panel + gallery image so switching on hover is instant — no
+  // blank background while the new image is fetched. Wait until the section is
+  // within a couple of screens of the viewport: fetching ~8MB of photos on
+  // mount competed with the hero for bandwidth and held back the first paint.
+  const sectionRef = useRef<HTMLElement>(null)
   useEffect(() => {
-    const urls = new Set<string>()
-    SERVICES.forEach((s) => {
-      urls.add(s.imageUrl)
-      s.gallery?.forEach((cat) => cat.items.forEach((g) => urls.add(g.imageUrl)))
-    })
-    urls.forEach((url) => { const img = new Image(); img.src = url })
+    const el = sectionRef.current
+    if (!el) return
+    const preload = () => {
+      const urls = new Set<string>()
+      SERVICES.forEach((s) => {
+        urls.add(s.imageUrl)
+        s.gallery?.forEach((cat) => cat.items.forEach((g) => urls.add(g.imageUrl)))
+      })
+      urls.forEach((url) => { const img = new Image(); img.decoding = 'async'; img.src = url })
+    }
+    const io = new IntersectionObserver((entries) => {
+      if (entries.some((e) => e.isIntersecting)) { io.disconnect(); preload() }
+    }, { rootMargin: '200% 0px' })
+    io.observe(el)
+    return () => io.disconnect()
   }, [])
 
   return (
-    <section id="services" style={{ position: 'relative', overflow: 'clip', background: 'var(--surface)', color: NAVY, fontFamily: "'Inter', system-ui, sans-serif" }}>
+    <section id="services" ref={sectionRef} style={{ position: 'relative', overflow: 'clip', background: 'var(--surface)', color: NAVY, fontFamily: "'Inter', system-ui, sans-serif" }}>
 
       {/* ── Intro header ── */}
       <div

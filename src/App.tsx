@@ -6,12 +6,13 @@ import ScrollProgress from './components/ScrollProgress';
 import Navbar from './components/Navbar';
 import Footer from './sections/Footer';
 import Home from './pages/Home';
-import ContactPage from './pages/ContactPage';
-import Investors from './pages/Investors';
-import BrandRoute from './pages/brands/BrandRoute';
 import ScrollToTop from './components/ScrollToTop';
 
-// The newer routed pages load on demand, so the home page does not ship them.
+// Every page but the home page loads on demand, so the first visit does not
+// ship their code.
+const ContactPage = lazy(() => import('./pages/ContactPage'));
+const Investors = lazy(() => import('./pages/Investors'));
+const BrandRoute = lazy(() => import('./pages/brands/BrandRoute'));
 const Cocktails = lazy(() => import('./pages/Cocktails'));
 const Events = lazy(() => import('./pages/Events'));
 const Portfolio = lazy(() => import('./pages/Portfolio'));
@@ -37,12 +38,12 @@ export default function App() {
       <main>
         <Routes>
           <Route path="/" element={<Home ready={ready} />} />
-          <Route path="/contact" element={<ContactPage />} />
-          <Route path="/our-story" element={<Investors ready={ready} />} />
+          <Route path="/contact" element={<Suspense fallback={blank}><ContactPage /></Suspense>} />
+          <Route path="/our-story" element={<Suspense fallback={blank}><Investors ready={ready} /></Suspense>} />
           <Route path="/brands/black-tears/cuba-libre" element={<Suspense fallback={blank}><CubaLibre /></Suspense>} />
           <Route path="/brands/giffard/range/:shelf" element={<Suspense fallback={blank}><GiffardRange /></Suspense>} />
           <Route path="/brands/:house/:product" element={<Suspense fallback={blank}><ProductPage /></Suspense>} />
-          <Route path="/brands/:slug" element={<BrandRoute />} />
+          <Route path="/brands/:slug" element={<Suspense fallback={blank}><BrandRoute /></Suspense>} />
           <Route path="/cocktails" element={<Suspense fallback={blank}><Cocktails /></Suspense>} />
           <Route path="/events" element={<Suspense fallback={blank}><Events /></Suspense>} />
           <Route path="/portfolio" element={<Suspense fallback={blank}><Portfolio /></Suspense>} />
