@@ -9,41 +9,7 @@
   padding-bottom: clamp(4.5rem, 9svh, 6.5rem);
   overflow: hidden;
   isolation: isolate;
-  background: #140c16;
-}
-
-/* Photo background */
-.videoWrap {
-  position: absolute;
-  inset: 0;
-  z-index: -3;
-  will-change: transform;
-}
-.video {
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: 60% 50%;
-}
-
-/* Legibility + brand tint overlay */
-.overlay {
-  position: absolute;
-  inset: 0;
-  z-index: -2;
-  /* Darkest behind the copy on the left, opening up over the harbour. */
-  background:
-    linear-gradient(90deg, rgba(20, 12, 22, 0.82) 0%, rgba(20, 12, 22, 0.6) 38%, rgba(20, 12, 22, 0.18) 70%, rgba(20, 12, 22, 0.05) 100%),
-    linear-gradient(180deg, rgba(20, 12, 22, 0.35) 0%, transparent 30%, transparent 70%, rgba(20, 12, 22, 0.45) 100%);
-}
-.grain {
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  opacity: 0.05;
-  pointer-events: none;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background: #ffffff;
 }
 
 /* Content */
@@ -54,7 +20,7 @@
   display: inline-flex;
   align-items: center;
   gap: 0.7rem;
-  color: #fff;
+  color: #1c2440;
   margin-bottom: clamp(0.85rem, 2.2svh, 1.6rem);
 }
 .dot {
@@ -71,7 +37,7 @@
 }
 
 .title {
-  color: #fff;
+  color: #1c2440;
   margin-bottom: clamp(1rem, 2.6svh, 1.8rem);
   font-family: var(--font-ui);
   font-weight: 500;
@@ -84,7 +50,7 @@
   max-width: 34ch;
   font-family: var(--font-ui);
   font-size: clamp(1rem, 1.5vw, 1.3rem);
-  color: rgba(255, 255, 255, 0.9);
+  color: rgba(28, 36, 64, 0.82);
   line-height: 1.6;
   margin-bottom: clamp(1.3rem, 3.4svh, 2.6rem);
 }
@@ -95,6 +61,10 @@
   gap: 1rem;
   margin-bottom: clamp(1.1rem, 2.6svh, 1.8rem);
 }
+/* Outline buttons take --fg, which turns light in the dark theme; this hero
+   stays white in both, so pin the text dark. */
+.actions .download { color: #1c2440; }
+.actions .download:hover { color: #fff; }
 
 .channels {
   display: flex;
@@ -156,7 +126,7 @@
   font-size: 0.64rem;
   letter-spacing: 0.28em;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.75);
+  color: rgba(28, 36, 64, 0.6);
   z-index: 2;
   text-align: center;
 }
@@ -180,9 +150,6 @@
     padding-bottom: clamp(1rem, 2.5svh, 2rem);
   }
   .body { max-width: 100%; }
-  /* The copy spans the full width here, so shade the whole photo evenly. */
-  .overlay { background: linear-gradient(180deg, rgba(20, 12, 22, 0.78) 0%, rgba(20, 12, 22, 0.6) 50%, rgba(20, 12, 22, 0.75) 100%); }
-  .video { object-position: 38% 50%; }
   /* No room for the cue once the stack fills the screen, and touch users
      don't need the hint. */
   .scroll { display: none; }
