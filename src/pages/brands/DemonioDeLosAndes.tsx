@@ -8,8 +8,8 @@ import styles from './DemonioDeLosAndes.module.css';
 const ease = [0.16, 1, 0.3, 1] as [number, number, number, number];
 const img = (f: string) => `/images/brands/demonio-de-los-andes/${f}.webp`;
 
-/* What the pisco rules forbid — the four shortcuts named in the values copy. */
-const FORBIDDEN = ['Water', 'Sugar', 'Wood', 'Colour'];
+/* What the pisco rules forbid — the shortcuts named in the values copy. */
+const FORBIDDEN = ['Sugar', 'Wood', 'Colour'];
 /* Capsule colours, in range order: red Acholado, blue Quebranta, green Italia. */
 const CAPSULE = ['#b3202a', '#1f3f8f', '#2f7a3d'];
 const STATIONS = ['Grape', 'Still', 'Bottle'];
