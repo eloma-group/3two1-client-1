@@ -144,7 +144,7 @@ export const brandPages: BrandPage[] = [
     },
     serves: [
       { name: "Tommy's Margarita", build: 'Blanco, lime, agave. Three ingredients, done right.', method: 'Shake, single rock', glass: 'Rocks', image: '/images/brands/pueblo-viejo/tommys-margarita-sea.webp' },
-      { name: 'Paloma', build: 'Reposado, fresh grapefruit, lime, a pinch of salt, soda.', method: 'Build, top with soda', glass: 'Highball', image: pv('paloma') },
+      { name: 'Paloma', build: 'Reposado, fresh grapefruit, lime, a pinch of salt, soda.', method: 'Build, top with soda', glass: 'Highball', image: B('san-matias')('serve-paloma-bar') },
       { name: 'Añejo Old Fashioned', build: 'Añejo, agave syrup, mole bitters, orange.', method: 'Stir down', glass: 'Rocks', image: pv('anejo-old-fashioned') },
     ],
     stock: 'Talk to us about full-range allocations, agave education sessions, and back-bar placement across Australia.',
@@ -515,8 +515,8 @@ export const brandPages: BrandPage[] = [
     facts: [
       { value: '1540s', label: 'Roots of the Tacama vineyard in Ica' },
       { value: '1', label: 'Distillation - straight to proof' },
-      { value: '0', label: 'Water, sugar, wood or colour added' },
-      { value: '40%', label: 'ABV across the range' },
+      { value: '0', label: 'Sugar, wood or colour added' },
+      { value: '100%', label: 'ABV across the range' },
     ],
     trade: [
       'The Pisco Sour, done properly - with training to match',
