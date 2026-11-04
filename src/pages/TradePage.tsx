@@ -188,8 +188,7 @@ function Segment({ data }: { data: TradeSegment }) {
             <figure className={styles.quote}>
               <p className={b.kicker}>Trade voice</p>
               <blockquote>“{data.quote.text}”</blockquote>
-              <figcaption>{data.quote.cite}*</figcaption>
-              <p className={styles.quoteNote}>*Illustrative quote - replace with real testimonial in production.</p>
+              <figcaption>{data.quote.cite}</figcaption>
             </figure>
           </Rise>
         </div>

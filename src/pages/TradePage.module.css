@@ -40,8 +40,3 @@
   font-weight: 600;
   color: rgba(var(--ink-rgb), 0.55);
 }
-.quoteNote {
-  margin: 0.6rem 0 0;
-  font-size: 0.75rem;
-  color: rgba(var(--ink-rgb), 0.38);
-}
