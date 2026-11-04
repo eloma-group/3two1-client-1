@@ -101,20 +101,24 @@ function Fill({ uid }: { uid: string }) {
       ))}
       <rect x="29" y="80" width="9" height="16" fill="#1c2440" />
 
-      {/* Filling line: steps one slot per cycle under the nozzle */}
+      {/* Filling line, indexed like a real one: the belt moves one slot and
+          stops, the nozzle drops into the empty bottle now under it (x 111),
+          fills it, lifts, and only then does the belt move again. */}
       <g clipPath={`url(#${uid}line)`}>
         <g className={styles.conveyor}>
-          <Bottle x={36} fill="empty" />
-          <Bottle x={66} fill="empty" />
-          <Bottle x={96} fill="filling" />
-          <Bottle x={126} fill="full" />
-          <Bottle x={156} fill="full" />
-          <Bottle x={186} fill="full" />
+          <Bottle x={21} fill="empty" />
+          <Bottle x={51} fill="empty" />
+          <Bottle x={81} fill="filling" />
+          <Bottle x={111} fill="full" />
+          <Bottle x={141} fill="full" />
+          <Bottle x={171} fill="full" />
         </g>
       </g>
-      <rect x="105" y="28" width="12" height="9" rx="2" fill="#1c2440" />
-      <path d="M108 37 H114 L112 41 H110 Z" fill="#1c2440" />
-      <rect x="110.2" y="41" width="1.6" height="13" fill="#f06d8f" className={styles.stream} />
+      <g className={styles.nozzle}>
+        <rect x="105" y="28" width="12" height="9" rx="2" fill="#1c2440" />
+        <path d="M108 37 H114 L112 41 H110 Z" fill="#1c2440" />
+        <rect x="110.2" y="41" width="1.6" height="13" fill="#f06d8f" className={styles.stream} />
+      </g>
       <rect x="62" y="90" width="98" height="7" rx="3.5" fill="#1c2440" />
       <line x1="64" y1="93.5" x2="158" y2="93.5" stroke="#4a5577" strokeWidth="2" strokeDasharray="4 6" className={styles.belt} />
     </Card>
@@ -185,7 +189,7 @@ function Warehouse() {
         <rect key={i} x={x} y={y} width="9" height={i > 7 ? 7 : 8} rx="0.8" fill={i % 3 === 0 ? '#e8446f' : '#d9a46a'} />
       ))}
       <path d="M26 60 H90" stroke="#9fb0c6" strokeWidth="2.4" />
-      <text x="58" y="55.5" textAnchor="middle" className={styles.sign}>WAREHOUSE</text>
+      <text x="58" y="55.5" textAnchor="middle" className={styles.sign}>3Two1</text>
 
       {/* Forklift ferrying a crate in and out */}
       <g className={styles.forklift}>

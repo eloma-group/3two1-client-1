@@ -39,7 +39,7 @@
 .title { font-size: 12.5px; font-weight: 700; fill: #1c2440; }
 .note { font-size: 8px; font-weight: 600; fill: #e8446f; letter-spacing: 0.02em; }
 .tiny { font-size: 6.6px; fill: rgba(28, 36, 64, 0.6); letter-spacing: 0.02em; }
-.sign { font-size: 5.6px; font-weight: 800; letter-spacing: 0.14em; fill: #1c2440; }
+.sign { font-size: 7.5px; font-weight: 800; letter-spacing: 0.06em; fill: #e8446f; }
 .hullText { font-size: 6px; font-weight: 800; letter-spacing: 0.2em; fill: #fff; }
 .truckText { font-size: 8px; font-weight: 800; fill: #1c2440; }
 .hotelSign { font-size: 5.6px; font-weight: 800; letter-spacing: 0.16em; fill: #ffd27a; }
@@ -81,21 +81,36 @@
   75% { opacity: 1; transform: scale(1); }
 }
 
-/* ---- 01 Fill: the line steps one 30px slot per cycle ---- */
+/* ---- 01 Fill: one 2.4s cycle per bottle, all on the same clock ----
+   0-30%   belt moves one 30px slot, nozzle up, nothing pouring
+   30-36%  nozzle drops into the bottle now under it
+   38-86%  pour: the stream runs and that bottle fills
+   86-94%  stream stops, nozzle lifts
+   94-100% belt waits, then the next cycle moves it on. */
 .window { animation: window 3.4s steps(1) infinite; }
 @keyframes window { 0%, 100% { opacity: 1; } 60% { opacity: 0.35; } 80% { opacity: 1; } }
-.conveyor { animation: conveyor 1.8s linear infinite; }
-@keyframes conveyor { to { transform: translateX(30px); } }
-.fillUp { transform-origin: 50% 100%; animation: fillUp 1.8s linear infinite; }
-@keyframes fillUp {
-  0%, 18% { transform: scaleY(0); }
-  82%, 100% { transform: scaleY(1); }
+.conveyor { animation: conveyor 2.4s linear infinite; }
+@keyframes conveyor {
+  0% { transform: translateX(0); animation-timing-function: ease-in-out; }
+  30%, 100% { transform: translateX(30px); }
 }
-.stream { animation: stream 1.8s linear infinite; }
+.fillUp { transform-origin: 50% 100%; animation: fillUp 2.4s linear infinite; }
+@keyframes fillUp {
+  0%, 39% { transform: scaleY(0); }
+  86%, 100% { transform: scaleY(1); }
+}
+.nozzle { animation: nozzle 2.4s ease-in-out infinite; }
+@keyframes nozzle {
+  0%, 30% { transform: translateY(0); }
+  36%, 86% { transform: translateY(4px); }
+  94%, 100% { transform: translateY(0); }
+}
+.stream { transform-box: fill-box; transform-origin: 50% 0%; animation: stream 2.4s linear infinite; }
 @keyframes stream {
-  0%, 16% { opacity: 0; }
-  22%, 80% { opacity: 1; }
-  86%, 100% { opacity: 0; }
+  0%, 37% { opacity: 0; transform: scaleY(0); }
+  40% { opacity: 1; transform: scaleY(1); }
+  84% { opacity: 1; transform: scaleY(1); }
+  87%, 100% { opacity: 0; transform: scaleY(0.3); }
 }
 .belt { animation: belt 0.6s linear infinite; }
 @keyframes belt { to { stroke-dashoffset: -10; } }
