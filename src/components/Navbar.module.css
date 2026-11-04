@@ -359,6 +359,7 @@
      push the top of a tall menu off-screen where it can't be scrolled to. */
   padding: 5.5rem var(--page-x) var(--page-x);
   overflow-y: auto;
+  overscroll-behavior: contain;
 }
 :global([data-theme='dark']) .overlay {
   --ov-bg: rgba(24, 12, 18, 0.5);

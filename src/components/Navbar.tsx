@@ -167,10 +167,13 @@ export default function Navbar() {
         {open && (
           <motion.div
             className={styles.overlay}
-            initial={{ clipPath: 'circle(0% at 92% 8%)' }}
-            animate={{ clipPath: 'circle(150% at 92% 8%)' }}
-            exit={{ clipPath: 'circle(0% at 92% 8%)' }}
-            transition={{ duration: 0.7, ease: [0.76, 0, 0.24, 1] }}
+            /* Opacity only. The sheet carries a heavy backdrop blur, and
+               animating its clip-path made mobile browsers recompute that
+               blur against a moving edge every frame, which flickered. */
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
           >
             <button className={styles.close} onClick={() => setOpen(false)} aria-label="Close menu">
               <X size={30} />
