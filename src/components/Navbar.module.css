@@ -40,7 +40,16 @@
 }
 .nav.scrolled { top: clamp(0.5rem, 1.2vw, 1rem); }
 
-:global([data-theme='dark']) .nav {
+/* Dark material: the dark theme, and in either theme whenever the page behind
+   the bar is dark (a black photo, a dark section). The light material is the
+   default above, and also wins in the dark theme over a light backdrop. The
+   ink tokens are swapped too, so the links, logo and buttons stay readable. */
+:global([data-theme='dark']) .nav:not(.glassLight),
+.nav.glassDark {
+  --ink-900: #fbeef0;
+  --ink-800: #f1dee3;
+  --ink-700: #e6cdd4;
+  --btn-border: rgba(255, 255, 255, 0.35);
   --nav-glass: rgba(30, 22, 26, 0.3);
   --nav-glass-scrolled: rgba(30, 22, 26, 0.5);
   --nav-glass-menu: rgba(30, 22, 26, 0.58);
@@ -62,6 +71,13 @@
     0 4px 14px -6px rgba(0, 0, 0, 0.5);
   --nav-blur: blur(12px) saturate(170%) brightness(0.92);
 }
+:global([data-theme='dark']) .nav.glassLight {
+  --ink-900: #0c0507;
+  --ink-800: #140a0e;
+  --ink-700: #1d1015;
+  --btn-border: rgba(180, 31, 82, 0.45);
+}
+
 
 /* The whole header is one compact floating glass pill, centered on screen */
 .bar {
@@ -221,8 +237,10 @@
   transition: height 0.4s var(--ease-out);
 }
 .scrolled .logo { height: clamp(36px, 3.3vw, 44px); }
-:global([data-theme='dark']) .logo {
-  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.5));
+:global([data-theme='dark']) .nav:not(.glassLight) .logo,
+.glassDark .logo {
+  /* A soft light halo lifts the pink mark and the small 'Drinks' line off dark glass */
+  filter: brightness(1.12) drop-shadow(0 0 1px rgba(255, 255, 255, 0.75)) drop-shadow(0 0 7px rgba(255, 255, 255, 0.28));
 }
 
 /* Theme toggle: a glass button inside the glass bar */

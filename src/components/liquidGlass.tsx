@@ -82,3 +82,161 @@ export function trackSheen(e: React.PointerEvent<HTMLElement>) {
   el.style.setProperty('--mx', `${((e.clientX - r.left) / r.width) * 100}%`);
   el.style.setProperty('--my', `${((e.clientY - r.top) / r.height) * 100}%`);
 }
+
+/* ---------------- Adaptive tint ----------------
+   iOS glass flips between a light and a dark material depending on what is
+   behind it, so its text stays readable over a black photo as well as a white
+   page. This samples the page under a few points of the surface: the pixels of
+   an <img>, <video> or background-image there, or else a solid background
+   colour, and reports which material reads better. */
+export type Tone = 'light' | 'dark';
+
+const SAMPLE = 48;
+type Pixels = { data: ImageData; w: number; h: number };
+const imgCache = new Map<string, Pixels | null>();
+const pending = new Set<string>();
+
+function luma(r: number, g: number, b: number) {
+  return (0.2126 * r + 0.7152 * g + 0.0722 * b) / 255;
+}
+
+function parseColor(c: string): [number, number, number, number] | null {
+  const m = c.match(/rgba?\(([^)]+)\)/);
+  if (!m) return null;
+  const p = m[1].split(/[\s,/]+/).filter(Boolean).map(parseFloat);
+  return [p[0], p[1], p[2], p.length > 3 ? p[3] : 1];
+}
+
+/** Downscaled pixels of an image, loaded once per URL (same-origin only). */
+function pixels(src: string): Pixels | null | undefined {
+  if (imgCache.has(src)) return imgCache.get(src);
+  if (!pending.has(src)) {
+    pending.add(src);
+    const im = new Image();
+    im.decoding = 'async';
+    im.onload = () => {
+      try {
+        const cv = document.createElement('canvas');
+        cv.width = cv.height = SAMPLE;
+        const cx = cv.getContext('2d', { willReadFrequently: true })!;
+        cx.drawImage(im, 0, 0, SAMPLE, SAMPLE);
+        imgCache.set(src, { data: cx.getImageData(0, 0, SAMPLE, SAMPLE), w: im.naturalWidth, h: im.naturalHeight });
+      } catch {
+        imgCache.set(src, null);
+      }
+    };
+    im.onerror = () => imgCache.set(src, null);
+    im.src = src;
+  }
+  return undefined;
+}
+
+function pctPos(v: string, free: number) {
+  if (v.endsWith('%')) return (parseFloat(v) / 100) * free;
+  if (v === 'left' || v === 'top') return 0;
+  if (v === 'right' || v === 'bottom') return free;
+  if (v === 'center') return free / 2;
+  return parseFloat(v) || 0;
+}
+
+/** Luminance of an image at a viewport point, honouring object-fit/position. */
+function imageLumaAt(src: string, box: DOMRect, x: number, y: number, fit: string, pos: string) {
+  const px = pixels(src);
+  if (!px || !px.w || !px.h) return null;
+  const nw = px.w;
+  const nh = px.h;
+  let u = (x - box.left) / box.width;
+  let v = (y - box.top) / box.height;
+  if (fit === 'cover' || fit === 'contain') {
+    const s = fit === 'cover' ? Math.max(box.width / nw, box.height / nh) : Math.min(box.width / nw, box.height / nh);
+    const dw = nw * s;
+    const dh = nh * s;
+    const [posX = '50%', posY = '50%'] = pos.split(' ');
+    const ox = pctPos(posX, box.width - dw);
+    const oy = pctPos(posY, box.height - dh);
+    u = (x - box.left - ox) / dw;
+    v = (y - box.top - oy) / dh;
+    if (u < 0 || u > 1 || v < 0 || v > 1) return null;
+  }
+  const i = (Math.min(SAMPLE - 1, Math.max(0, Math.floor(v * SAMPLE))) * SAMPLE + Math.min(SAMPLE - 1, Math.max(0, Math.floor(u * SAMPLE)))) * 4;
+  const d = px.data.data;
+  return luma(d[i], d[i + 1], d[i + 2]);
+}
+
+const frame = typeof document !== 'undefined' ? document.createElement('canvas') : null;
+
+function lumaAt(x: number, y: number, skip: Element): number | null {
+  for (const el of document.elementsFromPoint(x, y)) {
+    if (skip.contains(el) || el.closest('[data-glass-ignore]')) continue;
+    const cs = getComputedStyle(el);
+    if (cs.visibility === 'hidden' || parseFloat(cs.opacity) < 0.3) continue;
+    const box = el.getBoundingClientRect();
+
+    if (el instanceof HTMLImageElement && el.complete && el.currentSrc) {
+      const l = imageLumaAt(el.currentSrc, box, x, y, cs.objectFit, cs.objectPosition);
+      if (l !== null) return l;
+      continue;
+    }
+    if (el instanceof HTMLVideoElement && el.readyState >= 2 && frame) {
+      try {
+        frame.width = frame.height = 8;
+        const cx = frame.getContext('2d', { willReadFrequently: true })!;
+        cx.drawImage(el, 0, 0, 8, 8);
+        const d = cx.getImageData(0, 0, 8, 8).data;
+        let s = 0;
+        for (let i = 0; i < d.length; i += 4) s += luma(d[i], d[i + 1], d[i + 2]);
+        return s / 64;
+      } catch {
+        continue;
+      }
+    }
+    const url = cs.backgroundImage.match(/url\(["']?([^"')]+)["']?\)/);
+    if (url) {
+      const l = imageLumaAt(new URL(url[1], location.href).href, box, x, y, cs.backgroundSize === 'contain' ? 'contain' : cs.backgroundSize === 'cover' ? 'cover' : 'fill', cs.backgroundPosition);
+      if (l !== null) return l;
+    }
+    const c = parseColor(cs.backgroundColor);
+    if (c && c[3] >= 0.6) return luma(c[0], c[1], c[2]);
+  }
+  return null;
+}
+
+/** Which glass material reads best over what is currently behind `ref`. */
+export function useBackdropTone(ref: RefObject<HTMLElement | null>): Tone | null {
+  const [tone, setTone] = useState<Tone | null>(null);
+
+  useLayoutEffect(() => {
+    let raf = 0;
+    const probe = () => {
+      raf = 0;
+      const el = ref.current;
+      if (!el) return;
+      const b = el.getBoundingClientRect();
+      if (!b.width) return;
+      const y = b.top + b.height / 2;
+      const ls: number[] = [];
+      for (const f of [0.08, 0.3, 0.5, 0.7, 0.92]) {
+        const l = lumaAt(b.left + b.width * f, y, el);
+        if (l !== null) ls.push(l);
+      }
+      if (!ls.length) return;
+      const avg = ls.reduce((a, c) => a + c, 0) / ls.length;
+      // A little hysteresis so mid-grey backdrops don't make it flicker.
+      setTone((t) => (avg < 0.42 ? 'dark' : avg > 0.55 ? 'light' : t ?? (avg < 0.5 ? 'dark' : 'light')));
+    };
+    const schedule = () => { if (!raf) raf = requestAnimationFrame(probe); };
+    schedule();
+    window.addEventListener('scroll', schedule, { passive: true });
+    window.addEventListener('resize', schedule);
+    // Carousels, videos and late-loading images change without a scroll.
+    const tick = setInterval(schedule, 700);
+    return () => {
+      cancelAnimationFrame(raf);
+      clearInterval(tick);
+      window.removeEventListener('scroll', schedule);
+      window.removeEventListener('resize', schedule);
+    };
+  }, [ref]);
+
+  return tone;
+}

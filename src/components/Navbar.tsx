@@ -5,7 +5,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { navMenu, contact, portfolioPdf, type MenuEntry } from '../data/content';
 import { scrollToHash } from '../hooks/useLenis';
 import ThemeToggle from './ThemeToggle';
-import { useLiquidGlass, trackSheen } from './liquidGlass';
+import { useLiquidGlass, useBackdropTone, trackSheen } from './liquidGlass';
 import styles from './Navbar.module.css';
 
 /* Springy, slightly underdamped motion, the way iOS glass settles. */
@@ -69,6 +69,8 @@ export default function Navbar() {
   const [drop, setDrop] = useState<string | null>(null);
   const [acc, setAcc] = useState<string | null>(null);
   const { ref: barRef, style: barStyle, filter: barFilter } = useLiquidGlass<HTMLDivElement>();
+  // Light or dark glass, whichever reads over what is behind the bar right now
+  const tone = useBackdropTone(barRef);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
@@ -122,7 +124,7 @@ export default function Navbar() {
   return (
     <>
       <motion.header
-        className={`${styles.nav} ${scrolled ? styles.scrolled : ''}`}
+        className={`${styles.nav} ${scrolled ? styles.scrolled : ''} ${tone === 'dark' ? styles.glassDark : tone === 'light' ? styles.glassLight : ''}`}
         initial={{ y: -120, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 1, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
