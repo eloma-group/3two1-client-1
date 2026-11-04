@@ -40,7 +40,6 @@
 .note { font-size: 8px; font-weight: 600; fill: #e8446f; letter-spacing: 0.02em; }
 .tiny { font-size: 6.6px; fill: rgba(28, 36, 64, 0.6); letter-spacing: 0.02em; }
 .sign { font-size: 7.5px; font-weight: 800; letter-spacing: 0.06em; fill: #e8446f; }
-.hullText { font-size: 6px; font-weight: 800; letter-spacing: 0.2em; fill: #fff; }
 .truckText { font-size: 8px; font-weight: 800; fill: #1c2440; }
 .hotelSign { font-size: 5.6px; font-weight: 800; letter-spacing: 0.16em; fill: #ffd27a; }
 
@@ -172,11 +171,11 @@
   45%, 80% { transform: scaleY(1); }
   95%, 100% { transform: scaleY(0); }
 }
-.pourBottle { transform-origin: center; animation: tilt 4s ease-in-out infinite; }
+.pourBottle { transform-origin: 50% 0%; animation: tilt 4s ease-in-out infinite; } /* pivot = mouth */
 @keyframes tilt {
-  0%, 100% { transform: rotate(18deg); opacity: 0.6; }
-  10%, 45% { transform: rotate(0); opacity: 1; }
-  55% { transform: rotate(18deg); opacity: 0.6; }
+  0%, 100% { transform: rotate(32deg); }
+  10%, 45% { transform: rotate(0); }
+  55% { transform: rotate(32deg); }
 }
 .pourStream { animation: pourStream 4s linear infinite; }
 @keyframes pourStream {

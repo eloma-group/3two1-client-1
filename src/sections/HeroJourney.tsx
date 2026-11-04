@@ -165,7 +165,6 @@ function Ship({ uid }: { uid: string }) {
           ))}
           <path d="M16 70 H108 L100 84 H26 Z" fill="#1c2440" />
           <path d="M19 74 H105" stroke="#e8446f" strokeWidth="2" />
-          <text x="62" y="81.5" textAnchor="middle" className={styles.hullText}>3TWO1</text>
         </g>
         <g className={styles.wake}>
           <path d="M8 82 H18 M4 87 H16" stroke="#fff" strokeWidth="1.6" strokeLinecap="round" />
@@ -289,12 +288,17 @@ function Venues({ uid }: { uid: string }) {
         <path d="M-11 -24 H11 C11 -14 6.5 -10 0 -10 C-6.5 -10 -11 -14 -11 -24Z" fill="none" stroke="#1c2440" strokeWidth="1.3" />
         <path d="M0 -10 V-1 M-6 0 H6" stroke="#1c2440" strokeWidth="1.3" strokeLinecap="round" />
       </g>
-      <g transform="translate(90 40)">
+      {/* Pouring bottle: drawn upright with its mouth at the origin, then
+          laid over the glass neck-down; it tilts about the mouth so the
+          stream always leaves from the same spot. */}
+      <g transform="translate(80 54) rotate(-143) scale(0.8)">
         <g className={styles.pourBottle}>
-          <path d="M-5 -14 V4 C-5 6 -2 7 -2 9 V14 H2 V9 C2 7 5 6 5 4 V-14 Z" fill="#5f9c80" stroke="#1c2440" strokeWidth="1" transform="rotate(-125)" />
+          <path d="M-2 0 H2 V6 C2 8 5 9 5 12 V30 H-5 V12 C-5 9 -2 8 -2 6 Z" fill="#5f9c80" stroke="#1c2440" strokeWidth="1.2" strokeLinejoin="round" />
+          <rect x="-5" y="16" width="10" height="7" fill="#fff" opacity="0.85" />
+          <rect x="-2.4" y="-1.5" width="4.8" height="2" rx="0.6" fill="#1c2440" />
         </g>
       </g>
-      <path d="M81 46 C79 48 77 52 76.5 57" stroke="#f06d8f" strokeWidth="1.8" fill="none" strokeLinecap="round" className={styles.pourStream} />
+      <path d="M79.5 55.5 C78.6 57.5 77.4 59.5 76.8 62.5" stroke="#f06d8f" strokeWidth="1.8" fill="none" strokeLinecap="round" className={styles.pourStream} />
 
       {/* Club */}
       <rect x="106" y="32" width="88" height="62" rx="10" fill="#1c2440" />
