@@ -63,7 +63,7 @@ export default function Cocktails() {
           <Rise className={b.span2} delay={0.06}>
             <div className={`${b.tile} ${b.tileDark} ${styles.stat}`}>
               <span className={b.big}>{brands.length}</span>
-              <p className={b.tileText}>Brands, from Angers to Jalisco.</p>
+              <p className={b.tileText}>Brands.</p>
             </div>
           </Rise>
           <Rise className={b.span2} delay={0.12}>
