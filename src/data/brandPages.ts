@@ -208,7 +208,7 @@ export const brandPages: BrandPage[] = [
     serves: [
       { name: 'Nuclear Daiquiri', build: 'Rumbar Overproof, green Chartreuse, falernum, lime - two high-proof spirits, perfectly balanced.', method: 'Shake hard, fine strain', glass: 'Coupe', image: wp('serve-nuclear-daiquiri'), imagePos: '75% center' },
       { name: 'Rum Old Fashioned', build: 'Single Estate, demerara, mole bitters, flamed orange.', method: 'Stir down', glass: 'Rocks', image: wp('serve-old-fashioned') },
-      { name: 'Jamaican Mai Tai', build: 'Single Estate Reserve, orgeat, lime, dry curaçao.', method: 'Shake, crushed ice', glass: 'Double rocks', image: wp('serve-mai-tai') },
+      { name: 'Jamaican Mai Tai', build: 'Rumbar Overproof, orgeat, lime, dry curaçao.', method: 'Shake, crushed ice', glass: 'Double rocks', image: wp('serve-mai-tai') },
     ],
     stock: "Talk to our trade team about full-range allocations, rum education, and bar training with the estate's heritage in mind.",
     facts: [

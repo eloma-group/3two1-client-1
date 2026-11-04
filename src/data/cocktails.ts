@@ -310,9 +310,9 @@ export const recipeHouses: RecipeHouse[] = [
       {
         tag: 'Tiki',
         name: 'Jamaican Mai Tai',
-        lede: 'The Single Estate Reserve in the classic tiki build.',
+        lede: 'Rumbar Overproof in the classic tiki build.',
         ingredients: [
-          ['Worthy Park Single Estate Reserve', '45 ml'],
+          ['Rumbar Overproof', '45 ml'],
           ['Lime juice', '25 ml'],
           ['Dry curaçao', '15 ml'],
           ['Orgeat', '15 ml'],
