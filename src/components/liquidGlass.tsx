@@ -4,10 +4,14 @@ import { useId, useLayoutEffect, useRef, useState, type CSSProperties, type RefO
    of a glass surface. That needs an SVG displacement filter in backdrop-filter,
    which only Chromium renders; Safari and Firefox keep the plain frosted blur
    the CSS already gives every glass surface. */
+/* Touch devices are left out on purpose: re-running a displacement filter
+   behind the bar on every scroll frame halved the frame rate on phones, for an
+   edge effect too fine to see on a small screen. */
 const SUPPORTED =
   typeof navigator !== 'undefined' &&
   !!(navigator as Navigator & { userAgentData?: { brands?: { brand: string }[] } })
-    .userAgentData?.brands?.some((b) => /Chromium/.test(b.brand));
+    .userAgentData?.brands?.some((b) => /Chromium/.test(b.brand)) &&
+  !window.matchMedia('(pointer: coarse)').matches;
 
 /** Displacement map sized to the surface: neutral grey in the middle, red/green
     ramps toward the edges, so only the rim refracts. */
@@ -202,15 +206,19 @@ function lumaAt(x: number, y: number, skip: Element): number | null {
 }
 
 /** Which glass material reads best over what is currently behind `ref`. */
-export function useBackdropTone(ref: RefObject<HTMLElement | null>): Tone | null {
+export function useBackdropTone(ref: RefObject<HTMLElement | null>, paused = false): Tone | null {
   const [tone, setTone] = useState<Tone | null>(null);
 
   useLayoutEffect(() => {
+    if (paused) return;
     let raf = 0;
+    let idle = 0;
+    let last = 0;
     const probe = () => {
       raf = 0;
+      last = performance.now();
       const el = ref.current;
-      if (!el) return;
+      if (!el || document.hidden) return;
       const b = el.getBoundingClientRect();
       if (!b.width) return;
       const y = b.top + b.height / 2;
@@ -225,18 +233,27 @@ export function useBackdropTone(ref: RefObject<HTMLElement | null>): Tone | null
       setTone((t) => (avg < 0.42 ? 'dark' : avg > 0.55 ? 'light' : t ?? (avg < 0.5 ? 'dark' : 'light')));
     };
     const schedule = () => { if (!raf) raf = requestAnimationFrame(probe); };
+    // Sampling forces style and layout reads, so while scrolling it runs at
+    // most a few times a second and once more when the scroll settles,
+    // rather than on every frame.
+    const onScroll = () => {
+      clearTimeout(idle);
+      idle = window.setTimeout(schedule, 120);
+      if (performance.now() - last > 300) schedule();
+    };
     schedule();
-    window.addEventListener('scroll', schedule, { passive: true });
-    window.addEventListener('resize', schedule);
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll);
     // Carousels, videos and late-loading images change without a scroll.
-    const tick = setInterval(schedule, 700);
+    const tick = setInterval(schedule, 1500);
     return () => {
       cancelAnimationFrame(raf);
+      clearTimeout(idle);
       clearInterval(tick);
-      window.removeEventListener('scroll', schedule);
-      window.removeEventListener('resize', schedule);
+      window.removeEventListener('scroll', onScroll);
+      window.removeEventListener('resize', onScroll);
     };
-  }, [ref]);
+  }, [ref, paused]);
 
   return tone;
 }

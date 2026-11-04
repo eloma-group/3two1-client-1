@@ -70,7 +70,7 @@ export default function Navbar() {
   const [acc, setAcc] = useState<string | null>(null);
   const { ref: barRef, style: barStyle, filter: barFilter } = useLiquidGlass<HTMLDivElement>();
   // Light or dark glass, whichever reads over what is behind the bar right now
-  const tone = useBackdropTone(barRef);
+  const tone = useBackdropTone(barRef, open); // the open mobile menu covers the bar anyway
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
