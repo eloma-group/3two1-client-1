@@ -99,6 +99,11 @@ export type Tone = 'light' | 'dark';
     against clear glass. */
 export type Backdrop = { tone: Tone; solid: boolean };
 
+/** Global material classes (src/glass.css) for a surface over `b`. */
+export function glassClass(b: Backdrop | null) {
+  return `lg-surface${b ? ` lg-${b.tone}` : ''}${b?.solid ? ' lg-solid' : ''}`;
+}
+
 const SAMPLE = 48;
 type Pixels = { data: ImageData; w: number; h: number };
 const imgCache = new Map<string, Pixels | null>();

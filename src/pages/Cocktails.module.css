@@ -11,22 +11,47 @@
   padding: 0.6rem var(--page-x);
 }
 .localInner {
+  position: relative;
   display: flex;
   align-items: center;
   gap: 1.5rem;
   max-width: 1100px;
   margin-inline: auto;
-  padding: 0.55rem 0.6rem 0.55rem 1.3rem;
+  padding: 0.45rem 0.45rem 0.45rem 1.3rem;
   border-radius: 100px;
-  background: var(--glass);
-  border: 1px solid var(--glass-border);
-  backdrop-filter: blur(20px) saturate(1.6);
-  box-shadow: 0 10px 30px -20px rgba(110, 16, 48, 0.4);
+  /* Liquid Glass, same material as the site header (src/glass.css) */
+  background: var(--nav-glass-scrolled);
+  -webkit-backdrop-filter: var(--nav-blur);
+  backdrop-filter: var(--lg, var(--nav-blur));
+  border: 1px solid var(--nav-glass-border);
+  box-shadow: var(--nav-rim), var(--nav-shadow);
+  transition: background 0.5s, box-shadow 0.5s;
 }
-.localTitle { flex-shrink: 0; font-size: 1.05rem; font-weight: 700; letter-spacing: -0.02em; }
+/* Specular sheen that follows the pointer */
+.localInner::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  pointer-events: none;
+  background: radial-gradient(140px 60px at var(--mx, 15%) var(--my, 0%), var(--nav-sheen), transparent 70%);
+}
+@media (pointer: coarse) {
+  .localInner::after { display: none; }
+}
+.localTitle {
+  flex-shrink: 0;
+  font-size: 1.05rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--ink-900);
+  text-shadow: var(--nav-halo);
+}
 .localLinks {
   display: flex;
   gap: 0.2rem;
+  padding: 2px; /* room for the capsule's hairline inside the scroller */
   margin-left: auto;
   overflow-x: auto;
   scrollbar-width: none;
@@ -38,20 +63,23 @@
   padding: 0.45rem 0.85rem;
   font-size: 0.86rem;
   font-weight: 500;
-  color: rgba(var(--ink-rgb), 0.62);
-  transition: color 0.25s;
+  color: rgba(var(--ink-rgb), 0.66);
+  text-shadow: var(--nav-halo);
+  transition: color 0.25s, transform 0.25s var(--ease-out);
 }
+.localLink:active { transform: scale(0.95); }
+.localLabel { position: relative; z-index: 1; }
 .localLink:hover { color: rgb(var(--ink-rgb)); }
 .localOn { color: rgb(var(--ink-rgb)); font-weight: 600; }
-.localDot {
+/* Glass capsule under the section in view; slides between them */
+.localCapsule {
   position: absolute;
-  left: 50%;
-  bottom: 0;
-  width: 5px;
-  height: 5px;
-  margin-left: -2.5px;
-  border-radius: 50%;
-  background: var(--rose-500);
+  inset: 0;
+  z-index: 0;
+  border-radius: 100px;
+  background: var(--nav-capsule);
+  border: 1px solid var(--nav-glass-border);
+  box-shadow: var(--nav-capsule-rim);
 }
 
 /* House rows */

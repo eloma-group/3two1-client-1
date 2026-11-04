@@ -11,6 +11,7 @@ import Cta from '../components/bento/Cta';
 import b from '../components/bento/bento.module.css';
 import { scrollToHash } from '../hooks/useLenis';
 import { usePageSetup } from '../hooks/usePageSetup';
+import { useLiquidGlass, useBackdropTone, trackSheen, glassClass } from '../components/liquidGlass';
 import styles from './Cocktails.module.css';
 
 const RECIPE_COUNT = recipeHouses.reduce((n, h) => n + h.recipes.length, 0);
@@ -33,6 +34,9 @@ function useActiveHouse() {
 }
 
 export default function Cocktails() {
+  // The section bar is the same Liquid Glass as the site header
+  const { ref: localRef, style: localStyle, filter: localFilter } = useLiquidGlass<HTMLDivElement>(0.8);
+  const localBackdrop = useBackdropTone(localRef);
   const navigate = useNavigate();
   usePageSetup('Cocktail Corner');
   const active = useActiveHouse();
@@ -76,8 +80,9 @@ export default function Cocktails() {
       </div>
 
       {/* ── Local nav: sticky, follows the section in view ── */}
-      <nav className={styles.local} aria-label="Cocktail Corner sections">
-        <div className={styles.localInner}>
+      <nav className={`${styles.local} ${glassClass(localBackdrop)}`} aria-label="Cocktail Corner sections">
+        <div ref={localRef} style={localStyle} className={styles.localInner} onPointerMove={trackSheen}>
+          {localFilter}
           <span className={styles.localTitle}>Recipes</span>
           <div className={styles.localLinks}>
             {recipeHouses.map((h) => (
@@ -88,8 +93,14 @@ export default function Cocktails() {
                 aria-current={active === h.id ? 'true' : undefined}
                 onClick={(e) => { e.preventDefault(); scrollToHash(`#${h.id}`); }}
               >
-                {active === h.id && <motion.span layoutId="local-dot" className={styles.localDot} />}
-                {h.name}
+                {active === h.id && (
+                  <motion.span
+                    layoutId="local-capsule"
+                    className={styles.localCapsule}
+                    transition={{ type: 'spring', stiffness: 420, damping: 32, mass: 0.8 }}
+                  />
+                )}
+                <span className={styles.localLabel}>{h.name}</span>
               </a>
             ))}
           </div>

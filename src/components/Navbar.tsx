@@ -5,7 +5,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { navMenu, contact, portfolioPdf, type MenuEntry } from '../data/content';
 import { scrollToHash } from '../hooks/useLenis';
 import ThemeToggle from './ThemeToggle';
-import { useLiquidGlass, useBackdropTone, trackSheen } from './liquidGlass';
+import { useLiquidGlass, useBackdropTone, trackSheen, glassClass } from './liquidGlass';
 import styles from './Navbar.module.css';
 
 /* Springy, slightly underdamped motion, the way iOS glass settles. */
@@ -124,7 +124,7 @@ export default function Navbar() {
   return (
     <>
       <motion.header
-        className={`${styles.nav} ${scrolled ? styles.scrolled : ''} ${backdrop?.tone === 'dark' ? styles.glassDark : backdrop?.tone === 'light' ? styles.glassLight : ''} ${backdrop?.solid ? styles.glassSolid : ''}`}
+        className={`${styles.nav} ${scrolled ? styles.scrolled : ''} ${glassClass(backdrop)}`}
         initial={{ y: -120, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 1, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}

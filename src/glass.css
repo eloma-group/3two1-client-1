@@ -1,0 +1,95 @@
+/* ============================================================
+   Liquid Glass materials, shared by every glass bar (the site header,
+   the All Recipes section bar). A surface gets `lg-surface`, plus
+   `lg-dark` / `lg-light` from what is behind it (useBackdropTone) and
+   `lg-solid` when that backdrop is split or mid-grey. The tokens keep
+   their --nav- names from when only the header used them.
+   ============================================================ */
+.lg-surface {
+  /* Light material: nearly clear, like the dark one. On a white page the
+     glass is drawn by its hairline, inner gloss and shadow rather than by a
+     milky fill, and a white halo keeps the dark text readable over photos. */
+  --nav-glass: rgba(255, 255, 255, 0.12);
+  --nav-glass-scrolled: rgba(255, 255, 255, 0.2);
+  --nav-glass-menu: rgba(255, 255, 255, 0.3);
+  --nav-glass-border: rgba(255, 255, 255, 0.6);
+  --nav-rim:
+    inset 0 1px 0.5px rgba(255, 255, 255, 0.95),
+    inset 0 -1px 0.5px rgba(255, 255, 255, 0.5),
+    inset 1px 0 0.5px rgba(255, 255, 255, 0.4),
+    inset -1px 0 0.5px rgba(255, 255, 255, 0.4),
+    inset 0 12px 16px -12px rgba(255, 255, 255, 0.75),
+    inset 0 -12px 18px -12px rgba(60, 20, 35, 0.1);
+  --nav-shadow:
+    0 0 0 0.5px rgba(60, 20, 35, 0.1),
+    0 10px 34px -10px rgba(60, 20, 35, 0.22),
+    0 1px 3px rgba(0, 0, 0, 0.06);
+  --nav-shadow-scrolled:
+    0 0 0 0.5px rgba(60, 20, 35, 0.12),
+    0 16px 44px -12px rgba(60, 20, 35, 0.3),
+    0 1px 3px rgba(0, 0, 0, 0.08);
+  --nav-sheen: rgba(255, 255, 255, 0.45);
+  --nav-btn: rgba(255, 255, 255, 0.18);
+  --nav-capsule: rgba(255, 255, 255, 0.38);
+  --nav-capsule-rim:
+    0 0 0 0.5px rgba(60, 20, 35, 0.1),
+    inset 0 1px 0.5px rgba(255, 255, 255, 1),
+    inset 0 -1px 0.5px rgba(255, 255, 255, 0.5),
+    0 4px 14px -6px rgba(60, 20, 35, 0.22);
+  --nav-halo: 0 0 2px rgba(255, 255, 255, 0.75), 0 0 10px rgba(255, 255, 255, 0.85);
+  --nav-blur: blur(12px) saturate(190%);
+}
+
+/* Dark material: the dark theme, and in either theme whenever the page behind
+   the bar is dark (a black photo, a dark section). The light material is the
+   default above, and also wins in the dark theme over a light backdrop. The
+   ink tokens are swapped too, so the links, logo and buttons stay readable. */
+[data-theme='dark'] .lg-surface:not(.lg-light),
+.lg-surface.lg-dark {
+  --ink-900: #fbeef0;
+  --ink-800: #f1dee3;
+  --ink-700: #e6cdd4;
+  --ink-rgb: 251, 238, 240;
+  --btn-border: rgba(255, 255, 255, 0.35);
+  --nav-glass: rgba(30, 22, 26, 0.3);
+  --nav-glass-scrolled: rgba(30, 22, 26, 0.5);
+  --nav-glass-menu: rgba(30, 22, 26, 0.58);
+  --nav-glass-border: rgba(255, 255, 255, 0.14);
+  --nav-rim:
+    inset 0 1px 0.5px rgba(255, 255, 255, 0.32),
+    inset 0 -1px 0.5px rgba(255, 255, 255, 0.1),
+    inset 1px 0 0.5px rgba(255, 255, 255, 0.1),
+    inset -1px 0 0.5px rgba(255, 255, 255, 0.1),
+    inset 0 0 22px rgba(255, 255, 255, 0.05);
+  --nav-halo: none;
+  --nav-shadow: 0 10px 34px -10px rgba(0, 0, 0, 0.55);
+  --nav-shadow-scrolled: 0 16px 44px -12px rgba(0, 0, 0, 0.65);
+  --nav-sheen: rgba(255, 255, 255, 0.07);
+  --nav-btn: rgba(255, 255, 255, 0.07);
+  --nav-capsule: rgba(255, 255, 255, 0.13);
+  --nav-capsule-rim:
+    inset 0 1px 0.5px rgba(255, 255, 255, 0.35),
+    inset 0 -1px 0.5px rgba(255, 255, 255, 0.08),
+    0 4px 14px -6px rgba(0, 0, 0, 0.5);
+  --nav-blur: blur(12px) saturate(170%) brightness(0.92);
+}
+[data-theme='dark'] .lg-surface.lg-light {
+  --ink-900: #0c0507;
+  --ink-800: #140a0e;
+  --ink-700: #1d1015;
+  --ink-rgb: 29, 16, 21;
+  --btn-border: rgba(180, 31, 82, 0.45);
+}
+/* Denser tint when the backdrop is split between dark and light (or mid-grey
+   all over): clear glass there leaves neither text colour enough contrast. */
+.lg-surface.lg-solid {
+  --nav-glass: rgba(255, 255, 255, 0.74);
+  --nav-glass-scrolled: rgba(255, 255, 255, 0.78);
+  --nav-glass-menu: rgba(255, 255, 255, 0.82);
+}
+.lg-surface.lg-solid.lg-dark,
+[data-theme='dark'] .lg-surface.lg-solid:not(.lg-light) {
+  --nav-glass: rgba(24, 14, 19, 0.72);
+  --nav-glass-scrolled: rgba(24, 14, 19, 0.76);
+  --nav-glass-menu: rgba(24, 14, 19, 0.8);
+}
