@@ -2,6 +2,12 @@
    Centered-logo navbar with dropdown menus + theme toggle
    ============================================================ */
 .nav {
+  --nav-glass: rgba(255, 255, 255, 0.55);
+  --nav-glass-scrolled: rgba(255, 255, 255, 0.7);
+  --nav-glass-border: rgba(255, 255, 255, 0.6);
+  --nav-glass-sheen: inset 0 1px 0 rgba(255, 255, 255, 0.85), inset 0 -1px 0 rgba(0, 0, 0, 0.04);
+  --nav-shadow: 0 10px 30px -12px rgba(0, 0, 0, 0.18), 0 1px 2px rgba(0, 0, 0, 0.05);
+  --nav-shadow-scrolled: 0 16px 40px -14px rgba(0, 0, 0, 0.26), 0 1px 2px rgba(0, 0, 0, 0.06);
   position: fixed;
   top: clamp(0.8rem, 1.8vw, 1.5rem);
   left: 0;
@@ -15,6 +21,15 @@
 }
 .nav.scrolled { top: clamp(0.5rem, 1.2vw, 1rem); }
 
+:global([data-theme='dark']) .nav {
+  --nav-glass: rgba(28, 20, 24, 0.5);
+  --nav-glass-scrolled: rgba(28, 20, 24, 0.68);
+  --nav-glass-border: rgba(255, 255, 255, 0.12);
+  --nav-glass-sheen: inset 0 1px 0 rgba(255, 255, 255, 0.14), inset 0 -1px 0 rgba(0, 0, 0, 0.2);
+  --nav-shadow: 0 10px 30px -12px rgba(0, 0, 0, 0.5);
+  --nav-shadow-scrolled: 0 16px 40px -14px rgba(0, 0, 0, 0.6);
+}
+
 /* The whole header is one compact floating glass pill, centered on screen */
 .bar {
   display: inline-flex;
@@ -23,15 +38,29 @@
   gap: clamp(1.5rem, 4vw, 3.5rem);
   padding: 0.45rem 0.45rem 0.45rem 1.3rem;
   border-radius: 100px;
-  background: var(--glass);
-  backdrop-filter: blur(20px) saturate(160%);
-  border: 1px solid var(--glass-border);
-  box-shadow: 0 14px 40px -16px rgba(0, 0, 0, 0.25);
-  transition: box-shadow 0.5s var(--ease-out), padding 0.4s var(--ease-out), background 0.5s;
+  position: relative;
+  isolation: isolate;
+  box-shadow: var(--nav-shadow);
+  transition: box-shadow 0.5s var(--ease-out), padding 0.4s var(--ease-out);
 }
-.scrolled .bar {
-  box-shadow: 0 18px 50px -18px rgba(0, 0, 0, 0.38);
+/* Apple-style glass. It sits on a pseudo-element rather than on .bar itself:
+   a backdrop-filter on .bar would make it the backdrop root for the dropdowns,
+   which then blur nothing but the bar instead of the page behind them. */
+.bar::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  background: var(--nav-glass);
+  -webkit-backdrop-filter: blur(28px) saturate(190%);
+  backdrop-filter: blur(28px) saturate(190%);
+  border: 1px solid var(--nav-glass-border);
+  box-shadow: var(--nav-glass-sheen);
+  transition: background 0.5s;
 }
+.scrolled .bar { box-shadow: var(--nav-shadow-scrolled); }
+.scrolled .bar::before { background: var(--nav-glass-scrolled); }
 
 .left { display: flex; align-items: center; gap: clamp(1.4rem, 3vw, 3rem); }
 .right { display: flex; align-items: center; gap: clamp(0.5rem, 1.4vw, 1.1rem); }
@@ -70,11 +99,12 @@
   flex-direction: column;
   gap: 0.1rem;
   padding: 0.6rem;
-  border-radius: 16px;
-  background: var(--glass);
-  backdrop-filter: blur(20px) saturate(160%);
-  border: 1px solid var(--glass-border);
-  box-shadow: 0 24px 50px -20px rgba(0, 0, 0, 0.35);
+  border-radius: 18px;
+  background: var(--nav-glass-scrolled);
+  -webkit-backdrop-filter: blur(28px) saturate(190%);
+  backdrop-filter: blur(28px) saturate(190%);
+  border: 1px solid var(--nav-glass-border);
+  box-shadow: var(--nav-glass-sheen), 0 24px 50px -20px rgba(0, 0, 0, 0.35);
 }
 .twoCol {
   display: grid;
@@ -161,7 +191,9 @@
   position: fixed;
   inset: 0;
   z-index: 950;
-  background: var(--grad-dark);
+  background: rgba(22, 10, 16, 0.62);
+  -webkit-backdrop-filter: blur(40px) saturate(180%);
+  backdrop-filter: blur(40px) saturate(180%);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -246,11 +278,13 @@
     border-right: none;
     border-top: none;
     padding: 0.55rem var(--page-x);
-    background: #fff;
-    backdrop-filter: none;
-    box-shadow: 0 6px 20px -14px rgba(0, 0, 0, 0.3);
+    box-shadow: none;
   }
-  .scrolled .bar { box-shadow: 0 8px 24px -14px rgba(0, 0, 0, 0.4); }
+  .bar::before {
+    border-width: 0 0 1px;
+    box-shadow: none;
+  }
+  .scrolled .bar { box-shadow: 0 8px 24px -16px rgba(0, 0, 0, 0.3); }
   /* Keep the original logo, sized so it stays clear */
   .logo { height: 44px; }
   .scrolled .logo { height: 41px; }
