@@ -23,7 +23,8 @@ export const recipeHouses: RecipeHouse[] = [
     id: 'giffard',
     name: 'Giffard',
     meta: 'Angers, France · Since 1885',
-    image: '/images/brands/giffard/backbar.webp',
+    image: '/images/brands/giffard/serve-white-peach-spritz.webp',
+    imagePos: '55% center',
     recipes: [
       {
         tag: 'Signature',
