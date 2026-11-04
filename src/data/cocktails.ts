@@ -100,7 +100,8 @@ export const recipeHouses: RecipeHouse[] = [
     id: 'black-tears',
     name: 'Black Tears',
     meta: 'Havana, Cuba · Spiced Rum',
-    image: '/images/brands/black-tears/highball.webp',
+    image: '/images/black-tears-cuba-libre-bottle-glass.webp',
+    imagePos: '42% center',
     recipes: [
       {
         tag: 'Twist',
