@@ -152,7 +152,7 @@ function FiguresBand() {
   return (
     <section className={styles.figures} ref={ref}>
       <motion.div className={styles.figuresPhoto} style={reduced ? undefined : { y: photoY }} aria-hidden="true">
-        <img src="/images/about-numbers-bar-pour.webp" alt="" loading="lazy" decoding="async" />
+        <img src="/images/about-numbers-bartender.webp" alt="" loading="lazy" decoding="async" />
       </motion.div>
       <div className={styles.figuresScrim} aria-hidden="true" />
 
