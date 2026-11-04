@@ -16,7 +16,7 @@ const HOLD = 0.07; // share of the loop spent at each station (stationOn keyfram
 const TRAVEL = (1 - N * HOLD) / (N - 1);
 const holdStart = (k: number) => k * (HOLD + TRAVEL);
 
-const TOP = 92; // y of the first node
+const TOP = 110; // y of the first node (clear of the caption above)
 const GAP = 120; // y between nodes
 const SPINE_X = 210;
 const nodeY = (k: number) => TOP + k * GAP;
@@ -421,7 +421,7 @@ export default function HeroJourney() {
 
   return (
     <div ref={wrap} className={styles.wrap} aria-hidden="true">
-      <svg ref={svg} viewBox="0 0 420 700" className={styles.svg}>
+      <svg ref={svg} viewBox="0 0 420 718" className={styles.svg}>
         <defs>
           <linearGradient id={`${uid}flow`} x1="0" y1="0" x2="0" y2="1">
             <stop offset="0" stopColor="#ffb199" />
