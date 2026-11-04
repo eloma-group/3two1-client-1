@@ -341,6 +341,21 @@
 @media (max-width: 760px) {
   .figuresPhoto img { object-position: 68% 50%; }
 }
+/* Wider screens show the whole photo at its own 1584x672 shape, full width and
+   centred in the section, instead of cover-zooming it ~1.7x to fill the tall
+   band (which cut the bartender off). Top and bottom fade into the section's
+   own near-black, and margin-top is a percentage of the width, so -21.21%
+   is half the photo's height. */
+@media (min-width: 761px) {
+  .figuresPhoto {
+    inset: auto 0;
+    top: 50%;
+    margin-top: -21.21%;
+    aspect-ratio: 1584 / 672;
+    -webkit-mask-image: linear-gradient(to bottom, transparent 0%, #000 14%, #000 86%, transparent 100%);
+    mask-image: linear-gradient(to bottom, transparent 0%, #000 14%, #000 86%, transparent 100%);
+  }
+}
 /* Darkest at top-left, where the heading sits, and at the base, under the panel. */
 .figuresScrim {
   position: absolute;
