@@ -370,8 +370,8 @@ export default function Investors({ ready = true }: { ready?: boolean }) {
       kicker: 'Our story',
       heading: 'Built in Australia, poured everywhere.',
       gradientFrom: 2,
-      img: '/images/about-story-harbour-cocktails.webp',
-      alt: 'Four cocktails on a barrel top at sunset, the Sydney Opera House and Harbour Bridge across the water',
+      img: '/images/about-story-harbour-drinks.webp',
+      alt: 'An old fashioned, a cosmopolitan, an iced coffee and a red slushie on a barrel top at sunset, the Sydney Opera House and Harbour Bridge across the water',
       body: (
         <>
           <p className={styles.body}>
