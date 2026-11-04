@@ -12,6 +12,7 @@ const channels = [
 import { scrollToHash } from '../hooks/useLenis';
 import { useMediaQuery } from '../hooks/useMediaQuery';
 import MagneticButton from '../components/MagneticButton';
+import HeroJourney from './HeroJourney';
 import styles from './Hero.module.css';
 
 export default function Hero({ ready }: { ready: boolean }) {
@@ -24,6 +25,9 @@ export default function Hero({ ready }: { ready: boolean }) {
      leaves a tall blank band under it that the network map's pour then has to
      fall through. Phones keep the copy still and let it scroll away. */
   const narrow = useMediaQuery('(max-width: 860px)');
+  /* The field-to-glass scene needs the free column right of the copy, which
+     only opens up on wide screens; below that it isn't mounted at all. */
+  const wide = useMediaQuery('(min-width: 1320px)');
 
   const EASE = [0.16, 1, 0.3, 1] as const;
   const container: Variants = {
@@ -93,6 +97,19 @@ export default function Hero({ ready }: { ready: boolean }) {
           </motion.div>
         </motion.div>
       </motion.div>
+
+      {wide && (
+        <motion.div className={styles.journey} style={{ opacity: fade }}>
+          <motion.div
+            className={styles.journeyIn}
+            initial={{ opacity: 0, x: 40 }}
+            animate={ready ? { opacity: 1, x: 0 } : {}}
+            transition={{ delay: 0.5, duration: 1.2, ease: EASE }}
+          >
+            <HeroJourney />
+          </motion.div>
+        </motion.div>
+      )}
 
       <motion.div
         className={styles.scroll}
