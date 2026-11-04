@@ -204,7 +204,6 @@ export default function WhiskeyRow() {
                 </motion.span>
               ))}
             </div>
-            <p className={styles.mashNote}>Illustrative · high-rye profile</p>
           </Reveal>
 
           {/* Pillar 2 — char scale */}
