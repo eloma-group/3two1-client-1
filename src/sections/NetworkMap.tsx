@@ -4,6 +4,7 @@ import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import styles from './NetworkMap.module.css';
 import { AU_LAND_DOTS } from '../data/auLandDots';
+import { contact } from '../data/content';
 import { POUR_DRIPS, POUR_FILL_LENGTH, POUR_FILL_START, usePourIntoAustralia } from './pourIntoAustralia';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -447,7 +448,7 @@ export default function NetworkMap(
               </div>
               <div className={styles.contactBlock}>
                 <span className={styles.contactLabel}>Trade</span>
-                <a href="tel:0420222313">0420 222 313</a>
+                <a href={`tel:${contact.phone.replace(/\s/g, '')}`}>{contact.phone}</a>
               </div>
             </div>
           </div>

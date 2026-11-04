@@ -302,7 +302,7 @@ export const cocktails: Cocktail[] = [
 
 export const contact = {
   email: 'orders@3two1.com.au',
-  phone: '0420 222 313',
+  phone: '1300 021 321',
   licence: '6090012345',
   hours: 'Mon–Fri · 8.30am – 7.00pm AEST',
   warehouses: 'Sydney, Melbourne, Perth, Auckland',
