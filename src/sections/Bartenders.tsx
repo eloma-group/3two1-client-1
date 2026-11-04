@@ -1,7 +1,9 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { Link } from 'react-router-dom';
 import { ArrowUpRight } from 'lucide-react';
 import { cocktails } from '../data/content';
+import { recipeHouses } from '../data/cocktails';
 import Reveal from '../components/Reveal';
 import styles from './Bartenders.module.css';
 
@@ -20,6 +22,12 @@ const MEDIA: Record<string, string> = {
    whole highball in frame. */
 const MEDIA_POS: Record<string, string> = {
   'San Matías': 'center 62%',
+};
+
+/** "Get the recipe" lands on that house's section of the All Recipes page. */
+const recipeLink = (brand: string) => {
+  const house = recipeHouses.find((h) => h.name === brand);
+  return house ? `/cocktails#${house.id}` : '/cocktails';
 };
 
 const EASE = [0.16, 1, 0.3, 1] as const;
@@ -126,7 +134,7 @@ export default function Bartenders() {
                         <div className={styles.detailInner}>
                           <p className={styles.spec}>{ck.ingredients}</p>
                           <p className={styles.desc}>{ck.desc}</p>
-                          <a href="#contact" className={styles.recipe}>Get the recipe <ArrowUpRight size={16} /></a>
+                          <Link to={recipeLink(ck.brand)} className={styles.recipe}>Get the recipe <ArrowUpRight size={16} /></Link>
                         </div>
                       </motion.div>
                     )}
