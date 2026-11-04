@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import { recipeHouses } from '../data/cocktails';
+import { brands } from '../data/content';
 import Hero from '../components/bento/Hero';
 import Rise from '../components/bento/Rise';
 import Pill from '../components/bento/Pill';
@@ -61,14 +62,14 @@ export default function Cocktails() {
           </Rise>
           <Rise className={b.span2} delay={0.06}>
             <div className={`${b.tile} ${b.tileDark} ${styles.stat}`}>
-              <span className={b.big}>{recipeHouses.length}</span>
+              <span className={b.big}>{brands.length}</span>
               <p className={b.tileText}>Brands, from Angers to Jalisco.</p>
             </div>
           </Rise>
           <Rise className={b.span2} delay={0.12}>
             <div className={`${b.tile} ${b.tileBrand} ${styles.stat}`}>
               <span className={b.big}>ml</span>
-              <p className={b.tileText}>Every spec in measures your team pours by.</p>
+              <p className={b.tileText}>Every spec is in millilitres.</p>
             </div>
           </Rise>
         </div>
