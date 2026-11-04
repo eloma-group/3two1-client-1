@@ -1,5 +1,5 @@
 // All business content extracted from the 3Two1 reference site (3two1.pplx.app)
-// Brand identity (name "3Two1 drinks", pink-coral palette, "The Taste of Passion")
+// Brand identity (name "3Two1 Drinks", pink-coral palette, "The Taste of Passion")
 // comes from the client-supplied logo & splash direction.
 
 export const brand = {

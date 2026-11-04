@@ -304,7 +304,7 @@ export default function ProductPage() {
           <Rise delay={0.05}><h2 className={styles.headLight}>Put it on the back bar.</h2></Rise>
           <Rise delay={0.1}>
             <p className={`${styles.body} ${styles.bodyLight}`}>
-              3Two1 drinks brings {house.name} to venues across Australia, with wholesale supply,
+              3Two1 Drinks brings {house.name} to venues across Australia, with wholesale supply,
               staff training and menu support. Ask us about {isServe ? `the ${p.label}` : p.fullName} and
               the rest of the range.
             </p>

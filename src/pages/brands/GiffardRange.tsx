@@ -156,7 +156,7 @@ function Shelf({ slug }: { slug: string | undefined }) {
           <p className={styles.kickerLight}>For the trade</p>
           <h2 className={styles.tradeHead}>Stock the whole shelf.</h2>
           <p className={styles.tradeBody}>
-            3Two1 drinks brings the Giffard range to bars, bottle shops and cafés across Australia, with
+            3Two1 Drinks brings the Giffard range to bars, bottle shops and cafés across Australia, with
             wholesale supply, staff training and menu support.
           </p>
           <div className={styles.actions}>
