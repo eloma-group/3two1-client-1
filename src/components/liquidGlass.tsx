@@ -94,6 +94,10 @@ export function trackSheen(e: React.PointerEvent<HTMLElement>) {
    an <img>, <video> or background-image there, or else a solid background
    colour, and reports which material reads better. */
 export type Tone = 'light' | 'dark';
+/** `solid` asks for a denser tint: the backdrop is split between dark and
+    light, or is mid-grey all over, so neither text colour has contrast
+    against clear glass. */
+export type Backdrop = { tone: Tone; solid: boolean };
 
 const SAMPLE = 48;
 type Pixels = { data: ImageData; w: number; h: number };
@@ -109,6 +113,31 @@ function parseColor(c: string): [number, number, number, number] | null {
   if (!m) return null;
   const p = m[1].split(/[\s,/]+/).filter(Boolean).map(parseFloat);
   return [p[0], p[1], p[2], p.length > 3 ? p[3] : 1];
+}
+
+/** Rough colour of a stack of CSS gradients: each layer's stops averaged, then
+    the layers composited bottom-up. Cards and panels are often painted with
+    gradients rather than a background colour, and skipping them made the bar
+    read the page underneath instead. */
+function gradientColor(bg: string): [number, number, number, number] | null {
+  const layers = bg.match(/(?:repeating-)?(?:linear|radial|conic)-gradient\((?:[^()]|\([^()]*\))*\)/g);
+  if (!layers) return null;
+  let acc: [number, number, number, number] = [0, 0, 0, 0];
+  for (const layer of layers.reverse()) {
+    const stops = (layer.match(/rgba?\([^)]+\)/g) ?? []).map(parseColor).filter(Boolean) as [number, number, number, number][];
+    if (!stops.length) continue;
+    const a = stops.reduce((s, c) => s + c[3], 0) / stops.length;
+    if (!a) continue;
+    const c = [0, 1, 2].map((k) => stops.reduce((s, x) => s + x[k] * x[3], 0) / (a * stops.length));
+    const out = a + acc[3] * (1 - a);
+    acc = [
+      (c[0] * a + acc[0] * acc[3] * (1 - a)) / out,
+      (c[1] * a + acc[1] * acc[3] * (1 - a)) / out,
+      (c[2] * a + acc[2] * acc[3] * (1 - a)) / out,
+      out,
+    ];
+  }
+  return acc[3] ? acc : null;
 }
 
 /** Downscaled pixels of an image, loaded once per URL (same-origin only). */
@@ -199,15 +228,22 @@ function lumaAt(x: number, y: number, skip: Element): number | null {
       const l = imageLumaAt(new URL(url[1], location.href).href, box, x, y, cs.backgroundSize === 'contain' ? 'contain' : cs.backgroundSize === 'cover' ? 'cover' : 'fill', cs.backgroundPosition);
       if (l !== null) return l;
     }
+    const g = gradientColor(cs.backgroundImage);
     const c = parseColor(cs.backgroundColor);
+    // Gradient over the element's own background colour, if it has one
+    if (g && c && c[3] > 0) {
+      const a = g[3];
+      const mix = [0, 1, 2].map((k) => g[k] * a + c[k] * (1 - a));
+      if (a + c[3] * (1 - a) >= 0.6) return luma(mix[0], mix[1], mix[2]);
+    } else if (g && g[3] >= 0.6) return luma(g[0], g[1], g[2]);
     if (c && c[3] >= 0.6) return luma(c[0], c[1], c[2]);
   }
   return null;
 }
 
 /** Which glass material reads best over what is currently behind `ref`. */
-export function useBackdropTone(ref: RefObject<HTMLElement | null>, paused = false): Tone | null {
-  const [tone, setTone] = useState<Tone | null>(null);
+export function useBackdropTone(ref: RefObject<HTMLElement | null>, paused = false): Backdrop | null {
+  const [backdrop, setBackdrop] = useState<Backdrop | null>(null);
 
   useLayoutEffect(() => {
     if (paused) return;
@@ -223,14 +259,22 @@ export function useBackdropTone(ref: RefObject<HTMLElement | null>, paused = fal
       if (!b.width) return;
       const y = b.top + b.height / 2;
       const ls: number[] = [];
-      for (const f of [0.08, 0.3, 0.5, 0.7, 0.92]) {
+      for (const f of [0.04, 0.15, 0.27, 0.39, 0.5, 0.61, 0.73, 0.85, 0.96]) {
         const l = lumaAt(b.left + b.width * f, y, el);
         if (l !== null) ls.push(l);
       }
       if (!ls.length) return;
       const avg = ls.reduce((a, c) => a + c, 0) / ls.length;
-      // A little hysteresis so mid-grey backdrops don't make it flicker.
-      setTone((t) => (avg < 0.42 ? 'dark' : avg > 0.55 ? 'light' : t ?? (avg < 0.5 ? 'dark' : 'light')));
+      const spread = Math.max(...ls) - Math.min(...ls);
+      const solid = spread > 0.45 || (avg > 0.36 && avg < 0.6);
+      setBackdrop((prev) => {
+        // A little hysteresis so a mid-grey backdrop doesn't flip the tone back
+        // and forth; a split one just follows the majority.
+        const t = prev?.tone;
+        const tone: Tone =
+          avg < 0.42 ? 'dark' : avg > 0.55 ? 'light' : spread > 0.45 || !t ? (avg < 0.5 ? 'dark' : 'light') : t;
+        return prev && prev.tone === tone && prev.solid === solid ? prev : { tone, solid };
+      });
     };
     const schedule = () => { if (!raf) raf = requestAnimationFrame(probe); };
     // Sampling forces style and layout reads, so while scrolling it runs at
@@ -255,5 +299,5 @@ export function useBackdropTone(ref: RefObject<HTMLElement | null>, paused = fal
     };
   }, [ref, paused]);
 
-  return tone;
+  return backdrop;
 }

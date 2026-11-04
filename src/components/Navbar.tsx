@@ -70,7 +70,7 @@ export default function Navbar() {
   const [acc, setAcc] = useState<string | null>(null);
   const { ref: barRef, style: barStyle, filter: barFilter } = useLiquidGlass<HTMLDivElement>();
   // Light or dark glass, whichever reads over what is behind the bar right now
-  const tone = useBackdropTone(barRef, open); // the open mobile menu covers the bar anyway
+  const backdrop = useBackdropTone(barRef, open); // the open mobile menu covers the bar anyway
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
@@ -124,7 +124,7 @@ export default function Navbar() {
   return (
     <>
       <motion.header
-        className={`${styles.nav} ${scrolled ? styles.scrolled : ''} ${tone === 'dark' ? styles.glassDark : tone === 'light' ? styles.glassLight : ''}`}
+        className={`${styles.nav} ${scrolled ? styles.scrolled : ''} ${backdrop?.tone === 'dark' ? styles.glassDark : backdrop?.tone === 'light' ? styles.glassLight : ''} ${backdrop?.solid ? styles.glassSolid : ''}`}
         initial={{ y: -120, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 1, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}

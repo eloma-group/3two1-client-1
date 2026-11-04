@@ -90,6 +90,19 @@
   --ink-700: #1d1015;
   --btn-border: rgba(180, 31, 82, 0.45);
 }
+/* Denser tint when the backdrop is split between dark and light (or mid-grey
+   all over): clear glass there leaves neither text colour enough contrast. */
+.nav.glassSolid {
+  --nav-glass: rgba(255, 255, 255, 0.74);
+  --nav-glass-scrolled: rgba(255, 255, 255, 0.78);
+  --nav-glass-menu: rgba(255, 255, 255, 0.82);
+}
+.nav.glassSolid.glassDark,
+:global([data-theme='dark']) .nav.glassSolid:not(.glassLight) {
+  --nav-glass: rgba(24, 14, 19, 0.72);
+  --nav-glass-scrolled: rgba(24, 14, 19, 0.76);
+  --nav-glass-menu: rgba(24, 14, 19, 0.8);
+}
 
 
 /* The whole header is one compact floating glass pill, centered on screen */
