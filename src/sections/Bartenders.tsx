@@ -10,7 +10,7 @@ const MEDIA: Record<string, string> = {
   'Giffard':      '/images/home-garden-spritz.webp',
   'Black Tears':  '/images/brand-black-tears-coffee-cuba-libre.webp',
   'Pueblo Viejo': '/images/brand-pueblo-viejo-cocktail.webp',
-  'Worthy Park':  '/images/brands/worthy-park/serve-daiquiri-coupe.webp',
+  'Worthy Park':  '/images/brands/worthy-park/serve-nuclear-daiquiri.webp',
   'Burnt Ends':   '/images/brands/burnt-ends/serve-manhattan.webp',
   'San Matías':   '/images/brands/san-matias/serve-paloma-bar.webp',
 };

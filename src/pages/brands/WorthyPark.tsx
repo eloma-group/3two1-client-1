@@ -407,7 +407,7 @@ export default function WorthyPark() {
                 transition={{ duration: 0.9, delay: i * 0.1, ease }}
               >
                 <div className={styles.plateFrame}>
-                  <img src={s.image} alt={s.name} loading="lazy" />
+                  <img src={s.image} alt={s.name} loading="lazy" style={s.imagePos ? { objectPosition: s.imagePos } : undefined} />
                   <span className={styles.plateNo}>Plate {ROMAN[i]}</span>
                 </div>
                 <h3>{s.name}</h3>

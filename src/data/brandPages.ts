@@ -7,7 +7,7 @@
 
 export interface Pillar { title: string; body: string }
 export interface Expression { name: string; spec: string; note: string; image?: string }
-export interface Serve { name: string; build: string; method: string; glass: string; image?: string }
+export interface Serve { name: string; build: string; method: string; glass: string; image?: string; imagePos?: string }
 export interface Fact { value: string; label: string }
 
 export interface BrandPage {
@@ -206,7 +206,7 @@ export const brandPages: BrandPage[] = [
       serve: 'Neat in a Glencairn, or in a rum old fashioned with demerara and a flamed orange peel.',
     },
     serves: [
-      { name: 'Nuclear Daiquiri', build: 'Rumbar Overproof, green Chartreuse, falernum, lime - two high-proof spirits, perfectly balanced.', method: 'Shake hard, fine strain', glass: 'Coupe', image: wp('serve-daiquiri-coupe') },
+      { name: 'Nuclear Daiquiri', build: 'Rumbar Overproof, green Chartreuse, falernum, lime - two high-proof spirits, perfectly balanced.', method: 'Shake hard, fine strain', glass: 'Coupe', image: wp('serve-nuclear-daiquiri'), imagePos: '75% center' },
       { name: 'Rum Old Fashioned', build: 'Single Estate, demerara, mole bitters, flamed orange.', method: 'Stir down', glass: 'Rocks', image: wp('serve-old-fashioned') },
       { name: 'Jamaican Mai Tai', build: 'Single Estate Reserve, orgeat, lime, dry curaçao.', method: 'Shake, crushed ice', glass: 'Double rocks', image: wp('serve-mai-tai') },
     ],

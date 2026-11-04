@@ -13,6 +13,8 @@ export interface RecipeHouse {
   name: string;
   meta: string;
   image: string;
+  /** object-position for the cover tile crop, when the subject is off-centre. */
+  imagePos?: string;
   recipes: Recipe[];
 }
 
@@ -276,7 +278,8 @@ export const recipeHouses: RecipeHouse[] = [
     id: 'worthy-park',
     name: 'Worthy Park',
     meta: 'St. Catherine, Jamaica · Estate Rum & Rumbar Overproof',
-    image: '/images/brands/worthy-park/serve-daiquiri-coupe.webp',
+    image: '/images/brands/worthy-park/serve-nuclear-daiquiri.webp',
+    imagePos: '75% center',
     recipes: [
       {
         tag: 'Signature',
