@@ -98,7 +98,7 @@ const SERVICES: Service[] = [
       {
         label: 'Signature Serve',
         items: [
-          { imageUrl: '/images/brand-black-tears-cuba-libre.webp', label: 'Cuba Libre', imageAlt: 'Cuba Libre made with Black Tears dry spiced rum, cola and a fresh lime wheel', scene: true, to: '/brands/black-tears/cuba-libre' },
+          { imageUrl: '/images/black-tears-cuba-libre-bottle-glass.webp', label: 'Cuba Libre', imageAlt: 'Cuba Libre made with Black Tears dry spiced rum, cola and a fresh lime wheel', scene: true, to: '/brands/black-tears/cuba-libre' },
         ],
       },
     ],

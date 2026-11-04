@@ -141,7 +141,7 @@ export default function CubaLibre() {
           </motion.div>
 
           <motion.figure className={styles.heroGlass} style={reduce ? undefined : { y: glassY }}>
-            <img src="/images/brand-black-tears-cuba-libre.webp" alt="A Black Tears Cuba Libre in a tall glass with ice and lime wedges" />
+            <img src="/images/black-tears-cuba-libre-bottle-glass.webp" alt="A bottle of Black Tears Dry Spiced beside a Cuba Libre in a tall glass with ice and a lime wheel" />
           </motion.figure>
         </div>
       </section>
