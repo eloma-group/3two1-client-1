@@ -248,14 +248,18 @@
   height: clamp(40px, 3.9vw, 52px);
   width: auto;
   opacity: 1;
-  filter: drop-shadow(0 2px 6px rgba(110, 16, 48, 0.28));
+  /* The vector logo stays sharp at any size and zoom (the 779px PNG went soft
+     scaled down to ~48px). A hairline edge, not a soft glow: a blurred shadow
+     on a mark this small reads as the logo itself being out of focus. It also
+     keeps the pale peach pieces from vanishing into light glass. */
+  filter: drop-shadow(0 0 0.5px rgba(110, 16, 48, 0.4));
   transition: height 0.4s var(--ease-out);
 }
 .scrolled .logo { height: clamp(36px, 3.3vw, 44px); }
 :global([data-theme='dark']) .nav:not(.glassLight) .logo,
 .glassDark .logo {
-  /* A soft light halo lifts the pink mark and the small 'Drinks' line off dark glass */
-  filter: brightness(1.12) drop-shadow(0 0 1px rgba(255, 255, 255, 0.75)) drop-shadow(0 0 7px rgba(255, 255, 255, 0.28));
+  /* A light hairline lifts the pink mark and the small 'Drinks' line off dark glass */
+  filter: brightness(1.12) drop-shadow(0 0 0.6px rgba(255, 255, 255, 0.85));
 }
 
 /* Theme toggle: a glass button inside the glass bar */

@@ -139,7 +139,7 @@ export default function Navbar() {
               onClick={(e) => { e.preventDefault(); go('#top'); }}
               data-cursor="Top"
             >
-              <img src="/images/logo.png" alt="3Two1 Drinks" className={styles.logo} />
+              <img src="/images/logo.svg" alt="3Two1 Drinks" className={styles.logo} />
             </a>
             <nav className={styles.links}>
               {navMenu.map((m) => (
