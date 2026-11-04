@@ -5,7 +5,61 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { navMenu, contact, portfolioPdf, type MenuEntry } from '../data/content';
 import { scrollToHash } from '../hooks/useLenis';
 import ThemeToggle from './ThemeToggle';
+import { useLiquidGlass, trackSheen } from './liquidGlass';
 import styles from './Navbar.module.css';
+
+/* Springy, slightly underdamped motion, the way iOS glass settles. */
+const spring = { type: 'spring', stiffness: 420, damping: 32, mass: 0.8 } as const;
+
+type Go = (to: string) => void;
+
+function SubMenu({ item, go }: { item: MenuEntry; go: Go }) {
+  const { ref, style, filter } = useLiquidGlass<HTMLDivElement>(0.6);
+  const [hover, setHover] = useState<string | null>(null);
+  return (
+    <div className={styles.dropdown}>
+      <motion.div
+        ref={ref}
+        style={style}
+        className={`${styles.dropInner} ${item.children.length > 4 ? styles.twoCol : ''}`}
+        initial={{ opacity: 0, y: -8, scale: 0.92 }}
+        animate={{ opacity: 1, y: 0, scale: 1 }}
+        exit={{ opacity: 0, y: -6, scale: 0.95, transition: { duration: 0.18 } }}
+        transition={spring}
+        onPointerMove={trackSheen}
+        onMouseLeave={() => setHover(null)}
+      >
+        {filter}
+        {item.children.map((c) => (
+          <button
+            key={c.label}
+            className={styles.dropLink}
+            onMouseEnter={() => setHover(c.label)}
+            onClick={() => go(c.to)}
+          >
+            {hover === c.label && (
+              <motion.span layoutId={`sub-${item.label}`} className={styles.subCapsule} transition={spring} />
+            )}
+            <span className={styles.dropLabel}>{c.label}</span>
+          </button>
+        ))}
+      </motion.div>
+    </div>
+  );
+}
+
+function NavItem({ item, open, setDrop, go }: { item: MenuEntry; open: boolean; setDrop: (l: string | null) => void; go: Go }) {
+  return (
+    <div className={styles.item} onMouseEnter={() => setDrop(item.label)} onMouseLeave={() => setDrop(null)}>
+      {open && <motion.span layoutId="navCapsule" className={styles.capsule} transition={spring} />}
+      <button className={styles.link} onClick={() => go(item.to)} aria-expanded={open}>
+        {item.label}
+        <ChevronDown size={14} className={styles.chev} />
+      </button>
+      <AnimatePresence>{open && <SubMenu item={item} go={go} />}</AnimatePresence>
+    </div>
+  );
+}
 
 export default function Navbar() {
   const navigate = useNavigate();
@@ -14,6 +68,7 @@ export default function Navbar() {
   const [open, setOpen] = useState(false);
   const [drop, setDrop] = useState<string | null>(null);
   const [acc, setAcc] = useState<string | null>(null);
+  const { ref: barRef, style: barStyle, filter: barFilter } = useLiquidGlass<HTMLDivElement>();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
@@ -64,42 +119,6 @@ export default function Navbar() {
     setTimeout(() => scrollToHash(id), delay);
   };
 
-  const Dropdown = ({ item }: { item: MenuEntry }) => (
-    <div
-      className={styles.item}
-      onMouseEnter={() => setDrop(item.label)}
-      onMouseLeave={() => setDrop(null)}
-    >
-      <button
-        className={styles.link}
-        onClick={() => go(item.to)}
-        aria-expanded={drop === item.label}
-      >
-        {item.label}
-        <ChevronDown size={14} className={styles.chev} />
-      </button>
-      <AnimatePresence>
-        {drop === item.label && (
-          <motion.div
-            className={styles.dropdown}
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: 8 }}
-            transition={{ duration: 0.28, ease: [0.16, 1, 0.3, 1] }}
-          >
-            <div className={`${styles.dropInner} ${item.children.length > 4 ? styles.twoCol : ''}`}>
-              {item.children.map((c) => (
-                <button key={c.label} className={styles.dropLink} onClick={() => go(c.to)}>
-                  {c.label}
-                </button>
-              ))}
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </div>
-  );
-
   return (
     <>
       <motion.header
@@ -108,7 +127,8 @@ export default function Navbar() {
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 1, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
       >
-        <div className={styles.bar}>
+        <div ref={barRef} style={barStyle} className={styles.bar} onPointerMove={trackSheen}>
+          {barFilter}
           {/* Left: logo + links */}
           <div className={styles.left}>
             <a
@@ -119,7 +139,11 @@ export default function Navbar() {
             >
               <img src="/images/logo.png" alt="3Two1 Drinks" className={styles.logo} />
             </a>
-            <nav className={styles.links}>{navMenu.map((m) => <Dropdown key={m.label} item={m} />)}</nav>
+            <nav className={styles.links}>
+              {navMenu.map((m) => (
+                <NavItem key={m.label} item={m} open={drop === m.label} setDrop={setDrop} go={go} />
+              ))}
+            </nav>
           </div>
 
           {/* Right: toggle + portfolio */}
