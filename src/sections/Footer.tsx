@@ -78,6 +78,7 @@ export default function Footer() {
               <ul>
                 <li><a href={`mailto:${contact.email}`}>{contact.email} <ArrowUpRight size={13} /></a></li>
                 <li><a href={`tel:${contact.phone.replace(/\s/g, '')}`}>{contact.phone}</a></li>
+                <li><a href={`tel:${contact.mobile.replace(/\s/g, '')}`}>{contact.mobile}</a></li>
                 <li className={styles.info}><span>Existing Customer</span>{contact.hours}</li>
                 <li className={styles.info}><span>Warehouses</span>{contact.warehouses}</li>
                 <li className={styles.info}><span>Wholesalers</span>{contact.wholesalers}</li>

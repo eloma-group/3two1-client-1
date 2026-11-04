@@ -18,6 +18,7 @@ const STEPS = ['Contact', 'Trade account', 'Team'];
 const EXISTING = [
   { label: 'Orders & admin', value: contact.email, href: `mailto:${contact.email}` },
   { label: 'Trade phone', value: contact.phone, href: `tel:${contact.phone.replace(/\s/g, '')}` },
+  { label: 'Mobile', value: contact.mobile, href: `tel:${contact.mobile.replace(/\s/g, '')}` },
   { label: 'Hours', value: contact.hours },
   { label: 'Warehouses', value: contact.warehouses },
 ];
@@ -80,6 +81,9 @@ export default function ContactPage() {
               </a>
               <a href={`tel:${contact.phone.replace(/\s/g, '')}`} className={page.headerLink} data-cursor="Call">
                 <Phone size={17} /> {contact.phone}
+              </a>
+              <a href={`tel:${contact.mobile.replace(/\s/g, '')}`} className={page.headerLink} data-cursor="Call">
+                <Phone size={17} /> {contact.mobile}
               </a>
             </div>
           </Reveal>
