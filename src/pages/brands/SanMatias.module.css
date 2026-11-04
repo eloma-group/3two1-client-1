@@ -592,38 +592,6 @@
   color: var(--agave); border-bottom: 1px solid currentColor; padding-bottom: 2px;
 }
 
-/* ── Tasting card ────────────────────────────────────────────────── */
-.tasting {
-  padding: clamp(5rem, 11vw, 10rem) var(--page-x);
-  background:
-    radial-gradient(60% 60% at 50% 40%, rgba(255, 255, 255, 0.08), transparent 70%),
-    linear-gradient(160deg, var(--adobe), var(--terra) 60%, var(--terra-deep));
-  display: grid; place-items: center;
-}
-.card {
-  width: min(100%, 720px);
-  background: #fbf5ea;
-  padding: clamp(2rem, 5vw, 4rem);
-  box-shadow: 0 40px 80px -30px rgba(42, 12, 4, 0.7), 0 0 0 1px rgba(184, 146, 74, 0.5) inset, 0 0 0 10px #fbf5ea inset, 0 0 0 11px rgba(184, 146, 74, 0.6) inset;
-  position: relative;
-}
-.cardTop {
-  display: flex; justify-content: space-between;
-  font-family: var(--caps); font-size: 0.72rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--terra);
-  padding-bottom: 1rem; border-bottom: 1px solid rgba(184, 146, 74, 0.5);
-}
-.cardTitle { font-size: clamp(2.2rem, 4.4vw, 3.6rem); font-style: italic; font-weight: 400; margin-top: 1.4rem; color: var(--agave-deep); line-height: 1; }
-.notes { margin-top: 2rem; display: flex; flex-direction: column; }
-.note { display: grid; grid-template-columns: 7rem 1fr; gap: 1rem; padding: 1rem 0; border-bottom: 1px dotted rgba(108, 85, 69, 0.4); }
-.note dt { font-family: var(--serif); font-style: italic; font-size: 1.35rem; color: var(--terra); }
-.note dd { margin: 0; font-family: var(--serif); font-size: 1.25rem; line-height: 1.45; color: var(--ink); }
-.cardServe { margin-top: 1.6rem; line-height: 1.75; color: var(--ink-soft); }
-.cardServe em { font-family: var(--serif); color: var(--terra); font-size: 1.15em; }
-.signature {
-  display: block; text-align: right; margin-top: 1.8rem;
-  font-family: var(--serif); font-style: italic; font-size: calc(1.6rem * 0.86); color: var(--gold);
-}
-
 /* ── Serves ──────────────────────────────────────────────────────── */
 .serves { padding: clamp(5rem, 11vw, 10rem) var(--page-x); background: var(--lime); }
 /* Columns follow the number of serves, capped so two arches stay arch-sized. */
@@ -709,7 +677,6 @@
 
 @media (max-width: 520px) {
   .niches { grid-template-columns: 1fr; max-width: 320px; margin-inline: auto; }
-  .note { grid-template-columns: 1fr; gap: 0.2rem; }
   .seal { width: 120px; }
   .tileBand { height: 34px; background-size: 34px 34px; }
 }

@@ -467,33 +467,6 @@ export default function SanMatias() {
         </div>
       </section>
 
-      {/* ── Tasting: hand-lettered card on terracotta ────────────── */}
-      <section className={styles.tasting}>
-        <motion.div
-          className={styles.card}
-          initial={{ opacity: 0, rotate: -4, y: 60 }}
-          whileInView={{ opacity: 1, rotate: -1.5, y: 0 }}
-          viewport={{ once: true, margin: '-10%' }}
-          transition={{ duration: 1.1, ease }}
-        >
-          <div className={styles.cardTop}>
-            <span>Nota de cata</span>
-            <span>Nº 1247</span>
-          </div>
-          <h2 className={styles.cardTitle}>{d.tasting.of}</h2>
-          <dl className={styles.notes}>
-            {([['Nose', d.tasting.nose], ['Palate', d.tasting.palate], ['Finish', d.tasting.finish]] as const).map(([k, v]) => (
-              <div key={k} className={styles.note}>
-                <dt>{k}</dt>
-                <dd>{v}</dd>
-              </div>
-            ))}
-          </dl>
-          <p className={styles.cardServe}><em>Serve - </em> {d.tasting.serve}</p>
-          <span className={styles.signature}>Casa San Matías</span>
-        </motion.div>
-      </section>
-
       {/* ── Serves in arched frames ──────────────────────────────── */}
       <section className={styles.serves}>
         <div className={styles.rangeHead}>
