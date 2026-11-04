@@ -106,9 +106,6 @@ export default function Cocktails() {
                   <h2 className={b.title}>{h.name}.</h2>
                 </div>
                 <div className={styles.houseLinks}>
-                  {h.id === 'black-tears' && (
-                    <Pill to="/brands/black-tears/cuba-libre" variant="more">The Cuba Libre, in full</Pill>
-                  )}
                   <Pill to={`/brands/${h.id}`} variant="more">About Brand</Pill>
                 </div>
               </div>

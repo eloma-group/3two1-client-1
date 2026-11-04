@@ -281,13 +281,14 @@ export const recipeHouses: RecipeHouse[] = [
       {
         tag: 'Signature',
         name: 'Nuclear Daiquiri',
-        lede: 'The benchmark daiquiri. Estate-funky pot-still Jamaican rum, lime, sugar.',
+        lede: 'The LAB London classic: overproof Jamaican rum and green Chartreuse, sweetened with falernum.',
         ingredients: [
-          ['Worthy Park Estate Rum', '60 ml'],
-          ['Lime juice', '25 ml'],
-          ['Sugar syrup (1:1)', '15 ml'],
+          ['Rumbar Overproof', '25 ml'],
+          ['Green Chartreuse', '25 ml'],
+          ['Velvet falernum', '12.5 ml'],
+          ['Fresh lime juice', '25 ml'],
         ],
-        method: 'Shake hard. Double strain into a frozen coupe. Lime peel discarded.',
+        method: 'Shake hard with ice. Fine strain into a chilled coupe. No garnish.',
       },
       {
         tag: 'Stirred',
