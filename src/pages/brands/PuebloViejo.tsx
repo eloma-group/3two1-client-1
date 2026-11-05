@@ -225,8 +225,8 @@ export default function PuebloViejo() {
           {d.craft.pillars.map((p, i) => (
             <Reveal key={p.title} delay={0.2 + i * 0.18} className={styles.station}>
               <div className={styles.stationDisc}>
-                {i === 0 && <img src={img('agave-field')} alt="" loading="lazy" />}
-                {i === 1 && <img src={img('oven')} alt="" loading="lazy" />}
+                {i === 0 && <img src={img('agave-field')} alt="Rows of blue Weber agave in a Jalisco field" loading="lazy" />}
+                {i === 1 && <img src={img('oven')} alt="Steam rising from a traditional agave cooking oven" loading="lazy" />}
                 {i === 2 && <span className={styles.stationStill}>2×</span>}
                 <span className={styles.stationNum}>{ROMAN[i]}</span>
               </div>
@@ -266,7 +266,7 @@ export default function PuebloViejo() {
             ))}
           </dl>
           <p className={styles.boardServe}><span>La casa recommends - </span> {d.tasting.serve}</p>
-          <img src={img('bottle-blanco')} alt="" className={styles.boardBottle} loading="lazy" />
+          <img src={img('bottle-blanco')} alt="Bottle of Pueblo Viejo Blanco tequila" className={styles.boardBottle} loading="lazy" />
         </Reveal>
       </section>
 

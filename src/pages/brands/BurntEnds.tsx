@@ -390,7 +390,7 @@ export default function BurntEnds() {
                 </li>
               ))}
             </ul>
-            <img className={styles.boardMark} src="/images/brandstrip-burnt-ends.webp" alt="" loading="lazy" />
+            <img className={styles.boardMark} src="/images/brandstrip-burnt-ends.webp" alt="Burnt Ends Blended Whiskey logo" loading="lazy" />
           </div>
         </motion.div>
       </section>

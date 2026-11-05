@@ -1,10 +1,12 @@
-import { useEffect, useRef, type CSSProperties, type ReactNode } from 'react';
+import { useRef, type CSSProperties, type ReactNode } from 'react';
 import { Link, Navigate, useParams } from 'react-router-dom';
 import { motion, useReducedMotion, useScroll, useTransform } from 'framer-motion';
 import { ArrowUpRight, Plus } from 'lucide-react';
 import { ALCOHOL_FREE, houseProduct } from '../../data/houseProducts';
 import { productGroup, shelfForCategory } from '../../data/giffardShelves';
 import styles from './ProductPage.module.css';
+import { useSeo } from '../../hooks/useSeo';
+import { breadcrumbLd, productDescription, productTitle } from '../../data/seo';
 
 /* ── Single product ──────────────────────────────────────────────────────
    One template for every bottle and serve in a house's homepage panel. Each
@@ -39,9 +41,32 @@ export default function ProductPage() {
   const bottleY = useTransform(scrollYProgress, [0, 1], ['0%', '12%']);
   const copyY = useTransform(scrollYProgress, [0, 1], ['0%', '-24%']);
 
-  useEffect(() => {
-    if (found) document.title = `${found.product.fullName} · ${found.house.name} · 3Two1 Drinks`;
-  }, [found?.product.fullName, found?.house.name]);
+  const fp = found?.product;
+  const fh = found?.house;
+  const fShelf = fh?.slug === 'giffard' && fp ? shelfForCategory(fp.category) : undefined;
+  useSeo({
+    title: fp ? productTitle(fp.fullName, fp.category === 'Cocktail' ? 'Cocktail Recipe' : 'Wholesale AU & NZ') : '3Two1 Drinks',
+    description: fp ? productDescription(fp.tagline, fp.lede) : '',
+    image: fp?.image,
+    type: fp && fp.category !== 'Cocktail' ? 'product' : 'article',
+    noindex: !found,
+    jsonLd: fp && fh
+      ? [
+          breadcrumbLd([
+            ['Home', '/'],
+            [fh.name, `/brands/${fh.slug}`],
+            ...(fShelf ? [[`Giffard ${fShelf.label}`, `/brands/giffard/range/${fShelf.slug}`] as [string, string]] : []),
+            [fp.fullName, `/brands/${fh.slug}/${fp.slug}`],
+          ]),
+          ...(fp.faq.length
+            ? [{
+                '@type': 'FAQPage',
+                mainEntity: fp.faq.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })),
+              }]
+            : []),
+        ]
+      : [],
+  });
 
   if (!found) return <Navigate to={`/brands/${params.house ?? ''}`} replace />;
 

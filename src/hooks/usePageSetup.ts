@@ -2,14 +2,12 @@ import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import type Lenis from 'lenis';
 import { scrollToHash } from './useLenis';
+import { useSeo, type Seo } from './useSeo';
 
-/** Sets the tab title, and lands on `#section` links once the page has mounted. */
-export function usePageSetup(title: string) {
+/** Sets the page's head tags, and lands on `#section` links once the page has mounted. */
+export function usePageSetup(seo: Seo) {
   const { hash } = useLocation();
-
-  useEffect(() => {
-    document.title = `${title} - 3Two1 Drinks`;
-  }, [title]);
+  useSeo(seo);
 
   useEffect(() => {
     if (!hash) return;

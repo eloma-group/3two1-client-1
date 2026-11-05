@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
-import { useNavigate } from 'react-router-dom';
 import { recipeHouses } from '../data/cocktails';
 import { brands } from '../data/content';
 import Hero from '../components/bento/Hero';
@@ -13,6 +12,7 @@ import { scrollToHash } from '../hooks/useLenis';
 import { usePageSetup } from '../hooks/usePageSetup';
 import { useLiquidGlass, useBackdropTone, trackSheen, glassClass } from '../components/liquidGlass';
 import styles from './Cocktails.module.css';
+import { pageMeta } from '../data/seo';
 
 const RECIPE_COUNT = recipeHouses.reduce((n, h) => n + h.recipes.length, 0);
 
@@ -37,8 +37,7 @@ export default function Cocktails() {
   // The section bar is the same Liquid Glass as the site header
   const { ref: localRef, style: localStyle, filter: localFilter } = useLiquidGlass<HTMLDivElement>(0.8);
   const localBackdrop = useBackdropTone(localRef);
-  const navigate = useNavigate();
-  usePageSetup('Cocktail Corner');
+  usePageSetup(pageMeta['/cocktails']);
   const active = useActiveHouse();
 
   return (
@@ -161,7 +160,7 @@ export default function Cocktails() {
             actions={
               <>
                 <Pill to="/contact" variant="light">Request bar cards</Pill>
-                <Pill onClick={() => navigate('/portfolio')} variant="more" onDark>See the portfolio</Pill>
+                <Pill to="/portfolio" variant="more" onDark>See the portfolio</Pill>
               </>
             }
           />

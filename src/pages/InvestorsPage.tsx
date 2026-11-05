@@ -5,6 +5,8 @@ import { contact } from '../data/content';
 import Reveal, { RevealHeading } from '../components/Reveal';
 import MagneticButton from '../components/MagneticButton';
 import styles from './InvestorsPage.module.css';
+import { useSeo } from '../hooks/useSeo';
+import { pageMeta } from '../data/seo';
 
 /* Everything on this page comes from the 2028 roadmap & capital raise deck.
    Figures marked as projections are the deck's own forecasts. */
@@ -327,9 +329,7 @@ export default function InvestorsPage({ ready = true }: { ready?: boolean }) {
   const journey = useRef<HTMLElement>(null);
   const roadmap = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    document.title = 'Investors - 3Two1 Drinks';
-  }, []);
+  useSeo(pageMeta['/investors']);
 
   const { scrollYProgress: heroP } = useScroll({ target: hero, offset: ['start start', 'end start'] });
   const heroY = useTransform(heroP, [0, 1], ['0%', '18%']);

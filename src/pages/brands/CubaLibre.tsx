@@ -1,8 +1,10 @@
-import { useEffect, useRef, type ReactNode } from 'react';
+import { useRef, type ReactNode } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, useReducedMotion, useScroll, useTransform } from 'framer-motion';
 import { ArrowUpRight, Plus } from 'lucide-react';
 import styles from './CubaLibre.module.css';
+import { useSeo } from '../../hooks/useSeo';
+import { breadcrumbLd, pageMeta } from '../../data/seo';
 
 /* ── The Black Tears Cuba Libre ──────────────────────────────────────────
    A product page for the brand's signature serve. The spec is Black Tears'
@@ -109,9 +111,11 @@ export default function CubaLibre() {
   const glassY = useTransform(scrollYProgress, [0, 1], ['0%', '14%']);
   const wordY = useTransform(scrollYProgress, [0, 1], ['0%', '-30%']);
 
-  useEffect(() => {
-    document.title = 'The Cuba Libre - Black Tears · 3Two1 Drinks';
-  }, []);
+  useSeo({
+    ...pageMeta['/brands/black-tears/cuba-libre'],
+    type: 'article',
+    jsonLd: [breadcrumbLd([['Home', '/'], ['Black Tears', '/brands/black-tears'], ['The Cuba Libre', '/brands/black-tears/cuba-libre']])],
+  });
 
   return (
     <div className={styles.page}>

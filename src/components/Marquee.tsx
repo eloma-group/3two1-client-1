@@ -30,7 +30,7 @@ export default function Marquee({ items, reverse, className = '' }: Props) {
             </span>
           );
         }
-        const img = <img src={item.src} alt="" onError={(e) => { e.currentTarget.style.visibility = 'hidden' }} />;
+        const img = <img src={item.src} alt={item.to ? '' : item.alt} onError={(e) => { e.currentTarget.style.visibility = 'hidden' }} />;
         return item.to ? (
           <Link
             className={`${styles.logo} ${styles.logoLink}`}

@@ -48,7 +48,7 @@ export default function Story() {
 
           <Reveal delay={0.3}>
             <div style={{ marginTop: 'clamp(1.8rem, 3vw, 2.6rem)' }}>
-              <MagneticButton variant="solid" href="#" cursorLabel="Read">
+              <MagneticButton variant="solid" href="/our-story" cursorLabel="Read">
                 &lsquo;3Two1 Drinks&rsquo; Story <ArrowRight size={18} />
               </MagneticButton>
             </div>

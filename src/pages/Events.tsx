@@ -10,6 +10,7 @@ import b from '../components/bento/bento.module.css';
 import { scrollToHash } from '../hooks/useLenis';
 import { usePageSetup } from '../hooks/usePageSetup';
 import styles from './Events.module.css';
+import { pageMeta } from '../data/seo';
 
 const day = (iso: string) => new Date(`${iso}T23:59:59`);
 
@@ -24,7 +25,7 @@ function useNow() {
 }
 
 export default function Events() {
-  usePageSetup('Events');
+  usePageSetup(pageMeta['/events']);
   const now = useNow();
 
   return (

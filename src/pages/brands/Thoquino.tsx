@@ -181,7 +181,7 @@ export default function Thoquino() {
               animate={{ scale: 1, opacity: 1 }}
               transition={{ duration: 3.2, ease: [0.22, 1, 0.36, 1] }}
             >
-              <img className={styles.photo} src="/images/brands/thoquino/rio-sunset.webp" alt="" />
+              <img className={styles.photo} src="/images/brands/thoquino/rio-sunset.webp" alt="Sunset over the mountains and bay of Rio de Janeiro, Brazil" />
             </motion.div>
           </motion.div>
           <div className={styles.sunGlow} />

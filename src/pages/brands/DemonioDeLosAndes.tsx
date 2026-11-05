@@ -467,7 +467,7 @@ export default function DemonioDeLosAndes() {
           <div className={styles.posterFrame}>
             <p className={styles.posterKicker}>Leyenda · Siglo XVI</p>
             <div className={styles.posterRider}>
-              <img src="/images/house-demonio-de-los-andes.webp" alt="" loading="lazy" />
+              <img src="/images/house-demonio-de-los-andes.webp" alt="Bottle of Demonio de los Andes Acholado pisco by Tacama" loading="lazy" />
             </div>
             <h2 className={styles.posterTitle}>{d.extra.heading}</h2>
             <p className={styles.posterBody}>{d.extra.body}</p>

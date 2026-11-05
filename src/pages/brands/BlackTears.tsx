@@ -86,6 +86,16 @@ function Drift({
   );
 }
 
+/** Photographs in the stock strip, with their alt text. */
+const STRIP: [string, string][] = [
+  ['cheers', 'Friends clinking glasses of Black Tears spiced rum and cola with lime'],
+  ['toast', 'Man in sunglasses raising a glass of Black Tears rum'],
+  ['carnival', 'Two women in colourful crochet outfits on a Havana street'],
+  ['hand-bottle', 'Hand holding a bottle of Black Tears Dry Spiced Cuban rum'],
+  ['serve-tiki', 'Black Tears Dry Spiced rum tiki cocktail garnished with pineapple'],
+  ['highball', 'Black Tears Dry Spiced rum bottle beside a rum and cola highball'],
+];
+
 export default function BlackTears() {
   const d = brandPage('black-tears')!;
   const reduce = useReducedMotion();
@@ -109,7 +119,7 @@ export default function BlackTears() {
           <span className={styles.heroNo}>Nº 001 - La Habana</span>
         </div>
 
-        <div className={styles.wordmark} aria-label={d.name}>
+        <h1 className={styles.wordmark} aria-label={d.name}>
           <motion.span className={styles.wordBack} style={{ x: leftX }}>{first}</motion.span>
           <motion.img
             className={styles.heroBottle}
@@ -121,7 +131,7 @@ export default function BlackTears() {
             transition={{ duration: 1.3, ease }}
           />
           <motion.span className={styles.wordFront} style={{ x: rightX }}>{rest.join(' ')}</motion.span>
-        </div>
+        </h1>
 
         <Eye className={styles.heroEye} />
         <Dagger className={styles.heroDagger} />
@@ -315,8 +325,8 @@ export default function BlackTears() {
       {/* ═══ STOCK CTA ═══ */}
       <section className={styles.stock}>
         <div className={styles.stockStrip}>
-          {['cheers', 'toast', 'carnival', 'hand-bottle', 'serve-tiki', 'highball'].map((f, i) => (
-            <img key={f} src={img(f)} alt="" loading="lazy" style={{ ['--r' as string]: `${(i % 2 ? 1 : -1) * (2 + (i % 3))}deg` }} />
+          {STRIP.map(([f, alt], i) => (
+            <img key={f} src={img(f)} alt={alt} loading="lazy" style={{ ['--r' as string]: `${(i % 2 ? 1 : -1) * (2 + (i % 3))}deg` }} />
           ))}
         </div>
         <Rise><h2 className={styles.stockHead}>Stock<br />{d.name}.</h2></Rise>

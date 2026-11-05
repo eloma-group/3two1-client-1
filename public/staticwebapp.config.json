@@ -5,7 +5,7 @@
       "/images/*",
       "/videos/*",
       "/assets/*",
-      "*.{png,jpg,jpeg,gif,svg,webp,mp4,webm,ico,css,js}"
+      "*.{png,jpg,jpeg,gif,svg,webp,mp4,webm,ico,css,js,xml,txt,pdf}"
     ]
   },
   "mimeTypes": {

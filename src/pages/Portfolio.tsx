@@ -11,6 +11,7 @@ import Cta from '../components/bento/Cta';
 import b from '../components/bento/bento.module.css';
 import { usePageSetup } from '../hooks/usePageSetup';
 import styles from './Portfolio.module.css';
+import { pageMeta } from '../data/seo';
 
 type Cat = 'rum' | 'tequila' | 'whiskey' | 'liqueurs' | 'south-america';
 
@@ -55,7 +56,7 @@ function layoutFor(n: number) {
 export default function Portfolio() {
   const navigate = useNavigate();
   const [filter, setFilter] = useState<Cat | 'all'>('all');
-  usePageSetup('Portfolio');
+  usePageSetup(pageMeta['/portfolio']);
 
   const shown = HOUSES.filter((h) => filter === 'all' || h.cat === filter);
 

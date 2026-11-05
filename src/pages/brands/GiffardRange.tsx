@@ -1,9 +1,11 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useMemo, useState } from 'react';
 import { Link, Navigate, useParams } from 'react-router-dom';
 import { motion, useReducedMotion } from 'framer-motion';
 import { ArrowUpRight, Search } from 'lucide-react';
 import { bottleImage, giffardShelf, giffardShelves, productGroup, shelfProducts } from '../../data/giffardShelves';
 import styles from './GiffardRange.module.css';
+import { useSeo } from '../../hooks/useSeo';
+import { breadcrumbLd, clip, shelfMeta } from '../../data/seo';
 
 /* ── A Giffard shelf ─────────────────────────────────────────────────────
    Every bottle 3Two1 carries on one shelf (liqueurs, syrups, purées or
@@ -24,9 +26,15 @@ function Shelf({ slug }: { slug: string | undefined }) {
   const [group, setGroup] = useState('All');
   const [query, setQuery] = useState('');
 
-  useEffect(() => {
-    if (shelf) document.title = `Giffard ${shelf.label} · 3Two1 Drinks`;
-  }, [shelf]);
+  const meta = shelf && shelfMeta[shelf.slug];
+  useSeo({
+    title: meta?.title ?? `Giffard ${shelf?.label ?? 'Range'} | 3Two1 Drinks`,
+    description: meta?.description ?? clip(shelf?.lede ?? ''),
+    noindex: !shelf,
+    jsonLd: shelf
+      ? [breadcrumbLd([['Home', '/'], ['Giffard', '/brands/giffard'], [`Giffard ${shelf.label}`, `/brands/giffard/range/${shelf.slug}`]])]
+      : [],
+  });
 
   const products = useMemo(() => (shelf ? shelfProducts(shelf) : []), [shelf]);
   const shown = useMemo(() => {

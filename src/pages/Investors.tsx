@@ -10,6 +10,8 @@ import Marquee from '../components/Marquee';
 import MagneticButton from '../components/MagneticButton';
 import { AU_DOT_GRID } from '../data/auDotGrid';
 import styles from './Investors.module.css';
+import { useSeo } from '../hooks/useSeo';
+import { pageMeta } from '../data/seo';
 
 const ease = [0.16, 1, 0.3, 1] as [number, number, number, number];
 
@@ -338,9 +340,7 @@ export default function Investors({ ready = true }: { ready?: boolean }) {
   const spine = useRef<HTMLDivElement>(null);
   const [yearIndex, setYearIndex] = useState(0);
 
-  useEffect(() => {
-    document.title = 'Our Story - 3Two1 Drinks';
-  }, []);
+  useSeo(pageMeta['/our-story']);
 
   /* Hero parallax — the photograph drifts at roughly a third of scroll speed. */
   const { scrollYProgress: heroProgress } = useScroll({

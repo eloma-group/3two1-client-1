@@ -50,7 +50,7 @@ export default function App() {
           <Route path="/trade" element={<Navigate to="/trade/bars-venues" replace />} />
           <Route path="/trade/:segment" element={<Suspense fallback={blank}><TradePage /></Suspense>} />
           <Route path="/investors" element={<Suspense fallback={blank}><InvestorsPage ready={ready} /></Suspense>} />
-          <Route path="*" element={<Home ready={ready} />} />
+          <Route path="*" element={<Home ready={ready} notFound />} />
         </Routes>
       </main>
       <Footer />

@@ -9,6 +9,8 @@ import page from './Page.module.css';
    and read the same way. */
 import story from './Investors.module.css';
 import styles from './ContactPage.module.css';
+import { useSeo } from '../hooks/useSeo';
+import { pageMeta } from '../data/seo';
 
 const SEGMENTS = ['Bar / Venue', 'Bottle Shop', 'Café', 'Restaurant / Hotel', 'Other'] as const;
 
@@ -30,9 +32,7 @@ export default function ContactPage() {
   const spine = useRef<HTMLDivElement>(null);
   const [stepIndex, setStepIndex] = useState(0);
 
-  useEffect(() => {
-    document.title = 'Contact - 3Two1 Drinks';
-  }, []);
+  useSeo(pageMeta['/contact']);
 
   /* Same spine as Our Story: the fill tracks scroll through the sections and
      each marker lights up as the fill passes it. */

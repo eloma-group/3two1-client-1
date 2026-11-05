@@ -5,23 +5,63 @@
     <link rel="icon" type="image/png" href="/images/logo.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#e8446f" />
+    <!-- Defaults for the first paint and for crawlers that do not run scripts;
+         each page replaces them through useSeo (src/hooks/useSeo.ts). -->
     <meta
       name="description"
-      content="3Two1 Drinks — a house of premium spirits, built for trade. Nine brands, one portfolio, distributed across Australia, New Zealand and the Pacific Islands. The Taste of Passion."
+      content="Independent importer and distributor of premium spirits, liqueurs and syrups for bars, bottle shops and cafés across Australia, New Zealand and the Pacific."
     />
-    <meta property="og:title" content="3Two1 Drinks — The Taste of Passion" />
+    <meta name="robots" content="index, follow, max-image-preview:large" />
+    <link rel="canonical" href="https://www.3two1.com.au/" />
+    <link rel="apple-touch-icon" href="/images/logo.png" />
+    <meta property="og:title" content="3Two1 Drinks | Spirits, Liqueurs &amp; Syrups Distributor AU &amp; NZ" />
     <meta
       property="og:description"
-      content="Nine of the world's most respected drinks brands in one tightly-run portfolio. Become a stockist across Australia, New Zealand and the Pacific."
+      content="Independent importer and distributor of premium spirits, liqueurs and syrups for bars, bottle shops and cafés across Australia, New Zealand and the Pacific."
     />
+    <meta property="og:url" content="https://www.3two1.com.au/" />
     <meta property="og:site_name" content="3Two1 Drinks" />
     <meta property="og:type" content="website" />
-    <meta property="og:image" content="/images/logo.png" />
+    <meta property="og:locale" content="en_AU" />
+    <meta property="og:image" content="https://www.3two1.com.au/images/logo.png" />
     <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="3Two1 Drinks | Spirits, Liqueurs &amp; Syrups Distributor AU &amp; NZ" />
+    <meta
+      name="twitter:description"
+      content="Independent importer and distributor of premium spirits, liqueurs and syrups for bars, bottle shops and cafés across Australia, New Zealand and the Pacific."
+    />
+    <meta name="twitter:image" content="https://www.3two1.com.au/images/logo.png" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "@id": "https://www.3two1.com.au/#organization",
+        "name": "3Two1 Drinks",
+        "legalName": "3Two1 Import Pty Ltd",
+        "url": "https://www.3two1.com.au/",
+        "logo": "https://www.3two1.com.au/images/logo.png",
+        "email": "orders@3two1.com.au",
+        "telephone": "+61-1300-021-321",
+        "areaServed": ["AU", "NZ"],
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "contactType": "sales",
+          "telephone": "+61-1300-021-321",
+          "email": "orders@3two1.com.au",
+          "areaServed": ["AU", "NZ"],
+          "availableLanguage": "en"
+        },
+        "sameAs": [
+          "https://www.instagram.com/3two1_drinks/",
+          "https://www.youtube.com/@3two1_drinks",
+          "https://www.linkedin.com/company/3two1-drinks/"
+        ]
+      }
+    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..700&amp;family=Inter:wght@300..700&amp;family=Cinzel:wght@700&amp;family=Holtwood+One+SC&amp;family=IM+Fell+English+SC&amp;family=Stint+Ultra+Condensed&amp;family=Space+Grotesk:wght@300..700&amp;display=swap" />
-    <title>3Two1 Drinks — The Taste of Passion</title>
+    <title>3Two1 Drinks | Spirits, Liqueurs &amp; Syrups Distributor AU &amp; NZ</title>
     <!-- The splash is white, so the ground under it is white from the very
          first paint — otherwise the cream page background flashes before React
          mounts and the stylesheet takes over. -->
@@ -29,7 +69,7 @@
   </head>
   <body>
     <div id="root"></div>
-    <noscript>3Two1 Drinks — a house of premium spirits, built for trade. Please enable JavaScript.</noscript>
+    <noscript>3Two1 Drinks is an independent importer and distributor of premium spirits, liqueurs and syrups for bars, bottle shops and cafés across Australia, New Zealand and the Pacific. Call 1300 021 321 or email orders@3two1.com.au. Please enable JavaScript to browse the full site.</noscript>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

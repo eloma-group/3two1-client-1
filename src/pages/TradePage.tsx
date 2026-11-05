@@ -22,6 +22,7 @@ import Cta from '../components/bento/Cta';
 import b from '../components/bento/bento.module.css';
 import { usePageSetup } from '../hooks/usePageSetup';
 import styles from './TradePage.module.css';
+import { breadcrumbLd, tradeMeta } from '../data/seo';
 
 type Reason = TradeSegment['reasons'][number];
 
@@ -57,7 +58,11 @@ function ReasonTile({ v, className }: { v: Reason; className: string }) {
 
 function Segment({ data }: { data: TradeSegment }) {
   const navigate = useNavigate();
-  usePageSetup(data.label);
+  usePageSetup({
+    ...tradeMeta[data.slug],
+    image: data.image,
+    jsonLd: [breadcrumbLd([['Home', '/'], [data.label, `/trade/${data.slug}`]])],
+  });
   const short = data.label.replace('For ', '');
   const [r1, r2, r3] = data.reasons;
 
