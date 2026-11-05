@@ -1,4 +1,4 @@
-import { ArrowUpRight } from 'lucide-react';
+import { Mail, Phone, Smartphone, MessageCircle, Clock, Warehouse, Truck } from 'lucide-react';
 import { Facebook, Instagram, Linkedin, Youtube } from '../components/icons';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { brand, footerColumns, contact } from '../data/content';
@@ -76,12 +76,13 @@ export default function Footer() {
             <div className={styles.col}>
               <h4>Contact</h4>
               <ul>
-                <li><a href={`mailto:${contact.email}`}>{contact.email} <ArrowUpRight size={13} /></a></li>
-                <li><a href={`tel:${contact.phone.replace(/\s/g, '')}`}>{contact.phone}</a></li>
-                <li><a href={`tel:${contact.mobile.replace(/\s/g, '')}`}>{contact.mobile}</a></li>
-                <li className={styles.info}><span>Existing Customer</span>{contact.hours}</li>
-                <li className={styles.info}><span>Warehouses</span>{contact.warehouses}</li>
-                <li className={styles.info}><span>Wholesalers</span>{contact.wholesalers}</li>
+                <li className={styles.iconRow}><Mail size={16} /><a href={`mailto:${contact.email}`}>{contact.email}</a></li>
+                <li className={styles.iconRow}><Phone size={16} /><a href={`tel:${contact.phone.replace(/\s/g, '')}`}>{contact.phone}</a></li>
+                <li className={styles.iconRow}><Smartphone size={16} /><a href={`tel:${contact.mobile.replace(/\s/g, '')}`}>{contact.mobile}</a></li>
+                <li className={`${styles.info} ${styles.iconRow}`}><MessageCircle size={16} /><div><span>WhatsApp</span><a href={contact.whatsappUrl} target="_blank" rel="noreferrer">{contact.whatsapp}</a></div></li>
+                <li className={`${styles.info} ${styles.iconRow}`}><Clock size={16} /><div><span>Existing Customer</span>{contact.hours}</div></li>
+                <li className={`${styles.info} ${styles.iconRow}`}><Warehouse size={16} /><div><span>Warehouses</span>{contact.warehouses}</div></li>
+                <li className={`${styles.info} ${styles.iconRow}`}><Truck size={16} /><div><span>Wholesalers</span>{contact.wholesalers}</div></li>
               </ul>
             </div>
           </div>

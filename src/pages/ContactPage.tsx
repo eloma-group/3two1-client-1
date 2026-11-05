@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState, type FormEvent } from 'react';
 import { motion, useReducedMotion, useScroll, useSpring } from 'framer-motion';
-import { Mail, Phone, Check } from 'lucide-react';
+import { Mail, Phone, Check, MessageCircle } from 'lucide-react';
 import { contact, team, initials } from '../data/content';
 import Reveal, { RevealHeading } from '../components/Reveal';
 import MagneticButton from '../components/MagneticButton';
@@ -19,6 +19,7 @@ const EXISTING = [
   { label: 'Orders & admin', value: contact.email, href: `mailto:${contact.email}` },
   { label: 'Trade phone', value: contact.phone, href: `tel:${contact.phone.replace(/\s/g, '')}` },
   { label: 'Mobile', value: contact.mobile, href: `tel:${contact.mobile.replace(/\s/g, '')}` },
+  { label: 'WhatsApp', value: contact.whatsapp, href: contact.whatsappUrl },
   { label: 'Hours', value: contact.hours },
   { label: 'Warehouses', value: contact.warehouses },
 ];
@@ -84,6 +85,9 @@ export default function ContactPage() {
               </a>
               <a href={`tel:${contact.mobile.replace(/\s/g, '')}`} className={page.headerLink} data-cursor="Call">
                 <Phone size={17} /> {contact.mobile}
+              </a>
+              <a href={contact.whatsappUrl} target="_blank" rel="noreferrer" className={page.headerLink} data-cursor="WhatsApp">
+                <MessageCircle size={17} /> WhatsApp {contact.whatsapp}
               </a>
             </div>
           </Reveal>

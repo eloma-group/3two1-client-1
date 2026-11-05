@@ -305,6 +305,9 @@ export const contact = {
   phone: '1300 021 321',
   /** Second line, shown only in the footer and on the Contact page. */
   mobile: '0420 222 313',
+  /** Opens a WhatsApp chat (wa.me takes the number in international form). */
+  whatsapp: '0420 505 321',
+  whatsappUrl: 'https://wa.me/61420505321',
   licence: '616214992620',
   licenceClass: 'Wholesaler License',
   licensee: '3Two1 Import Pty Ltd t/a 3Two1 Drinks (ABN 47 613 716 359)',
