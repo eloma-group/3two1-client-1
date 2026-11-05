@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en-AU">
+<html lang="en-AU" data-splash="on">
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/png" href="/images/logo.png" />
@@ -60,14 +60,74 @@
     </script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..700&amp;family=Inter:wght@300..700&amp;family=Cinzel:wght@700&amp;family=Holtwood+One+SC&amp;family=IM+Fell+English+SC&amp;family=Stint+Ultra+Condensed&amp;family=Space+Grotesk:wght@300..700&amp;display=swap" />
+    <!-- Every family stays (the brand pages use their own); the sheet loads
+         without blocking the first paint, and display=swap shows the fallback
+         until each font arrives. -->
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..700&amp;family=Inter:wght@300..700&amp;family=Cinzel:wght@700&amp;family=Holtwood+One+SC&amp;family=IM+Fell+English+SC&amp;family=Stint+Ultra+Condensed&amp;family=Space+Grotesk:wght@300..700&amp;display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..700&amp;family=Inter:wght@300..700&amp;family=Cinzel:wght@700&amp;family=Holtwood+One+SC&amp;family=IM+Fell+English+SC&amp;family=Stint+Ultra+Condensed&amp;family=Space+Grotesk:wght@300..700&amp;display=swap" media="print" onload="this.media='all'" />
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..700&amp;family=Inter:wght@300..700&amp;family=Cinzel:wght@700&amp;family=Holtwood+One+SC&amp;family=IM+Fell+English+SC&amp;family=Stint+Ultra+Condensed&amp;family=Space+Grotesk:wght@300..700&amp;display=swap" /></noscript>
     <title>3Two1 Drinks | Spirits, Liqueurs &amp; Syrups Distributor AU &amp; NZ</title>
     <!-- The splash is white, so the ground under it is white from the very
          first paint — otherwise the cream page background flashes before React
          mounts and the stylesheet takes over. -->
     <style>html,body{background:#fff}</style>
+    <!-- Splash: drawn by the HTML itself so it is on screen at the first
+         paint instead of after the script bundle. The timing is the same as
+         the old GSAP timeline: logo in over 1s, lines up at 2.2s, the wipes
+         from 2.65s and 2.9s (1.9s each), fade out from 6s over 0.8s.
+         src/components/Splash.tsx hands over to the page and removes it. -->
+    <style>
+      .sp{position:fixed;inset:0;z-index:10000;display:grid;place-items:center;background:#fff;overflow:hidden;animation:sp-out .8s cubic-bezier(.215,.61,.355,1) 6s forwards}
+      .sp-inner{position:relative;display:flex;flex-direction:column;align-items:center;text-align:center;padding-inline:1.5rem}
+      .sp-logo{width:clamp(148px,25vw,285px);position:relative;overflow:hidden;animation:sp-in 1s cubic-bezier(.215,.61,.355,1) both}
+      .sp-logo video{width:100%;height:auto;display:block}
+      .sp-logo::after,.sp-tagline::after{content:'';position:absolute;inset:0;pointer-events:none;mix-blend-mode:screen;transform:translateX(-140%)}
+      .sp-logo::after{background:linear-gradient(115deg,transparent 26%,rgba(255,255,255,.28) 42%,rgba(255,255,255,.85) 50%,rgba(255,255,255,.28) 58%,transparent 74%);animation:sp-shine 5.4s cubic-bezier(.45,0,.2,1) .8s infinite}
+      .sp-tagline{margin-top:-.45em;position:relative;display:inline-block;overflow:hidden;font-family:'Fraunces',Georgia,serif;font-style:italic;font-weight:500;font-size:clamp(1.7rem,4.4vw,3.1rem);letter-spacing:.01em;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-rendering:optimizeLegibility}
+      .sp-tagline::after{background:linear-gradient(115deg,transparent 26%,rgba(255,255,255,.3) 42%,rgba(255,255,255,.92) 50%,rgba(255,255,255,.3) 58%,transparent 74%);animation:sp-shine 2s cubic-bezier(.45,0,.2,1) 4.6s infinite}
+      .sp-tagline,.sp-row{animation:sp-show .4s cubic-bezier(.215,.61,.355,1) 2.2s both}
+      .sp-row{margin-top:1rem;display:flex;align-items:center;justify-content:center;gap:14px}
+      .sp-rule{height:1px;width:0;flex-shrink:0;background:#ec5377;animation:sp-rule 1.9s cubic-bezier(.455,.03,.515,.955) 2.9s both}
+      .sp-regions{position:relative;display:inline-block;font-family:'Inter',system-ui,sans-serif;font-size:clamp(.6rem,1.4vw,.78rem);font-weight:600;font-style:italic;letter-spacing:.32em;text-transform:uppercase}
+      .sp-ghost,.sp-fill{display:block;white-space:nowrap}
+      .sp-tagline>.sp-ghost{color:rgba(255,153,153,.3)}
+      .sp-tagline .sp-fill{color:#ff9999}
+      .sp-regions>.sp-ghost{color:rgba(74,74,74,.18)}
+      .sp-regions .sp-fill{color:#4a4a4a}
+      .sp-wipe{position:absolute;top:0;left:0;bottom:0;width:0;overflow:hidden;animation:sp-wipe 1.9s cubic-bezier(.455,.03,.515,.955) 2.65s both}
+      .sp-regions .sp-wipe{animation-delay:2.9s}
+      @keyframes sp-in{from{opacity:0;transform:scale(.9)}to{opacity:1;transform:none}}
+      @keyframes sp-show{from{opacity:0;visibility:hidden}to{opacity:1;visibility:visible}}
+      @keyframes sp-wipe{from{width:0}to{width:100%}}
+      @keyframes sp-rule{from{width:0;opacity:0}to{width:38px;opacity:.55}}
+      @keyframes sp-shine{0%{transform:translateX(-140%)}62%,100%{transform:translateX(140%)}}
+      @keyframes sp-out{to{opacity:0;visibility:hidden}}
+      @media (max-width:620px){.sp-row{gap:0}.sp-rule{display:none}.sp-regions{letter-spacing:.16em;font-size:.55rem}}
+      @media (prefers-reduced-motion:reduce){.sp{display:none}}
+    </style>
   </head>
   <body>
+    <!-- Splash text matches brand.tagline and brand.regions in src/data/content.ts -->
+    <div class="sp" id="splash">
+      <div class="sp-inner">
+        <div class="sp-logo">
+          <!-- Not looped: held on its final frame while the lines wipe in -->
+          <video src="/images/splash-alpha.webm?v=5" autoplay muted playsinline aria-label="3Two1 Drinks"></video>
+        </div>
+        <div class="sp-tagline" aria-label="The Taste of Passion">
+          <span class="sp-ghost" aria-hidden="true">The Taste of Passion</span>
+          <span class="sp-wipe" aria-hidden="true"><span class="sp-fill">The Taste of Passion</span></span>
+        </div>
+        <div class="sp-row" aria-label="Australia - New Zealand - Pacific Islands">
+          <span class="sp-rule" aria-hidden="true"></span>
+          <span class="sp-regions">
+            <span class="sp-ghost" aria-hidden="true">Australia - New Zealand - Pacific Islands</span>
+            <span class="sp-wipe" aria-hidden="true"><span class="sp-fill">Australia - New Zealand - Pacific Islands</span></span>
+          </span>
+          <span class="sp-rule" aria-hidden="true"></span>
+        </div>
+      </div>
+    </div>
     <div id="root"></div>
     <noscript>3Two1 Drinks is an independent importer and distributor of premium spirits, liqueurs and syrups for bars, bottle shops and cafés across Australia, New Zealand and the Pacific. Call 1300 021 321 or email orders@3two1.com.au. Please enable JavaScript to browse the full site.</noscript>
     <script type="module" src="/src/main.tsx"></script>

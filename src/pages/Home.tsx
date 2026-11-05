@@ -1,14 +1,14 @@
+import { lazy, Suspense, useEffect, useState } from 'react';
 import Hero from '../sections/Hero';
-import { ServicesSection } from '../sections/ServicesSection';
-import { IndustriesSection } from '../sections/IndustriesSection';
-import { IntroductionSection } from '../sections/IntroductionSection';
-import NetworkMap from '../sections/NetworkMap';
-import Story from '../sections/Story';
-import Bartenders from '../sections/Bartenders';
-import { TestimonialsSection } from '../sections/TestimonialsSection';
-import Contact from '../sections/Contact';
 import { useSeo } from '../hooks/useSeo';
 import { SITE_NAME, SITE_URL, pageMeta } from '../data/seo';
+
+/* Everything below the hero is its own chunk, mounted once the splash has its
+   lines up (or as soon as it has gone, on a later visit). The splash covers the
+   page until then, and keeping that work off the first seconds leaves the main
+   thread free for the splash animation on slow phones. */
+const HomeRest = lazy(() => import('./HomeRest'));
+const REST_AFTER = 3000;
 
 /** `notFound` is set on the catch-all route, which shows the home page under an
     unknown URL: that copy stays out of the index and points its canonical at `/`. */
@@ -29,17 +29,17 @@ export default function Home({ ready, notFound = false }: { ready: boolean; notF
     ],
   });
 
+  const [rest, setRest] = useState(ready);
+  useEffect(() => {
+    if (ready) { setRest(true); return; }
+    const t = setTimeout(() => setRest(true), REST_AFTER);
+    return () => clearTimeout(t);
+  }, [ready]);
+
   return (
     <>
       <Hero ready={ready} />
-      <NetworkMap />
-      <ServicesSection />
-      <IndustriesSection />
-      <IntroductionSection />
-      <Story />
-      <Bartenders />
-      <TestimonialsSection />
-      <Contact />
+      {rest && <Suspense fallback={null}><HomeRest /></Suspense>}
     </>
   );
 }

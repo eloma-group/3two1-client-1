@@ -39,9 +39,14 @@ export function useLenis() {
   }, []);
 }
 
-export function scrollToHash(hash: string) {
+export function scrollToHash(hash: string, tries = 90) {
   const el = document.querySelector(hash);
-  if (!el) return;
+  // The home sections below the hero load as their own chunk, so the target
+  // can be a few frames away on the first visit: wait for it (~1.5s at most).
+  if (!el) {
+    if (tries > 0) requestAnimationFrame(() => scrollToHash(hash, tries - 1));
+    return;
+  }
   const lenis = (window as unknown as { lenis?: Lenis }).lenis;
   if (lenis) lenis.scrollTo(el as HTMLElement, { offset: -80 });
   else el.scrollIntoView({ behavior: 'smooth' });

@@ -62,6 +62,8 @@ export default function Story() {
                 src="/images/giffard-feature-2026.webp"
                 alt="Giffard Caribbean Pineapple - Drinks International Top 10 Bestselling & Trending, 2026"
                 className={styles.photo}
+                loading="lazy"
+                decoding="async"
               />
             </div>
           </motion.div>
