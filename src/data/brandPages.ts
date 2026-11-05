@@ -335,7 +335,7 @@ export const brandPages: BrandPage[] = [
       serve: 'Stir 30 ml with 60 ml vodka and 15 ml dry vermouth for a Lychee Martini, or build 15 ml over ice with elderflower, sparkling wine and a splash of soda for a spritz.',
     },
     serves: [
-      { name: 'Kir Royale', build: 'Sparkling wine, a measure of Blackcurrant Liqueur, a long lemon twist.', method: 'Build in glass', glass: 'Flute', image: '/images/brand-giffard-cocktail.webp' },
+      { name: 'Mango Smoothies', build: 'Fruit for Mix Mango, Mango Syrup, yoghurt and cold milk, blended smooth.', method: 'Blend with ice', glass: 'Highball', image: '/images/giffard-mango-puree.webp' },
       { name: 'Aviation', build: 'Gin, lemon, maraschino, a whisper of Violet Liqueur.', method: 'Shake, fine strain', glass: 'Coupe', image: gf('aviation') },
       { name: 'Giffard Spritz', build: 'Apricot Brandy, prosecco, soda, fresh thyme.', method: 'Build over ice', glass: 'Wine glass', image: gf('serve-white-peach-spritz') },
     ],

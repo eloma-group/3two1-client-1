@@ -28,7 +28,7 @@ export const giffardGallery: GalleryCategory[] = [
     items: [
       { imageUrl: '/images/giffard-kiwi-puree.webp',  label: 'Kiwi Puree',  imageAlt: 'Giffard Kiwi Fruit for Mix puree bottle with fresh kiwi and a crushed-ice serve', scene: true, to: '/brands/giffard/kiwi-puree' },
       { imageUrl: '/images/giffard-mango-puree.webp', label: 'Mango Puree', imageAlt: 'Giffard Mango Fruit for Mix puree bottle with fresh mango and a chilled serve', scene: true, to: '/brands/giffard/mango-puree' },
-      { imageUrl: '/images/giffard-passion-fruit-puree.webp', label: 'Passion Fruit Puree', imageAlt: 'Giffard Fruit for Mix Passion Fruit puree bottle with fresh passion fruit, a passion flower and a passion fruit serve on stone', scene: true, to: '/brands/giffard/passion-fruit-puree' },
+      { imageUrl: '/images/giffard-passion-fruit-puree-sunlight.webp', label: 'Passion Fruit Puree', imageAlt: 'Giffard Fruit for Mix Passion Fruit puree bottle with halved passion fruit on marble in soft sunlight', scene: true, to: '/brands/giffard/passion-fruit-puree' },
       { imageUrl: '/images/giffard-yuzu-puree.webp',  label: 'Yuzu Puree',  imageAlt: 'Giffard Yuzu Fruit for Mix puree bottle with fresh yuzu, blossom and a highball', scene: true, to: '/brands/giffard/yuzu-puree' },
     ],
   },

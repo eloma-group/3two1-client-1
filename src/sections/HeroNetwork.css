@@ -1,0 +1,93 @@
+/* Distribution network in the hero's free right-hand column. The column
+   starts where the copy ends: the title's longest line is ~13.4em of the
+   title size (the channel cards move into the map on these widths).
+   The hero stays white in both themes, so the map keeps its light palette. */
+.nw-wrap {
+  position: absolute;
+  z-index: 1;
+  top: calc(var(--nav-clear) - 1rem);
+  bottom: clamp(3rem, 7svh, 5rem);
+  right: var(--page-x);
+  left: calc(var(--page-x) + 13.4 * min(4.6vw, 7.4svh, 4.2rem) + 2rem);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.nw {
+  --nw-ink: #1c2440; --nw-sub: #6b7290; --nw-line: #d5d9e4; --nw-tile: #ffffff; --nw-tile-line: #e8eaf1; --nw-pink: #e0457b;
+  position: relative;
+  width: 100%;
+  max-width: min(620px, calc((100svh - var(--nav-clear) - 6rem) * 600 / 560));
+  margin: 0;
+  aspect-ratio: 600 / 560;
+  container-type: inline-size;
+  font-family: var(--font-ui);
+}
+.nw .nw-art { position: absolute; inset: 0; }
+.nw .nw-art svg { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+.nw .tile { fill: var(--nw-tile); stroke: var(--nw-tile-line); filter: url(#nwSoft); }
+/* Hub carries the 3Two1 pineapple in its own colours, so it sits on white */
+.nw .tile.hub { fill: #fff; stroke: rgba(236, 83, 119, 0.35); stroke-width: 1.5; }
+.nw .ico { color: var(--nw-ink); }
+.nw .ring { fill: none; stroke: var(--nw-pink); stroke-width: 1.5; }
+.nw .nw-line { fill: none; stroke: var(--nw-line); stroke-width: 1.5; }
+.nw .nw-flow { fill: none; stroke: var(--nw-pink); stroke-width: 1.5; stroke-linecap: round; stroke-dasharray: 1 11; opacity: .8; animation: nw-flow 1.2s linear infinite; }
+@keyframes nw-flow { to { stroke-dashoffset: -24; } }
+.nw .nw-rings circle { fill: none; stroke: var(--nw-line); stroke-dasharray: 2 6; }
+.nw .nw-rings { transform-box: view-box; transform-origin: 300px 230px; animation: nw-spin 40s linear infinite; }
+@keyframes nw-spin { to { transform: rotate(360deg); } }
+.nw figcaption { position: absolute; left: 0; top: 0; margin: 0; display: flex; align-items: center; gap: 8px; font-size: clamp(9px, 1.9cqi, 11.5px); font-weight: 600; letter-spacing: .22em; text-transform: uppercase; color: var(--nw-sub); }
+.nw figcaption::before { content: ""; width: 18px; height: 1.5px; background: linear-gradient(90deg, #c2185b, #f0627a); }
+.nw ol { list-style: none; margin: 0; padding: 0; }
+.nw ol > li { position: absolute; transform: translateX(-50%); text-align: center; width: max-content; max-width: 24%; }
+.nw ol strong { display: block; font-size: clamp(10.5px, 2.3cqi, 14px); font-weight: 600; color: var(--nw-ink); line-height: 1.3; letter-spacing: -.01em; }
+.nw ol span { display: block; font-size: clamp(9.5px, 1.9cqi, 12px); color: var(--nw-sub); line-height: 1.35; margin-top: 2px; }
+.nw ol small { font-size: .85em; font-weight: 600; color: var(--nw-pink); margin-right: .45em; }
+/* Venue cards, styled like the hero's channel cards; top edge where the
+   van routes end (y 392 of 560) */
+/* One grid row so all four cards share the tallest card's height. The row
+   runs 8% past each edge of the map so the cards are wide enough to stay
+   short: columns are 28.1% of the map with 1.2% gaps, centred on the route
+   ends at x 36.3/212.1/387.9/563.7 of 600. */
+.nw .nw-venues {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  top: 70%;
+  left: -8%;
+  width: 116%;
+  display: grid;
+  /* minmax(0, …): a long word can't widen its column, so all four stay equal */
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  column-gap: 1.0345%;
+}
+.nw .nw-venues li {
+  display: flex;
+  align-items: center;
+  gap: clamp(5px, 1.3cqi, 9px);
+  padding: clamp(6px, 1.4cqi, 9px) clamp(6px, 1.5cqi, 10px);
+  text-align: left;
+  border-radius: 14px;
+  background: #ffffff;
+  border: 1px solid rgba(180, 31, 82, 0.18);
+  box-shadow: 0 10px 30px -14px rgba(28, 36, 64, 0.4);
+}
+.nw .nw-venue-icon {
+  flex: 0 0 auto;
+  display: grid;
+  place-items: center;
+  width: clamp(24px, 5.4cqi, 34px);
+  height: clamp(24px, 5.4cqi, 34px);
+  border-radius: 11px;
+  background: rgba(232, 68, 111, 0.14);
+  color: #b41f52;
+}
+.nw .nw-venue-icon svg { width: 52%; height: 52%; }
+.nw .nw-venue-text { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.nw .nw-venues strong { font-size: clamp(9.5px, 2.1cqi, 13px); font-weight: 700; line-height: 1.2; color: #1c2440; }
+.nw .nw-venue-text span { font-size: clamp(8px, 1.7cqi, 11px); line-height: 1.3; color: #b41f52; }
+
+@media (prefers-reduced-motion: reduce) { .nw .nw-flow, .nw .nw-rings { animation: none; } }

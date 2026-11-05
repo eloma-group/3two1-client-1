@@ -305,7 +305,9 @@ export const contact = {
   phone: '1300 021 321',
   /** Second line, shown only in the footer and on the Contact page. */
   mobile: '0420 222 313',
-  licence: '6090012345',
+  licence: '616214992620',
+  licenceClass: 'Wholesaler License',
+  licensee: '3Two1 Import Pty Ltd t/a 3Two1 Drinks (ABN 47 613 716 359)',
   hours: 'Mon–Fri · 8.30am – 7.00pm AEST',
   warehouses: 'Sydney, Melbourne, Perth, Auckland',
   wholesalers: 'ALM, Paramount, Liquid Mix, ILG',
@@ -343,10 +345,10 @@ export const footerColumns = [
 ];
 
 /** The people behind the trade desk — shown on Our Story and Contact. */
-export const team = [
-  { name: 'Charles Docus',   role: 'Founder & Managing Director' },
+export const team: { name: string; role: string; email?: string; phone?: string }[] = [
+  { name: 'Charles Docus',   role: 'Founder & Managing Director', email: 'Charles@3two1.com.au', phone: '0420 222 313' },
   { name: 'Leah Pettigrew',  role: 'National Accounts' },
-  { name: 'Yannick Douzals', role: 'Brand Ambassador · Educator' },
+  { name: 'Yannick Douzals', role: 'Brand Ambassador · Educator', email: 'Yannick@3two1.com.au', phone: '0452 000 614' },
 ];
 
 /** No portraits yet, so initials stand in for one. */

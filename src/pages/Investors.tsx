@@ -26,7 +26,7 @@ const FIGURES = [
   },
   {
     to: 8, suffix: ' yrs', label: 'Independent & family-held',
-    note: 'Owner-operated since 2018, with the portfolio held outright.',
+    note: 'Owner-operated since 2018, with a developing portfolio.',
   },
 ];
 
@@ -441,7 +441,7 @@ export default function Investors({ ready = true }: { ready?: boolean }) {
               book, not a shared agency shelf.
             </li>
             <li>
-              <strong>Owner-operated since 2018</strong>, with the portfolio held outright and
+              <strong>Owner-operated since 2018</strong>, with a developing portfolio and
               decisions made by the people who service the accounts.
             </li>
             <li>

@@ -15,6 +15,8 @@ export interface RecipeHouse {
   image: string;
   /** object-position for the cover tile crop, when the subject is off-centre. */
   imagePos?: string;
+  /** 'contain' shows a packshot whole, above the cover text, instead of cropping it. */
+  imageFit?: 'contain';
   recipes: Recipe[];
 }
 
@@ -32,7 +34,7 @@ export const recipeHouses: RecipeHouse[] = [
         lede: 'A clean, sun-bright sour built on Giffard Caribbean Pineapple - the #7 bestselling cocktail liqueur of 2026.',
         ingredients: [
           ['Giffard Caribbean Pineapple', '30 ml'],
-          ['Blanco rum', '45 ml'],
+          ['White Rum', '45 ml'],
           ['Lime juice', '22.5 ml'],
           ['Sugar syrup (2:1)', '10 ml'],
           ['Egg white', '1'],
@@ -63,25 +65,29 @@ export const recipeHouses: RecipeHouse[] = [
       },
       {
         tag: 'Café',
-        name: 'Madagascar Vanilla Liqueur Latte',
-        lede: 'For cafés running a "spiked drinks" hour. Giffard syrup, no spirit - same brand, two channels.',
+        name: 'Popcorn Latte',
+        lede: 'Buttery caramel-corn in a cup: Giffard Salted Caramel and Vanilla syrups, no spirit - an easy café special.',
         ingredients: [
-          ['Giffard Madagascar Vanilla Liqueur', '15 ml'],
+          ['Giffard Salted Caramel Syrup', '15 ml'],
+          ['Giffard Vanilla Syrup', '5 ml'],
           ['Double espresso', '60 ml'],
           ['Steamed milk', '180 ml'],
+          ['Lightly salted popcorn', 'to garnish'],
         ],
-        method: 'Pour syrup into the cup, pull the shot over it, top with steamed milk. Dust with cocoa.',
+        method: 'Pour both syrups into the cup, pull the shot over them and stir. Top with steamed milk and finish with a few pieces of popcorn on the foam.',
       },
       {
-        tag: 'Sparkling',
-        name: 'Kir Royale',
-        lede: 'The French classic: sparkling wine with a measure of Giffard Blackcurrant.',
+        tag: 'Creamy',
+        name: 'Mango Smoothies',
+        lede: 'Thick, sunny and alcohol-free: Giffard Fruit for Mix Mango blended with yoghurt and milk - an all-day café serve.',
         ingredients: [
-          ['Giffard Blackcurrant Liqueur', '10 ml'],
-          ['Sparkling wine', '90 ml'],
-          ['Lemon twist', '1 long'],
+          ['Giffard Fruit for Mix Mango', '60 ml'],
+          ['Giffard Mango Syrup', '10 ml'],
+          ['Natural yoghurt', '60 ml'],
+          ['Cold milk', '120 ml'],
+          ['Ice', '1 cup'],
         ],
-        method: 'Build in a flute. Finish with a long lemon twist.',
+        method: 'Add everything to a blender and blend until smooth. Pour into a chilled highball and garnish with a slice of fresh mango.',
       },
       {
         tag: 'Classic',
@@ -415,7 +421,8 @@ export const recipeHouses: RecipeHouse[] = [
     id: 'demonio-de-los-andes',
     name: 'Demonio de los Andes',
     meta: 'Ica, Peru · Pisco',
-    image: '/images/brands/demonio-de-los-andes/serve-pisco-sour.webp',
+    image: '/images/house-demonio-de-los-andes.webp',
+    imageFit: 'contain',
     recipes: [
       {
         tag: 'Signature',

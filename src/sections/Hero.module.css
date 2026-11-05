@@ -113,6 +113,10 @@
   letter-spacing: 0.01em;
 }
 
+/* Distribution network (HeroNetwork) fills the column right of the copy */
+.network { position: absolute; inset: 0; z-index: 1; pointer-events: none; }
+.networkIn { position: absolute; inset: 0; }
+
 /* Scroll indicator */
 .scroll {
   position: absolute;

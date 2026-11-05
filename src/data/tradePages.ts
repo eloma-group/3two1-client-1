@@ -143,15 +143,15 @@ export const tradeSegments: TradeSegment[] = [
         icon: 'coffee',
         title: 'Smoothies, sorted',
         body: 'Giffard fruit purées, ready to blend. Same colour and flavour in every glass - no fruit to prep, nothing to waste.',
-        image: '/images/pages/trade-cafes-berry-smoothies.webp',
-        imagePos: '50% 45%',
+        image: '/images/pages/trade-cafes-giffard-strawberry-mango.webp',
+        imagePos: '50% 0%',
       },
     ],
     products: [
       { brand: 'Giffard', kind: 'Syrup', name: 'Coconut Syrup', body: 'Real coconut cream for iced lattes, chai and tropical shakes. One pump, no tin to open.', image: '/images/giffard-coconut-syrup.webp', to: '/brands/giffard/coconut-syrup' },
       { brand: 'Giffard', kind: 'Syrup', name: 'Mango Syrup', body: 'Ripe mango with a floral lift - the easy upgrade for iced teas, sodas and mango lassis.', image: '/images/giffard-mango-syrup.webp', to: '/brands/giffard/mango-syrup' },
       { brand: 'Giffard', kind: 'Purée', name: 'Fruit for Mix Mango', body: 'Thick, ripe mango pulp ready to blend. Same smoothie every time, no fruit to cut or waste.', image: '/images/giffard-mango-puree.webp', to: '/brands/giffard/mango-puree' },
-      { brand: 'Giffard', kind: 'Purée', name: 'Fruit for Mix Passion Fruit', body: 'Tangy passion fruit with real seeds. Brightens smoothies, frappés and yoghurt bowls.', image: '/images/giffard-passion-fruit-puree.webp', to: '/brands/giffard/passion-fruit-puree' },
+      { brand: 'Giffard', kind: 'Purée', name: 'Fruit for Mix Passion Fruit', body: 'Tangy passion fruit with real seeds. Brightens smoothies, frappés and yoghurt bowls.', image: '/images/giffard-passion-fruit-puree-sunlight.webp', to: '/brands/giffard/passion-fruit-puree' },
     ],
     quote: {
       text: 'We added five spirits and a coffee liqueur. Espresso martini sales tripled inside two months - and we kept our counter footprint the same.',

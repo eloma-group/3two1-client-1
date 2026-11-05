@@ -126,7 +126,7 @@ export default function Cocktails() {
 
           <Carousel label={`${h.name} recipes`}>
             <div className={`${b.tile} ${b.tileOnImg} ${styles.cover}`}>
-              <div className={b.tileImg} aria-hidden="true">
+              <div className={`${b.tileImg} ${h.imageFit === 'contain' ? styles.coverPack : ''}`} aria-hidden="true">
                 <img src={h.image} alt="" loading="lazy" style={h.imagePos ? { objectPosition: h.imagePos } : undefined} />
               </div>
               <p className={b.tileLabel}>{h.recipes.length} {h.recipes.length === 1 ? 'recipe' : 'recipes'}</p>

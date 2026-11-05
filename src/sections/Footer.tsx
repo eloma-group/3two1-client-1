@@ -89,9 +89,14 @@ export default function Footer() {
 
         <p className={styles.ack}>{brand.acknowledgement}</p>
 
+        <p className={styles.licence}>
+          <span>License Number: {contact.licence}</span>
+          <span>Class of License: {contact.licenceClass}</span>
+          <span>Licensee: {contact.licensee}</span>
+        </p>
+
         <div className={styles.bottom}>
           <span>© {new Date().getFullYear()} {brand.name} Drinks. {brand.slogan}.</span>
-          <span className={styles.legal}>Liquor Licence {contact.licence}</span>
           <span className={styles.legal}>Enjoy 3Two1 Drinks responsibly. Not for anyone under 18.</span>
           <a href="https://egeloma.com.au/" target="_blank" rel="noopener" className={styles.credit} data-cursor="Visit">
             <span>Designed and Developed by EG Eloma</span>

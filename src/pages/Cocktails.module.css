@@ -88,6 +88,17 @@
 .houseLinks { display: flex; gap: 0 1.4rem; flex-wrap: wrap; }
 
 .cover { min-height: 100%; }
+/* Packshot on white: the whole bottle sits above the cover text */
+.coverPack { background: #fff; }
+.coverPack img {
+  object-fit: contain;
+  object-position: center top;
+  padding: 1.25rem 1.5rem 9.5rem;
+}
+/* Shade only the text band so it doesn't grey the bottle */
+.coverPack::after {
+  background: linear-gradient(to top, rgba(12, 5, 7, 0.85), rgba(12, 5, 7, 0.55) 22%, rgba(12, 5, 7, 0) 40%);
+}
 .card { display: flex; flex-direction: column; height: 100%; }
 .cardName {
   margin: 0.4rem 0 0;

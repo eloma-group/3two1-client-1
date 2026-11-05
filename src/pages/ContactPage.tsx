@@ -229,7 +229,14 @@ export default function ContactPage() {
                         <span className={story.memberRole}>{m.role}</span>
                       </div>
                       <span className={story.monogram} aria-hidden="true">{initials(m.name)}</span>
-                      <h3 className={story.memberName}>{m.name}</h3>
+                      <div>
+                        <h3 className={story.memberName}>{m.name}</h3>
+                        {/* Always rendered so names line up across cards, with or without details */}
+                        <ul className={story.memberContact}>
+                          {m.email && <li><a href={`mailto:${m.email.toLowerCase()}`}>{m.email}</a></li>}
+                          {m.phone && <li><a href={`tel:${m.phone.replace(/\s/g, '')}`}>{m.phone}</a></li>}
+                        </ul>
+                      </div>
                     </article>
                   </Reveal>
                 ))}

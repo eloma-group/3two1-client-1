@@ -97,7 +97,7 @@ const STRATEGY = [
   { title: 'Marketing', body: 'Campaigns adapted to the season and trends - and more present in that space than our competition.' },
   { title: 'Top-down approach', body: 'A portfolio dedicated to the top 10% of Australian venues and the most discerning customers.' },
   { title: 'End-consumer experience', body: 'Integral to our marketing - it drives online sales through our website and brand exposure.' },
-  { title: 'Spirits & cocktails', body: 'New additions curated to fit our ethos and vision, such as The London Essence Co.' },
+  { title: 'Spirits & cocktails', body: 'New additions curated to fit our ethos and vision, such as Giffard Liqueurs and Syrups.' },
   { title: 'Off-premise nurturing', body: 'Contracts with retailers such as Woolworths, Coles and Cellarbrations.' },
 ];
 
