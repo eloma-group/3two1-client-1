@@ -1,10 +1,15 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, type CSSProperties } from 'react';
 import { networkStops, networkSvg } from './heroNetworkMarkup';
 import { channels } from './heroChannels';
 import './HeroNetwork.css';
 
-/* Import → warehouse → venues map in the hero's free right-hand column. */
-export default function HeroNetwork() {
+/** Where the hero places the map: left/top in hero pixels, its width, and how
+    far the caption lifts above the map to meet the eyebrow. */
+export interface NetworkFit { x: number; y: number; w: number; lift: number }
+
+/* Import → warehouse → venues map in the hero's free right-hand column. Until
+   the hero has measured its copy (`fit`), the map centres in the column. */
+export default function HeroNetwork({ fit }: { fit?: NetworkFit | null }) {
   const ref = useRef<HTMLElement>(null);
 
   useEffect(() => {
@@ -26,8 +31,13 @@ export default function HeroNetwork() {
   }, []);
 
   return (
-    <div className="nw-wrap">
-      <figure className="nw" aria-labelledby="nwCap" ref={ref}>
+    <div className={`nw-wrap${fit ? ' nw-fit' : ''}`}>
+      <figure
+        className="nw"
+        aria-labelledby="nwCap"
+        ref={ref}
+        style={fit ? ({ position: 'absolute', left: fit.x, top: fit.y, width: fit.w, maxWidth: 'none', '--nw-cap-lift': `${fit.lift}px` } as CSSProperties) : undefined}
+      >
         <div className="nw-art" dangerouslySetInnerHTML={{ __html: networkSvg }} />
         <figcaption id="nwCap">From import to every venue</figcaption>
         <div dangerouslySetInnerHTML={{ __html: networkStops }} />

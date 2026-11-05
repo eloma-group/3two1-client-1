@@ -15,6 +15,9 @@
   pointer-events: none;
 }
 
+/* Fitted by the hero to its copy: the figure is placed in hero coordinates */
+.nw-wrap.nw-fit { inset: 0; display: block; }
+
 .nw {
   --nw-ink: #1c2440; --nw-sub: #6b7290; --nw-line: #d5d9e4; --nw-tile: #ffffff; --nw-tile-line: #e8eaf1; --nw-pink: #e0457b;
   position: relative;
@@ -38,7 +41,7 @@
 .nw .nw-rings circle { fill: none; stroke: var(--nw-line); stroke-dasharray: 2 6; }
 .nw .nw-rings { transform-box: view-box; transform-origin: 300px 230px; animation: nw-spin 40s linear infinite; }
 @keyframes nw-spin { to { transform: rotate(360deg); } }
-.nw figcaption { position: absolute; left: 0; top: 0; margin: 0; display: flex; align-items: center; gap: 8px; font-size: clamp(9px, 1.9cqi, 11.5px); font-weight: 600; letter-spacing: .22em; text-transform: uppercase; color: var(--nw-sub); }
+.nw figcaption { position: absolute; left: 0; top: 0; transform: translateY(calc(-1 * var(--nw-cap-lift, 0px))); margin: 0; display: flex; align-items: center; gap: 8px; font-size: clamp(9px, 1.9cqi, 11.5px); font-weight: 600; letter-spacing: .22em; text-transform: uppercase; color: var(--nw-sub); }
 .nw figcaption::before { content: ""; width: 18px; height: 1.5px; background: linear-gradient(90deg, #c2185b, #f0627a); }
 .nw ol { list-style: none; margin: 0; padding: 0; }
 .nw ol > li { position: absolute; transform: translateX(-50%); text-align: center; width: max-content; max-width: 24%; }
