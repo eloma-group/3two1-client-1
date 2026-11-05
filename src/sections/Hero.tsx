@@ -155,6 +155,12 @@ export default function Hero({ ready }: { ready: boolean }) {
 
   return (
     <section className={styles.hero} ref={ref} id="top">
+      {/* Background: a bottle shop and a coffee shop, crossfading */}
+      <div className={styles.bg} aria-hidden="true" data-glass-tone="dark">
+        <img src="/images/home-hero-bottle-shop.webp" alt="" fetchPriority="high" />
+        <img src="/images/home-hero-coffee-shop.webp" alt="" loading="lazy" />
+      </div>
+
       {/* Copy */}
       <motion.div ref={contentRef} className={`container ${styles.content}`} style={narrow ? undefined : { y: textY, opacity: fade }}>
         <motion.div

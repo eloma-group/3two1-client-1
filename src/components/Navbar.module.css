@@ -1,7 +1,7 @@
 /* ============================================================
    Centered-logo navbar with dropdown menus + theme toggle.
    Every surface is iOS 26-style Liquid Glass: a near-clear tint,
-   a light blur, a bright specular rim and a pointer-follow sheen.
+   a light blur and a bright specular rim.
    In Chromium the rim also refracts the page (see liquidGlass.tsx,
    which supplies the --lg filter). The materials themselves - tints, rims,
    light/dark/solid - live in src/glass.css, shared with other glass bars.
@@ -37,8 +37,7 @@
    which would then blur nothing but the bar instead of the page behind them.
    For the same reason nothing here uses isolation or mix-blend-mode: Chromium
    turns that into its own render surface, which also cuts the dropdowns off. */
-.bar::before,
-.bar::after {
+.bar::before {
   content: '';
   position: absolute;
   inset: 0;
@@ -53,19 +52,6 @@
   border: 1px solid var(--nav-glass-border);
   box-shadow: var(--nav-rim);
   transition: background 0.5s;
-}
-/* Specular sheen: a soft light that follows the pointer across the glass */
-.bar::after {
-  background:
-    radial-gradient(120px 60px at var(--mx, 22%) var(--my, 0%), var(--nav-sheen), transparent 70%),
-    linear-gradient(115deg, rgba(255, 255, 255, 0.14) 0%, transparent 32%, transparent 70%, rgba(255, 255, 255, 0.08) 100%);
-  opacity: 0.8;
-  transition: opacity 0.4s;
-}
-.bar:hover::after { opacity: 1; }
-/* No pointer to follow on touch screens: drop the sheen layer entirely */
-@media (pointer: coarse) {
-  .bar::after, .dropInner::after { display: none; }
 }
 .scrolled .bar { box-shadow: var(--nav-shadow-scrolled); }
 .scrolled .bar::before { background: var(--nav-glass-scrolled); }
@@ -139,15 +125,6 @@
   backdrop-filter: var(--lg, var(--nav-blur));
   border: 1px solid var(--nav-glass-border);
   box-shadow: var(--nav-rim), 0 24px 50px -18px rgba(40, 10, 25, 0.35);
-}
-.dropInner::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  border-radius: inherit;
-  pointer-events: none;
-  background: radial-gradient(160px 90px at var(--mx, 20%) var(--my, 0%), var(--nav-sheen), transparent 70%);
 }
 .twoCol {
   display: grid;

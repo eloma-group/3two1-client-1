@@ -12,6 +12,34 @@
   background: #ffffff;
 }
 
+/* Background photos: the two crossfade slowly, under a dark wash so the
+   light copy and the network map read clearly over them. */
+/* No pointer-events: none here: the navbar's backdrop sampler hit-tests
+   through elementsFromPoint, which skips elements that ignore the pointer. */
+.bg { position: absolute; inset: 0; z-index: 0; }
+.bg img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.bg img:last-child { animation: heroBgFade 10s ease-in-out infinite; }
+.bg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, rgba(8, 10, 18, 0.68) 0%, rgba(8, 10, 18, 0.5) 55%, rgba(8, 10, 18, 0.45) 100%);
+}
+@keyframes heroBgFade {
+  0%, 40% { opacity: 0; }
+  50%, 90% { opacity: 1; }
+  100% { opacity: 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .bg img:last-child { animation: none; opacity: 0; }
+}
+
 /* Content */
 .content { position: relative; z-index: 2; width: 100%; }
 .inner { max-width: 60rem; }
@@ -20,7 +48,7 @@
   display: inline-flex;
   align-items: center;
   gap: 0.7rem;
-  color: #1c2440;
+  color: #ffffff;
   margin-bottom: clamp(0.85rem, 2.2svh, 1.6rem);
 }
 .dot {
@@ -37,7 +65,7 @@
 }
 
 .title {
-  color: #1c2440;
+  color: #ffffff;
   margin-bottom: clamp(1rem, 2.6svh, 1.8rem);
   font-family: var(--font-ui);
   font-weight: 500;
@@ -50,7 +78,7 @@
   max-width: 34ch;
   font-family: var(--font-ui);
   font-size: clamp(1rem, 1.5vw, 1.3rem);
-  color: rgba(28, 36, 64, 0.82);
+  color: rgba(255, 255, 255, 0.88);
   line-height: 1.6;
   margin-bottom: clamp(1.3rem, 3.4svh, 2.6rem);
 }
@@ -61,9 +89,9 @@
   gap: 1rem;
   margin-bottom: clamp(1.1rem, 2.6svh, 1.8rem);
 }
-/* Outline buttons take --fg, which turns light in the dark theme; this hero
-   stays white in both, so pin the text dark. */
-.actions .download { color: #1c2440; }
+/* Outline buttons take --fg, which flips with the theme; this hero sits on
+   dark photos in both, so pin the text light. */
+.actions .download { color: #fff; border-color: rgba(255, 255, 255, 0.7); }
 .actions .download:hover { color: #fff; }
 
 .channels {
@@ -130,7 +158,7 @@
   font-size: 0.64rem;
   letter-spacing: 0.28em;
   text-transform: uppercase;
-  color: rgba(28, 36, 64, 0.6);
+  color: rgba(255, 255, 255, 0.75);
   z-index: 2;
   text-align: center;
 }

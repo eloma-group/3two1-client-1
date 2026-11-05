@@ -5,7 +5,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { navMenu, contact, portfolioPdf, type MenuEntry } from '../data/content';
 import { scrollToHash } from '../hooks/useLenis';
 import ThemeToggle from './ThemeToggle';
-import { useLiquidGlass, useBackdropTone, trackSheen, glassClass } from './liquidGlass';
+import { useLiquidGlass, useBackdropTone, glassClass } from './liquidGlass';
 import styles from './Navbar.module.css';
 
 /* Springy, slightly underdamped motion, the way iOS glass settles. */
@@ -26,7 +26,6 @@ function SubMenu({ item, go }: { item: MenuEntry; go: Go }) {
         animate={{ opacity: 1, y: 0, scale: 1 }}
         exit={{ opacity: 0, y: -6, scale: 0.95, transition: { duration: 0.18 } }}
         transition={spring}
-        onPointerMove={trackSheen}
         onMouseLeave={() => setHover(null)}
       >
         {filter}
@@ -129,7 +128,7 @@ export default function Navbar() {
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 1, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
       >
-        <div ref={barRef} style={barStyle} className={styles.bar} onPointerMove={trackSheen}>
+        <div ref={barRef} style={barStyle} className={styles.bar}>
           {barFilter}
           {/* Left: logo + links */}
           <div className={styles.left}>

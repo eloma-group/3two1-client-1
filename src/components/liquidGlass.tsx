@@ -209,6 +209,10 @@ function lumaAt(x: number, y: number, skip: Element): number | null {
     const cs = getComputedStyle(el);
     if (cs.visibility === 'hidden' || parseFloat(cs.opacity) < 0.3) continue;
     const box = el.getBoundingClientRect();
+    // Photos under an overlay the sampler can't see (a pseudo-element wash)
+    // declare the tone they read as instead.
+    const hint = el.closest<HTMLElement>('[data-glass-tone]')?.dataset.glassTone;
+    if (hint) return hint === 'dark' ? 0.12 : 0.9;
 
     if (el instanceof HTMLImageElement && el.complete && el.currentSrc) {
       const l = imageLumaAt(el.currentSrc, box, x, y, cs.objectFit, cs.objectPosition);
