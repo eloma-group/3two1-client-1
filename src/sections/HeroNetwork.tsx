@@ -9,7 +9,7 @@ export interface NetworkFit { x: number; y: number; w: number; lift: number }
 
 /* Import → warehouse → venues map in the hero's free right-hand column. Until
    the hero has measured its copy (`fit`), the map centres in the column. */
-export default function HeroNetwork({ fit }: { fit?: NetworkFit | null }) {
+export default function HeroNetwork({ fit, compact = false }: { fit?: NetworkFit | null; compact?: boolean }) {
   const ref = useRef<HTMLElement>(null);
 
   useEffect(() => {
@@ -42,7 +42,7 @@ export default function HeroNetwork({ fit }: { fit?: NetworkFit | null }) {
         <figcaption id="nwCap">From import to every venue</figcaption>
         <div dangerouslySetInnerHTML={{ __html: networkStops }} />
         {/* The four van routes end on these cards (route ends at x 36.3/212.1/387.9/563.7 of 600) */}
-        <ul className="nw-venues">
+        <ul className={`nw-venues${compact ? ' nw-venues-even' : ''}`}>
           {channels.map(({ icon: Icon, title, sub }) => (
             <li key={title}>
               <span className="nw-venue-icon"><Icon /></span>

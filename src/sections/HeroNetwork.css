@@ -39,7 +39,7 @@
 .nw .nw-flow { fill: none; stroke: var(--nw-pink); stroke-width: 1.5; stroke-linecap: round; stroke-dasharray: 1 11; opacity: .8; animation: nw-flow 1.2s linear infinite; }
 @keyframes nw-flow { to { stroke-dashoffset: -24; } }
 .nw .nw-rings circle { fill: none; stroke: var(--nw-line); stroke-dasharray: 2 6; }
-.nw .nw-rings { transform-box: view-box; transform-origin: 300px 230px; animation: nw-spin 40s linear infinite; }
+.nw .nw-rings { transform-box: view-box; transform-origin: 300px 200px; animation: nw-spin 40s linear infinite; }
 @keyframes nw-spin { to { transform: rotate(360deg); } }
 .nw figcaption { position: absolute; left: 0; top: 0; transform: translateY(calc(-1 * var(--nw-cap-lift, 0px))); margin: 0; display: flex; align-items: center; gap: 8px; font-size: clamp(9px, 1.9cqi, 11.5px); font-weight: 600; letter-spacing: .22em; text-transform: uppercase; color: var(--nw-sub); }
 .nw figcaption::before { content: ""; width: 18px; height: 1.5px; background: linear-gradient(90deg, #c2185b, #f0627a); }
@@ -50,22 +50,45 @@
 .nw ol small { font-size: .85em; font-weight: 600; color: var(--nw-pink); margin-right: .45em; }
 /* Venue cards, styled like the hero's channel cards; top edge where the
    van routes end (y 392 of 560) */
-/* One grid row so all four cards share the tallest card's height. The row
-   runs 8% past each edge of the map so the cards are wide enough to stay
-   short: columns are 28.1% of the map with 1.2% gaps, centred on the route
-   ends at x 36.3/212.1/387.9/563.7 of 600. */
+/* One grid row so all four cards share the tallest card's height. The two
+   middle cards are 28.1% of the map with 1.2% gaps, centred on the route ends
+   at x 212.1/387.9 of 600. The row spans twice the map's width (all
+   percentages below are of the row), so the outer columns have room: Retail
+   and Coffee Shop keep their text on one line and grow outward from the middle
+   pair, never narrower than a middle card. */
 .nw .nw-venues {
   list-style: none;
   margin: 0;
   padding: 0;
   position: absolute;
   top: 70%;
+  left: -50%;
+  width: 200%;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 14.05% 14.05% minmax(0, 1fr);
+  column-gap: 0.6%;
+}
+.nw .nw-venues li:first-child,
+.nw .nw-venues li:last-child {
+  width: max-content;
+  min-width: 40.09%; /* 28.1% of the map, as a share of the 70.1% outer column */
+  white-space: nowrap;
+}
+.nw .nw-venues li:first-child { justify-self: end; }
+.nw .nw-venues li:last-child { justify-self: start; }
+/* Too tight for one-line outer cards: four equal columns, 8% past each side
+   of the map, each centred on its route end (x 36.3/212.1/387.9/563.7 of 600) */
+.nw .nw-venues.nw-venues-even {
   left: -8%;
   width: 116%;
-  display: grid;
-  /* minmax(0, …): a long word can't widen its column, so all four stay equal */
   grid-template-columns: repeat(4, minmax(0, 1fr));
   column-gap: 1.0345%;
+}
+.nw .nw-venues.nw-venues-even li {
+  width: auto;
+  min-width: 0;
+  white-space: normal;
+  justify-self: stretch;
 }
 .nw .nw-venues li {
   display: flex;

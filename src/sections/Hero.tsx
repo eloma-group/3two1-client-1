@@ -9,6 +9,25 @@ import MagneticButton from '../components/MagneticButton';
 import HeroNetwork, { type NetworkFit } from './HeroNetwork';
 import styles from './Hero.module.css';
 
+/** A venue card's width with its text on one line: padding, icon and gap, plus
+    its longest line measured in its own font. */
+let measureCtx: CanvasRenderingContext2D | null = null;
+function oneLineWidth(card: HTMLElement) {
+  measureCtx ??= document.createElement('canvas').getContext('2d');
+  const cs = getComputedStyle(card);
+  const icon = card.firstElementChild as HTMLElement | null;
+  let text = 0;
+  card.querySelectorAll<HTMLElement>('strong, .nw-venue-text > span').forEach((el) => {
+    if (!measureCtx) return;
+    measureCtx.font = getComputedStyle(el).font;
+    text = Math.max(text, measureCtx.measureText(el.textContent ?? '').width);
+  });
+  return (
+    parseFloat(cs.paddingLeft) + parseFloat(cs.paddingRight) + parseFloat(cs.borderLeftWidth) + parseFloat(cs.borderRightWidth) +
+    (icon?.offsetWidth ?? 0) + parseFloat(cs.columnGap || '0') + Math.ceil(text) + 2
+  );
+}
+
 export default function Hero({ ready }: { ready: boolean }) {
   const ref = useRef<HTMLElement>(null);
   const { scrollYProgress } = useScroll({ target: ref, offset: ['start start', 'end start'] });
@@ -29,6 +48,8 @@ export default function Hero({ ready }: { ready: boolean }) {
   const bodyRef = useRef<HTMLParagraphElement>(null);
   const actionsRef = useRef<HTMLDivElement>(null);
   const [fit, setFit] = useState<NetworkFit | null>(null);
+  /* Venue cards at four equal widths, for when one-line outer cards don't fit */
+  const [compact, setCompact] = useState(false);
 
   /* Fit the network map to the copy: its caption lines up with the eyebrow and
      its venue cards end level with the buttons. The map is a narrow tree on top
@@ -71,14 +92,34 @@ export default function Hero({ ready }: { ready: boolean }) {
       const buttonsRight = ox + Math.max(...[...actions.children].map((b) => (b as HTMLElement).offsetLeft + (b as HTMLElement).offsetWidth));
       const lowRight = Math.max(bodyRight, buttonsRight);
 
-      /* Map geometry, as fractions of its width: the card row runs 8% past each
-         side (0.58 from the centre), the hub tile is 0.07 either side of the
-         centre, and the visible height ends at the bottom of the cards. */
-      const ratio = (venues.offsetTop + venues.offsetHeight) / fig.offsetWidth;
+      /* Map geometry, as fractions of its width from its centre: how far the
+         card row reaches left and right, the hub tile's half-width (0.07), and
+         the visible height, which ends at the bottom of the cards. */
+      const fw = fig.offsetWidth;
+      const ratio = (venues.offsetTop + venues.offsetHeight) / fw;
       const h = bottom - top;
-      const w = Math.min(h / ratio, (right - titleRight - 24) / 0.65, (right - lowRight - 32) / 1.16);
-      const lo = Math.max(titleRight + 24 + 0.07 * w, lowRight + 32 + 0.58 * w);
-      const hi = right - 0.58 * w;
+      const widthFor = (reachL: number, reachR: number) =>
+        Math.min(h / ratio, (right - titleRight - 24) / (0.07 + reachR), (right - lowRight - 32) / (reachL + reachR));
+
+      /* Retail and Coffee Shop keep their text on one line and grow outward
+         from the middle pair, whose outer edges sit 0.299 from the map's
+         centre (see HeroNetwork.css). Their one-line widths are
+         measured from the text, so the result doesn't depend on which layout
+         is showing. Where one line would leave the middle cards (28.1% of the
+         map) too narrow for their text, all four go to equal widths, 8% past
+         each side of the map (0.58 from the centre). */
+      const cards = [...venues.children] as HTMLElement[];
+      const oneL = Math.max(oneLineWidth(cards[0]) / fw, 0.281);
+      const oneR = Math.max(oneLineWidth(cards[cards.length - 1]) / fw, 0.281);
+      const wOne = widthFor(0.299 + oneL, 0.299 + oneR);
+      const mid = 0.281 * wOne;
+      const nextCompact = compact ? mid < 124 : mid < 118 && wOne < h / ratio;
+      if (nextCompact !== compact) { setCompact(nextCompact); return; }
+      const reachL = compact ? 0.58 : 0.299 + oneL;
+      const reachR = compact ? 0.58 : 0.299 + oneR;
+      const w = widthFor(reachL, reachR);
+      const lo = Math.max(titleRight + 24 + 0.07 * w, lowRight + 32 + reachL * w);
+      const hi = right - reachR * w;
       const centre = Math.min(Math.max((titleRight + right) / 2, lo), hi);
       /* When the column is too narrow for the map to fill the copy's height,
          the cards still end level with the buttons and the caption lifts to
@@ -93,10 +134,10 @@ export default function Hero({ ready }: { ready: boolean }) {
     place();
     const ro = new ResizeObserver(place);
     ro.observe(hero);
-    [titleRef.current, bodyRef.current, hero.querySelector('.nw-venues')].forEach((el) => el && ro.observe(el));
+    [titleRef.current, bodyRef.current, ...hero.querySelectorAll('.nw-venues, .nw-venues > li')].forEach((el) => el && ro.observe(el));
     document.fonts?.ready.then(place);
     return () => ro.disconnect();
-  }, [wide]);
+  }, [wide, compact]);
 
   const EASE = [0.16, 1, 0.3, 1] as const;
   const container: Variants = {
@@ -176,7 +217,7 @@ export default function Hero({ ready }: { ready: boolean }) {
             animate={ready ? { opacity: 1, x: 0 } : {}}
             transition={{ delay: 0.5, duration: 1.2, ease: EASE }}
           >
-            <HeroNetwork fit={fit} />
+            <HeroNetwork fit={fit} compact={compact} />
           </motion.div>
         </motion.div>
       )}
