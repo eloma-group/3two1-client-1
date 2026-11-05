@@ -39,10 +39,10 @@ export function useLenis() {
   }, []);
 }
 
-export function scrollToHash(hash: string, tries = 90) {
+export function scrollToHash(hash: string, tries = 180) {
   const el = document.querySelector(hash);
   // The home sections below the hero load as their own chunk, so the target
-  // can be a few frames away on the first visit: wait for it (~1.5s at most).
+  // can be a few frames away on the first visit: wait for it (~3s at most).
   if (!el) {
     if (tries > 0) requestAnimationFrame(() => scrollToHash(hash, tries - 1));
     return;

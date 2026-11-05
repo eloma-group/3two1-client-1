@@ -157,8 +157,24 @@ export default function Hero({ ready }: { ready: boolean }) {
     <section className={styles.hero} ref={ref} id="top">
       {/* Background: a bottle shop and a coffee shop, crossfading */}
       <div className={styles.bg} aria-hidden="true" data-glass-tone="dark">
-        <img src="/images/home-hero-bottle-shop.webp" alt="" fetchPriority="high" />
-        <img src="/images/home-hero-coffee-shop.webp" alt="" loading="lazy" />
+        <img
+          src="/images/home-hero-bottle-shop.webp"
+          srcSet="/images/home-hero-bottle-shop-960.webp 960w, /images/home-hero-bottle-shop.webp 1920w"
+          sizes="100vw"
+          alt=""
+          fetchPriority="high"
+        />
+        {/* The second photo is fully transparent for the first stretch of the
+            crossfade, so it waits for the splash to go instead of competing
+            with the page's own loading. */}
+        {ready && (
+          <img
+            src="/images/home-hero-coffee-shop.webp"
+            srcSet="/images/home-hero-coffee-shop-960.webp 960w, /images/home-hero-coffee-shop.webp 1920w"
+            sizes="100vw"
+            alt=""
+          />
+        )}
       </div>
 
       {/* Copy */}

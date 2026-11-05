@@ -34,7 +34,7 @@ export default function Footer() {
       <div className={`container ${styles.inner}`}>
         <div className={styles.top}>
           <div className={styles.brandCol}>
-            <img src="/images/logo.png" alt="3Two1 Drinks" className={styles.logo} loading="lazy" decoding="async" />
+            <img src="/images/footer-logo.webp" alt="3Two1 Drinks" className={styles.logo} width={150} height={151} loading="lazy" decoding="async" />
             <p className={styles.tagline}>{brand.tagline}.</p>
             <p className={styles.regions}>{brand.regions}</p>
             <div className={styles.socials}>

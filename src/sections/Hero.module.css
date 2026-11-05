@@ -24,7 +24,7 @@
   height: 100%;
   object-fit: cover;
 }
-.bg img:last-child { animation: heroBgFade 10s ease-in-out infinite; }
+.bg img:nth-child(2) { animation: heroBgFade 10s ease-in-out infinite; }
 .bg::after {
   content: '';
   position: absolute;
@@ -37,7 +37,7 @@
   100% { opacity: 0; }
 }
 @media (prefers-reduced-motion: reduce) {
-  .bg img:last-child { animation: none; opacity: 0; }
+  .bg img:nth-child(2) { animation: none; opacity: 0; }
 }
 
 /* Content */
