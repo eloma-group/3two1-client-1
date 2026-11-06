@@ -24,20 +24,29 @@
   height: 100%;
   object-fit: cover;
 }
-.bg img:nth-child(2) { animation: heroBgFade 10s ease-in-out infinite; }
+.bg img:nth-child(2) { animation: heroBgFade2 15s ease-in-out infinite; }
+.bg img:nth-child(3) { animation: heroBgFade3 15s ease-in-out infinite; }
 .bg::after {
   content: '';
   position: absolute;
   inset: 0;
   background: linear-gradient(90deg, rgba(8, 10, 18, 0.68) 0%, rgba(8, 10, 18, 0.5) 55%, rgba(8, 10, 18, 0.45) 100%);
 }
-@keyframes heroBgFade {
-  0%, 40% { opacity: 0; }
-  50%, 90% { opacity: 1; }
+/* Each photo holds for about five seconds. The bar fades in over the coffee
+   shop, which then drops out unseen, so the bar fades straight back to the
+   bottle shop underneath. */
+@keyframes heroBgFade2 {
+  0%, 28% { opacity: 0; }
+  33%, 66% { opacity: 1; }
+  67%, 100% { opacity: 0; }
+}
+@keyframes heroBgFade3 {
+  0%, 61% { opacity: 0; }
+  66%, 94% { opacity: 1; }
   100% { opacity: 0; }
 }
 @media (prefers-reduced-motion: reduce) {
-  .bg img:nth-child(2) { animation: none; opacity: 0; }
+  .bg img:nth-child(n + 2) { animation: none; opacity: 0; }
 }
 
 /* Content */

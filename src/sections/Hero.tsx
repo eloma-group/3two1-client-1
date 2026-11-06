@@ -155,7 +155,7 @@ export default function Hero({ ready }: { ready: boolean }) {
 
   return (
     <section className={styles.hero} ref={ref} id="top">
-      {/* Background: a bottle shop and a coffee shop, crossfading */}
+      {/* Background: a bottle shop, a coffee shop and a bar, crossfading */}
       <div className={styles.bg} aria-hidden="true" data-glass-tone="dark">
         <img
           src="/images/home-hero-bottle-shop.webp"
@@ -164,16 +164,24 @@ export default function Hero({ ready }: { ready: boolean }) {
           alt=""
           fetchPriority="high"
         />
-        {/* The second photo is fully transparent for the first stretch of the
-            crossfade, so it waits for the splash to go instead of competing
+        {/* The other photos are fully transparent for the first stretch of the
+            crossfade, so they wait for the splash to go instead of competing
             with the page's own loading. */}
         {ready && (
-          <img
-            src="/images/home-hero-coffee-shop.webp"
-            srcSet="/images/home-hero-coffee-shop-960.webp 960w, /images/home-hero-coffee-shop.webp 1920w"
-            sizes="100vw"
-            alt=""
-          />
+          <>
+            <img
+              src="/images/home-hero-coffee-shop.webp"
+              srcSet="/images/home-hero-coffee-shop-960.webp 960w, /images/home-hero-coffee-shop.webp 1920w"
+              sizes="100vw"
+              alt=""
+            />
+            <img
+              src="/images/home-hero-giffard-bar.webp"
+              srcSet="/images/home-hero-giffard-bar-960.webp 960w, /images/home-hero-giffard-bar.webp 1920w"
+              sizes="100vw"
+              alt=""
+            />
+          </>
         )}
       </div>
 
