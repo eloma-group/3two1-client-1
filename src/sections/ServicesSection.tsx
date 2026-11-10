@@ -80,8 +80,25 @@ export interface Service {
 
 const SERVICES: Service[] = [
   {
-    id: 'black-tears',
+    id: 'giffard',
     number: '01',
+    preLabel: 'LIQUEURS & EAUX-DE-VIE',
+    name: 'Giffard',
+    title: 'Fruit, Not Fashion.',
+    description:
+      'Five generations of distillers in Angers, working with whole fruit. Liqueurs, purées and syrups chosen by sommeliers and head bartenders because they make the cocktail better.',
+    shortDescription: 'Liqueurs & Eaux-de-vie · Angers, France · Since 1885',
+    imageUrl: '/images/giffard-abricot-du-roussillon-apricot-liqueur.webp',
+    imageAlt: 'Giffard Abricot du Roussillon apricot liqueur bottle in a French terroir scene',
+    scene: true,
+    country: 'France',
+    accent: '#e879a6',
+    bg: 'radial-gradient(120% 100% at 58% 22%, #45163a 0%, #250c20 52%, #0a0509 100%)',
+    gallery: giffardGallery,
+  },
+  {
+    id: 'black-tears',
+    number: '02',
     preLabel: 'SPICED RUM',
     name: 'Black Tears',
     title: 'Coffee, Cacao, Midnight.',
@@ -105,7 +122,7 @@ const SERVICES: Service[] = [
   },
   {
     id: 'burnt-ends',
-    number: '02',
+    number: '03',
     preLabel: 'BLENDED WHISKEY',
     name: 'Burnt Ends',
     title: 'Charred-Oak Character.',
@@ -121,7 +138,7 @@ const SERVICES: Service[] = [
   },
   {
     id: 'demonio-de-los-andes',
-    number: '03',
+    number: '04',
     preLabel: 'PISCO',
     name: 'Demonio de los Andes',
     title: 'Peru, In A Single Pass.',
@@ -134,23 +151,6 @@ const SERVICES: Service[] = [
     country: 'Peru',
     accent: '#e0a23c',
     bg: 'radial-gradient(120% 100% at 58% 22%, #59401a 0%, #2d2010 52%, #0c0805 100%)',
-  },
-  {
-    id: 'giffard',
-    number: '04',
-    preLabel: 'LIQUEURS & EAUX-DE-VIE',
-    name: 'Giffard',
-    title: 'Fruit, Not Fashion.',
-    description:
-      'Five generations of distillers in Angers, working with whole fruit. Liqueurs, purées and syrups chosen by sommeliers and head bartenders because they make the cocktail better.',
-    shortDescription: 'Liqueurs & Eaux-de-vie · Angers, France · Since 1885',
-    imageUrl: '/images/giffard-abricot-du-roussillon-apricot-liqueur.webp',
-    imageAlt: 'Giffard Abricot du Roussillon apricot liqueur bottle in a French terroir scene',
-    scene: true,
-    country: 'France',
-    accent: '#e879a6',
-    bg: 'radial-gradient(120% 100% at 58% 22%, #45163a 0%, #250c20 52%, #0a0509 100%)',
-    gallery: giffardGallery,
   },
   {
     id: 'pueblo-viejo',
