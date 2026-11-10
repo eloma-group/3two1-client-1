@@ -155,34 +155,13 @@ export default function Hero({ ready }: { ready: boolean }) {
 
   return (
     <section className={styles.hero} ref={ref} id="top">
-      {/* Background: a bottle shop, a coffee shop and a bar, crossfading */}
-      <div className={styles.bg} aria-hidden="true" data-glass-tone="dark">
-        <img
-          src="/images/home-hero-bottle-shop.webp"
-          srcSet="/images/home-hero-bottle-shop-960.webp 960w, /images/home-hero-bottle-shop.webp 1920w"
-          sizes="100vw"
-          alt=""
-          fetchPriority="high"
-        />
-        {/* The other photos are fully transparent for the first stretch of the
-            crossfade, so they wait for the splash to go instead of competing
-            with the page's own loading. */}
-        {ready && (
-          <>
-            <img
-              src="/images/home-hero-coffee-shop.webp"
-              srcSet="/images/home-hero-coffee-shop-960.webp 960w, /images/home-hero-coffee-shop.webp 1920w"
-              sizes="100vw"
-              alt=""
-            />
-            <img
-              src="/images/home-hero-giffard-bar.webp"
-              srcSet="/images/home-hero-giffard-bar-960.webp 960w, /images/home-hero-giffard-bar.webp 1920w"
-              sizes="100vw"
-              alt=""
-            />
-          </>
-        )}
+      {/* Background: a drifting dot grid with glowing rose and coral dots,
+          as on the EG Eloma client portal, in the logo's colours */}
+      <div className={styles.dots} aria-hidden="true">
+        <div className={styles.dotGrid} />
+        <div className={`${styles.dotGlow} ${styles.dotRose}`} />
+        <div className={`${styles.dotGlow} ${styles.dotCoral}`} />
+        <div className={styles.dotWave} />
       </div>
 
       {/* Copy */}
