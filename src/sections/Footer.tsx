@@ -101,7 +101,7 @@ export default function Footer() {
           <span className={styles.legal}>Enjoy 3Two1 Drinks responsibly. Not for anyone under 18.</span>
           <a href="https://egeloma.com.au/" target="_blank" rel="noopener" className={styles.credit} data-cursor="Visit">
             <span>Designed and Developed by EG Eloma</span>
-            <img src="/images/eg-eloma-logo.png" alt="EG Eloma" width={149} height={120} loading="lazy" />
+            <img src="/images/eg-eloma-logo.webp" alt="EG Eloma" width={64} height={60} loading="lazy" />
           </a>
         </div>
       </div>
