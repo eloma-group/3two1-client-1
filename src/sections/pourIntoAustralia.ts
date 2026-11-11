@@ -1,5 +1,5 @@
-/* "Pour into Australia" - a coral stream drips from the bottom edge of the hero
-   (under "Scroll To Explore"), falls onto the top coast of Australia, then floods
+/* "Pour into Australia" - a coral stream drips from the bottom edge of the brand
+   marquee (the #about section, falling back to the hero), falls onto the top coast of Australia, then floods
    the map with a dripping liquid front. Fully scroll-scrubbed, so it reverses on
    the way back up. The map artwork itself is untouched: the original image is
    left as a faint "empty vessel" and a masked copy of it is revealed on top. */
@@ -92,12 +92,15 @@ export function usePourIntoAustralia(enabled: boolean, refs: PourRefs) {
       raf = requestAnimationFrame(frame);
       const t = now / 1000;
       const hero = document.getElementById('top');
+      const source = document.getElementById('about') ?? hero; // the stream drips from its bottom edge
       const cue = hero?.querySelector('[data-scroll-cue]');
       const H = innerHeight, s = scrollY;
       const M = rootEl.getBoundingClientRect().top + s; // page Y of the map section
+      const hr = source?.getBoundingClientRect();
 
-      // Target scroll positions (drip only starts once the first screen is scrolling away)
-      const drop = clamp((s - .3 * H) / (M + POUR_FILL_START * H - .3 * H));
+      // Target scroll positions (drip only starts once the source's bottom edge is well up the screen)
+      const dropFrom = hr ? hr.bottom + s - .7 * H : .3 * H;
+      const drop = clamp((s - dropFrom) / Math.max(1, M + POUR_FILL_START * H - dropFrom));
       const fill = clamp((s - (M + POUR_FILL_START * H)) / (POUR_FILL_LENGTH * H));
       const end = clamp((s - (M + 1.05 * H)) / (.4 * H));
       sm.drop = lerp(sm.drop, drop, .14); sm.fill = lerp(sm.fill, fill, .12); sm.end = lerp(sm.end, end, .14);
@@ -111,12 +114,11 @@ export function usePourIntoAustralia(enabled: boolean, refs: PourRefs) {
       if (f >= .999) setMap(FULL, false);
       else setMap(GHOST, true);
 
-      if (!hero || s > M + 2.2 * H) { overlay.style.display = 'none'; return; }
+      if (!hr || s > M + 2.2 * H) { overlay.style.display = 'none'; return; }
       overlay.style.display = '';
 
-      // Start point: the bottom edge of the first screen, below "Scroll To Explore"
+      // Start point: the bottom edge of the source, in line with "Scroll To Explore"
       const mobile = innerWidth <= 860;
-      const hr = hero.getBoundingClientRect();
       const cr = cue ? cue.getBoundingClientRect() : null;
       const cueX = cr && cr.width > 0 && !mobile ? cr.left + cr.width / 2 : null;
       const y0 = Math.max(hr.bottom, -40);
@@ -130,7 +132,7 @@ export function usePourIntoAustralia(enabled: boolean, refs: PourRefs) {
       const iy = topAt(ix) + 8;
       const ip = new DOMPoint(ix, iy).matrixTransform(ctm);
       const x1 = ip.x, y1 = ip.y, unit = ctm.a; // px per map unit
-      // straight vertical pour on mobile, or once the hero edge scrolls off the top
+      // straight vertical pour on mobile, or once the source edge scrolls off the top
       const x0 = cueX == null ? x1 : lerp(x1, cueX, clamp(hr.bottom / (.35 * H)));
 
       /* ---- stream ---- */

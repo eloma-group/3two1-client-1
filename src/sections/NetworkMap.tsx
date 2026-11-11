@@ -415,7 +415,7 @@ export default function NetworkMap(
 
   return (
     <>
-    {/* Open space above the flat map, so the pour has a longer fall from the hero. */}
+    {/* Open space above the flat map, so the pour has a longer fall from the brand marquee. */}
     {variant === 'map' && <div className={styles.pourGap} aria-hidden="true" />}
     <div
       className={variant === 'globe' ? `${styles.wrap} ${styles.plain}` : styles.wrap}

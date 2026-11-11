@@ -9,10 +9,10 @@ import { TestimonialsSection } from '../sections/TestimonialsSection';
 import Contact from '../sections/Contact';
 
 const SECTIONS = [
+  IntroductionSection,
   NetworkMap,
   ServicesSection,
   IndustriesSection,
-  IntroductionSection,
   Story,
   Bartenders,
   TestimonialsSection,
