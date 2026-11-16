@@ -70,6 +70,76 @@
 .content { position: relative; z-index: 2; width: 100%; }
 .inner { max-width: 60rem; }
 
+/* Wide screens: copy on the left, Giffard bottle stage on the right */
+@media (min-width: 1280px) {
+  .content {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, clamp(340px, 34vw, 540px));
+    align-items: center;
+    gap: clamp(1.5rem, 3vw, 3.5rem);
+  }
+}
+.stage {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  max-height: 72svh;
+  justify-self: center;
+}
+/* Peach halo and a gold hairline ring behind the bottles, after the Giffard page */
+.stageGlow {
+  position: absolute;
+  left: 50%;
+  top: 46%;
+  width: 92%;
+  aspect-ratio: 1;
+  translate: -50% -50%;
+  border-radius: 50%;
+  background: radial-gradient(circle at 50% 45%, rgba(255, 168, 128, 0.34), rgba(255, 226, 208, 0.6) 45%, transparent 70%);
+  box-shadow: inset 0 0 0 1px rgba(184, 145, 63, 0.55);
+}
+.stageGlow::after {
+  content: '';
+  position: absolute;
+  inset: 6%;
+  border-radius: 50%;
+  border: 1px dashed rgba(184, 145, 63, 0.4);
+}
+.stageFloor {
+  position: absolute;
+  left: 6%; right: 6%;
+  bottom: 5%;
+  height: 4%;
+  border-radius: 50%;
+  background: radial-gradient(closest-side, rgba(150, 70, 40, 0.3), transparent);
+  filter: blur(6px);
+}
+.bottle {
+  position: absolute;
+  bottom: 6%;
+  z-index: 2;
+  pointer-events: none;
+  transform-origin: 50% 100%;
+}
+.bottle > div { height: 100%; }
+.bottle img {
+  display: block;
+  height: 100%;
+  width: auto;
+  max-width: none;
+  filter: drop-shadow(0 26px 24px rgba(150, 70, 40, 0.25)) drop-shadow(0 6px 8px rgba(0, 0, 0, 0.16));
+}
+/* Each bottle is centred on its slot's x and steps down in height from the
+   centre, so the seven fan out evenly */
+.farFarLeft, .farLeft, .left, .centre, .right, .farRight, .farFarRight { translate: -50% 0; }
+.farFarLeft { left: 9%; height: 50%; z-index: 0; }
+.farLeft { left: 22%; height: 61%; z-index: 1; }
+.left { left: 35%; height: 72%; z-index: 2; }
+.centre { left: 50%; height: 84%; z-index: 4; }
+.right { left: 65%; height: 72%; z-index: 2; }
+.farRight { left: 78%; height: 61%; z-index: 1; }
+.farFarRight { left: 91%; height: 50%; z-index: 0; }
+
 .eyebrow {
   display: inline-flex;
   align-items: center;
@@ -166,10 +236,6 @@
   color: #b41f52;
   letter-spacing: 0.01em;
 }
-
-/* Distribution network (HeroNetwork) fills the column right of the copy */
-.network { position: absolute; inset: 0; z-index: 1; pointer-events: none; }
-.networkIn { position: absolute; inset: 0; }
 
 /* Scroll indicator */
 .scroll {
