@@ -18,7 +18,7 @@ const BOTTLES = [
   { src: bottle('giffard-lychee-liqueur'), alt: 'Giffard Lichi-Li lychee liqueur bottle', slot: 'farLeft', fromX: '80%', tilt: -8, float: 6.6 },
   { src: bottle('worthy-park-rum'), alt: 'Worthy Park Single Estate Reserve Jamaica rum bottle', slot: 'farRight', fromX: '-80%', tilt: 8, float: 5.9 },
   { src: bottle('black-tears-spiced-rum'), alt: 'Black Tears Dry Spiced rum bottle', slot: 'left', fromX: '40%', tilt: -4, float: 5.6 },
-  { src: bottle('demonio-pisco'), alt: 'Demonio de los Andes Quebranta pisco bottle', slot: 'right', fromX: '-40%', tilt: 4, float: 6.2 },
+  { src: bottle('demonio-acholado'), alt: 'Demonio de los Andes Acholado pisco bottle', slot: 'right', fromX: '-40%', tilt: 4, float: 6.2 },
   { src: bottle('giffard-popcorn-syrup'), alt: 'Giffard Popcorn syrup bottle', slot: 'centre', fromX: '0%', tilt: 0, float: 5 },
 ] as const;
 
