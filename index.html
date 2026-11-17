@@ -86,14 +86,16 @@
          and largest contentful paint land with the HTML rather than 2.2s in;
          the video's box is square before its metadata arrives, so nothing
          under it moves.
-         The ground is white under the logo and the lines and eases to a
-         barely-off white (#fffff6) toward the edges. Lighthouse's Speed Index
-         ignores pure white, so on an all-white splash it only sees the logo
-         drawing itself over three seconds and scores the page as slow to
-         appear; the tint lets it see the screen is filled at the first paint.
-         To go back to pure white, set the .sp background to #fff. -->
+         The ground is pure white across the middle and eases to a neutral
+         near-white (#f7f7f7, grey rather than cream) only toward the corners.
+         Lighthouse's Speed Index skips pixels at 249 or above on every
+         channel, so on an all-white splash it only sees the logo drawing
+         itself over three seconds and scores the page as slow to appear; the
+         corners let it see the screen is filled at the first paint. #f9f9f9
+         is too light (the screenshot rounds it back to white). To go back to
+         pure white, set the .sp background to #fff. -->
     <style>
-      .sp{position:fixed;inset:0;z-index:10000;display:grid;place-items:center;background:radial-gradient(ellipse farthest-corner at center,#fff 30%,#fffff6 52%);overflow:hidden;animation:sp-out .8s cubic-bezier(.215,.61,.355,1) 6s forwards}
+      .sp{position:fixed;inset:0;z-index:10000;display:grid;place-items:center;background:radial-gradient(ellipse farthest-corner at center,#fff 42%,#f7f7f7 75%);overflow:hidden;animation:sp-out .8s cubic-bezier(.215,.61,.355,1) 6s forwards}
       .sp-inner{position:relative;display:flex;flex-direction:column;align-items:center;text-align:center;padding-inline:1.5rem}
       .sp-logo{width:clamp(148px,25vw,285px);position:relative;overflow:hidden;animation:sp-in 1s cubic-bezier(.215,.61,.355,1) both}
       .sp-logo video{width:100%;height:auto;aspect-ratio:1/1;display:block}
