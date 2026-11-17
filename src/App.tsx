@@ -1,4 +1,4 @@
-import { lazy, Suspense, useCallback, useState } from 'react';
+import { lazy, startTransition, Suspense, useCallback, useEffect, useState } from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { useLenis } from './hooks/useLenis';
 import Splash from './components/Splash';
@@ -23,9 +23,23 @@ const ProductPage = lazy(() => import('./pages/brands/ProductPage'));
 const GiffardRange = lazy(() => import('./pages/brands/GiffardRange'));
 const blank = <div style={{ minHeight: '100svh' }} />;
 
+/** Counts from 0 up to `last`, one step per task. The page mounts first, then
+    the navbar, then the footer, so the first mount is three short tasks behind
+    the splash instead of one long one. */
+function useStage(last: number) {
+  const [stage, setStage] = useState(0);
+  useEffect(() => {
+    if (stage >= last) return;
+    const t = setTimeout(() => startTransition(() => setStage((s) => s + 1)), 0);
+    return () => clearTimeout(t);
+  }, [stage, last]);
+  return stage;
+}
+
 export default function App() {
   useLenis();
   const [ready, setReady] = useState(false);
+  const stage = useStage(2);
 
   const handleSplashDone = useCallback(() => setReady(true), []);
 
@@ -33,8 +47,8 @@ export default function App() {
     <BrowserRouter>
       <ScrollToTop />
       <Splash onDone={handleSplashDone} />
-      <ScrollProgress />
-      <Navbar />
+      {stage >= 1 && <ScrollProgress />}
+      {stage >= 1 && <Navbar />}
       <main>
         <Routes>
           <Route path="/" element={<Home ready={ready} />} />
@@ -53,7 +67,7 @@ export default function App() {
           <Route path="*" element={<Home ready={ready} notFound />} />
         </Routes>
       </main>
-      <Footer />
+      {stage >= 2 && <Footer />}
     </BrowserRouter>
   );
 }

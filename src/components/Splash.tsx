@@ -2,6 +2,9 @@ import { useEffect } from 'react';
 
 /** When the splash starts fading out (see the #splash styles in index.html). */
 const OUT_AT = 6000;
+/** How long before the fade the page behind the splash starts being painted
+    (index.html keeps it unpainted until then): time to draw it once, unseen. */
+const PAINT_LEAD = 1000;
 
 /**
  * The splash itself is plain HTML and CSS in index.html, so it is on screen at
@@ -13,8 +16,10 @@ const OUT_AT = 6000;
 export default function Splash({ onDone }: { onDone: () => void }) {
   useEffect(() => {
     const el = document.getElementById('splash');
+    const paint = () => { document.documentElement.dataset.page = 'on'; };
     const finish = () => {
       el?.remove();
+      paint();
       delete document.documentElement.dataset.splash;
     };
 
@@ -30,11 +35,13 @@ export default function Splash({ onDone }: { onDone: () => void }) {
       finish();
       return;
     }
+    const at = Number(out.currentTime ?? 0);
+    const p = setTimeout(paint, Math.max(0, OUT_AT - PAINT_LEAD - at));
     // The script can arrive late on a slow phone: start the page from wherever
     // the splash has got to rather than from the top of its timeline.
-    const t = setTimeout(onDone, Math.max(0, OUT_AT - Number(out.currentTime ?? 0)));
+    const t = setTimeout(() => { paint(); onDone(); }, Math.max(0, OUT_AT - at));
     out.finished.then(finish, () => {});
-    return () => clearTimeout(t);
+    return () => { clearTimeout(p); clearTimeout(t); };
   }, [onDone]);
 
   return null;
